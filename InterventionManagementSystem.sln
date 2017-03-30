@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterventionManagementSyste
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterventionManagementSystem.Tests", "InterventionManagementSystem.Tests\InterventionManagementSystem.Tests.csproj", "{20647ED6-D2CF-4B64-812E-3E046A467AC0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IMSLogic", "IMSLogic\IMSLogic.csproj", "{35CEE81C-1867-4C24-B999-C745B6E4FE02}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IMSDBLayer", "IMSDBLayer\IMSDBLayer.csproj", "{1AE95F5B-FBD3-48CC-AD04-B1F3BA570C25}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{20647ED6-D2CF-4B64-812E-3E046A467AC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{20647ED6-D2CF-4B64-812E-3E046A467AC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{20647ED6-D2CF-4B64-812E-3E046A467AC0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35CEE81C-1867-4C24-B999-C745B6E4FE02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35CEE81C-1867-4C24-B999-C745B6E4FE02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35CEE81C-1867-4C24-B999-C745B6E4FE02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35CEE81C-1867-4C24-B999-C745B6E4FE02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AE95F5B-FBD3-48CC-AD04-B1F3BA570C25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AE95F5B-FBD3-48CC-AD04-B1F3BA570C25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AE95F5B-FBD3-48CC-AD04-B1F3BA570C25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AE95F5B-FBD3-48CC-AD04-B1F3BA570C25}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
