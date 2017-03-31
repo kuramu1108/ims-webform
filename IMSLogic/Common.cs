@@ -6,7 +6,17 @@ using System.Threading.Tasks;
 
 namespace IMSLogic
 {
-    class Common
+    public class Common
     {
+        public enum Districts
+        {
+            UrbanIndonesia=1,
+            RuralIndonesia=2,
+            UrbanPapuaNewGuinea=3,
+            RuralPapuaNewGuinea=4,
+            Sydney=5,
+            RuralNewSouthWales=6
+        }
+
     }
 }
