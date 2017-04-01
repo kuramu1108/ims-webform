@@ -10,13 +10,29 @@ namespace IMSLogic
     {
         public enum Districts
         {
-            UrbanIndonesia=1,
-            RuralIndonesia=2,
-            UrbanPapuaNewGuinea=3,
-            RuralPapuaNewGuinea=4,
-            Sydney=5,
-            RuralNewSouthWales=6
+            UrbanIndonesia = 1,
+            RuralIndonesia,
+            UrbanPapuaNewGuinea,
+            RuralPapuaNewGuinea,
+            Sydney,
+            RuralNewSouthWales
         }
+
+        public enum InterventionType
+        {
+            Proposed = 1,
+            Approved,
+            Completed,
+            Cancelled
+        }
+
+        public enum UserType
+        {
+            SiteEngineer = 1,
+            Manager,
+            Accountant
+        }
+
 
     }
 }
