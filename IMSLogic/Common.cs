@@ -40,5 +40,12 @@ namespace IMSLogic
             SupplyandInstallStormProofHomeKit
         }
 
+        public enum ReportType
+        {
+            TotalCostByEngineer=1,
+            AverageCostByEngineer,
+            CostByDistrict,
+            MonthlyCostForDistrict
+        }
     }
 }

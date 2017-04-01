@@ -46,6 +46,7 @@
     <Compile Include="InterventionType.cs" />
     <Compile Include="Manager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Report.cs" />
     <Compile Include="SiteEngineer.cs" />
     <Compile Include="Users.cs" />
   </ItemGroup>
