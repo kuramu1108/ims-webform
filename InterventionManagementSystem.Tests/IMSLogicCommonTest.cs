@@ -20,9 +20,9 @@ namespace InterventionManagementSystem.Tests
             Assert.AreEqual(x, 2);
         }
         [TestMethod]
-        public void IMSLogicCommon_EnumInterventionType_ValueCorrect()
+        public void IMSLogicCommon_EnumInterventionState_ValueCorrect()
         {
-            int x = (int)IMSLogic.Common.InterventionType.Cancelled;
+            int x = (int)IMSLogic.Common.InterventionState.Cancelled;
             Assert.AreEqual(x, 4);
         }
     }

@@ -18,7 +18,7 @@ namespace IMSLogic
             RuralNewSouthWales
         }
 
-        public enum InterventionType
+        public enum InterventionState
         {
             Proposed = 1,
             Approved,
@@ -33,6 +33,12 @@ namespace IMSLogic
             Accountant
         }
 
+        public enum InterventionType
+        {
+            SupplyandInstallPortableToilet =1,
+            HepatitisAvoidanceTraining,
+            SupplyandInstallStormProofHomeKit
+        }
 
     }
 }

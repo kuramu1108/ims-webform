@@ -13,34 +13,34 @@ namespace InterventionManagementSystem.Tests
         public void SetUp()
         {
             client = new Client();
-            client.district = Common.Districts.UrbanIndonesia;
-            client.name = "john Smith";
-            client.location = "123 Joke St";
+            client.District = Common.Districts.UrbanIndonesia;
+            client.Name = "john Smith";
+            client.Location = "123 Joke St";
             
         }
         [TestMethod]
         public void IMSLogicClient_Constructor_ValueCorrect()
         {
             Client client2 = new Client("john Smith", "123 Joke St", Common.Districts.UrbanIndonesia);
-            Assert.AreEqual(client2.name, "john Smith");
-            Assert.AreEqual(client2.district, Common.Districts.UrbanIndonesia);
-            Assert.AreEqual(client2.location, "123 Joke St");
+            Assert.AreEqual(client2.Name, "john Smith");
+            Assert.AreEqual(client2.District, Common.Districts.UrbanIndonesia);
+            Assert.AreEqual(client2.Location, "123 Joke St");
 
         }
         [TestMethod]
         public void IMSLogicClient_PropertyDistricts_ValueCorrect()
         {
-            Assert.AreEqual(client.district, Common.Districts.UrbanIndonesia);
+            Assert.AreEqual(client.District, Common.Districts.UrbanIndonesia);
         }
         [TestMethod]
         public void IMSLogicClient_PropertyName_ValueCorrect()
         {
-            Assert.AreEqual(client.name, "john Smith");
+            Assert.AreEqual(client.Name, "john Smith");
         }
         [TestMethod]
         public void IMSLogicClient_PropertyLocation_ValueCorrect()
         {
-            Assert.AreEqual(client.location, "123 Joke St");
+            Assert.AreEqual(client.Location, "123 Joke St");
         }
     }
 }

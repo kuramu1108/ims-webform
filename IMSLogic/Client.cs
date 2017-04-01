@@ -8,15 +8,15 @@ namespace IMSLogic
 {
     public class Client
     {
-        public string name { get; set; }
-        public string location { get; set; }
-        public Common.Districts district { get; set; }
+        public string Name { get; set; }
+        public string Location { get; set; }
+        public Common.Districts District { get; set; }
 
         public Client(string clientName, string clientlocation, Common.Districts clientDistricts)
         {
-            name = clientName;
-            location = clientlocation;
-            district = clientDistricts;
+            Name = clientName;
+            Location = clientlocation;
+            District = clientDistricts;
 
         }
         public Client()
