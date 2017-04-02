@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using IMSDBLayer;
+using System.Security;
 
 namespace IMSLogic
 {
@@ -50,7 +51,14 @@ namespace IMSLogic
             }
         }
 
-       
 
+        public Accountant(int id, string name, string loginName, SecureString password, Common.UserType type)
+        {
+            UserID = id;
+            Name = name;
+            LoginName = loginName;
+            Password = password;
+            Type = type;
+        }
     }
 }
