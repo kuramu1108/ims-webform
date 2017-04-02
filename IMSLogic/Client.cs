@@ -26,7 +26,9 @@ namespace IMSLogic
         {
 
         }
-
+        public override string ToString(){
+            return "Client name: "+Name+", Client location: "+Location;
+         }  
 
     }
 }
