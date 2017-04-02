@@ -27,25 +27,25 @@ namespace IMSLogic
             AuthorisedCost = cost;
         }
         public void CreateClient(string name,string location ,  Common.Districts district){
-             DB.CreateClient(Name,Location,district);
+          //   DB.CreateClient(Name,Location,district);
         }
         public List<Client> ViewAllClients(){
-            DB.ViewAll();
+         //   DB.ViewAll();
      }
         public Client ViewDetails(int client_id){
-            DB.GetOneClient(id);
+         //   DB.GetOneClient(id);
      }
         public Intervention DetailsOfIntervention(int client_id){
-             DB.GetInterventionDetail(client_id);
+           //  DB.GetInterventionDetail(client_id);
          }
         public void CreateNewIntervention(Intervention intervention){
-             DB.CreateIntervention(UserID,intervention);
+          //   DB.CreateIntervention(UserID,intervention);
        }
         public List<Intervention> ViewOwnInterventions(){
-         DB.ViewEngineerInterventions(UserID);
+      //   DB.ViewEngineerInterventions(UserID);
           }
         public void ChangeState(int intervention_id,  string new_state){
-            DB.ChangeInterventionState(intervention_id,new_state);
+         //   DB.ChangeInterventionState(intervention_id,new_state);
         }
     }
 }
