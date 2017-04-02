@@ -32,7 +32,7 @@ namespace IMSLogic
 
         public Intervention(int intervention_id, Common.InterventionType intervention_type,
               int client_id, int labour_hours, int cost, int site_engineer_id,
-              string date, Common.InterventionState state, string comment, string life_remaining = "100 %")
+              string date, Common.InterventionState state=Proposed, string comment, string life_remaining = "100 %")
         {
             this.intervention_id = intervention_id;
             this.intervention_type = intervention_type;

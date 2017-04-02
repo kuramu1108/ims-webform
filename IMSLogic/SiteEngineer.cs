@@ -30,19 +30,22 @@ namespace IMSLogic
           //   DB.CreateClient(Name,Location,district);
         }
         public List<Client> ViewAllClients(){
-         //   DB.ViewAll();
+         // return   DB.ViewAll();
+             return null;
      }
         public Client ViewDetails(int client_id){
          //   DB.GetOneClient(id);
      }
         public Intervention DetailsOfIntervention(int client_id){
-           //  DB.GetInterventionDetail(client_id);
+           //return  DB.GetInterventionDetail(client_id);
+             return null;
          }
         public void CreateNewIntervention(Intervention intervention){
           //   DB.CreateIntervention(UserID,intervention);
        }
         public List<Intervention> ViewOwnInterventions(){
-      //   DB.ViewEngineerInterventions(UserID);
+      // return  DB.ViewEngineerInterventions(UserID);
+          return null;
           }
         public void ChangeState(int intervention_id,  string new_state){
          //   DB.ChangeInterventionState(intervention_id,new_state);
