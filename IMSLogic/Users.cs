@@ -12,6 +12,8 @@ namespace IMSLogic
         public string Name { get; set; }
         public string LoginName { get; set; }
 
+        public int UserID { get; set; }
+
         public System.Security.SecureString Password { get; set; }
 
         public Common.UserType Type { get; set; }
