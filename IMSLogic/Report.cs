@@ -8,21 +8,21 @@ namespace IMSLogic
 {
     public class Report
     {
-        public static void PrintTotalCostByEngineerReport()
+        public Report PrintTotalCostByEngineerReport()
         {
-            //not implemented
+            return null;
         }
-        public static void PrintAverageCostByEngineerReport()
+        public Report PrintAverageCostByEngineerReport()
         {
-
+            return null;
         }
-        public static void PrintCostByDistrictReport()
+        public Report PrintCostByDistrictReport()
         {
-
+            return null;
         }
-        public static void PrintMonthlyCostForDistrictReport(Common.Districts districts)
+        public Report PrintMonthlyCostForDistrictReport(Common.Districts districts)
         {
-
+            return null;
         }
     }
 }
