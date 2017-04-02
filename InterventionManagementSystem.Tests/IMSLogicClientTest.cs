@@ -21,7 +21,7 @@ namespace InterventionManagementSystem.Tests
         [TestMethod]
         public void IMSLogicClient_Constructor_ValueCorrect()
         {
-            Client client2 = new Client("john Smith", "123 Joke St", Common.Districts.UrbanIndonesia);
+            Client client2 = new Client(1,"john Smith", "123 Joke St", Common.Districts.UrbanIndonesia);
             Assert.AreEqual(client2.Name, "john Smith");
             Assert.AreEqual(client2.District, Common.Districts.UrbanIndonesia);
             Assert.AreEqual(client2.Location, "123 Joke St");

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace IMSLogic
 {
-    public class SiteEngineer: Users
+    public class SiteEngineer : Users
     {
         //districts, cost hour
         public Common.Districts Districts { get; set; }
@@ -15,7 +15,7 @@ namespace IMSLogic
 
         public SiteEngineer() { }
 
-        public SiteEngineer(int id,string name, string loginName, System.Security.SecureString password, Common.UserType type, Common.Districts districts, double hour, decimal cost)
+        public SiteEngineer(int id, string name, string loginName, System.Security.SecureString password, Common.UserType type, Common.Districts districts, double hour, decimal cost)
         {
             UserID = id;
             Name = name;
@@ -26,30 +26,34 @@ namespace IMSLogic
             AuthorisedHour = hour;
             AuthorisedCost = cost;
         }
-        public void CreateClient(string name,string location ,  Common.Districts district){
-          //   DB.CreateClient(Name,Location,district);
-        }
-        public List<Client> ViewAllClients(){
-         // return   DB.ViewAll();
-             return null;
-     }
-        public Client ViewDetails(int client_id){
-         //   DB.GetOneClient(id);
-     }
-        public Intervention DetailsOfIntervention(int client_id){
-           //return  DB.GetInterventionDetail(client_id);
-             return null;
-         }
-        public void CreateNewIntervention(Intervention intervention){
-          //   DB.CreateIntervention(UserID,intervention);
-       }
-        public List<Intervention> ViewOwnInterventions(){
-      // return  DB.ViewEngineerInterventions(UserID);
-          return null;
-          }
-        public void ChangeState(int intervention_id,  string new_state){
-         //   DB.ChangeInterventionState(intervention_id,new_state);
-        }
+        //public void CreateClient(string name, string location, Common.Districts district)
+        //{
+        //    DB.CreateClient(Name,Location,district);
+        //}
+        //public List<Client> ViewAllClients()
+        //{
+        //    DB.ViewAll();
+        //}
+        //public Client ViewDetails(int client_id)
+        //{
+        //    DB.GetOneClient(id);
+        //}
+        //public Intervention DetailsOfIntervention(int client_id)
+        //{
+        //    DB.GetInterventionDetail(client_id);
+        //}
+        //public void CreateNewIntervention(Intervention intervention)
+        //{
+        //    DB.CreateIntervention(UserID,intervention);
+        //}
+        //public List<Intervention> ViewOwnInterventions()
+        //{
+        //    DB.ViewEngineerInterventions(UserID);
+        //}
+        //public void ChangeState(int intervention_id, string new_state)
+        //{
+        //    DB.ChangeInterventionState(intervention_id,new_state);
+        //}
 
 
 
