@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="IMSLogicAccountantTest.cs" />
     <Compile Include="IMSLogicManagerTest.cs" />
+    <Compile Include="IMSLogicReport.cs" />
     <Compile Include="IMSLogicSiteEngineerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IMSLogicCommonTest.cs" />
