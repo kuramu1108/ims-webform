@@ -1,13 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace IMSLogic
 {
-    class Accountant:Users
+    public class Accountant:Users
     {
+        public Accountant(int id, string name, string loginName, SecureString password, Common.UserType type)
+        {
+            UserID = id;
+            Name = name;
+            LoginName = loginName;
+            Password = password;
+            Type = type;
+        }
 
         public void generateReport(Common.ReportType report, Common.Districts district)
         {
