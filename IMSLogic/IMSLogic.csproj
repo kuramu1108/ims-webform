@@ -40,7 +40,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Accountant.cs" />
+    <Compile Include="Client.cs" />
+    <Compile Include="Common.cs" />
+    <Compile Include="Intervention.cs" />
+    <Compile Include="InterventionType.cs" />
+    <Compile Include="Manager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Report.cs" />
+    <Compile Include="SiteEngineer.cs" />
+    <Compile Include="Users.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IMSDBLayer\IMSDBLayer.csproj">
+      <Project>{1ae95f5b-fbd3-48cc-ad04-b1f3ba570c25}</Project>
+      <Name>IMSDBLayer</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
