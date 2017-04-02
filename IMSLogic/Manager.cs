@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using IMSDBLayer;
 
 namespace IMSLogic
 {
@@ -28,5 +29,14 @@ namespace IMSLogic
 
         }
 
+        public void GetListOfInterventions()
+        {
+            GetData.GetListofProposedInterventions();
+        }
+
+        public void ApproveIntervention()
+        {
+
+        }
     }
 }
