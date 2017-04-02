@@ -15,8 +15,9 @@ namespace IMSLogic
 
         public SiteEngineer() { }
 
-        public SiteEngineer(string name, string loginName, System.Security.SecureString password, Common.UserType type, Common.Districts districts, double hour, decimal cost)
+        public SiteEngineer(int id,string name, string loginName, System.Security.SecureString password, Common.UserType type, Common.Districts districts, double hour, decimal cost)
         {
+            UserID = id;
             Name = name;
             LoginName = loginName;
             Password = password;

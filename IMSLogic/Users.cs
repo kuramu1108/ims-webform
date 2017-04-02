@@ -18,6 +18,16 @@ namespace IMSLogic
 
         public Common.UserType Type { get; set; }
 
+        public Users() { }
+        public Users(int id,string name,string loginName,SecureString password,Common.UserType type)
+        {
+            UserID = id;
+            Name = name;
+            LoginName = loginName;
+            Password = password;
+            Type = type;
+        }
+
         public Boolean changePassword(SecureString oldPassword,SecureString newPassword)
         {
             if (Password == oldPassword)

@@ -12,8 +12,11 @@ namespace IMSLogic
         public string Location { get; set; }
         public Common.Districts District { get; set; }
 
-        public Client(string clientName, string clientlocation, Common.Districts clientDistricts)
+        public int ClientID { get; set; }
+
+        public Client(int id,string clientName, string clientlocation, Common.Districts clientDistricts)
         {
+            ClientID = id;
             Name = clientName;
             Location = clientlocation;
             District = clientDistricts;

@@ -14,8 +14,9 @@ namespace IMSLogic
 
         public Manager() { }
 
-        public Manager(string name, string loginName, System.Security.SecureString password, Common.UserType type, Common.Districts districts, double hour, decimal cost)
+        public Manager(int id,string name, string loginName, System.Security.SecureString password, Common.UserType type, Common.Districts districts, double hour, decimal cost)
         {
+            UserID = id;
             Name = name;
             LoginName = loginName;
             Password = password;
