@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using IMSDBLayer;
 
 namespace IMSLogic
 {
-    class Accountant:Users
+    public class Accountant:Users
     {
-
+        //run report
         public void generateReport(Common.ReportType report, Common.Districts district)
         {
             switch((int)report)
@@ -29,5 +30,27 @@ namespace IMSLogic
                     break;
             }
         }
+
+
+        //see list of siteengineer and manager
+        public void getListOfSGAndManager()
+        {
+            //return a list or datatable
+            GetData.getAllSGAndManger();
+
+        }
+
+        public void changeDistrict(Users user, Common.Districts newDistricts)
+        {
+            if (user.Type == Common.UserType.SiteEngineer || user.Type == Common.UserType.Manager)
+            {
+                //get the user with UserID()
+                GetData.getUser(user.UserID);
+                //change the district of it
+            }
+        }
+
+       
+
     }
 }
