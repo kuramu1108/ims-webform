@@ -1,4 +1,5 @@
 ﻿using IMSDBLayer;
+using IMSDBLayer.DataModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,14 +16,14 @@ namespace IMSLogic
         //public decimal AuthorisedCost { get; set; }
 
 
-        private SiteEngineerDM SiteEngineerDM;
-        public SiteEngineer() { SiteEngineerDM = new SiteEngineerDM(); }
+        private User SiteEngineerDM;
+        public SiteEngineer() { SiteEngineerDM = new User(); }
 
         public SiteEngineer(int id, string name, string loginName, System.Security.SecureString password, Common.UserType type, Common.Districts districts, double hour, decimal cost)
         {
            
 
-            SiteEngineerDM = new SiteEngineerDM(id, name, loginName, password, type, districts, hour, cost);
+            SiteEngineerDM = null;
         }
         //public void CreateClient(string name, string location, Common.Districts district)
         //{
