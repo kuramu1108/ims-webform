@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using IMSDBLayer;
+using IMSDBLayer.DataModels;
 
 namespace IMSLogic
 {
@@ -14,10 +15,10 @@ namespace IMSLogic
     //    public decimal AuthorisedCost { get; set; }
 
 
-        private ManagerDM managerDM;
+        private User managerDM;
     public Manager()
     {
-        managerDM = new ManagerDM();
+        managerDM = new User();
     }
 
     public Manager(int id, string name, string loginName, System.Security.SecureString password, Common.UserType type, Common.Districts districts, double hour, decimal cost)
@@ -30,7 +31,7 @@ namespace IMSLogic
         //Districts = districts;
         //AuthorisedHour = hour;
         //AuthorisedCost = cost;
-        managerDM = new ManagerDM(id, name, loginName, password, type, districts, hour, cost);
+        managerDM = null;
 
 
     }
@@ -42,10 +43,10 @@ namespace IMSLogic
 
     public void ApproveIntervention(Intervention intervention)
     {
-        if (intervention.Cost < managerDM.AuthorisedCost && intervention.Labour_hours < managerDM.AuthorisedHour)
-        {
-            DataAccess.ChangeState(intervention.Intervention_id, Common.InterventionState.Approved.ToString());
-        }
+        //if (intervention.Cost < managerDM.AuthorisedCost && intervention.Labour_hours < managerDM.AuthorisedHour)
+        //{
+        //    DataAccess.ChangeState(intervention.Intervention_id, Common.InterventionState.Approved.ToString());
+        //}
 
     }
 }

@@ -42,8 +42,6 @@ namespace IMSDBLayer
             cmd.ExecuteNonQuery();
             connection.Close();
             throw new NotImplementedException();
-
-
         }
 
         public static void GetListofProposedInterventions()

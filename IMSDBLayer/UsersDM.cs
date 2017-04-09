@@ -31,7 +31,5 @@ namespace IMSDBLayer
 
         public Common.UserType Type { get; set; }
 
-        
-
     }
 }

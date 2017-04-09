@@ -5,15 +5,16 @@ using System.Text;
 using System.Threading.Tasks;
 using IMSDBLayer;
 using System.Security;
+using IMSDBLayer.DataModels;
 
 namespace IMSLogic
 {
     public class Accountant:Users
     {
-        private AccountantDM accountantDM;
+        private User accountantDM;
         Accountant()
         {
-            accountantDM = new AccountantDM();
+            accountantDM = new User();
         }
         //run report
         public void generateReport(Common.ReportType report, Common.Districts district)
@@ -64,7 +65,7 @@ namespace IMSLogic
             //LoginName = loginName;
             //Password = password;
             //Type = type;
-            accountantDM = new AccountantDM(id, name, loginName, password, type);
+            accountantDM = null;
         }
     }
 }
