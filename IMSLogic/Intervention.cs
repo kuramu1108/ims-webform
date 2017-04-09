@@ -22,7 +22,7 @@ namespace IMSLogic
         public string Recent_visit_date { get; set; }
         public void SetLifeRemining(string remainind)
         {
-            life_remaining = remainind;
+            Life_remaining = remainind;
         }
         public void SetRecentVisitDate(string time)
         {

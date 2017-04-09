@@ -13,6 +13,7 @@ namespace IMSLogic
         //run report
         public void generateReport(Common.ReportType report, Common.Districts district)
         {
+         //   Report repo=new Report();
             switch((int)report)
             {
                 case 1:Report.PrintTotalCostByEngineerReport();
