@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountantDM.cs" />
+    <Compile Include="ClientDM.cs" />
     <Compile Include="Common.cs" />
     <Compile Include="DataAccess.cs" />
     <Compile Include="ManagerDM.cs" />
