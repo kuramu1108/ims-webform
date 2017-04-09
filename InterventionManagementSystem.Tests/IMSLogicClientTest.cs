@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using IMSLogic;
+using IMSDBLayer;
 
 namespace InterventionManagementSystem.Tests
 {
