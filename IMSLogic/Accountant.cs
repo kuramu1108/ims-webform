@@ -10,21 +10,26 @@ namespace IMSLogic
 {
     public class Accountant:Users
     {
+        private AccountantDM accountantDM;
+        Accountant()
+        {
+            accountantDM = new AccountantDM();
+        }
         //run report
         public void generateReport(Common.ReportType report, Common.Districts district)
         {
          //   Report repo=new Report();
             switch((int)report)
             {
-                case 1:Report.PrintTotalCostByEngineerReport();
+                case 1://Report.PrintTotalCostByEngineerReport();
                     break;
-                case 2:Report.PrintAverageCostByEngineerReport();
+                case 2://Report.PrintAverageCostByEngineerReport();
 
                     break;
-                case 3:Report.PrintCostByDistrictReport();
+                case 3://Report.PrintCostByDistrictReport();
 
                     break;
-                case 4:Report.PrintMonthlyCostForDistrictReport(district);
+                case 4://Report.PrintMonthlyCostForDistrictReport(district);
 
                     break;
                 default:
@@ -38,16 +43,16 @@ namespace IMSLogic
         public void getListOfSGAndManager()
         {
             //return a list or datatable
-            GetData.getAllSGAndManger();
+            DataAccess.getAllSGAndManger();
 
         }
 
-        public void changeDistrict(Users user, Common.Districts newDistricts)
+        public void changeDistrict(UsersDM user, Common.Districts newDistricts)
         {
             if (user.Type == Common.UserType.SiteEngineer || user.Type == Common.UserType.Manager)
             {
                 //get the user with UserID()
-                GetData.getUser(user.UserID);
+                DataAccess.ChangeDistricts(user.UserID, newDistricts.ToString());
                 //change the district of it
             }
         }
@@ -55,11 +60,12 @@ namespace IMSLogic
 
         public Accountant(int id, string name, string loginName, SecureString password, Common.UserType type)
         {
-            UserID = id;
-            Name = name;
-            LoginName = loginName;
-            Password = password;
-            Type = type;
+            //UserID = id;
+            //Name = name;
+            //LoginName = loginName;
+            //Password = password;
+            //Type = type;
+            accountantDM = new AccountantDM(id, name, loginName, password, type);
         }
     }
 }
