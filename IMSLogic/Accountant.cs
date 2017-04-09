@@ -46,7 +46,7 @@ namespace IMSLogic
             if (user.Type == Common.UserType.SiteEngineer || user.Type == Common.UserType.Manager)
             {
                 //get the user with UserID()
-                GetData.getUser(user.UserID);
+                GetData.ChangeDistricts(user.UserID, newDistricts);
                 //change the district of it
             }
         }

@@ -27,7 +27,8 @@ namespace IMSLogic
 
         }
         public override string ToString(){
-           Console.WriteLine( "Client name: "+Name+", Client location: "+Location);
-           }
+            return "Client name: "+Name+", Client location: "+Location;
+         }  
+
     }
 }
