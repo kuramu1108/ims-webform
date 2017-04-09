@@ -10,14 +10,14 @@ namespace IMSLogic
 {
     public abstract class Users
     {
-        public string Name { get; set; }
-        public string LoginName { get; set; }
+        //public string Name { get; set; }
+        //public string LoginName { get; set; }
 
-        public int UserID { get; set; }
+        //public int UserID { get; set; }
 
-        public System.Security.SecureString Password { get; set; }
+        //public System.Security.SecureString Password { get; set; }
 
-        public Common.UserType Type { get; set; }
+        //public Common.UserType Type { get; set; }
 
         private UsersDM user;
         public Users() {
@@ -31,14 +31,14 @@ namespace IMSLogic
             //LoginName = loginName;
             //Password = password;s
             //Type = type;
-            user = new UsersDM(name, loginName, password, type.ToString());
+            user = new UsersDM(name, loginName, password, type);
         }
 
         public Boolean changePassword(SecureString oldPassword,SecureString newPassword)
         {
-            if (Password == oldPassword)
+            if (user.Password == oldPassword)
             {
-                Password = newPassword;
+                user.Password = newPassword;
                 return true;
             }else
             {

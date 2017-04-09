@@ -9,14 +9,14 @@ namespace IMSDBLayer
 {
     public class UsersDM
     {
-        private string v;
+       
 
-        public UsersDM(string name, string loginName, SecureString password, string v)
+        public UsersDM(string name, string loginName, SecureString password, Common.UserType type)
         {
             Name = name;
             LoginName = loginName;
             Password = password;
-            this.v = v;
+            Type = type;
 
         }
 

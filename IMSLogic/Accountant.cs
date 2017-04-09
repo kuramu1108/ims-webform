@@ -10,8 +10,11 @@ namespace IMSLogic
 {
     public class Accountant:Users
     {
-
-        Accountant() : base(){ }
+        private AccountantDM accountantDM;
+        Accountant()
+        {
+            accountantDM = new AccountantDM();
+        }
         //run report
         public void generateReport(Common.ReportType report, Common.Districts district)
         {
@@ -43,7 +46,7 @@ namespace IMSLogic
 
         }
 
-        public void changeDistrict(Users user, Common.Districts newDistricts)
+        public void changeDistrict(UsersDM user, Common.Districts newDistricts)
         {
             if (user.Type == Common.UserType.SiteEngineer || user.Type == Common.UserType.Manager)
             {
@@ -56,11 +59,12 @@ namespace IMSLogic
 
         public Accountant(int id, string name, string loginName, SecureString password, Common.UserType type)
         {
-            UserID = id;
-            Name = name;
-            LoginName = loginName;
-            Password = password;
-            Type = type;
+            //UserID = id;
+            //Name = name;
+            //LoginName = loginName;
+            //Password = password;
+            //Type = type;
+            accountantDM = new AccountantDM(id, name, loginName, password, type);
         }
     }
 }
