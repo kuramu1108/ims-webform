@@ -162,5 +162,12 @@ namespace IMSDBLayer
             connection.Close();
             throw new NotImplementedException();
         }
+
+
+        public static void PrintTotalCostByEngineerReport(int id)
+        {
+            
+
+        }
     }
 }
