@@ -42,7 +42,6 @@
   <ItemGroup>
     <Compile Include="Accountant.cs" />
     <Compile Include="Client.cs" />
-    <Compile Include="Common.cs" />
     <Compile Include="Intervention.cs" />
     <Compile Include="InterventionType.cs" />
     <Compile Include="Manager.cs" />

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IMSDBLayer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,17 +11,19 @@ namespace IMSLogic
     {
 
 
-        public Common.InterventionType Name { get; set; }
-        public double Hours { get; set; }
+        //public Common.InterventionType Name { get; set; }
+        //public double Hours { get; set; }
 
-        public decimal Cost { get; set; }
+        //public decimal Cost { get; set; }
+        private InterventionTypeDM interventionTypeDM;
 
-        public InterventionType() { }
+        public InterventionType() { interventionTypeDM = new InterventionTypeDM(); }
         public InterventionType(Common.InterventionType name, double hours, decimal cost)
         {
-            Name = name;
-            Hours = hours;
-            Cost = cost;
+            //Name = name;
+            //Hours = hours;
+            //Cost = cost;
+            interventionTypeDM = new InterventionTypeDM(name, hours, cost);
         }
 
     }
