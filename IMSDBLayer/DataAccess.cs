@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace IMSDBLayer
 {
-    public class GetData
+    public class DataAccess
     {
-        public  void getUser(object userId)
+        public  static void getUser(object userId)
         {
 
             string connstring = "";
@@ -30,7 +30,7 @@ namespace IMSDBLayer
             //return userAttribute;
         }
 
-        public  void getAllSGAndManger()
+        public static void getAllSGAndManger()
         {
             string connstring = "";
             SqlConnection connection = new SqlConnection(connstring);
@@ -45,7 +45,7 @@ namespace IMSDBLayer
 
         }
 
-        public  void GetListofProposedInterventions()
+        public static void GetListofProposedInterventions()
         {
             string connstring = "";
             SqlConnection connection = new SqlConnection(connstring);
@@ -57,7 +57,7 @@ namespace IMSDBLayer
             throw new NotImplementedException();
         }
 
-        public  void ChangeDistricts(int userID, string newDistricts)
+        public static void ChangeDistricts(int userID, string newDistricts)
         {
             string connstring = "";
             SqlConnection connection = new SqlConnection(connstring);
@@ -70,7 +70,7 @@ namespace IMSDBLayer
 
         }
 
-        public void CreateClient(string name, string location, string district)
+        public static void CreateClient(string name, string location, string district)
         {
             string connstring = "";
             SqlConnection connection = new SqlConnection(connstring);
@@ -85,7 +85,7 @@ namespace IMSDBLayer
             throw new NotImplementedException();
         }
 
-        public void ViewAllClient()
+        public static void ViewAllClient()
         {
             string connstring = "";
             SqlConnection connection = new SqlConnection(connstring);
@@ -97,7 +97,7 @@ namespace IMSDBLayer
             throw new NotImplementedException(); 
         }
         
-        public void GetClient(int clientid)
+        public static void GetClient(int clientid)
 
         {
             string connstring = "";
@@ -110,7 +110,7 @@ namespace IMSDBLayer
             throw new NotImplementedException();
         }
 
-        public void GetIntervention(int clientid)
+        public static void GetIntervention(int clientid)
         {
             string connstring = "";
             SqlConnection connection = new SqlConnection(connstring);
@@ -121,7 +121,7 @@ namespace IMSDBLayer
             connection.Close();
             throw new NotImplementedException();
         }
-        public void viewOwnInterventions(int userID)
+        public static void viewOwnInterventions(int userID)
         {
             string connstring = "";
             SqlConnection connection = new SqlConnection(connstring);
@@ -133,13 +133,29 @@ namespace IMSDBLayer
             throw new NotImplementedException();
         }
 
-        public void ChangeState(int interventionID, string newState)
+        public static void ChangeState(int interventionID, string newState)
         {
             string connstring = "";
             SqlConnection connection = new SqlConnection(connstring);
             SqlCommand cmd = new SqlCommand("UPDATE Intervention Set InterventionState = @newstate where ID= @id");
             cmd.Parameters.AddWithValue("id", interventionID);
             cmd.Parameters.AddWithValue("newstate", newState);
+
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
+            throw new NotImplementedException();
+        }
+
+        public static void ChangeInterventionQuality(int interventionID, string comments, string remainLife, string date)
+        {
+            string connstring = "";
+            SqlConnection connection = new SqlConnection(connstring);
+            SqlCommand cmd = new SqlCommand("UPDATE Intervention Set Comments = @comments, LiftRemaining = @remainLife,DateRecentVisit = @date where ID= @id");
+            cmd.Parameters.AddWithValue("id", interventionID);
+            cmd.Parameters.AddWithValue("comments",comments);
+            cmd.Parameters.AddWithValue("remailLife", remainLife);
+            cmd.Parameters.AddWithValue("date", date);
 
             connection.Open();
             cmd.ExecuteNonQuery();

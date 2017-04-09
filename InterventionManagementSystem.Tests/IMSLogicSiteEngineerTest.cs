@@ -16,7 +16,7 @@ namespace InterventionManagementSystem.Tests
         [TestInitialize]
         public void setUp()
         {
-            siteEngineer = new SiteEngineer(3, "Ben", "Benjamin", Support.convertToSS("55555555"), Common.UserType.SiteEngineer, Common.Districts.RuralNewSouthWales, 7, 200);
+            siteEngineer = new SiteEngineer(3, "Ben", "Benjamin", Support.convertToSS("55555555"), IMSLogic.Common.UserType.SiteEngineer, Common.Districts.RuralNewSouthWales, 7, 200);
         }
 
         [TestMethod]

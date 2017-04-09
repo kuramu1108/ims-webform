@@ -31,11 +31,15 @@ namespace IMSLogic
 
         public void GetListOfInterventions()
         {
-            GetData.GetListofProposedInterventions();
+            DataAccess.GetListofProposedInterventions();
         }
 
-        public void ApproveIntervention()
+        public void ApproveIntervention(Intervention intervention)
         {
+            if (intervention.Cost < AuthorisedCost && intervention.Labour_hours <AuthorisedHour)
+            {
+                DataAccess.ChangeState(intervention.Intervention_id, Common.InterventionState.Approved.ToString());
+            }
 
         }
     }

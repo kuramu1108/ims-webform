@@ -10,20 +10,22 @@ namespace IMSLogic
 {
     public class Accountant:Users
     {
+
+        Accountant() : base(){ }
         //run report
         public void generateReport(Common.ReportType report, Common.Districts district)
         {
             switch((int)report)
             {
-                case 1:Report.PrintTotalCostByEngineerReport();
+                case 1://Report.PrintTotalCostByEngineerReport();
                     break;
-                case 2:Report.PrintAverageCostByEngineerReport();
+                case 2://Report.PrintAverageCostByEngineerReport();
 
                     break;
-                case 3:Report.PrintCostByDistrictReport();
+                case 3://Report.PrintCostByDistrictReport();
 
                     break;
-                case 4:Report.PrintMonthlyCostForDistrictReport(district);
+                case 4://Report.PrintMonthlyCostForDistrictReport(district);
 
                     break;
                 default:
@@ -37,7 +39,7 @@ namespace IMSLogic
         public void getListOfSGAndManager()
         {
             //return a list or datatable
-            GetData.getAllSGAndManger();
+            DataAccess.getAllSGAndManger();
 
         }
 
@@ -46,7 +48,7 @@ namespace IMSLogic
             if (user.Type == Common.UserType.SiteEngineer || user.Type == Common.UserType.Manager)
             {
                 //get the user with UserID()
-                GetData.ChangeDistricts(user.UserID, newDistricts);
+                DataAccess.ChangeDistricts(user.UserID, newDistricts.ToString());
                 //change the district of it
             }
         }

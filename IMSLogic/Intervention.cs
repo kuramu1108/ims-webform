@@ -22,11 +22,11 @@ namespace IMSLogic
         public string Recent_visit_date { get; set; }
         public void SetLifeRemining(string remainind)
         {
-            life_remaining = remainind;
+            Life_remaining = remainind;
         }
         public void SetRecentVisitDate(string time)
         {
-            recent_visit_date = time;
+            Recent_visit_date = time;
         }
 
 
@@ -34,16 +34,16 @@ namespace IMSLogic
               int client_id, int labour_hours, int cost, int site_engineer_id,
               string date, Common.InterventionState state, string comment, string life_remaining)
         {
-            this.intervention_id = intervention_id;
-            this.intervention_type = intervention_type;
-            this.client_id = client_id;
-            this.labour_hours = labour_hours;
-            this.cost = cost;
-            this.site_engineer_id = site_engineer_id;
-            this.date = date;
-            this.state = state;
-            this.comment = comment;
-            this.life_remaining = life_remaining;
+            this.Intervention_id = intervention_id;
+            this.Intervention_type = intervention_type;
+            this.Client_id = client_id;
+            this.Labour_hours = labour_hours;
+            this.Cost = cost;
+            this.Site_engineer_id = site_engineer_id;
+            this.Date = date;
+            this.State = state;
+            this.Comment = comment;
+            this.Life_remaining = life_remaining;
 
         }
     }
