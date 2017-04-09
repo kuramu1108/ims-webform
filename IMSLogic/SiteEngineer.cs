@@ -1,4 +1,6 @@
-﻿using System;
+﻿using IMSDBLayer;
+using IMSDBLayer.DataModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,22 +11,19 @@ namespace IMSLogic
     public class SiteEngineer : Users
     {
         //districts, cost hour
-        public Common.Districts Districts { get; set; }
-        public double AuthorisedHour { get; set; }
-        public decimal AuthorisedCost { get; set; }
+        //public Common.Districts Districts { get; set; }
+        //public double AuthorisedHour { get; set; }
+        //public decimal AuthorisedCost { get; set; }
 
-        public SiteEngineer() { }
+
+        private User SiteEngineerDM;
+        public SiteEngineer() { SiteEngineerDM = new User(); }
 
         public SiteEngineer(int id, string name, string loginName, System.Security.SecureString password, Common.UserType type, Common.Districts districts, double hour, decimal cost)
         {
-            UserID = id;
-            Name = name;
-            LoginName = loginName;
-            Password = password;
-            Type = type;
-            Districts = districts;
-            AuthorisedHour = hour;
-            AuthorisedCost = cost;
+           
+
+            SiteEngineerDM = null;
         }
         //public void CreateClient(string name, string location, Common.Districts district)
         //{

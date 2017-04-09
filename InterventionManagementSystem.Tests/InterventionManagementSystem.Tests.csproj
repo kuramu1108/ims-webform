@@ -65,10 +65,6 @@
       <Project>{35cee81c-1867-4c24-b999-c745b6e4fe02}</Project>
       <Name>IMSLogic</Name>
     </ProjectReference>
-    <ProjectReference Include="..\InterventionManagementSystem\InterventionManagementSystem.csproj">
-      <Project>{F5EAFE6F-C7F8-4EA3-9947-F1F08CEC1CF9}</Project>
-      <Name>InterventionManagementSystem</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
