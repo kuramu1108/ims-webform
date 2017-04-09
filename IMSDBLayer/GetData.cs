@@ -9,12 +9,12 @@ namespace IMSDBLayer
 {
     public class GetData
     {
-        public static void getUser(object userId)
+        public  void getUser(object userId)
         {
 
             string connstring = "";
             SqlConnection connection = new SqlConnection(connstring);
-            SqlCommand cmd = new SqlCommand("Select * From Users Where UserID = @userID");
+            SqlCommand cmd = new SqlCommand("Select * From Users Where UserID = @userID",connection);
             cmd.Parameters.AddWithValue("userId", userId);
             connection.Open();
             SqlDataReader reader = cmd.ExecuteReader();
@@ -30,17 +30,34 @@ namespace IMSDBLayer
             //return userAttribute;
         }
 
-        public static void getAllSGAndManger()
+        public  void getAllSGAndManger()
         {
+            string connstring = "";
+            SqlConnection connection = new SqlConnection(connstring);
+            SqlCommand cmd = new SqlCommand("Select * From Users Where UserType = @userManager OR UserType = @userSiteEngineer",connection);
+            cmd.Parameters.AddWithValue("userManager", "Manager");
+            cmd.Parameters.AddWithValue("userSiteEngineer", "SiteEngineer");
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
+            throw new NotImplementedException();
+
+
+        }
+
+        public  void GetListofProposedInterventions()
+        {
+            string connstring = "";
+            SqlConnection connection = new SqlConnection(connstring);
+            SqlCommand cmd = new SqlCommand("Select * From Interventions Where State = @state", connection);
+            cmd.Parameters.AddWithValue("state", "Proposed");
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
             throw new NotImplementedException();
         }
 
-        public static void GetListofProposedInterventions()
-        {
-            throw new NotImplementedException();
-        }
-
-        public static void ChangeDistricts(int userID, string newDistricts)
+        public  void ChangeDistricts(int userID, string newDistricts)
         {
             string connstring = "";
             SqlConnection connection = new SqlConnection(connstring);
@@ -51,6 +68,83 @@ namespace IMSDBLayer
             cmd.ExecuteNonQuery();
             connection.Close();
 
+        }
+
+        public void CreateClient(string name, string location, string district)
+        {
+            string connstring = "";
+            SqlConnection connection = new SqlConnection(connstring);
+            SqlCommand cmd = new SqlCommand("Insert Into Users (Name,Location,District) Values(@name,@location,@district)",connection);
+            cmd.Parameters.AddWithValue("name", name);
+            cmd.Parameters.AddWithValue("location", location);
+            cmd.Parameters.AddWithValue("district", district);
+
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
+            throw new NotImplementedException();
+        }
+
+        public void ViewAllClient()
+        {
+            string connstring = "";
+            SqlConnection connection = new SqlConnection(connstring);
+            SqlCommand cmd = new SqlCommand("Select * From Client");
+
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
+            throw new NotImplementedException(); 
+        }
+        
+        public void GetClient(int clientid)
+
+        {
+            string connstring = "";
+            SqlConnection connection = new SqlConnection(connstring);
+            SqlCommand cmd = new SqlCommand("Select * From Client Where ID = @id");
+            cmd.Parameters.AddWithValue("id", clientid);
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
+            throw new NotImplementedException();
+        }
+
+        public void GetIntervention(int clientid)
+        {
+            string connstring = "";
+            SqlConnection connection = new SqlConnection(connstring);
+            SqlCommand cmd = new SqlCommand("Select * From Intervention Where ClientID = @id");
+            cmd.Parameters.AddWithValue("id", clientid);
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
+            throw new NotImplementedException();
+        }
+        public void viewOwnInterventions(int userID)
+        {
+            string connstring = "";
+            SqlConnection connection = new SqlConnection(connstring);
+            SqlCommand cmd = new SqlCommand("Select * From Intervention Where UserID = @id");
+            cmd.Parameters.AddWithValue("id", userID);
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
+            throw new NotImplementedException();
+        }
+
+        public void ChangeState(int interventionID, string newState)
+        {
+            string connstring = "";
+            SqlConnection connection = new SqlConnection(connstring);
+            SqlCommand cmd = new SqlCommand("UPDATE Intervention Set InterventionState = @newstate where ID= @id");
+            cmd.Parameters.AddWithValue("id", interventionID);
+            cmd.Parameters.AddWithValue("newstate", newState);
+
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
+            throw new NotImplementedException();
         }
     }
 }
