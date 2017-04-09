@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -164,9 +165,19 @@ namespace IMSDBLayer
         }
 
 
-        public static void PrintTotalCostByEngineerReport(int id)
+        public static void PrintTotalCostByEngineerReport()
         {
-            
+            string connstring = "";
+            SqlConnection connection = new SqlConnection(connstring);
+            SqlCommand cmd = new SqlCommand("Select Users.SiteEngineer, sum(Interventions.Labour),sum(Interventions.Cost) From Interventions inner join Users On CreatedBy = @UserID where Intervention.State = @state Order By name",connection);
+            cmd.Parameters.AddWithValue("state", Common.InterventionState.Completed);
+            connection.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+            DataTable dt = new DataTable();
+            dt.Load(reader);
+            connection.Close();
+            //return dt;
+
 
         }
     }

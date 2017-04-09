@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace InterventionManagementSystem {
+namespace InterventionManageSystem2 {
     
     
     public partial class SiteMaster {
