@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InterventionManagementSystem.Tests
+namespace InterventionManagementSystem2.Tests
 {
     [TestClass]
     class IMSLogicSiteEngineerTest

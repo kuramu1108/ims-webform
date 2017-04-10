@@ -3,7 +3,7 @@ using IMSLogic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using IMSDBLayer;
 
-namespace InterventionManagementSystem.Tests
+namespace InterventionManagementSystem2.Tests
 {
     [TestClass]
     public class IMSLogicAccountantTest

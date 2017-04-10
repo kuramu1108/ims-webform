@@ -4,7 +4,7 @@ using IMSLogic;
 using IMSDBLayer;
 using IMSDBLayer.DataModels;
 
-namespace InterventionManagementSystem.Tests
+namespace InterventionManagementSystem2.Tests
 {
     [TestClass]
     public class IMSLogicClientTest
