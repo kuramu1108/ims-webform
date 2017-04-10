@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -57,6 +58,7 @@
     <Compile Include="DataModels\Intervention.cs" />
     <Compile Include="DataModels\InterventionType.cs" />
     <Compile Include="DataModels\User.cs" />
+    <Compile Include="Enums\District.cs" />
     <Compile Include="Enums\InterventionState.cs" />
     <Compile Include="Enums\UserType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
