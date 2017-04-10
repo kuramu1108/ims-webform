@@ -1,13 +1,6 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="NewIntervention.aspx.cs" Inherits="InterventionManagementSystem2.NewIntervention" %>
+﻿<%@ Page MasterPageFile="~/Site.Master" Language="C#" AutoEventWireup="true" CodeBehind="NewIntervention.aspx.cs" Inherits="InterventionManagementSystem2.NewIntervention" %>
 
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-</head>
-<body>
-    <form id="form1" runat="server">
+<asp:Content ID="NewIntervention" runat="server" ContentPlaceHolderID="MainContent">
         <h1>New Intervention</h1>
         <table>
             <tr><td>Intervention Type: </td><td>
@@ -25,6 +18,4 @@
             <tr><td><asp:Button ID="Cancel" runat="server" Text="Cancel" /></td><td>
                 <asp:Button ID="Submit" runat="server" Text="Submit" /></td></tr>
             </table>
-    </form>
-</body>
-</html>
+   </asp:Content>
