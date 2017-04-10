@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using IMSDBLayer;
 using IMSLogic;
+using IMSDBLayer.DataModels;
 
 namespace InterventionManagementSystem2
 {
@@ -13,11 +14,11 @@ namespace InterventionManagementSystem2
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Client client = new Client(1, "John Smith", "123 Happy St", Common.Districts.RuralPapuaNewGuinea);
+            //Client client = new Client(1, "John Smith", "123 Happy St", Common.Districts.RuralPapuaNewGuinea);
 
-            lblName.Text = client.clientDM.Name;
-            lblLocation.Text = client.clientDM.Location;
-            lblDistrict.Text = client.clientDM.District.ToString();
+            //lblName.Text = client.clientDM.Name;
+            //lblLocation.Text = client.clientDM.Location;
+            //lblDistrict.Text = client.clientDM.District.ToString();
 
             List<string> TestData = new List<string>()
             {

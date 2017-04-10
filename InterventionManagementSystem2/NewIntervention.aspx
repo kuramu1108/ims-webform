@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="NewIntervention.aspx.cs" Inherits="InterventionManagementSystem.NewIntervention" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="NewIntervention.aspx.cs" Inherits="InterventionManagementSystem2.NewIntervention" %>
 
 <!DOCTYPE html>
 

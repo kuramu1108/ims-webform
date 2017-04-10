@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace InterventionManagementSystem {
+namespace InterventionManagementSystem2 {
     
     
     public partial class NewIntervention {

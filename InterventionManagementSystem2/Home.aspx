@@ -7,10 +7,3 @@
     <asp:Login ID="Login1" OnAuthenticate= "Login1_Authenticate" CreateUserText="Register" HelpPageText="Additional Help" HelpPageUrl="~/Help.aspx"
 InstructionText="Please enter your user name and password for login."  runat="server"></asp:Login>
 </asp:content>
-<script runat="server">
-
-    protected void Login1_Authenticate(object sender, AuthenticateEventArgs e)
-    {
-
-    }
-</script>
