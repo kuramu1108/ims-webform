@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace InterventionManagementSystem
 {
-    public partial class _Default : Page
+    public partial class Welcome : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
