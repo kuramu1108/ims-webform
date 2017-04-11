@@ -8,30 +8,30 @@ using IMSDBLayer.DataModels;
 
 namespace IMSLogic
 {
-    public class Manager : Users
+    public class Manager : User
     {
-    //    public Common.Districts Districts { get; set; }
-    //    public double AuthorisedHour { get; set; }
-    //    public decimal AuthorisedCost { get; set; }
+        public Common.Districts Districts { get; set; }
+        public double AuthorisedHour { get; set; }
+        public decimal AuthorisedCost { get; set; }
 
 
-        private User managerDM;
+        private IMSDBLayer.DataModels.User managerDM;
     public Manager()
     {
-        managerDM = new User();
+            managerDM = new IMSDBLayer.DataModels.User();
     }
 
     public Manager(int id, string name, string loginName, System.Security.SecureString password, Common.UserType type, Common.Districts districts, double hour, decimal cost)
     {
-        //UserID = id;
-        //Name = name;
-        //LoginName = loginName;
-        //Password = password;
-        //Type = type;
-        //Districts = districts;
-        //AuthorisedHour = hour;
-        //AuthorisedCost = cost;
-        managerDM = null;
+            UserID = id;
+            Name = name;
+            LoginName = loginName;
+            Password = password;
+            Type = type;
+            Districts = districts;
+            AuthorisedHour = hour;
+            AuthorisedCost = cost;
+            managerDM = null;
 
 
     }

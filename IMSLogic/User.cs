@@ -8,29 +8,29 @@ using IMSDBLayer;
 
 namespace IMSLogic
 {
-    public abstract class Users
+    public abstract class User
     {
-        //public string Name { get; set; }
-        //public string LoginName { get; set; }
+        public string Name { get; set; }
+        public string LoginName { get; set; }
 
-        //public int UserID { get; set; }
+        public int UserID { get; set; }
 
-        //public System.Security.SecureString Password { get; set; }
+        public System.Security.SecureString Password { get; set; }
 
-        //public Common.UserType Type { get; set; }
+        public Common.UserType Type { get; set; }
 
         private UsersDM user;
-        public Users() {
+        public User() {
 
             user = new UsersDM();
         }
-        public Users(int id,string name,string loginName,SecureString password,Common.UserType type)
+        public User(int id,string name,string loginName,SecureString password,Common.UserType type)
         {
-            //UserID = id;
-            //Name = name;
-            //LoginName = loginName;
-            //Password = password;s
-            //Type = type;
+            UserID = id;
+            Name = name;
+            LoginName = loginName;
+            Password = password;
+             Type = type;
             user = new UsersDM(name, loginName, password, type);
         }
 
