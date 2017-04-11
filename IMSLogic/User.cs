@@ -8,7 +8,7 @@ using IMSDBLayer;
 
 namespace IMSLogic
 {
-    public abstract class Users
+    public abstract class User
     {
         //public string Name { get; set; }
         //public string LoginName { get; set; }
@@ -20,11 +20,11 @@ namespace IMSLogic
         //public Common.UserType Type { get; set; }
 
         private UsersDM user;
-        public Users() {
+        public User() {
 
             user = new UsersDM();
         }
-        public Users(int id,string name,string loginName,SecureString password,Common.UserType type)
+        public User(int id,string name,string loginName,SecureString password,Common.UserType type)
         {
             //UserID = id;
             //Name = name;

@@ -47,7 +47,7 @@
     <Compile Include="Report.cs" />
     <Compile Include="SiteEngineer.cs" />
     <Compile Include="Support.cs" />
-    <Compile Include="Users.cs" />
+    <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\IMSDBLayer\IMSDBLayer.csproj">
