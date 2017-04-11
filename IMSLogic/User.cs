@@ -29,7 +29,7 @@ namespace IMSLogic
             UserID = id;
             Name = name;
             LoginName = loginName;
-            Password = password; s
+            Password = password;
              Type = type;
             user = new UsersDM(name, loginName, password, type);
         }
