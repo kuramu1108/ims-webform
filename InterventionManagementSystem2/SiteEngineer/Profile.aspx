@@ -33,7 +33,7 @@
                             <asp:TextBox ID="TextBoxNewPassword" runat="server" Visible="false"></asp:TextBox>
                         </div>
                         <div class="col-md-12">
-                            <asp:Button ID="ButtonChangePassword" runat="server" Text="Change Password" />
+                            <asp:Button ID="ButtonChangePassword" runat="server" Text="Change Password" OnClick="ButtonChangePassword_Click" />
                         </div>
                         
                     </div>

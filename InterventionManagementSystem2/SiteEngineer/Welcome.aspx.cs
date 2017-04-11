@@ -13,5 +13,11 @@ namespace InterventionManagementSystem2
         {
 
         }
+
+        protected void CreateClientButton_Click(Object sender, EventArgs e)
+        {
+            Response.Redirect("~/SiteEngineer/NewClient");
+        }
+
     }
 }
