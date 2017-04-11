@@ -7,23 +7,23 @@ using System.Threading.Tasks;
 
 namespace IMSLogic
 {
-    public class Report
+    public static class Report
     {
-        public Report PrintTotalCostByEngineerReport()
-        {
-            return null;
-        }
-        public Report PrintAverageCostByEngineerReport()
-        {
-            return null;
-        }
-        public Report PrintCostByDistrictReport()
-        {
-            return null;
-        }
-        public Report PrintMonthlyCostForDistrictReport(Common.Districts districts)
-        {
-            return null;
-        }
+    //    public static Report PrintTotalCostByEngineerReport()
+    //    {
+    //        return null;
+    //    }
+    //    public static Report PrintAverageCostByEngineerReport()
+    //    {
+    //        return null;
+    //    }
+    //    public static Report PrintCostByDistrictReport()
+    //    {
+    //        return null;
+    //    }
+    //    public static Report PrintMonthlyCostForDistrictReport(Common.Districts districts)
+    //    {
+    //        return null;
+    //    }
     }
 }
