@@ -52,6 +52,7 @@
     <Compile Include="IMSLogicManagerTest.cs" />
     <Compile Include="IMSLogicReport.cs" />
     <Compile Include="IMSLogicSiteEngineerTest.cs" />
+    <Compile Include="IMSLogicSupportTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IMSLogicCommonTest.cs" />
     <Compile Include="IMSLogicClientTest.cs" />
