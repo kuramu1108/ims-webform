@@ -10,9 +10,9 @@ namespace IMSLogic
 {
     public class Manager : User
     {
-    //    public Common.Districts Districts { get; set; }
-    //    public double AuthorisedHour { get; set; }
-    //    public decimal AuthorisedCost { get; set; }
+        public Common.Districts Districts { get; set; }
+        public double AuthorisedHour { get; set; }
+        public decimal AuthorisedCost { get; set; }
 
 
         private IMSDBLayer.DataModels.User managerDM;
@@ -23,15 +23,15 @@ namespace IMSLogic
 
     public Manager(int id, string name, string loginName, System.Security.SecureString password, Common.UserType type, Common.Districts districts, double hour, decimal cost)
     {
-        //UserID = id;
-        //Name = name;
-        //LoginName = loginName;
-        //Password = password;
-        //Type = type;
-        //Districts = districts;
-        //AuthorisedHour = hour;
-        //AuthorisedCost = cost;
-        managerDM = null;
+            UserID = id;
+            Name = name;
+            LoginName = loginName;
+            Password = password;
+            Type = type;
+            Districts = districts;
+            AuthorisedHour = hour;
+            AuthorisedCost = cost;
+            managerDM = null;
 
 
     }

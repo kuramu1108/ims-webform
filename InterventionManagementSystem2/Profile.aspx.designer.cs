@@ -85,6 +85,42 @@ namespace InterventionManagementSystem2 {
         protected global::System.Web.UI.WebControls.Label LabelPassword;
         
         /// <summary>
+        /// LabelOldPassword control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelOldPassword;
+        
+        /// <summary>
+        /// TextBoxOldPassword control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TextBoxOldPassword;
+        
+        /// <summary>
+        /// LabelNewPassword control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelNewPassword;
+        
+        /// <summary>
+        /// TextBoxNewPassword control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TextBoxNewPassword;
+        
+        /// <summary>
         /// ButtonChangePassword control.
         /// </summary>
         /// <remarks>
