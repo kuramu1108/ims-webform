@@ -33,9 +33,6 @@ namespace InterventionManagementSystem2
 
         }
 
-        protected void InterventionList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Response.Redirect("~/EditIntervention");
-        }
+       
     }
 }

@@ -190,13 +190,13 @@
     <Content Include="Account\ResetPasswordConfirmation.aspx" />
     <Content Include="Account\TwoFactorAuthenticationSignIn.aspx" />
     <Content Include="Account\VerifyPhoneNumber.aspx" />
-    <Content Include="ClientDetails.aspx" />
+    <Content Include="SiteEngineer\ClientDetails.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Default.aspx" />
-    <Content Include="EditIntervention.aspx" />
+    <Content Include="SiteEngineer\EditIntervention.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -207,10 +207,10 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="NewClient.aspx" />
-    <Content Include="NewIntervention.aspx" />
-    <Content Include="Profile.aspx" />
-    <Content Include="Welcome.aspx" />
+    <Content Include="SiteEngineer\NewClient.aspx" />
+    <Content Include="SiteEngineer\NewIntervention.aspx" />
+    <Content Include="SiteEngineer\Profile.aspx" />
+    <Content Include="SiteEngineer\Welcome.aspx" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -363,11 +363,11 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="ClientDetails.aspx.cs">
+    <Compile Include="SiteEngineer\ClientDetails.aspx.cs">
       <DependentUpon>ClientDetails.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ClientDetails.aspx.designer.cs">
+    <Compile Include="SiteEngineer\ClientDetails.aspx.designer.cs">
       <DependentUpon>ClientDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="Contact.aspx.cs">
@@ -384,36 +384,36 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="EditIntervention.aspx.cs">
+    <Compile Include="SiteEngineer\EditIntervention.aspx.cs">
       <DependentUpon>EditIntervention.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="EditIntervention.aspx.designer.cs">
+    <Compile Include="SiteEngineer\EditIntervention.aspx.designer.cs">
       <DependentUpon>EditIntervention.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="NewClient.aspx.cs">
+    <Compile Include="SiteEngineer\NewClient.aspx.cs">
       <DependentUpon>NewClient.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="NewClient.aspx.designer.cs">
+    <Compile Include="SiteEngineer\NewClient.aspx.designer.cs">
       <DependentUpon>NewClient.aspx</DependentUpon>
     </Compile>
-    <Compile Include="NewIntervention.aspx.cs">
+    <Compile Include="SiteEngineer\NewIntervention.aspx.cs">
       <DependentUpon>NewIntervention.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="NewIntervention.aspx.designer.cs">
+    <Compile Include="SiteEngineer\NewIntervention.aspx.designer.cs">
       <DependentUpon>NewIntervention.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Profile.aspx.cs">
+    <Compile Include="SiteEngineer\Profile.aspx.cs">
       <DependentUpon>Profile.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Profile.aspx.designer.cs">
+    <Compile Include="SiteEngineer\Profile.aspx.designer.cs">
       <DependentUpon>Profile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -439,16 +439,18 @@
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Welcome.aspx.cs">
+    <Compile Include="SiteEngineer\Welcome.aspx.cs">
       <DependentUpon>Welcome.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Welcome.aspx.designer.cs">
+    <Compile Include="SiteEngineer\Welcome.aspx.designer.cs">
       <DependentUpon>Welcome.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Accountant\" />
     <Folder Include="App_Data\" />
+    <Folder Include="Manager\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
