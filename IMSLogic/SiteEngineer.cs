@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace IMSLogic
 {
-    public class SiteEngineer : Users
+    public class SiteEngineer : User
     {
         //districts, cost hour
         //public Common.Districts Districts { get; set; }
@@ -16,8 +16,8 @@ namespace IMSLogic
         //public decimal AuthorisedCost { get; set; }
 
 
-        private User SiteEngineerDM;
-        public SiteEngineer() { SiteEngineerDM = new User(); }
+        private IMSDBLayer.DataModels.User SiteEngineerDM;
+        public SiteEngineer() { SiteEngineerDM = new IMSDBLayer.DataModels.User(); }
 
         public SiteEngineer(int id, string name, string loginName, System.Security.SecureString password, Common.UserType type, Common.Districts districts, double hour, decimal cost)
         {
