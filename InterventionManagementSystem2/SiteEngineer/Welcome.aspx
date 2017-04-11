@@ -33,7 +33,7 @@
                     <div class="row">
                         <div class="col-md-2">
                             <asp:Button ID="ViewClient" runat="server" Text="View" />
-                            <asp:Button ID="CreateClient" runat="server" Text="Create" "/>
+                            <asp:Button ID="CreateClient" runat="server" Text="Create"/>
 
                         </div>
                     </div>
