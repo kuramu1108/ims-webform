@@ -62,14 +62,9 @@ namespace IMSDBLayer.DataModels
             set { this.districtId = value; }
         }
 
-        public IEnumerator<User> GetEnumerator()
-        {
-            throw new NotImplementedException();
-        }
+     
 
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            throw new NotImplementedException();
-        }
+  
     }
+
 }

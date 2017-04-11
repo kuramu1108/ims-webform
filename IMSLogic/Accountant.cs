@@ -9,16 +9,17 @@ using IMSDBLayer.DataModels;
 
 namespace IMSLogic
 {
-    public class Accountant:Users
+    public class Accountant:User
     {
-        private User accountantDM;
+        private IMSDBLayer.DataModels.User accountantDM;
         Accountant()
         {
-            accountantDM = new User();
+            accountantDM = new IMSDBLayer.DataModels.User();
         }
         //run report
         public void generateReport(Common.ReportType report, Common.Districts district)
         {
+         //   Report repo=new Report();
             switch((int)report)
             {
                 case 1://Report.PrintTotalCostByEngineerReport();

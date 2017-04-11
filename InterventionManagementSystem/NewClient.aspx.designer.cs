@@ -11,7 +11,7 @@ namespace InterventionManagementSystem
 {
 
 
-    public partial class Contact
+    public partial class NewClient
     {
     }
 }
