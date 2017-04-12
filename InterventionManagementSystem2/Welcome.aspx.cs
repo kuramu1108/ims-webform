@@ -13,5 +13,10 @@ namespace InterventionManagementSystem
         {
 
         }
+
+        protected void Logout_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

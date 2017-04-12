@@ -1,16 +1,34 @@
-﻿<%@ Page Title="New Client" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="NewClient.aspx.cs" Inherits="InterventionManagementSystem._Default" %>
+﻿<%@ Page Title="New Client" Language="C#" AutoEventWireup="true" CodeBehind="NewClient.aspx.cs" Inherits="InterventionManagementSystem.NewClient" %>
 
-<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <h1>New Client</h1>
-    <form method="POST" action="NewClient.aspx">
-         <table>
-        <tr><td>Client name: </td><td><input id="ClientName" name="client_name" type="Text" /></td></tr>
-        <tr><td>Client location: </td><td><input id="ClientLocation" name="client_location" type="Text" /></td></tr>
-       <tr><td>District: </td><td><input id="ClientDistrict" name="client_district" type="Text" /></td></tr>
-           <tr><td><input value="Cancel" type="Submit" /></td><td><input value="Submit" type="Submit" /></td></tr>
-             </table>
+<!DOCTYPE html>
 
-</form>
-   
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server"></head>
+<h1>New Client</h1>
+<table>
+    <tr>
+        <td>Client name: </td>
+        <td>
+            <asp:TextBox ID="ClientName" runat="server"></asp:TextBox></td>
+    </tr>
+    <tr>
+        <td>Client location: </td>
+        <td>
+            <asp:TextBox ID="ClientLocation" runat="server"></asp:TextBox></td>
+    </tr>
+    <tr>
+        <td>District: </td>
+        <td>
+            <asp:TextBox ID="ClientDistrict" runat="server"></asp:TextBox></td>
+    </tr>
 
-</asp:Content>
+    <tr>
+        <td>
+            <asp:Button ID="Cancel" runat="server" Text="Cancel" OnClick="Cancel_Click" />
+        </td>
+        <td>
+            <asp:Button ID="Submit" runat="server" Text="Submit" OnClick="submit_click" /></td>
+    </tr>
+</table>
+
+</html>

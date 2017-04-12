@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="NewIntervention.aspx.cs" Inherits="InterventionManagementSystem.NewIntervention" %>
+﻿<%@ Page Title="NewIntervention" Language="C#" AutoEventWireup="true" CodeBehind="NewIntervention.aspx.cs" Inherits="InterventionManagementSystem.NewIntervention" %>
 
 <!DOCTYPE html>
 
@@ -23,7 +23,7 @@
             <tr><td>Life Remaining: </td><td><asp:TextBox ID="TextBox10" runat="server"></asp:TextBox></td></tr>
             <tr><td>Date of recent visit: </td><td><asp:TextBox ID="TextBox11" runat="server"></asp:TextBox></td></tr>
             <tr><td><asp:Button ID="Cancel" runat="server" Text="Cancel" /></td><td>
-                <asp:Button ID="Submit" runat="server" Text="Submit" /></td></tr>
+                <asp:Button ID="Submit" runat="server" Text="Submit" OnClick="Submit_Click1" /></td></tr>
             </table>
     </form>
 </body>

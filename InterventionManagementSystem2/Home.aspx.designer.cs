@@ -9,7 +9,7 @@
 
 
 
-public partial class  {
+public partial class  Home{
     
     /// <summary>
     /// Login1 control.
