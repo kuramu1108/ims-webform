@@ -1,5 +1,4 @@
 ﻿using IMSDBLayer.DataModels;
-using IMSDBLayer.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +14,7 @@ namespace IMSDBLayer.DataAccessInterfaces
 
         User fetchUserById(Guid userId);
         User fetchUserByIdentityId(Guid identityId);
-        IEnumerable<User> fetchUsersByUserType(UserType userType);
+        IEnumerable<User> fetchUsersByUserType(int userType);
 
         IEnumerable<User> Users { get; }
     } 

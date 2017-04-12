@@ -1,5 +1,4 @@
-﻿using IMSDBLayer.Enums;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,7 +13,7 @@ namespace IMSDBLayer.DataModels
         private decimal costs;
         private int lifeRemaining;
         private string comments;
-        private InterventionState state;
+        private int state;
 
         private DateTime dateCreate;
         private DateTime dateFinish;
@@ -56,7 +55,7 @@ namespace IMSDBLayer.DataModels
             set { this.comments = value; }
         }
 
-        public InterventionState State
+        public int State
         {
             get { return this.state; }
             set { this.state = value; }
@@ -91,11 +90,13 @@ namespace IMSDBLayer.DataModels
             get { return this.clientId; }
             set { this.clientId = value; }
         }
+
         public Guid CreatedBy
         {
             get { return this.createdBy; }
             set { this.createdBy = value; }
         }
+
         public Guid ApprovedBy
         {
             get { return this.approvedBy; }

@@ -1,15 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26228.9
+VisualStudioVersion = 15.0.26228.10
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterventionManagementSystem.Tests", "InterventionManagementSystem.Tests\InterventionManagementSystem.Tests.csproj", "{20647ED6-D2CF-4B64-812E-3E046A467AC0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IMSLogic", "IMSLogic\IMSLogic.csproj", "{35CEE81C-1867-4C24-B999-C745B6E4FE02}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IMSLogicLayer", "IMSLogicLayer\IMSLogicLayer.csproj", "{35CEE81C-1867-4C24-B999-C745B6E4FE02}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IMSDBLayer", "IMSDBLayer\IMSDBLayer.csproj", "{1AE95F5B-FBD3-48CC-AD04-B1F3BA570C25}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterventionManagementSystem", "InterventionManagementSystem2\InterventionManagementSystem.csproj", "{8CFA5950-DD5B-4F19-8259-16ED5653B94B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterventionManagementSystem", "InterventionManagementSystem\InterventionManagementSystem.csproj", "{8CFA5950-DD5B-4F19-8259-16ED5653B94B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

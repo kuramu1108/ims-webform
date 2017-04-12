@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Security;
-using IMSLogic;
+using IMSLogicLayer;
 
 namespace InterventionManagementSystem.Tests
 {

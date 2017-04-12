@@ -1,5 +1,4 @@
 ﻿using IMSDBLayer.DataModels;
-using IMSDBLayer.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +16,7 @@ namespace IMSDBLayer.DataAccessInterfaces
 
         Intervention fetchInterventionsById(Guid interventionId);
 
-        IEnumerable<Intervention> fetchInterventionsByState(InterventionState state);
+        IEnumerable<Intervention> fetchInterventionsByState(int state);
 
         IEnumerable<Intervention> fetchInterventionsByDistrict(Guid districtId);
 

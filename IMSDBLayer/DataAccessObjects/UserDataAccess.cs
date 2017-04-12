@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using IMSDBLayer.DataAccessInterfaces;
 using IMSDBLayer.DataModels;
-using IMSDBLayer.Enums;
 using System.Data.SqlClient;
 using IMSDBLayer.DataAccessObjects.Helpers;
 
@@ -63,7 +62,7 @@ namespace IMSDBLayer.DataAccessObjects
             return sqlExecuter.ExecuteReader(command).FirstOrDefault();
         }
 
-        public IEnumerable<User> fetchUsersByUserType(UserType userType)
+        public IEnumerable<User> fetchUsersByUserType(int userType)
         {
             SqlCommand command = new SqlCommand("Select * From Users Where Type = @type");
             command.Parameters.AddWithValue("type", userType);

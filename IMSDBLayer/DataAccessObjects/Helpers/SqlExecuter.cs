@@ -1,5 +1,4 @@
-﻿using IMSDBLayer.Enums;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -85,8 +84,6 @@ namespace IMSDBLayer.DataAccessObjects.Helpers
                     case "Int32": property.SetValue(typeof(Int32), reader.GetInt32(i)); break;
                     case "DateTime": property.SetValue(typeof(DateTime), reader.GetDateTime(i)); break;
                     case "Decimal": property.SetValue(typeof(Decimal), reader.GetDecimal(i)); break;
-                    case "InterventionState": property.SetValue(typeof(InterventionState), (InterventionState)reader.GetInt32(i)); break;
-                    case "UserType": property.SetValue(typeof(UserType), (UserType)reader.GetInt32(i)); break;
                     default: throw new Exception("Unknow Type: " + property.PropertyType.Name);
                 }
             }
