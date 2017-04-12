@@ -21,9 +21,10 @@ namespace IMSDBLayer.DataAccessObjects
 
         public Intervention create(Intervention intervention)
         {
-            SqlCommand command = new SqlCommand(@"INSERT INTO Interventions (Name, Type, MaxHoursCanApprove, 
-                MaxCostsCanApprove, IdentityId, DistrictId) " + "VALUES(@Name, @Type, " +
-                "@MaxHoursCanApprove, @MaxCostsCanApprove, @IdentityId, @DistrictId)");
+            SqlCommand command = new SqlCommand(@"INSERT INTO Interventions (Hours, Costs, LifeRemaining, Comments, 
+                State, DateCreate, DateFinish, DateRecentVisit, InterventionTypeId, ClientId, CreatedBy, ApprovedBy) " 
+                + "VALUES(@Hours, @Costs, @LifeRemaining, @Comments, @State, @DateCreate, @DateFinish, @DateRecentVisit," +
+                " @InterventionTypeId, @ClientId, @CreatedBy, @ApprovedBy)");
 
             intervention.Id = (Guid)sqlExecuter.ExecuteScalar(command, intervention);
             if (intervention.Id != Guid.Empty)
@@ -33,9 +34,9 @@ namespace IMSDBLayer.DataAccessObjects
 
         public bool update(Intervention intervention)
         {
-            SqlCommand command = new SqlCommand(@"UPDATE Interventions Set Name = @Name, Type = @Type,
-                MaxHoursCanApprove = @MaxHoursCanApprove, MaxCostsCanApprove = @MaxCostsCanApprove,
-                IdentityId = @IdentityId, DistrictId = @DistrictId WHERE Id = @Id");
+            SqlCommand command = new SqlCommand(@"UPDATE Interventions Set Hours = @Hours, Costs = @Costs, LifeRemaining = @LifeRemaining,
+                Comments = @Comments, State = @State, DateCreate = @DateCreate, DateFinish = @DateFinish, DateRecentVisit = @DateRecentVisit,
+                InterventionTypeId = @InterventionTypeId, ClientId = @ClientId, CreatedBy = @CreatedBy, ApprovedBy = @ApprovedBy WHERE Id = @Id");
 
             return sqlExecuter.ExecuteNonQuery(command, intervention) > 0;
         }
@@ -45,28 +46,40 @@ namespace IMSDBLayer.DataAccessObjects
             get
             {
                 SqlCommand command = new SqlCommand("Select * From Interventions");
-                return null;
+                return sqlExecuter.ExecuteReader(command);
             }
         }
 
         public Intervention fetchInterventionsById(Guid interventionId)
         {
-            throw new NotImplementedException();
+            SqlCommand command = new SqlCommand("Select * From Interventions Where InterventionId = @InterventionId");
+            command.Parameters.AddWithValue("@InterventionId", interventionId);
+            return sqlExecuter.ExecuteReader(command).FirstOrDefault();
         }
 
-        public IEnumerable<Intervention> fetchInterventionsByCreator(Guid creatorId)
+        public IEnumerable<Intervention> fetchInterventionsByCreator(Guid createdBy)
         {
-            throw new NotImplementedException();
+            SqlCommand command = new SqlCommand("Select * From Interventions Where CreatedBy = @CreatedBy");
+            command.Parameters.AddWithValue("@CreatedBy", createdBy);
+            return sqlExecuter.ExecuteReader(command);
         }
 
         public IEnumerable<Intervention> fetchInterventionsByDistrict(Guid districtId)
         {
-            throw new NotImplementedException();
+            SqlCommand command = new SqlCommand(@"Select (I.Id, I.Hours, I.Costs, I.LifeRemaining, I.Comments, I.State, 
+                I.DateCreate, I.DateFinish, I.DateRecentVisit, I.InterventionTypeId, I.ClientId, I.CreatedBy, I.ApprovedBy) 
+                From Interventions JOIN Clients C ON I.ClientId = C.Id where C.DistrictId = @DistrictId");
+
+            command.Parameters.AddWithValue("@DistrictId", districtId);
+            return sqlExecuter.ExecuteReader(command);
         }
 
         public IEnumerable<Intervention> fetchInterventionsByState(int state)
         {
-            throw new NotImplementedException();
+            SqlCommand command = new SqlCommand(@"Select * where State = @State");
+
+            command.Parameters.AddWithValue("@State", state);
+            return sqlExecuter.ExecuteReader(command);
         }
 
     }

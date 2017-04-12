@@ -16,23 +16,23 @@ namespace IMSLogicLayer
 
 
         private IMSDBLayer.DataModels.User managerDM;
-    public Manager()
-    {
-            managerDM = new IMSDBLayer.DataModels.User();
-    }
 
-    //public void GetListOfInterventions()
-    //{
-    //    DataAccess.GetListofProposedInterventions();
-    //}
+        public Manager()
+        {
+                managerDM = new IMSDBLayer.DataModels.User();
+        }
 
-    public void ApproveIntervention(Intervention intervention)
-    {
-        //if (intervention.Cost < managerDM.AuthorisedCost && intervention.Labour_hours < managerDM.AuthorisedHour)
+        //public void GetListOfInterventions()
         //{
-        //    DataAccess.ChangeState(intervention.Intervention_id, Common.InterventionState.Approved.ToString());
+        //    DataAccess.GetListofProposedInterventions();
         //}
 
+        public void ApproveIntervention(Intervention intervention)
+        {
+            //if (intervention.Cost < managerDM.AuthorisedCost && intervention.Labour_hours < managerDM.AuthorisedHour)
+            //{
+            //    DataAccess.ChangeState(intervention.Intervention_id, Common.InterventionState.Approved.ToString());
+            //}
+        }
     }
-}
 }
