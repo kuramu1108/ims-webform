@@ -25,6 +25,16 @@ namespace IMSDBLayer.DataAccessObjects
             throw new NotImplementedException();
         }
 
+        public IEnumerable<Intervention> fetchInterventionsByCreator(Guid creatorId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Intervention> fetchInterventionsByDistrict(Guid districtId)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<Intervention> fetchInterventionsByState(InterventionState state)
         {
             throw new NotImplementedException();
