@@ -15,6 +15,8 @@ namespace IMSDBLayer.DataAccessInterfaces
 
         IEnumerable<Intervention> Interventions { get; }
 
+        Intervention fetchInterventionsById(Guid interventionId);
+
         IEnumerable<Intervention> fetchInterventionsByState(InterventionState state);
 
         IEnumerable<Intervention> fetchInterventionsByDistrict(Guid districtId);

@@ -19,14 +19,45 @@ namespace IMSDBLayer.DataAccessObjects
             this.connstring = connstring;
         }
 
-        public IEnumerable<Intervention> Interventions => throw new NotImplementedException();
-
         public Intervention create(Intervention intervention)
+        {
+            SqlCommand command = new SqlCommand(@"INSERT INTO Interventions (Name, Type, MaxHoursCanApprove, 
+                MaxCostsCanApprove, IdentityId, DistrictId) " + "VALUES(@name, @type, " +
+                "@maxHoursCanApprove, @maxCostsCanApprove, @identityId, @districtId)");
+
+            command.Parameters.Add(new SqlParameter("name", intervention.Hours));
+            command.Parameters.Add(new SqlParameter("type", intervention.Costs));
+            command.Parameters.Add(new SqlParameter("maxHoursCanApprove", intervention.LifeRemaining));
+            command.Parameters.Add(new SqlParameter("maxCostsCanApprove", intervention.Comments));
+            command.Parameters.Add(new SqlParameter("identityId", intervention.State));
+            command.Parameters.Add(new SqlParameter("districtId", intervention.DateCreate));
+            command.Parameters.Add(new SqlParameter("districtId", intervention.DateFinish));
+            command.Parameters.Add(new SqlParameter("districtId", intervention.DateRecentVisit));
+            command.Parameters.Add(new SqlParameter("districtId", intervention.InterventionTypeId));
+            command.Parameters.Add(new SqlParameter("districtId", intervention.ClientId));
+            command.Parameters.Add(new SqlParameter("districtId", intervention.CreatedBy));
+            command.Parameters.Add(new SqlParameter("districtId", intervention.ApprovedBy));
+
+            if (executeUpdateSqlCommand(command) == true)
+                return intervention;
+            return null;
+        }
+
+        public bool update(Intervention intervention)
         {
             throw new NotImplementedException();
         }
 
-        public bool update(Intervention intervention)
+        public IEnumerable<Intervention> Interventions
+        {
+            get
+            {
+                SqlCommand command = new SqlCommand("Select * From Interventions");
+                return executeReadSqlCommand(command);
+            }
+        }
+
+        public Intervention fetchInterventionsById(Guid interventionId)
         {
             throw new NotImplementedException();
         }
@@ -96,5 +127,7 @@ namespace IMSDBLayer.DataAccessObjects
             }
             return true;
         }
+
+
     }
 }

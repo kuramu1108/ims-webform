@@ -45,6 +45,7 @@
     <Compile Include="DataAccess.cs" />
     <Compile Include="DataAccessObjects\ClientDataAccess.cs" />
     <Compile Include="DataAccessObjects\DistrictDataAccess.cs" />
+    <Compile Include="DataAccessObjects\Helpers\SqlExecuter.cs" />
     <Compile Include="DataAccessObjects\InterventionDataAccess.cs" />
     <Compile Include="DataAccessObjects\InterventionTypeDataAccess.cs" />
     <Compile Include="DataAccessObjects\UserDataAccess.cs" />

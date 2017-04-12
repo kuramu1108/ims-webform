@@ -48,6 +48,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IMSDataAccessSqlExecuterTest.cs" />
     <Compile Include="IMSLogicAccountantTest.cs" />
     <Compile Include="IMSLogicManagerTest.cs" />
     <Compile Include="IMSLogicReport.cs" />

@@ -66,10 +66,5 @@ namespace IMSDBLayer.DataModels
         {
             throw new NotImplementedException();
         }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            throw new NotImplementedException();
-        }
     }
 }
