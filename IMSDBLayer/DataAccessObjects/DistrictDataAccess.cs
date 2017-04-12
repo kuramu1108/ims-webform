@@ -5,28 +5,49 @@ using System.Text;
 using System.Threading.Tasks;
 using IMSDBLayer.DataAccessInterfaces;
 using IMSDBLayer.DataModels;
+using IMSDBLayer.DataAccessObjects.Helpers;
+using System.Data.SqlClient;
 
 namespace IMSDBLayer.DataAccessObjects
 {
     public class DistrictDataAccess : IDistrictDataAccess
     {
-        private string connstring = "";
+        private SqlExecuter<District> sqlExecuter;
 
         public DistrictDataAccess(string connstring)
         {
-            this.connstring = connstring;
+            this.sqlExecuter = new SqlExecuter<District>(connstring);
         }
-
-        public IEnumerable<District> Districts => throw new NotImplementedException();
-
+        
         public District create(District district)
         {
-            throw new NotImplementedException();
-        }
+            SqlCommand command = new SqlCommand(@"INSERT INTO Districts (Name) VALUES(@Name)");
+            district.Id = (Guid)sqlExecuter.ExecuteScalar(command, district);
 
+            if (district.Id != Guid.Empty)
+                return district;
+            return null;
+        }
+        
         public bool update(District district)
         {
-            throw new NotImplementedException();
+            SqlCommand command = new SqlCommand(@"UPDATE Districts Set Name = @Name WHERE Id = @Id");
+            return sqlExecuter.ExecuteNonQuery(command, district) > 0;
+        }
+        
+        public IEnumerable<District> Districts
+        {
+            get
+            {
+                SqlCommand command = new SqlCommand("Select * From Districts");
+                return sqlExecuter.ExecuteReader(command);
+            }
+        }
+
+        public District fetchDistrictById(Guid districtId)
+        {
+            SqlCommand command = new SqlCommand(@"Select * From Districts WHERE Id = @Id");
+            return sqlExecuter.ExecuteReader(command).FirstOrDefault();
         }
     }
 }

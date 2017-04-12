@@ -56,14 +56,7 @@ namespace IMSDBLayer.DataAccessObjects
             command.Parameters.AddWithValue("@InterventionId", interventionId);
             return sqlExecuter.ExecuteReader(command).FirstOrDefault();
         }
-
-        public IEnumerable<Intervention> fetchInterventionsByCreator(Guid createdBy)
-        {
-            SqlCommand command = new SqlCommand("Select * From Interventions Where CreatedBy = @CreatedBy");
-            command.Parameters.AddWithValue("@CreatedBy", createdBy);
-            return sqlExecuter.ExecuteReader(command);
-        }
-
+        
         public IEnumerable<Intervention> fetchInterventionsByDistrict(Guid districtId)
         {
             SqlCommand command = new SqlCommand(@"Select (I.Id, I.Hours, I.Costs, I.LifeRemaining, I.Comments, I.State, 
@@ -81,6 +74,19 @@ namespace IMSDBLayer.DataAccessObjects
             command.Parameters.AddWithValue("@State", state);
             return sqlExecuter.ExecuteReader(command);
         }
+        
+        public IEnumerable<Intervention> fetchInterventionsByInterventionType(Guid interventionTypeId)
+        {
+            SqlCommand command = new SqlCommand("Select * From Interventions Where InterventionTypeId = @InterventionTypeId");
+            command.Parameters.AddWithValue("@CreatedBy", interventionTypeId);
+            return sqlExecuter.ExecuteReader(command);
+        }
 
+        public IEnumerable<Intervention> fetchInterventionsByCreator(Guid createdBy)
+        {
+            SqlCommand command = new SqlCommand("Select * From Interventions Where CreatedBy = @CreatedBy");
+            command.Parameters.AddWithValue("@CreatedBy", createdBy);
+            return sqlExecuter.ExecuteReader(command);
+        }
     }
 }

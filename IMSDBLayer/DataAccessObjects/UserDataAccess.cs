@@ -50,22 +50,22 @@ namespace IMSDBLayer.DataAccessObjects
 
         public User fetchUserById(Guid userId)
         {
-            SqlCommand command = new SqlCommand("Select * From Users Where UserID = @userId");
-            command.Parameters.AddWithValue("userId", userId);
+            SqlCommand command = new SqlCommand("Select * From Users Where UserID = @UserId");
+            command.Parameters.AddWithValue("@UserId", userId);
             return sqlExecuter.ExecuteReader(command).FirstOrDefault();
         }
 
         public User fetchUserByIdentityId(Guid identityId)
         {
-            SqlCommand command = new SqlCommand("Select * From Users Where IdentityId = @identityId");
-            command.Parameters.AddWithValue("identityId", identityId);
+            SqlCommand command = new SqlCommand("Select * From Users Where IdentityId = @IdentityId");
+            command.Parameters.AddWithValue("@IdentityId", identityId);
             return sqlExecuter.ExecuteReader(command).FirstOrDefault();
         }
 
         public IEnumerable<User> fetchUsersByUserType(int userType)
         {
-            SqlCommand command = new SqlCommand("Select * From Users Where Type = @type");
-            command.Parameters.AddWithValue("type", userType);
+            SqlCommand command = new SqlCommand("Select * From Users Where Type = @Type");
+            command.Parameters.AddWithValue("@Type", userType);
             return sqlExecuter.ExecuteReader(command);
         }
     }

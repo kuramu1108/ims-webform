@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IMSDBLayer.DataModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,12 @@ namespace IMSDBLayer.DataAccessInterfaces
 {
     public interface IInterventionTypeDataAccess
     {
+        InterventionType create(InterventionType interventionType);
+
+        bool update(InterventionType interventionType);
+
+        IEnumerable<InterventionType> InterventionTypes { get; }
+
+        InterventionType fetchInterventionTypesById(Guid interventionTypeId);
     }
 }

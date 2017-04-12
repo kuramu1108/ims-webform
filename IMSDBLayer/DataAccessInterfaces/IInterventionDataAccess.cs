@@ -10,6 +10,7 @@ namespace IMSDBLayer.DataAccessInterfaces
     public interface IInterventionDataAccess
     {
         Intervention create(Intervention intervention);
+
         bool update(Intervention intervention);
 
         IEnumerable<Intervention> Interventions { get; }
@@ -19,6 +20,8 @@ namespace IMSDBLayer.DataAccessInterfaces
         IEnumerable<Intervention> fetchInterventionsByState(int state);
 
         IEnumerable<Intervention> fetchInterventionsByDistrict(Guid districtId);
+
+        IEnumerable<Intervention> fetchInterventionsByInterventionType(Guid interventionTypeId);
 
         IEnumerable<Intervention> fetchInterventionsByCreator(Guid creatorId);
     }

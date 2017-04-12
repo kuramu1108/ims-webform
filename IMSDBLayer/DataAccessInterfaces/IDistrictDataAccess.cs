@@ -10,8 +10,11 @@ namespace IMSDBLayer.DataAccessInterfaces
     public interface IDistrictDataAccess
     {
         District create(District district);
+
         bool update(District district);
 
         IEnumerable<District> Districts { get; }
+
+        District fetchDistrictById(Guid districtId);
     }
 }
