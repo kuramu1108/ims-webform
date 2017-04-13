@@ -55,6 +55,7 @@ namespace IMSDBLayer.DataAccessObjects
         public Client fetchClientById(Guid clientId)
         {
             SqlCommand command = new SqlCommand(@"Select * From Clients WHERE Id = @Id");
+            command.Parameters.AddWithValue("@Id", clientId);
             return sqlExecuter.ExecuteReader(command).FirstOrDefault();
         }
     }

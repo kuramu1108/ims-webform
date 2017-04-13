@@ -50,8 +50,8 @@ namespace IMSDBLayer.DataAccessObjects
 
         public User fetchUserById(Guid userId)
         {
-            SqlCommand command = new SqlCommand("Select * From Users Where UserID = @UserId");
-            command.Parameters.AddWithValue("@UserId", userId);
+            SqlCommand command = new SqlCommand("Select * From Users Where Id = @Id");
+            command.Parameters.AddWithValue("@Id", userId);
             return sqlExecuter.ExecuteReader(command).FirstOrDefault();
         }
 

@@ -52,8 +52,8 @@ namespace IMSDBLayer.DataAccessObjects
 
         public Intervention fetchInterventionsById(Guid interventionId)
         {
-            SqlCommand command = new SqlCommand("Select * From Interventions Where InterventionId = @InterventionId");
-            command.Parameters.AddWithValue("@InterventionId", interventionId);
+            SqlCommand command = new SqlCommand("Select * From Interventions Where Id = @Id");
+            command.Parameters.AddWithValue("@Id", interventionId);
             return sqlExecuter.ExecuteReader(command).FirstOrDefault();
         }
         
@@ -78,7 +78,7 @@ namespace IMSDBLayer.DataAccessObjects
         public IEnumerable<Intervention> fetchInterventionsByInterventionType(Guid interventionTypeId)
         {
             SqlCommand command = new SqlCommand("Select * From Interventions Where InterventionTypeId = @InterventionTypeId");
-            command.Parameters.AddWithValue("@CreatedBy", interventionTypeId);
+            command.Parameters.AddWithValue("@InterventionTypeId", interventionTypeId);
             return sqlExecuter.ExecuteReader(command);
         }
 

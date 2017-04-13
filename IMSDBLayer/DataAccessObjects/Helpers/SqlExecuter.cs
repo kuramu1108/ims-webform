@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace IMSDBLayer.DataAccessObjects.Helpers
@@ -62,7 +63,9 @@ namespace IMSDBLayer.DataAccessObjects.Helpers
             {
                 var property = properties[i];
                 var propertyParameter = "@" + property.Name;
-                if (command.CommandText.Contains(propertyParameter))
+                var propertyRegex = @"[^\w]" + propertyParameter + @"[^\w]";
+                
+                if (Regex.Matches(command.CommandText, propertyRegex).Count > 0)
                 {
                     command.Parameters.AddWithValue(propertyParameter, property.GetValue(value));
                 }   

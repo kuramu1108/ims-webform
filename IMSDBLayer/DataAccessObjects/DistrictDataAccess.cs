@@ -47,6 +47,7 @@ namespace IMSDBLayer.DataAccessObjects
         public District fetchDistrictById(Guid districtId)
         {
             SqlCommand command = new SqlCommand(@"Select * From Districts WHERE Id = @Id");
+            command.Parameters.AddWithValue("@Id", districtId);
             return sqlExecuter.ExecuteReader(command).FirstOrDefault();
         }
     }
