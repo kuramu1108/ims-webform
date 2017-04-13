@@ -1,5 +1,5 @@
 ﻿using IMSDBLayer;
-using IMSLogic;
+using IMSLogicLayer;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InterventionManagementSystem2.Tests
+namespace InterventionManagementSystem.Tests
 {
     [TestClass]
     class IMSLogicSiteEngineerTest
@@ -17,7 +17,7 @@ namespace InterventionManagementSystem2.Tests
         [TestInitialize]
         public void setUp()
         {
-            siteEngineer = new SiteEngineer(3, "Ben", "Benjamin", Support.convertToSS("55555555"),Common.UserType.SiteEngineer, Common.Districts.RuralNewSouthWales, 7, 200);
+            //siteEngineer = new SiteEngineer(3, "Ben", "Benjamin", Support.convertToSS("55555555"),Common.UserType.SiteEngineer, Common.Districts.RuralNewSouthWales, 7, 200);
         }
 
         [TestMethod]

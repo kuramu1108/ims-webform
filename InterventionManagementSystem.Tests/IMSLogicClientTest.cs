@@ -1,10 +1,10 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using IMSLogic;
+using IMSLogicLayer;
 using IMSDBLayer;
 using IMSDBLayer.DataModels;
 
-namespace InterventionManagementSystem2.Tests
+namespace InterventionManagementSystem.Tests
 {
     [TestClass]
     public class IMSLogicClientTest

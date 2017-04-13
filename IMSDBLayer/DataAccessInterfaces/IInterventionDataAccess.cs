@@ -1,5 +1,4 @@
 ﻿using IMSDBLayer.DataModels;
-using IMSDBLayer.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +10,19 @@ namespace IMSDBLayer.DataAccessInterfaces
     public interface IInterventionDataAccess
     {
         Intervention create(Intervention intervention);
+
         bool update(Intervention intervention);
 
         IEnumerable<Intervention> Interventions { get; }
 
-        IEnumerable<Intervention> fetchInterventionsByState(InterventionState state);
+        Intervention fetchInterventionsById(Guid interventionId);
+
+        IEnumerable<Intervention> fetchInterventionsByState(int state);
+
+        IEnumerable<Intervention> fetchInterventionsByDistrict(Guid districtId);
+
+        IEnumerable<Intervention> fetchInterventionsByInterventionType(Guid interventionTypeId);
+
+        IEnumerable<Intervention> fetchInterventionsByCreator(Guid creatorId);
     }
 }

@@ -1,5 +1,4 @@
-﻿using IMSDBLayer.Enums;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +12,7 @@ namespace IMSDBLayer.DataModels
     {
         private Guid id;
         private string name;
-        private UserType type;
+        private int type;
         private decimal maxHoursCanApprove;
         private decimal maxCostsCanApprove;
 
@@ -32,7 +31,7 @@ namespace IMSDBLayer.DataModels
             set { this.name = value; }
         }
 
-        public UserType Type
+        public int Type
         {
             get { return this.type; }
             set { this.type = value; }
@@ -61,10 +60,5 @@ namespace IMSDBLayer.DataModels
             get { return this.districtId; }
             set { this.districtId = value; }
         }
-
-     
-
-  
     }
-
 }

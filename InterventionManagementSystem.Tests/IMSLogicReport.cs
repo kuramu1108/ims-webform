@@ -1,8 +1,8 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using IMSLogic;
+using IMSLogicLayer;
 
-namespace InterventionManagementSystem2.Tests
+namespace InterventionManagementSystem.Tests
 {
     [TestClass]
     public class IMSLogicReport

@@ -48,6 +48,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IMSDataAccessSqlExecuterTest.cs" />
     <Compile Include="IMSLogicAccountantTest.cs" />
     <Compile Include="IMSLogicManagerTest.cs" />
     <Compile Include="IMSLogicReport.cs" />
@@ -62,9 +63,9 @@
       <Project>{1ae95f5b-fbd3-48cc-ad04-b1f3ba570c25}</Project>
       <Name>IMSDBLayer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\IMSLogic\IMSLogic.csproj">
+    <ProjectReference Include="..\IMSLogicLayer\IMSLogicLayer.csproj">
       <Project>{35cee81c-1867-4c24-b999-c745b6e4fe02}</Project>
-      <Name>IMSLogic</Name>
+      <Name>IMSLogicLayer</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using IMSLogic;
+using IMSLogicLayer;
 using IMSDBLayer;
 
-namespace InterventionManagementSystem2.Tests
+namespace InterventionManagementSystem.Tests
 {
     [TestClass]
     public class IMSLogicManagerTest
@@ -13,7 +13,7 @@ namespace InterventionManagementSystem2.Tests
         [TestInitialize]
         public void setUp()
         {
-            manager = new Manager(2, "Luke", "luke1234", Support.convertToSS("12345678"), Common.UserType.Manager, Common.Districts.Sydney, 10, 500);
+            //manager = new Manager(2, "Luke", "luke1234", Support.convertToSS("12345678"), Common.UserType.Manager, Common.Districts.Sydney, 10, 500);
         }
 
         [TestMethod]
