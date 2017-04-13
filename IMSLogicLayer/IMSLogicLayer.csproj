@@ -46,6 +46,14 @@
     <Compile Include="Manager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Report.cs" />
+    <Compile Include="ServiceInterfaces\IAccountantService.cs" />
+    <Compile Include="ServiceInterfaces\IEngineerService.cs" />
+    <Compile Include="ServiceInterfaces\IInterventionService.cs" />
+    <Compile Include="ServiceInterfaces\IManagerService.cs" />
+    <Compile Include="Services\AccountantService.cs" />
+    <Compile Include="Services\EngineerService.cs" />
+    <Compile Include="Services\InterventionService.cs" />
+    <Compile Include="Services\ManagerService.cs" />
     <Compile Include="SiteEngineer.cs" />
     <Compile Include="Support.cs" />
     <Compile Include="User.cs" />

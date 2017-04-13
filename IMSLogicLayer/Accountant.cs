@@ -9,7 +9,7 @@ using IMSDBLayer.DataModels;
 
 namespace IMSLogicLayer
 {
-    public class Accountant:User
+    public class Accountant: User
     {
         private IMSDBLayer.DataModels.User accountantDM;
         Accountant()
