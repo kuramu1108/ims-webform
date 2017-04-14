@@ -13,8 +13,8 @@ namespace IMSDBLayer.DataModels
         private Guid id;
         private string name;
         private int type;
-        private decimal maxHoursCanApprove;
-        private decimal maxCostsCanApprove;
+        private decimal authorisedHours;
+        private decimal authorisedCosts;
 
         private Guid identityId;
         private Guid districtId;
@@ -37,16 +37,16 @@ namespace IMSDBLayer.DataModels
             set { this.type = value; }
         }
 
-        public decimal MaxHoursCanApprove
+        public decimal AuthorisedHours
         {
-            get { return this.maxHoursCanApprove; }
-            set { this.maxHoursCanApprove = value; }
+            get { return this.authorisedHours; }
+            set { this.authorisedHours = value; }
         }
 
-        public decimal MaxCostsCanApprove
+        public decimal AuthorisedCosts
         {
-            get { return this.maxCostsCanApprove; }
-            set { this.maxCostsCanApprove = value; }
+            get { return this.authorisedCosts; }
+            set { this.authorisedCosts = value; }
         }
 
         public Guid IdentityId

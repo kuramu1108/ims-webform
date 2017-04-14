@@ -1,14 +1,13 @@
 ﻿using System;
-using IMSLogicLayer;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using IMSDBLayer;
+using IMSLogicLayer.ServiceInterfaces;
 
 namespace InterventionManagementSystem.Tests
 {
     [TestClass]
     public class IMSLogicAccountantTest
     {
-        private Accountant accountant;
+        private IAccountantService accountantService;
         private const string OLDPWD = "12345678";
         private const string NEWPWD = "87654321";
 

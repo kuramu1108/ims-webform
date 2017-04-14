@@ -4,21 +4,20 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using IMSLogicLayer;
-using IMSDBLayer;
+using IMSLogicLayer.ServiceInterfaces;
 
 namespace InterventionManagementSystem
 {
     public partial class Profile : System.Web.UI.Page
     {
-        private Manager user;
+        private IManagerService managerService;
         protected void Page_Load(object sender, EventArgs e)
         {
             //ButtonChangePassword.Click += ButtonChangePassword_Click;
             //user = new Manager(1, "Po", "kuramu1108", Support.convertToSS("12345"), Common.UserType.Manager, Common.Districts.RuralIndonesia, 10, 10000);
             //TextDistrict.Text = Common.Districts.RuralIndonesia.ToString();
-            TextMAH.Text = user.AuthorisedHour.ToString();
-            TextMAC.Text = user.AuthorisedCost.ToString();
+            TextMAH.Text = managerService.getUser().AuthorisedHours.ToString();
+            TextMAC.Text = managerService.getUser().AuthorisedCosts.ToString();
 
         }
 

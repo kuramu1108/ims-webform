@@ -6,11 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 using IMSLogicLayer.Models;
 
-namespace IMSLogicLayer.Services
+namespace IMSLogicLayer.FakeServices
 {
-    public class ManagerService : BaseService, IManagerService
+    public class FakeManagerService : FakeBaseService, IManagerService
     {
-        public ManagerService(string connstring) : base(connstring) { }
+        public FakeManagerService(string connstring) : base(connstring) { }
 
         public User getUser()
         {

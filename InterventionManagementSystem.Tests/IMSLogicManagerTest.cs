@@ -1,14 +1,13 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using IMSLogicLayer;
-using IMSDBLayer;
+using IMSLogicLayer.ServiceInterfaces;
 
 namespace InterventionManagementSystem.Tests
 {
     [TestClass]
     public class IMSLogicManagerTest
     {
-        private Manager manager;
+        private IManagerService managerService;
 
         [TestInitialize]
         public void setUp()

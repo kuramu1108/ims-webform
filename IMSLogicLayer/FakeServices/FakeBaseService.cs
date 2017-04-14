@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IMSLogicLayer.Services
+namespace IMSLogicLayer.FakeServices
 {
-    public class BaseService
+    public class FakeBaseService
     {
         private IClientDataAccess clientDataAccess;
         private IDistrictDataAccess districtDataAccess;
@@ -17,7 +17,7 @@ namespace IMSLogicLayer.Services
         private IInterventionTypeDataAccess interventionTypeDataAccess;
         private IUserDataAccess userDataAccess;
 
-        internal BaseService(string connstring)
+        internal FakeBaseService(string connstring)
         {
             this.clientDataAccess = new ClientDataAccess(connstring);
             this.districtDataAccess = new DistrictDataAccess(connstring);

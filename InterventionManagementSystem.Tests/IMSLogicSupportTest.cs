@@ -15,9 +15,6 @@ namespace InterventionManagementSystem.Tests
         [TestMethod]
         public void IMSLogicSupport_ConvertStringToSecurityString()
         {
-            string str = "abcdefg";
-            SecureString ss = Support.convertToSS(str);
-            Assert.AreEqual(str, ss.ToString());
         }
     }
 }

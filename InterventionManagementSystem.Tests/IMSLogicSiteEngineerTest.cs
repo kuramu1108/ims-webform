@@ -1,5 +1,4 @@
-﻿using IMSDBLayer;
-using IMSLogicLayer;
+﻿using IMSLogicLayer.ServiceInterfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -12,7 +11,7 @@ namespace InterventionManagementSystem.Tests
     [TestClass]
     class IMSLogicSiteEngineerTest
     {
-        private SiteEngineer siteEngineer;
+        private IEngineerService engineerService;
 
         [TestInitialize]
         public void setUp()
