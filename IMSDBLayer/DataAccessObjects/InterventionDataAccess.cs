@@ -41,13 +41,10 @@ namespace IMSDBLayer.DataAccessObjects
             return sqlExecuter.ExecuteNonQuery(command, intervention) > 0;
         }
 
-        public IEnumerable<Intervention> Interventions
+        public IEnumerable<Intervention> getAll()
         {
-            get
-            {
-                SqlCommand command = new SqlCommand("Select * From Interventions");
-                return sqlExecuter.ExecuteReader(command);
-            }
+            SqlCommand command = new SqlCommand("Select * From Interventions");
+            return sqlExecuter.ExecuteReader(command);
         }
 
         public Intervention fetchInterventionsById(Guid interventionId)

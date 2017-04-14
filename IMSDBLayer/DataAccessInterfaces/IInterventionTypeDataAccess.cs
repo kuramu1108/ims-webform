@@ -13,7 +13,7 @@ namespace IMSDBLayer.DataAccessInterfaces
 
         bool update(InterventionType interventionType);
 
-        IEnumerable<InterventionType> InterventionTypes { get; }
+        IEnumerable<InterventionType> getAll();
 
         InterventionType fetchInterventionTypesById(Guid interventionTypeId);
     }

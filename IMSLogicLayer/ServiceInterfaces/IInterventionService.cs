@@ -1,5 +1,5 @@
-﻿using IMSDBLayer.DataModels;
-using IMSLogicLayer.Enums;
+﻿using IMSLogicLayer.Enums;
+using IMSLogicLayer.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

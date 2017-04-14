@@ -36,13 +36,10 @@ namespace IMSDBLayer.DataAccessObjects
             return sqlExecuter.ExecuteNonQuery(command, client) > 0;
         }
 
-        public IEnumerable<Client> Clients
+        public IEnumerable<Client> getAll()
         {
-            get
-            {
-                SqlCommand command = new SqlCommand("Select * From Clients");
-                return sqlExecuter.ExecuteReader(command);
-            }
+            SqlCommand command = new SqlCommand("Select * From Clients");
+            return sqlExecuter.ExecuteReader(command);
         }
         
         public IEnumerable<Client> fetchClientsByDistrictId(Guid districtId)

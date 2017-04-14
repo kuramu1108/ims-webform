@@ -12,8 +12,8 @@ namespace IMSDBLayer.DataAccessInterfaces
         Client createClient(Client client);
 
         bool updateClient(Client client);
-        
-        IEnumerable<Client> Clients { get; }
+
+        IEnumerable<Client> getAll();
 
         Client fetchClientById(Guid clientId);
 

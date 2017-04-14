@@ -13,7 +13,7 @@ namespace IMSDBLayer.DataAccessInterfaces
 
         bool update(District district);
 
-        IEnumerable<District> Districts { get; }
+        IEnumerable<District> getAll();
 
         District fetchDistrictById(Guid districtId);
     }

@@ -13,12 +13,12 @@ namespace IMSDBLayer.DataAccessInterfaces
 
         bool updateUser(User user);
 
+        IEnumerable<User> getAll();
+
         User fetchUserById(Guid userId);
 
         User fetchUserByIdentityId(Guid identityId);
 
         IEnumerable<User> fetchUsersByUserType(int userType);
-
-        IEnumerable<User> Users { get; }
     } 
 }

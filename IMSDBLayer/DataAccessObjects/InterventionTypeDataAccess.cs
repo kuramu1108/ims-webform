@@ -19,13 +19,10 @@ namespace IMSDBLayer.DataAccessObjects
             this.sqlExecuter = new SqlExecuter<InterventionType>(connstring);
         }
 
-        public IEnumerable<InterventionType> InterventionTypes
+        public IEnumerable<InterventionType> getAll()
         {
-            get
-            {
-                SqlCommand command = new SqlCommand("Select * From InterventionTypes");
-                return sqlExecuter.ExecuteReader(command);
-            }
+            SqlCommand command = new SqlCommand("Select * From InterventionTypes");
+            return sqlExecuter.ExecuteReader(command);
         }
 
         public InterventionType create(InterventionType interventionType)

@@ -40,12 +40,10 @@ namespace IMSDBLayer.DataAccessObjects
             return sqlExecuter.ExecuteNonQuery(command, user) > 0;
         }
 
-        public IEnumerable<User> Users
+        public IEnumerable<User> getAll()
         {
-            get {
-                SqlCommand command = new SqlCommand("Select * From Users");
-                return sqlExecuter.ExecuteReader(command);
-            }
+            SqlCommand command = new SqlCommand("Select * From Users");
+            return sqlExecuter.ExecuteReader(command);
         }
 
         public User fetchUserById(Guid userId)
