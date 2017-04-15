@@ -19,6 +19,6 @@ namespace IMSLogicLayer.ServiceInterfaces
         Intervention getInterventionById(Guid interventionId);
 
         //approve an intervention
-        void approveAnIntervention(Guid interventionId);
+        Boolean approveAnIntervention(Guid interventionId);
     }
 }
