@@ -33,7 +33,7 @@ namespace IMSLogicLayer.ServiceInterfaces
 
         //use to get a list of intervention for a engineer
         IEnumerable<Intervention> getInterventionListByUserId(Guid userId);
-        //use to change Administrative information state
+        //use to change Administrative information state, cancel and complete included
         bool updateInterventionState(Guid interventionId, InterventionState state);
         //use to change Administrative information approveby
         bool updateInterventionApproveBy(Guid interventionId, string name);
@@ -43,7 +43,7 @@ namespace IMSLogicLayer.ServiceInterfaces
         bool updateInterventionLastVisitDate(Guid interventionId, DateTime lastVisitDate);
 
         bool approveAnIntervention(Guid interventionId);
-
+        
 
     }
 }

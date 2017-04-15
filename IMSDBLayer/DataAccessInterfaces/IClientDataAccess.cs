@@ -18,5 +18,7 @@ namespace IMSDBLayer.DataAccessInterfaces
         Client fetchClientById(Guid clientId);
 
         IEnumerable<Client> fetchClientsByDistrictId(Guid districtId);
+
+        
     }
 }

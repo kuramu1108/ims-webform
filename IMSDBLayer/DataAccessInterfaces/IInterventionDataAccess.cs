@@ -25,5 +25,7 @@ namespace IMSDBLayer.DataAccessInterfaces
         IEnumerable<Intervention> fetchInterventionsByInterventionType(Guid interventionTypeId);
 
         IEnumerable<Intervention> fetchInterventionsByCreator(Guid creatorId);
+
+        IEnumerable<Intervention> fetchInterventionsByApprovedUser(Guid userId);
     }
 }

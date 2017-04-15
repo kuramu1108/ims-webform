@@ -31,7 +31,23 @@ namespace IMSLogicLayer.Services
 
         public IEnumerable<Client> getClients()
         {
-            return Clients.fetchClientsByDistrictId(getDetail().DistrictId).Cast<Client>();
+            var clients = new List<Client>();
+            //list of clients on the current district
+            clients.AddRange(Clients.fetchClientsByDistrictId(getDetail().DistrictId).Cast<Client>());
+
+            var interventions = getInterventionListByUserId(getDetail().IdentityId);
+            foreach (var intervention in interventions)
+            {
+                clients.Add((Client)Clients.fetchClientById(intervention.ClientId));
+            }
+            interventions = interventionService.getInterventionByApprovedUser(getDetail().IdentityId);
+            foreach (var intervention in interventions)
+            {
+                clients.Add((Client)Clients.fetchClientById(intervention.ClientId));
+            }
+           
+
+            return clients;
         }
 
         
@@ -133,5 +149,6 @@ namespace IMSLogicLayer.Services
 
          
         }
+
     }
 }

@@ -18,6 +18,8 @@ namespace IMSLogicLayer.ServiceInterfaces
 
         IEnumerable<Intervention> getInterventionsByClientId(Guid clientId);
 
+        IEnumerable<Intervention> getInterventionByApprovedUser(Guid userId);
+
         bool updateInterventionState(Guid interventionId, InterventionState state);
 
         bool updateInterventionDetail(Guid interventionId, string comments, int remainLife);

@@ -105,5 +105,10 @@ namespace IMSLogicLayer.Services
                 return false;
             }
         }
+
+        public IEnumerable<Intervention> getInterventionByApprovedUser(Guid userId)
+        {
+            return Interventions.fetchInterventionsByApprovedUser(userId).Cast<Intervention>();
+        }
     }
 }

@@ -65,5 +65,15 @@ namespace IMSLogicLayer.FakeServices
         {
             return true;
         }
+
+        public bool updateInterventionState(Guid interventionId, InterventionState state, Guid identityId)
+        {
+            return true;
+        }
+
+        public IEnumerable<Intervention> getInterventionByApprovedUser(Guid userId)
+        {
+            return interventions;
+        }
     }
 }
