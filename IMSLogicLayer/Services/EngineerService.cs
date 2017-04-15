@@ -32,5 +32,7 @@ namespace IMSLogicLayer.Services
             return Clients.fetchClientsByDistrictId(getDetail().DistrictId).Cast<Client>();
         }
 
+
+
     }
 }

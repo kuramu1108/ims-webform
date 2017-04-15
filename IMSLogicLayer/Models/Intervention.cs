@@ -29,5 +29,33 @@ namespace IMSLogicLayer.Models
             get { return (InterventionState)base.State; }
             set { base.State = (int)value; }
         }
+
+        public Intervention(decimal hours, decimal costs, int lifeRemaining, string comments, int state, DateTime dateCreate, DateTime dateFinish, DateTime dateRecentVisit)
+        {
+            this.Hours = hours;
+            this.Costs = costs;
+            this.LifeRemaining = lifeRemaining;
+            this.Comments = comments;
+            this.State  = (InterventionState)state;
+            this.DateCreate = dateCreate;
+            this.DateFinish = dateFinish;
+            this.DateRecentVisit = dateRecentVisit;
+        }
+
+        public Intervention(decimal hours, decimal costs, int lifeRemaining, string comments, int state, DateTime dateCreate, DateTime dateFinish, DateTime dateRecentVisit, Guid interventionTypeId, Guid clientId, Guid createdBy, Guid approvedBy)
+        {
+            Hours = hours;
+            Costs = costs;
+            LifeRemaining = lifeRemaining;
+            Comments = comments;
+            State = (InterventionState)state;
+            DateCreate = dateCreate;
+            DateFinish = dateFinish;
+            DateRecentVisit = dateRecentVisit;
+            InterventionTypeId = interventionTypeId;
+            ClientId = clientId;
+            CreatedBy = createdBy;
+            ApprovedBy = approvedBy;
+        }
     }
 }

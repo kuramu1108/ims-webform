@@ -13,6 +13,8 @@ namespace IMSDBLayer.DataModels
         private decimal hours;
         private decimal costs;
 
+     
+
         public Guid Id
         {
             get { return this.id; }
