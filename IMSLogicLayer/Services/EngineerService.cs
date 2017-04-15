@@ -32,5 +32,35 @@ namespace IMSLogicLayer.Services
             return Clients.fetchClientsByDistrictId(getDetail().DistrictId).Cast<Client>();
         }
 
+        
+        public IEnumerable<Intervention> getInterventionByClient(Guid clientId)
+        {
+            return Interventions.fetchInterventionsByClientId(clientId).Cast<Intervention>();
+        }
+
+     
+        public Client getClientById(Guid clientId)
+        {
+            return (Client)Clients.fetchClientById(clientId);
+        }
+
+
+        public Intervention getInterventionById(Guid interventionId) {
+
+            return (Intervention)Interventions.fetchInterventionsById(interventionId);
+        }
+
+
+
+        public Intervention createIntervention(Intervention intervention) {
+            return (Intervention)Interventions.create(intervention);
+        }
+
+
+        public IEnumerable<Intervention> getInterventionListByUserId(Guid userId) {
+            return Interventions.fetchInterventionsByCreator(userId).Cast<Intervention>();
+        }
+
+
     }
 }

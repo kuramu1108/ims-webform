@@ -17,32 +17,41 @@ namespace IMSLogicLayer.Services
 
         public IEnumerable<Intervention> getInterventionsByCreatorId(Guid creatorId)
         {
-            throw new NotImplementedException();
+            return Interventions.fetchInterventionsByCreator(creatorId).Cast<Intervention>();
         }
 
         public Intervention getInterventionsById(Guid interventionId)
         {
-            throw new NotImplementedException();
+            return (Intervention)Interventions.fetchInterventionsById(interventionId);
         }
 
         public IEnumerable<Intervention> getListofProposedInterventions()
         {
-            throw new NotImplementedException();
+            return Interventions.fetchInterventionsByState((int)InterventionState.Proposed).Cast<Intervention>();
         }
 
         public bool updateInterventionDetail(Guid interventionId, string comments, int remainLife)
         {
-            throw new NotImplementedException();
+            Intervention intervention = getInterventionsById(interventionId);
+            intervention.Comments = comments;
+            intervention.LifeRemaining = remainLife;
+
+            return Interventions.update(intervention);
         }
 
         public bool updateInterventionLastVisitDate(Guid interventionId, DateTime lastVisitDate)
         {
-            throw new NotImplementedException();
+            Intervention intervention = getInterventionsById(interventionId);
+            intervention.DateRecentVisit = lastVisitDate;
+            return Interventions.update(intervention);
+
         }
 
         public bool updateInterventionState(Guid interventionId, InterventionState state)
         {
-            throw new NotImplementedException();
+            Intervention intervention = getInterventionsById(interventionId);
+            intervention.State = state;
+            return Interventions.update(intervention);
         }
     }
 }
