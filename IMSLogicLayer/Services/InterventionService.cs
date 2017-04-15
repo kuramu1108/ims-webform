@@ -55,7 +55,31 @@ namespace IMSLogicLayer.Services
         public bool updateInterventionState(Guid interventionId, InterventionState state)
         {
             Intervention intervention = getInterventionsById(interventionId);
-            intervention.State = state;
+            if (intervention.State !=InterventionState.Completed && intervention.State!=InterventionState.Cancelled)
+            {
+                if (intervention.State ==InterventionState.Proposed)
+                {
+                    if (state==InterventionState.Completed)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        intervention.State = state;
+                    }
+                }else
+                {
+                    if(state != InterventionState.Proposed)
+                    {
+                        intervention.State = state;
+                    }
+                }
+                
+            }else
+            {
+                return false;
+            }
+            
             return Interventions.update(intervention);
         }
 
