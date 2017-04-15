@@ -1,5 +1,7 @@
 ﻿using IMSDBLayer.DataAccessInterfaces;
+using IMSDBLayer.DataAccessInterfaces.Helpers;
 using IMSDBLayer.DataAccessObjects;
+using IMSDBLayer.DataAccessObjects.Helpers;
 using IMSLogicLayer.Models;
 using System;
 using System.Collections.Generic;
@@ -17,45 +19,48 @@ namespace IMSLogicLayer.Services
         private IInterventionTypeDataAccess interventionTypeDataAccess;
         private IUserDataAccess userDataAccess;
 
-        internal BaseService(string connstring)
+        public BaseService(string connstring)
         {
-            this.clientDataAccess = new ClientDataAccess(connstring);
-            this.districtDataAccess = new DistrictDataAccess(connstring);
-            this.interventionDataAccess = new InterventionDataAccess(connstring);
-            this.interventionTypeDataAccess = new InterventionTypeDataAccess(connstring);
-            this.userDataAccess = new UserDataAccess(connstring);
+            this.clientDataAccess = new ClientDataAccess(new SqlExecuter<IMSDBLayer.DataModels.Client>(connstring));
+            this.districtDataAccess = new DistrictDataAccess(new SqlExecuter<IMSDBLayer.DataModels.District>(connstring));
+            this.interventionDataAccess = new InterventionDataAccess(new SqlExecuter<IMSDBLayer.DataModels.Intervention>(connstring));
+            this.interventionTypeDataAccess = new InterventionTypeDataAccess(new SqlExecuter<IMSDBLayer.DataModels.InterventionType>(connstring));
+            this.userDataAccess = new UserDataAccess(new SqlExecuter<IMSDBLayer.DataModels.User>(connstring));
         }
 
         internal IClientDataAccess Clients
         {
             get { return clientDataAccess; }
+            set { clientDataAccess = value; }
         }
 
         internal IDistrictDataAccess Districts
         {
             get { return districtDataAccess; }
+            set { districtDataAccess = value; }
         }
 
         internal IInterventionDataAccess Interventions
         {
             get { return interventionDataAccess; }
+            set { interventionDataAccess = value; }
         }
 
         internal IInterventionTypeDataAccess InterventionTypes
         {
             get { return interventionTypeDataAccess; }
+            set { interventionTypeDataAccess = value; }
         }
 
         internal IUserDataAccess Users
         {
             get { return userDataAccess; }
+            set { userDataAccess = value; }
         }
 
         internal Intervention getInterventionDetail()
         {
             return null;
         }
-
-
     }
 }

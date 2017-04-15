@@ -4,19 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using IMSDBLayer.DataAccessInterfaces;
+using IMSDBLayer.DataAccessInterfaces.Helpers;
 using IMSDBLayer.DataModels;
 using System.Data.SqlClient;
-using IMSDBLayer.DataAccessObjects.Helpers;
 
 namespace IMSDBLayer.DataAccessObjects
 {
     public class InterventionDataAccess : IInterventionDataAccess
     {
-        private SqlExecuter<Intervention> sqlExecuter;
+        private ISqlExecuter<Intervention> sqlExecuter;
 
-        public InterventionDataAccess(string connstring)
+        public InterventionDataAccess(ISqlExecuter<Intervention> sqlExecuter)
         {
-            this.sqlExecuter = new SqlExecuter<Intervention>(connstring);
+            this.sqlExecuter = sqlExecuter;
         }
 
         public Intervention create(Intervention intervention)

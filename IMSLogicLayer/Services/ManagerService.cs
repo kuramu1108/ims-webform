@@ -12,7 +12,7 @@ namespace IMSLogicLayer.Services
     {
         public ManagerService(string connstring) : base(connstring) { }
 
-        public User getUser()
+        public User getDetail()
         {
             throw new NotImplementedException();
         }

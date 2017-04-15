@@ -8,5 +8,11 @@ namespace IMSLogicLayer.Models
 {
     public class Client : IMSDBLayer.DataModels.Client
     {
+        public Client(string name, string location, Guid districtId)
+        {
+            Name = name;
+            Location = location;
+            DistrictId = districtId;
+        }
     }
 }

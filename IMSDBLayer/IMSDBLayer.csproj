@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataAccessInterfaces\Helpers\ISqlExecuter.cs" />
     <Compile Include="DataAccessObjects\ClientDataAccess.cs" />
     <Compile Include="DataAccessObjects\DistrictDataAccess.cs" />
     <Compile Include="DataAccessObjects\Helpers\SqlExecuter.cs" />

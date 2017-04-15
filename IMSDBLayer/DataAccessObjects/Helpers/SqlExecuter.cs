@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IMSDBLayer.DataAccessInterfaces.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace IMSDBLayer.DataAccessObjects.Helpers
 {
-    public class SqlExecuter<T>
+    public class SqlExecuter<T> : ISqlExecuter<T>
     {
         private string connstring;
 

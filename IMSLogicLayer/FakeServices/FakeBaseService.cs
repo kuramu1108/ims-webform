@@ -19,11 +19,6 @@ namespace IMSLogicLayer.FakeServices
 
         internal FakeBaseService(string connstring)
         {
-            this.clientDataAccess = new ClientDataAccess(connstring);
-            this.districtDataAccess = new DistrictDataAccess(connstring);
-            this.interventionDataAccess = new InterventionDataAccess(connstring);
-            this.interventionTypeDataAccess = new InterventionTypeDataAccess(connstring);
-            this.userDataAccess = new UserDataAccess(connstring);
         }
 
         internal IClientDataAccess Clients
@@ -55,7 +50,6 @@ namespace IMSLogicLayer.FakeServices
         {
             return null;
         }
-
 
     }
 }

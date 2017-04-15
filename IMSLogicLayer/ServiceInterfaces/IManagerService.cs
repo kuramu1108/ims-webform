@@ -9,6 +9,6 @@ namespace IMSLogicLayer.ServiceInterfaces
 {
     public interface IManagerService
     {
-        User getUser();
+        User getDetail();
     }
 }

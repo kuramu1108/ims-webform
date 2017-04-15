@@ -4,19 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using IMSDBLayer.DataAccessInterfaces;
+using IMSDBLayer.DataAccessInterfaces.Helpers;
 using IMSDBLayer.DataModels;
 using System.Data.SqlClient;
-using IMSDBLayer.DataAccessObjects.Helpers;
 
 namespace IMSDBLayer.DataAccessObjects
 {
     public class UserDataAccess : IUserDataAccess
     {
-        private SqlExecuter<User> sqlExecuter;
+        private ISqlExecuter<User> sqlExecuter;
 
-        public UserDataAccess(string connstring)
+        public UserDataAccess(ISqlExecuter<User> sqlExecuter)
         {
-            this.sqlExecuter = new SqlExecuter<User>(connstring);
+            this.sqlExecuter = sqlExecuter;
         }
 
         public User createUser(User user)

@@ -4,19 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using IMSDBLayer.DataAccessInterfaces;
+using IMSDBLayer.DataAccessInterfaces.Helpers;
 using IMSDBLayer.DataModels;
-using IMSDBLayer.DataAccessObjects.Helpers;
 using System.Data.SqlClient;
 
 namespace IMSDBLayer.DataAccessObjects
 {
     public class DistrictDataAccess : IDistrictDataAccess
     {
-        private SqlExecuter<District> sqlExecuter;
+        private ISqlExecuter<District> sqlExecuter;
 
-        public DistrictDataAccess(string connstring)
+        public DistrictDataAccess(ISqlExecuter<District> sqlExecuter)
         {
-            this.sqlExecuter = new SqlExecuter<District>(connstring);
+            this.sqlExecuter = sqlExecuter;
         }
         
         public District create(District district)
