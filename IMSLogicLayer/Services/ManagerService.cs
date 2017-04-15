@@ -13,7 +13,8 @@ namespace IMSLogicLayer.Services
     {
         private Guid managerId;
         private IInterventionService interventionService;
-        public ManagerService(string connstring) : base(connstring) {
+        public ManagerService(string connstring) : base(connstring)
+        {
             interventionService = new InterventionService(connstring);
         }
 
@@ -22,23 +23,35 @@ namespace IMSLogicLayer.Services
             return (User)Users.fetchUserByIdentityId(managerId);
         }
 
-        public IEnumerable<Intervention> getListOfProposedIntervention() {
+        public IEnumerable<Intervention> getListOfProposedIntervention()
+        {
             return Interventions.fetchInterventionsByState((int)InterventionState.Proposed).Cast<Intervention>();
         }
 
 
-        public Intervention getInterventionById(Guid interventionId) {
+        public Intervention getInterventionById(Guid interventionId)
+        {
             return (Intervention)Interventions.fetchInterventionsById(interventionId);
         }
 
 
-        public Boolean approveAnIntervention(Guid interventionId) {
+        public Boolean approveAnIntervention(Guid interventionId)
+        {
 
             var intervention = getInterventionById(interventionId);
-            intervention.State = InterventionState.Approved;
-            intervention.ApprovedBy = getDetail().IdentityId;
+            var interventionType = InterventionTypes.fetchInterventionTypesById(intervention.InterventionTypeId);
+            var client = Clients.fetchClientById(intervention.ClientId);
+            var user = getDetail();
 
-            return Interventions.update(intervention);
+            if (client.DistrictId == user.DistrictId && user.AuthorisedHours >= intervention.Hours && user.AuthorisedCosts >= intervention.Costs && user.AuthorisedCosts >= interventionType.Costs && user.AuthorisedHours >= interventionType.Hours)
+            {
+                return interventionService.updateInterventionState(interventionId, InterventionState.Approved, user.IdentityId);
+            }
+            else
+            {
+                return false;
+            }
+
         }
 
 

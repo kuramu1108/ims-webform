@@ -69,9 +69,12 @@ namespace IMSLogicLayer.Services
                     }
                 }else
                 {
-                    if(state != InterventionState.Proposed)
+                    if(state != InterventionState.Proposed && state!=InterventionState.Approved)
                     {
                         intervention.State = state;
+                    }else
+                    {
+                        return false;
                     }
                 }
                 
@@ -90,5 +93,17 @@ namespace IMSLogicLayer.Services
             return Interventions.update(intervention);
         }
 
+        public bool updateInterventionState(Guid interventionId, InterventionState state, Guid identityId)
+        {
+            if (updateInterventionState(interventionId,state))
+            {
+                var intervention = getInterventionsById(interventionId);
+                intervention.ApprovedBy = identityId;
+                return Interventions.update(intervention);
+            }else
+            {
+                return false;
+            }
+        }
     }
 }

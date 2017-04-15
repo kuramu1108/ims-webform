@@ -24,5 +24,6 @@ namespace IMSLogicLayer.ServiceInterfaces
 
         bool updateInterventionLastVisitDate(Guid interventionId, DateTime lastVisitDate);
         bool updateIntervetionApprovedBy(Guid interventionId, User user);
+        bool updateInterventionState(Guid interventionId, InterventionState state, Guid identityId);
     }
 }

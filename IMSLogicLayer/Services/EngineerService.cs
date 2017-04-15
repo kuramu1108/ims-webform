@@ -115,5 +115,23 @@ namespace IMSLogicLayer.Services
                 return false;
             }
         }
+
+        public bool approveAnIntervention(Guid interventionId)
+        {
+            var intervention = getInterventionById(interventionId);
+            var interventionType = InterventionTypes.fetchInterventionTypesById(intervention.InterventionTypeId);
+            var client = getClientById(intervention.ClientId);
+            var user = getDetail();
+
+            if (client.DistrictId == user.DistrictId && user.AuthorisedHours>=intervention.Hours && user.AuthorisedCosts>=intervention.Costs && user.AuthorisedCosts>=interventionType.Costs && user.AuthorisedHours>= interventionType.Hours)
+            {
+                return interventionService.updateInterventionState(interventionId, InterventionState.Approved, user.IdentityId);
+            }else
+            {
+                return false;
+            }
+
+         
+        }
     }
 }

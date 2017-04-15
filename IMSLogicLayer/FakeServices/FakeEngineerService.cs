@@ -83,5 +83,10 @@ namespace IMSLogicLayer.FakeServices
         {
             return true;
         }
+
+        public bool approveAnIntervention(Guid interventionId)
+        {
+            return true;
+        }
     }
 }
