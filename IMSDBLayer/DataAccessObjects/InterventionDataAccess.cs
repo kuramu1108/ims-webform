@@ -85,5 +85,13 @@ namespace IMSDBLayer.DataAccessObjects
             command.Parameters.AddWithValue("@CreatedBy", createdBy);
             return sqlExecuter.ExecuteReader(command);
         }
+
+        public IEnumerable<Intervention> fetchInterventionsByClientId(Guid clientId)
+        {
+            SqlCommand command = new SqlCommand("Select * From Interventions Where ClientId = @clientId");
+            command.Parameters.AddWithValue("@clientId", clientId);
+
+            return sqlExecuter.ExecuteReader(command);
+        }
     }
 }

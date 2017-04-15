@@ -19,17 +19,17 @@ namespace IMSLogicLayer.Services
             return (User)Users.fetchUserByIdentityId(managerId);
         }
 
-        IEnumerable<Intervention> getListOfProposedIntervention() {
-            return (IEnumerable<Intervention>)Interventions.fetchInterventionsByState((int)InterventionState.Proposed);
+        public IEnumerable<Intervention> getListOfProposedIntervention() {
+            return Interventions.fetchInterventionsByState((int)InterventionState.Proposed).Cast<Intervention>();
         }
 
 
-        Intervention getInterventionById(Guid interventionId) {
+        public Intervention getInterventionById(Guid interventionId) {
             return (Intervention)Interventions.fetchInterventionsById(interventionId);
         }
 
 
-        Boolean approveAnIntervention(Guid interventionId) {
+        public Boolean approveAnIntervention(Guid interventionId) {
 
             var intervention = getInterventionById(interventionId);
             intervention.State = InterventionState.Approved;

@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using IMSDBLayer.DataModels;
 using IMSLogicLayer.Enums;
+using IMSLogicLayer.Models;
 
 namespace IMSLogicLayer.Services
 {
@@ -18,17 +18,17 @@ namespace IMSLogicLayer.Services
 
         public IEnumerable<User> getAllManger()
         {
-            return Users.fetchUsersByUserType((int)UserType.Manager);
+            return Users.fetchUsersByUserType((int)UserType.Manager).Cast<User>();
         }
 
         public IEnumerable<User> getAllSiteEngineer()
         {
-            return Users.fetchUsersByUserType((int)UserType.SiteEngineer);
+            return Users.fetchUsersByUserType((int)UserType.SiteEngineer).Cast<User>();
         }
 
         public IEnumerable<User> getAllUser()
         {
-           return Users.getAll();
+           return Users.getAll().Cast<User>();
         }
 
         public User getDetail()
@@ -38,7 +38,7 @@ namespace IMSLogicLayer.Services
 
         public User getUserById(Guid userId)
         {
-            return Users.fetchUserById(userId);
+            return (User)Users.fetchUserById(userId);
         }
     }
 }

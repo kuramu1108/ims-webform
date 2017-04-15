@@ -17,7 +17,7 @@ namespace IMSLogicLayer.Services
 
         public IEnumerable<Intervention> getInterventionsByCreatorId(Guid creatorId)
         {
-            throw new NotImplementedException();
+            return (IEnumerable<Intervention>)Interventions.fetchInterventionsByCreator(creatorId);
         }
 
         public Intervention getInterventionsById(Guid interventionId)

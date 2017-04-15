@@ -35,7 +35,7 @@ namespace IMSLogicLayer.Services
         
         public IEnumerable<Intervention> getInterventionByClient(Guid clientId)
         {
-            //return Interventions.fetchInterventionsById();
+            return Interventions.fetchInterventionsByClientId(clientId).Cast<Intervention>();
         }
 
      
@@ -58,7 +58,7 @@ namespace IMSLogicLayer.Services
 
 
         public IEnumerable<Intervention> getInterventionListByUserId(Guid userId) {
-            return (IEnumerable<Intervention>)Interventions.fetchInterventionsByCreator(userId);
+            return Interventions.fetchInterventionsByCreator(userId).Cast<Intervention>();
         }
 
 
