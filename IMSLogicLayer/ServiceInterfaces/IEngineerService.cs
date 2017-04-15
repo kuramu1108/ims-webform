@@ -38,5 +38,9 @@ namespace IMSLogicLayer.ServiceInterfaces
         //use to change Administrative information approveby
         bool updateInterventionApproveBy(Guid interventionId, string name);
 
+        bool updateInterventionDetail(Guid interventionId, string comments, int remainLife);
+
+        bool updateInterventionLastVisitDate(Guid interventionId, DateTime lastVisitDate);
+
     }
 }

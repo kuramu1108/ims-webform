@@ -89,5 +89,31 @@ namespace IMSLogicLayer.Services
             }
         }
 
+        public bool updateInterventionDetail(Guid interventionId, string comments, int remainLife)
+        {
+            var intervention = getInterventionById(interventionId);
+            var district = Districts.fetchDistrictById(getDetail().DistrictId);
+            if (intervention.DistrictName==district.Name)
+            {
+                return interventionService.updateInterventionDetail(interventionId, comments, remainLife);
+            }else
+            {
+                return false;
+            }
+        }
+
+        public bool updateInterventionLastVisitDate(Guid interventionId, DateTime lastVisitDate)
+        {
+            var intervention = getInterventionById(interventionId);
+            var district = Districts.fetchDistrictById(getDetail().DistrictId);
+            if (intervention.DistrictName == district.Name)
+            {
+                return interventionService.updateInterventionLastVisitDate(interventionId, lastVisitDate);
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
