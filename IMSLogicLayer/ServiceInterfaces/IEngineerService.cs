@@ -1,4 +1,5 @@
-﻿using IMSLogicLayer.Models;
+﻿using IMSLogicLayer.Enums;
+using IMSLogicLayer.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,9 +32,19 @@ namespace IMSLogicLayer.ServiceInterfaces
         Intervention createIntervention(Intervention intervention);
 
         //use to get a list of intervention for a engineer
+        IEnumerable<Intervention> getInterventionListByCreator(Guid userId);
         IEnumerable<Intervention> getInterventionListByUserId(Guid userId);
+        //use to change Administrative information state, cancel and complete included
+        bool updateInterventionState(Guid interventionId, InterventionState state);
+        //use to change Administrative information approveby
+        bool updateInterventionApproveBy(Guid interventionId, string name);
 
+        bool updateInterventionDetail(Guid interventionId, string comments, int remainLife);
 
+        bool updateInterventionLastVisitDate(Guid interventionId, DateTime lastVisitDate);
+
+        bool approveAnIntervention(Guid interventionId);
+        
 
     }
 }

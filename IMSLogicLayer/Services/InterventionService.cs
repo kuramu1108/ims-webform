@@ -55,10 +55,60 @@ namespace IMSLogicLayer.Services
         public bool updateInterventionState(Guid interventionId, InterventionState state)
         {
             Intervention intervention = getInterventionsById(interventionId);
-            intervention.State = state;
+            if (intervention.State !=InterventionState.Completed && intervention.State!=InterventionState.Cancelled)
+            {
+                if (intervention.State ==InterventionState.Proposed)
+                {
+                    if (state==InterventionState.Completed)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        intervention.State = state;
+                    }
+                }else
+                {
+                    if(state != InterventionState.Proposed && state!=InterventionState.Approved)
+                    {
+                        intervention.State = state;
+                    }else
+                    {
+                        return false;
+                    }
+                }
+                
+            }else
+            {
+                return false;
+            }
+            
             return Interventions.update(intervention);
         }
 
+        public bool updateIntervetionApprovedBy(Guid interventionId, User user)
+        {
+            Intervention intervention = getInterventionsById(interventionId);
+            intervention.ApprovedBy = user.IdentityId;
+            return Interventions.update(intervention);
+        }
 
+        public bool updateInterventionState(Guid interventionId, InterventionState state, Guid identityId)
+        {
+            if (updateInterventionState(interventionId,state))
+            {
+                var intervention = getInterventionsById(interventionId);
+                intervention.ApprovedBy = identityId;
+                return Interventions.update(intervention);
+            }else
+            {
+                return false;
+            }
+        }
+
+        public IEnumerable<Intervention> getInterventionByApprovedUser(Guid userId)
+        {
+            return Interventions.fetchInterventionsByApprovedUser(userId).Cast<Intervention>();
+        }
     }
 }

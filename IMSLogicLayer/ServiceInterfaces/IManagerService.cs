@@ -1,4 +1,5 @@
-﻿using IMSLogicLayer.Models;
+﻿using IMSLogicLayer.Enums;
+using IMSLogicLayer.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,5 +21,10 @@ namespace IMSLogicLayer.ServiceInterfaces
 
         //approve an intervention
         Boolean approveAnIntervention(Guid interventionId);
+
+
+        bool updateInterventionState(Guid interventionId, InterventionState state);
+        bool updateInterventionApproveBy(Guid interventionId, string name);
+
     }
 }

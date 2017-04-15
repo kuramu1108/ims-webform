@@ -93,5 +93,16 @@ namespace IMSDBLayer.DataAccessObjects
 
             return sqlExecuter.ExecuteReader(command);
         }
+
+
+        public IEnumerable<Intervention> fetchInterventionsByApprovedUser(Guid userId)
+        {
+            SqlCommand command = new SqlCommand("Select * From Interventions Where ApprovedBy = @userId");
+            command.Parameters.AddWithValue("@userId", userId);
+
+            return sqlExecuter.ExecuteReader(command);
+        }
+
+       
     }
 }

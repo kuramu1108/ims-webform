@@ -19,6 +19,8 @@ namespace IMSDBLayer.DataAccessInterfaces
 
         User fetchUserByIdentityId(Guid identityId);
 
+        User fetchUserByName(string name);
+
         IEnumerable<User> fetchUsersByUserType(int userType);
     } 
 }
