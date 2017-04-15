@@ -12,7 +12,7 @@ namespace IMSLogicLayer.ServiceInterfaces
         //use to create client
         Client createClient(string clientName, string clientLocation);
 
-        //use to get id of this user
+        //use to get details of this user
         User getDetail();
 
         //use to get list of client
