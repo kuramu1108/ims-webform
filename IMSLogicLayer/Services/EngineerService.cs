@@ -77,7 +77,10 @@ namespace IMSLogicLayer.Services
 
 
         public IEnumerable<Intervention> getInterventionListByUserId(Guid userId) {
-            return Interventions.fetchInterventionsByCreator(userId).Cast<Intervention>();
+            var interventionList = new List<Intervention>();
+            interventionList.AddRange(Interventions.fetchInterventionsByCreator(userId).Cast<Intervention>());
+            interventionList.AddRange(interventionService.getInterventionByApprovedUser(userId).Cast<Intervention>());
+            return interventionList;
         }
 
         public bool updateInterventionState(Guid interventionId, InterventionState state)
