@@ -88,5 +88,11 @@ namespace IMSLogicLayer.FakeServices
         {
             return true;
         }
+
+        public IEnumerable<Intervention> getInterventionListByCreator(Guid userId)
+        {
+            FakeInterventionService IS = new FakeInterventionService("");
+            return IS.getInterventionsByCreatorId(userId);
+        }
     }
 }
