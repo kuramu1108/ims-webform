@@ -73,5 +73,15 @@ namespace IMSLogicLayer.FakeServices
         {
             return true; 
         }
+
+        public bool updateInterventionDetail(Guid interventionId, string comments, int remainLife)
+        {
+            return true;
+        }
+
+        public bool updateInterventionLastVisitDate(Guid interventionId, DateTime lastVisitDate)
+        {
+            return true;
+        }
     }
 }
