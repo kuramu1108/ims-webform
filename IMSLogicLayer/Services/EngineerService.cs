@@ -5,15 +5,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using IMSLogicLayer.Models;
+using IMSLogicLayer.Enums;
 
 namespace IMSLogicLayer.Services
 {
     public class EngineerService : BaseService, IEngineerService
     {
         private Guid engineerId;
+        private IInterventionService interventionService;
         public EngineerService(string connstring) : base(connstring)
         {
-           
+            interventionService = new InterventionService(connstring);
         }
 
         public Client createClient(string clientName, string clientLocation)
@@ -62,6 +64,30 @@ namespace IMSLogicLayer.Services
             return Interventions.fetchInterventionsByCreator(userId).Cast<Intervention>();
         }
 
+        public bool updateInterventionState(Guid interventionId, InterventionState state)
+        {
+            Intervention intervention = getInterventionById(interventionId);
+            if(intervention.CreatedBy == getDetail().IdentityId)
+            {
+                return interventionService.updateInterventionState(interventionId, state);
+            }else
+            {
+                return false;
+            }
+        }
+
+        public bool updateInterventionApproveBy(Guid interventionId, string name)
+        {
+            Intervention intervention = getInterventionById(interventionId);
+            if (intervention.CreatedBy == getDetail().IdentityId)
+            {
+                User user = (User)Users.fetchUserByName(name);
+                return interventionService.updateIntervetionApprovedBy(interventionId, user);
+            }else
+            {
+                return false;
+            }
+        }
 
     }
 }

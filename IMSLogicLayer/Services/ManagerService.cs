@@ -12,7 +12,10 @@ namespace IMSLogicLayer.Services
     public class ManagerService : BaseService, IManagerService
     {
         private Guid managerId;
-        public ManagerService(string connstring) : base(connstring) { }
+        private IInterventionService interventionService;
+        public ManagerService(string connstring) : base(connstring) {
+            interventionService = new InterventionService(connstring);
+        }
 
         public User getDetail()
         {
@@ -33,8 +36,40 @@ namespace IMSLogicLayer.Services
 
             var intervention = getInterventionById(interventionId);
             intervention.State = InterventionState.Approved;
+            intervention.ApprovedBy = getDetail().IdentityId;
 
             return Interventions.update(intervention);
         }
+
+
+        public bool updateInterventionState(Guid interventionId, InterventionState state)
+        {
+            Intervention intervention = getInterventionById(interventionId);
+            var districtName = Districts.fetchDistrictById(getDetail().DistrictId);
+            if (intervention.DistrictName == districtName.Name)
+            {
+                return interventionService.updateInterventionState(interventionId, state);
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool updateInterventionApproveBy(Guid interventionId, string name)
+        {
+            Intervention intervention = getInterventionById(interventionId);
+            var districtName = Districts.fetchDistrictById(getDetail().DistrictId);
+            if (intervention.DistrictName == districtName.Name)
+            {
+                User user = (User)Users.fetchUserByName(name);
+                return interventionService.updateIntervetionApprovedBy(interventionId, user);
+            }
+            else
+            {
+                return false;
+            }
+        }
+
     }
 }

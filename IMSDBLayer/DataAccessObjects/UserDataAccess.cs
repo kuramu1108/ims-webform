@@ -66,5 +66,12 @@ namespace IMSDBLayer.DataAccessObjects
             command.Parameters.AddWithValue("@Type", userType);
             return sqlExecuter.ExecuteReader(command);
         }
+
+        public User fetchUserByName(string name)
+        {
+            SqlCommand command = new SqlCommand("Select * From Users Where Name = @name");
+            command.Parameters.AddWithValue("@name", name);
+            return sqlExecuter.ExecuteReader(command).FirstOrDefault();
+        }
     }
 }

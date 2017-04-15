@@ -35,5 +35,15 @@ namespace IMSLogicLayer.FakeServices
             FakeInterventionService IS = new FakeInterventionService("");
             return IS.getListofProposedInterventions();
         }
+
+        public bool updateInterventionApproveBy(Guid interventionId, string name)
+        {
+            return true;
+        }
+
+        public bool updateInterventionState(Guid interventionId, InterventionState state)
+        {
+            return true;
+        }
     }
 }

@@ -59,6 +59,12 @@ namespace IMSLogicLayer.Services
             return Interventions.update(intervention);
         }
 
+        public bool updateIntervetionApprovedBy(Guid interventionId, User user)
+        {
+            Intervention intervention = getInterventionsById(interventionId);
+            intervention.ApprovedBy = user.IdentityId;
+            return Interventions.update(intervention);
+        }
 
     }
 }

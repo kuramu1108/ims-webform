@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using IMSLogicLayer.Enums;
 using IMSLogicLayer.Models;
 using IMSLogicLayer.ServiceInterfaces;
 
@@ -61,6 +62,16 @@ namespace IMSLogicLayer.FakeServices
         {
             FakeInterventionService IS = new FakeInterventionService("");
             return IS.getInterventionsByCreatorId(userId);
+        }
+
+        public bool updateInterventionState(Guid interventionId, InterventionState state)
+        {
+            return true;
+        }
+
+        public bool updateInterventionApproveBy(Guid interventionId, string name)
+        {
+            return true; 
         }
     }
 }
