@@ -89,16 +89,16 @@ namespace IMSLogicLayer.Services
         public bool updateIntervetionApprovedBy(Guid interventionId, User user)
         {
             Intervention intervention = getInterventionsById(interventionId);
-            intervention.ApprovedBy = user.IdentityId;
+            intervention.ApprovedBy = user.Id;
             return Interventions.update(intervention);
         }
 
-        public bool updateInterventionState(Guid interventionId, InterventionState state, Guid identityId)
+        public bool updateInterventionState(Guid interventionId, InterventionState state, Guid userId)
         {
             if (updateInterventionState(interventionId,state))
             {
                 var intervention = getInterventionsById(interventionId);
-                intervention.ApprovedBy = identityId;
+                intervention.ApprovedBy = userId;
                 return Interventions.update(intervention);
             }else
             {

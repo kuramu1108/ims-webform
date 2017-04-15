@@ -35,12 +35,12 @@ namespace IMSLogicLayer.Services
             //list of clients on the current district
             clients.AddRange(Clients.fetchClientsByDistrictId(getDetail().DistrictId).Cast<Client>());
 
-            var interventions = getInterventionListByUserId(getDetail().IdentityId);
+            var interventions = getInterventionListByUserId(getDetail().Id);
             foreach (var intervention in interventions)
             {
                 clients.Add((Client)Clients.fetchClientById(intervention.ClientId));
             }
-            interventions = interventionService.getInterventionByApprovedUser(getDetail().IdentityId);
+            interventions = interventionService.getInterventionByApprovedUser(getDetail().Id);
             foreach (var intervention in interventions)
             {
                 clients.Add((Client)Clients.fetchClientById(intervention.ClientId));
@@ -86,7 +86,7 @@ namespace IMSLogicLayer.Services
         public bool updateInterventionState(Guid interventionId, InterventionState state)
         {
             Intervention intervention = getInterventionById(interventionId);
-            if(intervention.CreatedBy == getDetail().IdentityId)
+            if(intervention.CreatedBy == getDetail().Id)
             {
                 return interventionService.updateInterventionState(interventionId, state);
             }else
@@ -98,7 +98,7 @@ namespace IMSLogicLayer.Services
         public bool updateInterventionApproveBy(Guid interventionId, string name)
         {
             Intervention intervention = getInterventionById(interventionId);
-            if (intervention.CreatedBy == getDetail().IdentityId)
+            if (intervention.CreatedBy == getDetail().Id)
             {
                 User user = (User)Users.fetchUserByName(name);
                 return interventionService.updateIntervetionApprovedBy(interventionId, user);
@@ -144,7 +144,7 @@ namespace IMSLogicLayer.Services
 
             if (client.DistrictId == user.DistrictId && user.AuthorisedHours>=intervention.Hours && user.AuthorisedCosts>=intervention.Costs && user.AuthorisedCosts>=interventionType.Costs && user.AuthorisedHours>= interventionType.Hours)
             {
-                return interventionService.updateInterventionState(interventionId, InterventionState.Approved, user.IdentityId);
+                return interventionService.updateInterventionState(interventionId, InterventionState.Approved, user.Id);
             }else
             {
                 return false;

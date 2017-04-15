@@ -42,11 +42,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataAccessInterfaces\Helpers\ISqlExecuter.cs" />
+    <Compile Include="DataAccessInterfaces\IReportDataAccess.cs" />
     <Compile Include="DataAccessObjects\ClientDataAccess.cs" />
     <Compile Include="DataAccessObjects\DistrictDataAccess.cs" />
     <Compile Include="DataAccessObjects\Helpers\SqlExecuter.cs" />
     <Compile Include="DataAccessObjects\InterventionDataAccess.cs" />
     <Compile Include="DataAccessObjects\InterventionTypeDataAccess.cs" />
+    <Compile Include="DataAccessObjects\ReportDataAccess.cs" />
     <Compile Include="DataAccessObjects\UserDataAccess.cs" />
     <Compile Include="DataAccessInterfaces\IClientDataAccess.cs" />
     <Compile Include="DataAccessInterfaces\IDistrictDataAccess.cs" />
@@ -57,6 +59,7 @@
     <Compile Include="DataModels\District.cs" />
     <Compile Include="DataModels\Intervention.cs" />
     <Compile Include="DataModels\InterventionType.cs" />
+    <Compile Include="DataModels\Report.cs" />
     <Compile Include="DataModels\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
