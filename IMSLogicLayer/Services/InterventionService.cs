@@ -30,6 +30,11 @@ namespace IMSLogicLayer.Services
             return Interventions.fetchInterventionsByState((int)InterventionState.Proposed).Cast<Intervention>();
         }
 
+        public IEnumerable<Intervention> getInterventionsByClientId(Guid clientId)
+        {
+            return Interventions.fetchInterventionsByClientId(clientId).Cast<Intervention>();
+        }
+
         public bool updateInterventionDetail(Guid interventionId, string comments, int remainLife)
         {
             Intervention intervention = getInterventionsById(interventionId);
@@ -53,5 +58,7 @@ namespace IMSLogicLayer.Services
             intervention.State = state;
             return Interventions.update(intervention);
         }
+
+
     }
 }

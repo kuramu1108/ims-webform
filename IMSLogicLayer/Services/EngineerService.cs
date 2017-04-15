@@ -11,9 +11,9 @@ namespace IMSLogicLayer.Services
     public class EngineerService : BaseService, IEngineerService
     {
         private Guid engineerId;
-
         public EngineerService(string connstring) : base(connstring)
         {
+           
         }
 
         public Client createClient(string clientName, string clientLocation)
@@ -33,8 +33,9 @@ namespace IMSLogicLayer.Services
         }
 
         
-        public IEnumerable<Intervention> getInterventionByClient(Guid clientId)
+        public IEnumerable<Intervention> getInterventionsByClient(Guid clientId)
         {
+          
             return Interventions.fetchInterventionsByClientId(clientId).Cast<Intervention>();
         }
 

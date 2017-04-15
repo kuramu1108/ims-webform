@@ -19,7 +19,7 @@ namespace IMSLogicLayer.ServiceInterfaces
         IEnumerable<Client> getClients();
 
         //use to get a list of intervention from client id 
-        IEnumerable<Intervention> getInterventionByClient(Guid clientId);
+        IEnumerable<Intervention> getInterventionsByClient(Guid clientId);
 
         //use to get a client
         Client getClientById(Guid clientId);
