@@ -32,6 +32,7 @@ namespace IMSLogicLayer.ServiceInterfaces
         Intervention createIntervention(Intervention intervention);
 
         //use to get a list of intervention for a engineer
+        IEnumerable<Intervention> getInterventionListByCreator(Guid userId);
         IEnumerable<Intervention> getInterventionListByUserId(Guid userId);
         //use to change Administrative information state, cancel and complete included
         bool updateInterventionState(Guid interventionId, InterventionState state);

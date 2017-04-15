@@ -153,5 +153,9 @@ namespace IMSLogicLayer.Services
          
         }
 
+        public IEnumerable<Intervention> getInterventionListByCreator(Guid userId)
+        {
+            return Interventions.fetchInterventionsByCreator(userId).Cast<Intervention>();
+        }
     }
 }
