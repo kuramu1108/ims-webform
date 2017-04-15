@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IMSDBLayer.DataModels
+namespace IMSLogicLayer.Models
 {
     public class Report
     {

@@ -1,13 +1,13 @@
-﻿using IMSDBLayer.DataModels;
+﻿using IMSLogicLayer.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IMSDBLayer.DataAccessInterfaces
+namespace IMSLogicLayer.ServiceInterfaces
 {
-    public interface IReportDataAccess
+    public interface IReportService
     {
         Report totalCostByEngineerReport();
 
@@ -16,6 +16,5 @@ namespace IMSDBLayer.DataAccessInterfaces
         Report costByDistrictReport();
 
         Report MonthlyCostByDistrict();
-
     }
 }

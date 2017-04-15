@@ -1,22 +1,17 @@
-﻿using IMSDBLayer.DataAccessInterfaces;
+﻿using IMSLogicLayer.ServiceInterfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using IMSDBLayer.DataModels;
-using IMSDBLayer.DataAccessInterfaces.Helpers;
-using System.Data.SqlClient;
+using IMSLogicLayer.Models;
 
-namespace IMSDBLayer.DataAccessObjects
+namespace IMSLogicLayer.Services
 {
-    public class ReportDataAccess : IReportDataAccess
+    public class ReportService : BaseService, IReportService
     {
-        private ISqlExecuter<Report> sqlExecuter;
-
-        public ReportDataAccess(ISqlExecuter<Report> sqlExecuter)
+        public ReportService(string connstring) : base(connstring)
         {
-            this.sqlExecuter = sqlExecuter;
         }
 
         public Report averageCostByEngineerReport()
