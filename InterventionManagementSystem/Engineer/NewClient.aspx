@@ -7,7 +7,7 @@
         <tr><td>Client name: </td><td><input id="ClientName" name="client_name" type="Text" /></td></tr>
         <tr><td>Client location: </td><td><input id="ClientLocation" name="client_location" type="Text" /></td></tr>
        <tr><td>District: </td><td><input id="ClientDistrict" name="client_district" type="Text" /></td></tr>
-           <tr><td><input value="Cancel" type="Submit" /></td><td><input value="Submit" type="Submit" /></td></tr>
+           <tr><td><asp:Button ID="Cancel_btn" runat="server" Text="Cancel" />  </td><td>  <asp:Button ID="Submit_btn" runat="server" Text="Submit" /></td></tr>
              </table>
 
 <%--</form>--%>

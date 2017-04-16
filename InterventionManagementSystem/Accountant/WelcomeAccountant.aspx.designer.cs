@@ -40,22 +40,22 @@ namespace InterventionManagementSystem.Accountant {
         protected global::System.Web.UI.WebControls.Button Logout;
         
         /// <summary>
-        /// ClientLabel control.
+        /// ReportLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ClientLabel;
+        protected global::System.Web.UI.WebControls.Label ReportLabel;
         
         /// <summary>
-        /// ViewClient control.
+        /// ViewReport control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ViewClient;
+        protected global::System.Web.UI.WebControls.Button ViewReport;
         
         /// <summary>
         /// InterventionLabel control.
@@ -67,13 +67,13 @@ namespace InterventionManagementSystem.Accountant {
         protected global::System.Web.UI.WebControls.Label InterventionLabel;
         
         /// <summary>
-        /// ViewIntervention control.
+        /// ViewSiteEngineerManager control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ViewIntervention;
+        protected global::System.Web.UI.WebControls.Button ViewSiteEngineerManager;
         
         /// <summary>
         /// ProfileLabel control.

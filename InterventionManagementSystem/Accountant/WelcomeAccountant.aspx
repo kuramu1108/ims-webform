@@ -13,7 +13,7 @@
                 </div>
                 <br>
                 <div class="col-md-2">
-                    <asp:Button ID="Logout" runat="server" Text="Logout" />
+                    <asp:Button ID="Logout" runat="server" Text="Logout" OnClick="Logout_Click" />
                 </div>
                 <div class="col-md-6"></div>
             </div>
@@ -25,7 +25,7 @@
                         <div class="col-md-2">
 
                             <h3>
-                                <asp:Label ID="ClientLabel" runat="server" Text="Report"></asp:Label>
+                                <asp:Label ID="ReportLabel" runat="server" Text="Report"></asp:Label>
                             </h3>
                         </div>
 
@@ -45,7 +45,7 @@
                                 <br>
                             </div>
 
-                            <asp:Button ID="ViewClient" runat="server" Text="View" />
+                            <asp:Button ID="ViewReport" runat="server" Text="View" OnClick="ViewReport_Click"  />
 
 
                         </div>
@@ -64,7 +64,7 @@
                     <div class="row">
                         <div class="col-md-8">
 
-                            <asp:Button ID="ViewIntervention" runat="server" Text="View" />
+                            <asp:Button ID="ViewSiteEngineerManager" runat="server" Text="View" OnClick="ViewSiteEngineerManager_Click" />
 
 
                         </div>
@@ -83,7 +83,7 @@
 
                         <div class="col-md-8">
 
-                            <asp:Button ID="ViewProfile" runat="server" Text="View" />
+                            <asp:Button ID="ViewProfile" runat="server" Text="View" OnClick="ViewProfile_Click" />
 
 
                         </div>
