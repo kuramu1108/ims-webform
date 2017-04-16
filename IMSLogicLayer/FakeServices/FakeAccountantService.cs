@@ -64,7 +64,7 @@ namespace IMSLogicLayer.FakeServices
 
         public User getUserById(Guid userId)
         {
-            return new User("John Miller", 1, 6m, 1000.00m, new Guid("99999999-9999-9999-9999-999999999999"), new Guid("00000000-1111-1111-1111-1111-111111111111"));
+            return new User("John Miller", 1, 6m, 1000.00m, new Guid("99999999-9999-9999-9999-999999999999"), new Guid("00000000-1111-1111-1111-111111111111"));
             
         }
     }

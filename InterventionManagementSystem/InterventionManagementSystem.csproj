@@ -176,6 +176,7 @@
   <ItemGroup>
     <Content Include="About.aspx" />
     <Content Include="Accountant\AccountList.aspx" />
+    <Content Include="Accountant\EditDistrict.aspx" />
     <Content Include="Account\AddPhoneNumber.aspx" />
     <Content Include="Account\Confirm.aspx" />
     <Content Include="Account\Forgot.aspx" />
@@ -267,6 +268,13 @@
     </Compile>
     <Compile Include="Accountant\AccountList.aspx.designer.cs">
       <DependentUpon>AccountList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accountant\EditDistrict.aspx.cs">
+      <DependentUpon>EditDistrict.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountant\EditDistrict.aspx.designer.cs">
+      <DependentUpon>EditDistrict.aspx</DependentUpon>
     </Compile>
     <Compile Include="Account\AddPhoneNumber.aspx.cs">
       <DependentUpon>AddPhoneNumber.aspx</DependentUpon>
