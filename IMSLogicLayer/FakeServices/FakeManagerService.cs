@@ -41,6 +41,11 @@ namespace IMSLogicLayer.FakeServices
             return true;
         }
 
+        public bool updateInterventionApproveBy(Guid interventionId, Guid userId)
+        {
+            return true;
+        }
+
         public bool updateInterventionState(Guid interventionId, InterventionState state)
         {
             return true;

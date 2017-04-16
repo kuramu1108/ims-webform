@@ -22,5 +22,7 @@ namespace IMSLogicLayer.ServiceInterfaces
         //use to get details of this user
         User getDetail();
 
+        bool changeDistrict(Guid userId, Guid district);
+
     }
 }

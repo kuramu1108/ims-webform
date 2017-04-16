@@ -10,10 +10,16 @@ namespace IMSLogicLayer.FakeServices
 {
     public class FakeAccountantService : IAccountantService
     {
+        public bool changeDistrict(Guid userId, Guid district)
+        {
+            return true;
+        }
+
         public IEnumerable<User> getAllManger()
         {
             var ListOfManager = new List<User>()
             {
+                
                 new User("John Smith", 2,12m,2000.00m,new Guid("22222222-2222-2222-2222-222222222222"),new Guid("33333333-3333-3333-3333-3333-333333333333") ),
                 new User("Michael Jack",2,12m,2500.00m,new Guid("00000000-0000-0000-0000-000000000000"),new Guid("11111111-1111-1111-1111-111111111111"))
 

@@ -69,13 +69,13 @@ namespace IMSLogicLayer.Services
             }
         }
 
-        public bool updateInterventionApproveBy(Guid interventionId, string name)
+        public bool updateInterventionApproveBy(Guid interventionId, Guid userId)
         {
             Intervention intervention = getInterventionById(interventionId);
             var district = Districts.fetchDistrictById(getDetail().DistrictId);
             if (intervention.DistrictName == district.Name)
             {
-                User user = (User)Users.fetchUserByName(name);
+                User user = (User)Users.fetchUserById(userId);
                 return interventionService.updateIntervetionApprovedBy(interventionId, user);
             }
             else
