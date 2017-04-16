@@ -19,5 +19,9 @@ namespace InterventionManagementSystem
             Response.Redirect("~/SiteEngineer/NewClient");
         }
 
+        protected void Logout_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

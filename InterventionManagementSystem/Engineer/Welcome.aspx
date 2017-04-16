@@ -1,4 +1,4 @@
-﻿<%@ Page Title="WelcomePage" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Welcome.aspx.cs" Inherits="InterventionManagementSystem._Default" %>
+﻿<%@ Page Title="WelcomePage" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Welcome.aspx.cs" Inherits="InterventionManagementSystem.Welcome" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container-fluid">
@@ -12,7 +12,7 @@
                 </div>
 
                 <div class="col-md-2">
-                    <asp:Button ID="Logout" runat="server" Text="Logout" />
+                    <asp:Button ID="Logout" runat="server" Text="Logout" OnClick="Logout_Click" />
                 </div>
                 <div class="col-md-6"></div>
             </div>
@@ -32,8 +32,8 @@
                     </div>
                     <div class="row">
                         <div class="col-md-2">
-                            <asp:Button ID="ViewClient" runat="server" Text="View" />
-                            <asp:Button ID="CreateClient" runat="server" Text="Create"/>
+                            <asp:Button ID="ViewClient" runat="server" Text="View" style="height: 26px" />
+                            <asp:Button ID="CreateClient" runat="server" Text="Create" OnClick="CreateClientButton_Click"/>
 
                         </div>
                     </div>

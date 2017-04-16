@@ -10,7 +10,7 @@
 namespace InterventionManagementSystem {
     
     
-    public partial class _Default {
+    public partial class NewClient {
         
         /// <summary>
         /// Cancel_btn control.

@@ -13,5 +13,15 @@ namespace InterventionManagementSystem
         {
 
         }
+
+        protected void Cancel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Submit_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
