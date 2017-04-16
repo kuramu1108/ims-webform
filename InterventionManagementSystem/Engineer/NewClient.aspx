@@ -1,16 +1,31 @@
 ﻿<%@ Page Title="New Client" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="NewClient.aspx.cs" Inherits="InterventionManagementSystem._Default" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <h1>New Client</h1>
-    <%--<form method="POST" action="NewClient.aspx">--%>
-         <table>
-        <tr><td>Client name: </td><td><input id="ClientName" name="client_name" type="Text" /></td></tr>
-        <tr><td>Client location: </td><td><input id="ClientLocation" name="client_location" type="Text" /></td></tr>
-       <tr><td>District: </td><td><input id="ClientDistrict" name="client_district" type="Text" /></td></tr>
-           <tr><td><input value="Cancel" type="Submit" /></td><td><input value="Submit" type="Submit" /></td></tr>
-             </table>
+    <h3>New Client</h3>
+    <asp:ValidationSummary runat="server" CssClass="text-danger" />
 
-<%--</form>--%>
-   
+    <div class="row form-group">
+        <%--<asp:Label runat="server" AssociatedControlID="Email" CssClass="col-md-2 control-label">Email</asp:Label>--%>
+        <div class="col-md-2" ><label>Client Name</label></div>
+        <div class="col-md-6">
+            <asp:TextBox runat="server" ID="ClientName" CssClass="form-control" />
+            <asp:RequiredFieldValidator runat="server" ControlToValidate="ClientName"
+                CssClass="text-danger" ErrorMessage="The email field is required." />
+        </div>
+    </div>
 
+    <div class="row form-group">
+        <div class="col-md-2"><label>Client Location</label></div>
+        <div class="col-md-6">
+            <asp:TextBox runat="server" ID="ClientLocation" CssClass="form-control" />
+            <asp:RequiredFieldValidator runat="server" ControlToValidate="ClientLocation"
+                CssClass="text-danger" ErrorMessage="The password field is required." />
+        </div>
+    </div>
+    
+    <div class="row form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <asp:Button runat="server" Text="Create" CssClass="btn btn-default" />
+        </div>
+    </div>
 </asp:Content>

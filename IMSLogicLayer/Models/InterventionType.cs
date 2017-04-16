@@ -6,16 +6,14 @@ using System.Threading.Tasks;
 
 namespace IMSLogicLayer.Models
 {
-    class InterventionType: IMSDBLayer.DataModels.InterventionType
+    public class InterventionType: IMSDBLayer.DataModels.InterventionType
     {
-        public InterventionType( string name, decimal hours, decimal costs)
+        public InterventionType(string name, decimal hours, decimal costs)
         {
             
             Name = name;
             Hours = hours;
             Costs = costs;
         }
-
-
     }
 }

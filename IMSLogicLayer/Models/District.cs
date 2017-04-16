@@ -8,9 +8,8 @@ namespace IMSLogicLayer.Models
 {
     public class District : IMSDBLayer.DataModels.District
     {
-        public District(Guid id, string name)
+        public District(string name)
         {
-            Id = id;
             Name = name;
         }
 

@@ -24,5 +24,12 @@ namespace IMSLogicLayer.ServiceInterfaces
 
         bool changeDistrict(Guid userId, Guid district);
 
+        IEnumerable<ReportRow> printTotalCostByEngineer();
+        IEnumerable<ReportRow> printAverageCostByEngineer();
+        IEnumerable<ReportRow> printTotalCostByDistrict();
+        IEnumerable<ReportRow> printMonthlyCostByEngineer(Guid districtId);
+
+
+
     }
 }
