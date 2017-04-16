@@ -198,6 +198,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Default.aspx" />
+    <Content Include="Engineer\ClientList.aspx" />
     <Content Include="Engineer\EditIntervention.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -395,6 +396,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Engineer\ClientList.aspx.cs">
+      <DependentUpon>ClientList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Engineer\ClientList.aspx.designer.cs">
+      <DependentUpon>ClientList.aspx</DependentUpon>
     </Compile>
     <Compile Include="Engineer\EditIntervention.aspx.cs">
       <DependentUpon>EditIntervention.aspx</DependentUpon>
