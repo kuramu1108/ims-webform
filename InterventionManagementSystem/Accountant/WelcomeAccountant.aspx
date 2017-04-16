@@ -11,7 +11,7 @@
                         <asp:Label ID="lbLoginUser" runat="server" Text="John Snow"></asp:Label>
                     </h2>
                 </div>
-
+                <br>
                 <div class="col-md-2">
                     <asp:Button ID="Logout" runat="server" Text="Logout" />
                 </div>
@@ -32,19 +32,17 @@
 
                     </div>
                     <div class="row">
-                        <div class="col-md-2">
+                        <div class="col-md-8">
                             <div class="dropdown">
-                                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-                                    Report Type
-                         <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li>Total Costs by Engineer</li>
-                                    <li>Average Costs by Engineer</li>
-                                    <li>Costs by District</li>
-                                    <li>Monthly Costs for District</li>
-
-                                </ul>
+                            
+                                <label for="sel1">Select list (select one):</label>
+                                <select class="form-control" id="sel1" style="width: 25%">
+                                    <option>Total Costs by Engineer</option>
+                                    <option>Average Costs by Engineer</option>
+                                    <option>Costs by District</option>
+                                    <option>Monthly Costs for District</option>
+                                </select>
+                                <br>
                             </div>
 
                             <asp:Button ID="ViewClient" runat="server" Text="View" />
@@ -54,7 +52,7 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-md-2">
+                        <div class="col-md-8">
                             <h3>
                                 <asp:Label ID="InterventionLabel" runat="server" Text="Site Engineer/Manager List"></asp:Label>
                             </h3>
@@ -64,10 +62,10 @@
 
                     </div>
                     <div class="row">
-                        <div class="col-md-2">
+                        <div class="col-md-8">
 
                             <asp:Button ID="ViewIntervention" runat="server" Text="View" />
-                         
+
 
                         </div>
                     </div>
@@ -75,7 +73,7 @@
 
                     <div class="row">
 
-                        <div class="col-md-2">
+                        <div class="col-md-8">
                             <h3>
                                 <asp:Label ID="ProfileLabel" runat="server" Text="Profile"></asp:Label>
                             </h3>
@@ -83,10 +81,10 @@
                     </div>
                     <div class="row">
 
-                        <div class="col-md-2">
+                        <div class="col-md-8">
 
                             <asp:Button ID="ViewProfile" runat="server" Text="View" />
-                   
+
 
                         </div>
                     </div>
