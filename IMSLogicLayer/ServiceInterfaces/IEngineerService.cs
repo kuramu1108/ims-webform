@@ -37,7 +37,7 @@ namespace IMSLogicLayer.ServiceInterfaces
         //use to change Administrative information state, cancel and complete included
         bool updateInterventionState(Guid interventionId, InterventionState state);
         //use to change Administrative information approveby
-        bool updateInterventionApproveBy(Guid interventionId, string name);
+        bool updateInterventionApproveBy(Guid interventionId, Guid userId);
 
         bool updateInterventionDetail(Guid interventionId, string comments, int remainLife);
 

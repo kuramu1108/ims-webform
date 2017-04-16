@@ -175,8 +175,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
-    <Content Include="Accountant\ReportPage.aspx" />
-    <Content Include="Accountant\WelcomeAccountant.aspx" />
+    <Content Include="Accountant\AccountList.aspx" />
     <Content Include="Account\AddPhoneNumber.aspx" />
     <Content Include="Account\Confirm.aspx" />
     <Content Include="Account\Forgot.aspx" />
@@ -262,19 +261,12 @@
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Accountant\ReportPage.aspx.cs">
-      <DependentUpon>ReportPage.aspx</DependentUpon>
+    <Compile Include="Accountant\AccountList.aspx.cs">
+      <DependentUpon>AccountList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Accountant\ReportPage.aspx.designer.cs">
-      <DependentUpon>ReportPage.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Accountant\WelcomeAccountant.aspx.cs">
-      <DependentUpon>WelcomeAccountant.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Accountant\WelcomeAccountant.aspx.designer.cs">
-      <DependentUpon>WelcomeAccountant.aspx</DependentUpon>
+    <Compile Include="Accountant\AccountList.aspx.designer.cs">
+      <DependentUpon>AccountList.aspx</DependentUpon>
     </Compile>
     <Compile Include="Account\AddPhoneNumber.aspx.cs">
       <DependentUpon>AddPhoneNumber.aspx</DependentUpon>

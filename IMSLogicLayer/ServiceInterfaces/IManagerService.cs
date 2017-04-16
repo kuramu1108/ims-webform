@@ -24,7 +24,7 @@ namespace IMSLogicLayer.ServiceInterfaces
 
 
         bool updateInterventionState(Guid interventionId, InterventionState state);
-        bool updateInterventionApproveBy(Guid interventionId, string name);
+        bool updateInterventionApproveBy(Guid interventionId, Guid userId);
 
     }
 }

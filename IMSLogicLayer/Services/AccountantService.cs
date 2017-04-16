@@ -16,6 +16,17 @@ namespace IMSLogicLayer.Services
         {
         }
 
+        public bool changeDistrict(Guid userId, Guid districtId)
+        {
+            var user = getUserById(userId);
+
+            
+            user.DistrictId = districtId;
+
+
+            return true;
+        }
+
         public IEnumerable<User> getAllManger()
         {
             return Users.fetchUsersByUserType((int)UserType.Manager).Cast<User>();

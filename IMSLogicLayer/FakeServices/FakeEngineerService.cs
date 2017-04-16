@@ -94,5 +94,10 @@ namespace IMSLogicLayer.FakeServices
             FakeInterventionService IS = new FakeInterventionService("");
             return IS.getInterventionsByCreatorId(userId);
         }
+
+        public bool updateInterventionApproveBy(Guid interventionId, Guid userId)
+        {
+            return true;
+        }
     }
 }
