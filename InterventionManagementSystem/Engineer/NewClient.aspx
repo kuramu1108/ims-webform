@@ -50,16 +50,27 @@
                                 <asp:TextBox ID="Clientlocation" runat="server"></asp:TextBox></h3>
                         </div>
                     </div>
+                      <div class="row">
+                        <div class="col-md-4">
+                           <h3> <asp:Label ID="Label2" runat="server" Text="Client District:　"></asp:Label>
+                                <asp:TextBox ID="ClientDistrict" runat="server"></asp:TextBox></h3>
+                        </div>
+                    </div>
 
-                 
-                    <div class="row">
+                          <div class="row">
 
-                        <div class="col-md-2">
+                        <div class="col-md-4">
+                                   
                             <asp:Button ID="Cancel_btn" runat="server" Text="Cancel" OnClick="Cancel_btn_Click" />
                            
                             <asp:Button ID="Submit_btn" runat="server" Text="Submit" OnClick="Submit_btn_Click" />
                         </div>
                     </div>
+                        </div>
+                  
+         
+                 
+              
                 </div>
             </div>
         </div>

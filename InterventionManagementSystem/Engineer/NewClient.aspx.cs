@@ -8,6 +8,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using IMSLogicLayer.ServiceInterfaces;
+
 
 namespace InterventionManagementSystem
 {
@@ -18,7 +20,7 @@ namespace InterventionManagementSystem
         {
             if (!IsPostBack)
             {
-                
+             
             }
             else
             {
@@ -29,10 +31,14 @@ namespace InterventionManagementSystem
         protected void Submit_btn_Click(object sender, EventArgs e)
         {
             //String Userid = Request.QueryString["Loginuser"];
-        //    District District= Context.User.Identity.GetUserDistrict();
-            FakeEngineerService es = new FakeEngineerService();
-            Client client = new Client(ClientName.Text, Clientlocation.Text, System.Guid.NewGuid());
+            //    District District= Context.User.Identity.GetUserDistrict();
+            IEngineerService es = new FakeEngineerService();
+            Client client = new Client(ClientName.Text, Clientlocation.Text, Guid.Parse(ClientDistrict.Text));
             if (es.createClient(ClientName.Text, Clientlocation.Text) != null) {
+                // createclient should return client id?????
+
+
+
                 // give creation succeed feedback to user
                // ClientScript.RegisterStartupScript(GetType(), "Y", "alert('Creation succeed!');", true);
                 Response.Redirect("ClientDetails.aspx?ClientId="+client.Id);

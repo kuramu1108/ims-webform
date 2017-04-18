@@ -58,6 +58,24 @@ namespace InterventionManagementSystem {
         protected global::System.Web.UI.WebControls.TextBox Clientlocation;
         
         /// <summary>
+        /// Label2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label2;
+        
+        /// <summary>
+        /// ClientDistrict control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox ClientDistrict;
+        
+        /// <summary>
         /// Cancel_btn control.
         /// </summary>
         /// <remarks>
