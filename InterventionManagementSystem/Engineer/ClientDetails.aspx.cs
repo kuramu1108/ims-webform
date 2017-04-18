@@ -14,6 +14,17 @@ namespace InterventionManagementSystem
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            if (!IsPostBack)
+            {
+              
+            }
+            else
+            {
+               
+            }
+
+
             //Client client = new Client(1, "John Smith", "123 Happy St", Common.Districts.RuralPapuaNewGuinea);
 
             //lblName.Text = client.clientDM.Name;

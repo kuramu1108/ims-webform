@@ -51,12 +51,12 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                        
-                        <li><a runat ="server" href ="~/SiteEngineer/Welcome.aspx">Welcome</a></li>
-                        <li><a runat="server" href ="~/SiteEngineer/NewClient.aspx">New Client</a></li>
-                        <li><a runat="server" href="~/SiteEngineer/NewIntervention.aspx">New Intervention</a></li>
-                        <li><a runat="server" href="~/SiteEngineer/ClientDetails.aspx">ClientDetails</a></li>
-                        <li><a runat="server" href="~/SiteEngineer/EditIntervention.aspx">EditIntervention</a></li>
-                        <li><a runat="server" href="~/SiteEngineer/Profile.aspx">Profile</a></li>
+                        <li><a runat ="server" href ="~/Engineer/Welcome.aspx">Welcome</a></li>
+                        <li><a runat="server" href ="~/Engineer/NewClient.aspx">New Client</a></li>
+                        <li><a runat="server" href="~/Engineer/NewIntervention.aspx">New Intervention</a></li>
+                        <li><a runat="server" href="~/Engineer/ClientDetails.aspx">ClientDetails</a></li>
+                        <li><a runat="server" href="~/Engineer/EditIntervention.aspx">EditIntervention</a></li>
+                        <li><a runat="server" href="~/Engineer/Profile.aspx">Profile</a></li>
                     </ul>
                     <asp:LoginView runat="server" ViewStateMode="Disabled">
                         <AnonymousTemplate>
