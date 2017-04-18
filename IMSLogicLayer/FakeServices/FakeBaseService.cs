@@ -68,12 +68,12 @@ namespace IMSLogicLayer.FakeServices
             User engineer2 = new User("Van Dienal", 1, 10, 200, Guid.NewGuid(), district1.Id);
             engineer2.Id = Guid.NewGuid();
 
-            User engineer3 = new User("Lan Dienal", 1, 10, 200, Guid.NewGuid(), district1.Id);
-            engineer3.Id = Guid.NewGuid();
+            User manager1 = new User("Lan Dienal", 2, 10, 200, Guid.NewGuid(), district2.Id);
+            manager1.Id = Guid.NewGuid();
 
             users.Add(engineer1);
             users.Add(engineer2);
-            users.Add(engineer3);
+            users.Add(manager1);
 
             clients = new List<Client>();
             Client client1 = new Client("Dan Dock", "Dock Dock", district1.Id);
@@ -84,6 +84,10 @@ namespace IMSLogicLayer.FakeServices
 
             Client client3 = new Client("Dan Lock", "Lock Lock", district1.Id);
             client3.Id = Guid.NewGuid();
+
+            clients.Add(client1);
+            clients.Add(client2);
+            clients.Add(client3);
 
             Intervention inter1 = new Intervention(12m, 1750.00m, 89, "", InterventionState.Proposed, DateTime.Now, new DateTime(), new DateTime(), interType1.Id, client1.Id, engineer1.Id, Guid.Empty);
             inter1.Id = Guid.NewGuid();
@@ -103,6 +107,7 @@ namespace IMSLogicLayer.FakeServices
             Intervention inter6 = new Intervention(12m, 1750.00m, 89, "", InterventionState.Proposed, DateTime.Now, new DateTime(), new DateTime(), interType3.Id, client1.Id, engineer1.Id, Guid.Empty);
             inter6.Id = Guid.NewGuid();
 
+            interventions = new List<Intervention>();
             interventions.Add(inter1);
             interventions.Add(inter2);
             interventions.Add(inter3);

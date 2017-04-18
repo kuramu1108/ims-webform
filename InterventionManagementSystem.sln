@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26228.10
+VisualStudioVersion = 15.0.26228.9
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterventionManagementSystem.Tests", "InterventionManagementSystem.Tests\InterventionManagementSystem.Tests.csproj", "{20647ED6-D2CF-4B64-812E-3E046A467AC0}"
 EndProject
