@@ -9,9 +9,12 @@ using IMSLogicLayer.ServiceInterfaces;
 
 namespace IMSLogicLayer.FakeServices
 {
-    public class FakeEngineerService : IEngineerService
+    public class FakeEngineerService : FakeBaseService, IEngineerService
     {
-        
+        public FakeEngineerService(string connstring) : base(connstring)
+        {
+        }
+
         public Client createClient(string clientName, string clientLocation)
         {
             Client client = new Client("Josh Tims", "Sydney", new Guid("11111111-2222-3333-4444-555555555555"));
@@ -31,11 +34,11 @@ namespace IMSLogicLayer.FakeServices
 
         public IEnumerable<Client> getClients()
         {
-            var Clients = new List<Client>()
-            {
-               new Client("Josh Tims","Sydney",  new Guid("11111111-2222-3333-4444-555555555555")),
-               new Client("Johnathan Miller","Sydeny",  new Guid("11111111-2222-3333-4444-555555555555"))
-            };
+            //var Clients = new List<Client>()
+            //{
+            //   new Client("Josh Tims","Sydney",  new Guid("11111111-2222-3333-4444-555555555555")),
+            //   new Client("Johnathan Miller","Sydeny",  new Guid("11111111-2222-3333-4444-555555555555"))
+            //};
 
             return Clients;
         }

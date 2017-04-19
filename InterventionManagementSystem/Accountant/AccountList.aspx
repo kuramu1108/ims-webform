@@ -19,7 +19,8 @@
                     <tr runat="server">
                         <td><asp:Label ID="lblName" runat="server" Text='<%#Eval("Name") %>'/></td>
                         <td><asp:Label ID="lblDistrict" runat="server" Text='<%#Eval("DistrictId") %>'/></td>
-                        <td><asp:HyperLink ID="linkEdit" runat="server" Text="Edit District" NavigateUrl='<%#"EditDistrict.aspx?id=" + Eval("Id") %>' /></td>
+                        <%--<td><asp:HyperLink ID="linkEdit" runat="server" Text="Edit District" NavigateUrl='<%#"EditDistrict.aspx?id=" + Eval("Id") %>' /></td>--%>
+                        <td><asp:HyperLink ID="linkEdit" runat="server" Text="Edit District" NavigateUrl='<%#"EditDistrict.aspx?Name=" + Eval("Name") %>' /></td>
                     </tr>
                 </ItemTemplate>
             </asp:ListView>
@@ -43,7 +44,8 @@
                     <tr runat="server">
                         <td><asp:Label ID="lblName" runat="server" Text='<%#Eval("Name") %>'/></td>
                         <td><asp:Label ID="lblDistrict" runat="server" Text='<%#Eval("DistrictId") %>'/></td>
-                        <td><asp:HyperLink ID="linkEdit" runat="server" Text="Edit District" NavigateUrl='<%#"EditDistrict.aspx?id=" + Eval("Id") %>' /></td>
+   <%--                     <td><asp:HyperLink ID="linkEdit" runat="server" Text="Edit District" NavigateUrl='<%#"EditDistrict.aspx?id=" + Eval("Id") %>' /></td>--%>
+                         <td><asp:HyperLink ID="HyperLink1" runat="server" Text="Edit District" NavigateUrl='<%#"EditDistrict.aspx?Name=" + Eval("Name") %>' /></td>
                     </tr>
                 </ItemTemplate>
             </asp:ListView>

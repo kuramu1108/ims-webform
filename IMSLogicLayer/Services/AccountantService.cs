@@ -51,5 +51,25 @@ namespace IMSLogicLayer.Services
         {
             return (User)Users.fetchUserById(userId);
         }
+
+        public IEnumerable<ReportRow> printAverageCostByEngineer()
+        {
+            return ReportDataAccess.averageCostByEngineer().Cast<ReportRow>();
+        }
+
+        public IEnumerable<ReportRow> printMonthlyCostByEngineer(Guid districtId)
+        {
+            return ReportDataAccess.monthlyCostForDistrict(districtId).Cast<ReportRow>();
+        }
+
+        public IEnumerable<ReportRow> printTotalCostByDistrict()
+        {
+            return ReportDataAccess.totalCostByEngineer().Cast<ReportRow>();
+        }
+
+        public IEnumerable<ReportRow> printTotalCostByEngineer()
+        {
+            return ReportDataAccess.totalCostByEngineer().Cast<ReportRow>();
+        }
     }
 }

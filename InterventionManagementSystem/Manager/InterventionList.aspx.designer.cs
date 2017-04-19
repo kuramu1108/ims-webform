@@ -7,27 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace InterventionManagementSystem {
+namespace InterventionManagementSystem.Manager {
     
     
-    public partial class _Default {
+    public partial class InterventionList {
         
         /// <summary>
-        /// ClientName control.
+        /// ListIntervention control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ClientName;
-        
-        /// <summary>
-        /// ClientLocation control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ClientLocation;
+        protected global::System.Web.UI.WebControls.DataList ListIntervention;
     }
 }

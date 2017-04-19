@@ -18,6 +18,7 @@ namespace IMSLogicLayer.Services
         private IInterventionDataAccess interventionDataAccess;
         private IInterventionTypeDataAccess interventionTypeDataAccess;
         private IUserDataAccess userDataAccess;
+        private IReportDataAccess reportDataAccess;
 
         public BaseService(string connstring)
         {
@@ -26,7 +27,10 @@ namespace IMSLogicLayer.Services
             this.interventionDataAccess = new InterventionDataAccess(new SqlExecuter<IMSDBLayer.DataModels.Intervention>(connstring));
             this.interventionTypeDataAccess = new InterventionTypeDataAccess(new SqlExecuter<IMSDBLayer.DataModels.InterventionType>(connstring));
             this.userDataAccess = new UserDataAccess(new SqlExecuter<IMSDBLayer.DataModels.User>(connstring));
+            this.reportDataAccess = new ReportDataAccess(new SqlExecuter<IMSDBLayer.DataModels.ReportRow>(connstring));
         }
+
+        public IReportDataAccess ReportDataAccess { get => reportDataAccess; set => reportDataAccess = value; }
 
         internal IClientDataAccess Clients
         {
