@@ -5,7 +5,7 @@ using IMSLogicLayer.ServiceInterfaces;
 namespace InterventionManagementSystem.Tests
 {
     [TestClass]
-    public class IMSLogicAccountantTest
+    public class IMSLogicAccountantServiceTest
     {
         private IAccountantService accountantService;
         private const string OLDPWD = "12345678";
