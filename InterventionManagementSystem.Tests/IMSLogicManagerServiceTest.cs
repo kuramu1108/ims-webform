@@ -5,7 +5,7 @@ using IMSLogicLayer.ServiceInterfaces;
 namespace InterventionManagementSystem.Tests
 {
     [TestClass]
-    public class IMSLogicManagerTest
+    public class IMSLogicManagerServiceTest
     {
         private IManagerService managerService;
 
