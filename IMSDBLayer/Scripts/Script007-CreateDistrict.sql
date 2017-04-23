@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[District] (
+    [Id]   UNIQUEIDENTIFIER DEFAULT (newid()) NOT NULL,
+    [Name] NVARCHAR (MAX)   NOT NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+

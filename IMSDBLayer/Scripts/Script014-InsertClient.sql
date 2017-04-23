@@ -1,0 +1,6 @@
+﻿INSERT INTO [dbo].[Client] ([Id], [Name], [Location], [DistrictId]) VALUES (N'52462faa-1005-48c6-868f-11d3f73e5321', N'Mason A Stelzer', N'63 McGregor Street', N'a772a663-db28-4c71-8c46-2d77e3bf2eb4')
+INSERT INTO [dbo].[Client] ([Id], [Name], [Location], [DistrictId]) VALUES (N'de4ee6ff-5b7d-4253-b5dc-5438ac5c3bdb', N'Andrew L Dow', N'32 Jacolite Street', N'6f58c53c-e824-4685-9555-cebd28412ebe')
+INSERT INTO [dbo].[Client] ([Id], [Name], [Location], [DistrictId]) VALUES (N'cfcb2e7a-9819-4729-879e-5f1146f08aa4', N'Aidan I Hindley', N'92 Black Range Road', N'2ada97c5-8253-489c-b772-50ff40425184')
+INSERT INTO [dbo].[Client] ([Id], [Name], [Location], [DistrictId]) VALUES (N'05455466-a4cd-4826-83d9-8552f9ae8e03', N'Julian A Halloran', N'67 High Street', N'201b5546-9793-4a89-b752-713ba856a2e0')
+INSERT INTO [dbo].[Client] ([Id], [Name], [Location], [DistrictId]) VALUES (N'0787649b-4e37-44b8-9c90-91dcd4163fd4', N'Brock K Reading', N'23 Taylor Street', N'bf0f5542-1702-4b18-8ab6-26c25aef4f39')
+INSERT INTO [dbo].[Client] ([Id], [Name], [Location], [DistrictId]) VALUES (N'19cdf38d-b475-42e2-b38d-e7aed10e78ab', N'Alexandra E Verran', N'64 Ronald Crescent', N'170fa827-717e-4281-bfbf-6a0c7916d614')

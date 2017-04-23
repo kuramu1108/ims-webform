@@ -192,6 +192,10 @@
     <Content Include="Account\ResetPasswordConfirmation.aspx" />
     <Content Include="Account\TwoFactorAuthenticationSignIn.aspx" />
     <Content Include="Account\VerifyPhoneNumber.aspx" />
+    <Content Include="App_Data\InterventionManagementSystem.mdf" />
+    <Content Include="App_Data\InterventionManagementSystem_log.ldf">
+      <DependentUpon>InterventionManagementSystem.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -493,9 +497,7 @@
       <DependentUpon>Welcome.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
