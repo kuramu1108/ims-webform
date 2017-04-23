@@ -52,12 +52,15 @@
                     <ul class="nav navbar-nav">
                        
                         <li><a runat ="server" href ="~/Engineer/Welcome.aspx">Welcome</a></li>
-                        <li><a runat ="server" href ="~/Engineer/NewClient.aspx">New Client</a></li>
-                        <li><a runat ="server" href ="~/Engineer/NewIntervention.aspx">New Intervention</a></li>
-                        <li><a runat ="server" href ="~/Engineer/ClientDetails.aspx">ClientDetails</a></li>
-                        <li><a runat ="server" href ="~/Engineer/EditIntervention.aspx">EditIntervention</a></li>
-                        <li><a runat ="server" href ="~/Engineer/Profile.aspx">Profile</a></li>
+                        <li><a runat="server" href="~/Engineer/ClientList.aspx">ClientList</a></li>
                         <li><a runat ="server" href ="~/Manager/InterventionList.aspx">M-IntList</a></li>
+                        <li><a runat ="server" href ="~/Engineer/ClientDetails.aspx">ClientDetails</a></li>
+                        <li><a runat ="server" href="~/Accountant/AccountList.aspx">AccountList</a></li>
+                        <li><a runat ="server" href ="~/Accountant/EditDistrict.aspx">EditDistrict</a></li>
+                       <%-- <li><a runat ="server" href ="~/Engineer/NewClient.aspx">New Client</a></li>
+                        <li><a runat ="server" href ="~/Engineer/NewIntervention.aspx">New Intervention</a></li>
+                        <li><a runat ="server" href ="~/Engineer/EditIntervention.aspx">EditIntervention</a></li>--%>
+                     
                     </ul>
                     <asp:LoginView runat="server" ViewStateMode="Disabled">
                         <AnonymousTemplate>

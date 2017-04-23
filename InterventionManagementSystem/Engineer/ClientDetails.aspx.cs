@@ -4,31 +4,66 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using IMSDBLayer;
 using IMSLogicLayer;
-using IMSDBLayer.DataModels;
+using IMSLogicLayer.FakeServices;
+using IMSLogicLayer.Models;
 
 namespace InterventionManagementSystem
 {
     public partial class ClientDetails : System.Web.UI.Page
     {
+        FakeBaseService service = new FakeBaseService("");
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            //Client client = new Client(1, "John Smith", "123 Happy St", Common.Districts.RuralPapuaNewGuinea);
 
-            //lblName.Text = client.clientDM.Name;
-            //lblLocation.Text = client.clientDM.Location;
-            //lblDistrict.Text = client.clientDM.District.ToString();
-
-            List<string> TestData = new List<string>()
+            if (!IsPostBack)
             {
-                    "Supply and Install Portable Toilet",
-                    "Hepatitis Avoidance Training",
-                    "Supply and Install Storm-proof Home Kit"
-            };
+                //real code
+                //if (!string.IsNullOrEmpty(Request.QueryString["Id"]))
+                //{
+                //    Guid clientId = new Guid(Request.QueryString["Id"]);
+                //    Client client = service.Clients.Find(c => c.Id == clientId);
+                //    lblName.Text = client.Name;
+                //    lblDistrict.Text = service.Districts.First(d => d.Id == client.DistrictId).Name;
+                //    lblLocation.Text = client.Location;
+                //    List<Intervention> clientIntervention = service.Interventions.FindAll(i => i.ClientId == client.Id);
 
-            InterventionList.DataSource = TestData;
-            InterventionList.DataBind();
+
+                //    InterventionList.DataSource = clientIntervention;
+                //    InterventionList.DataBind();
+
+                //}
+
+                //just use for test
+                if (!string.IsNullOrEmpty(Request.QueryString["Name"]))
+                {
+                    string clientName =  Request.QueryString["Name"];
+                    Client client = service.Clients.Find(c => c.Name == clientName);
+                    lblName.Text = client.Name;
+                    lblDistrict.Text = service.Districts.First(d => d.Id == client.DistrictId).Name;
+                    lblLocation.Text = client.Location;
+
+                    IEnumerable<Intervention> clientIntervention = service.Interventions.Where(i => i.ClientId == client.Id);
+
+                    List<InterventionType> interventions = new List<InterventionType>();
+                    foreach (var intervention in clientIntervention)
+                    {
+                        var interventionType = service.InterventionTypes.First(i => i.Id == intervention.InterventionTypeId);
+                        interventions.Add(interventionType);
+                    }
+                    
+                    InterventionList.DataSource = interventions;
+                    InterventionList.DataBind();
+
+                }
+            }
+          
+
+
+
+
+            
 
 
         }
