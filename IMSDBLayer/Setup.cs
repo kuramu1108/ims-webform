@@ -1,6 +1,8 @@
 ﻿using DbUp;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,8 +14,8 @@ namespace IMSDBLayer
         public Setup(string connstring)
         {
             var connectionString = connstring;
-            EnsureDatabase.For.SqlDatabase(connectionString);
-
+            //EnsureDatabase.For.SqlDatabase(connectionString);
+            SetupDatabase(connstring);
             var upgrader =
                             DeployChanges.To
                             .SqlDatabase(connectionString)
@@ -30,6 +32,42 @@ namespace IMSDBLayer
             }
         }
 
+        private void SetupDatabase(string connstring)
+        {
+            SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder(connstring);
+            if (!File.Exists(builder.AttachDBFilename))
+            {
+                string dbName = "InterventionManagementSystem";
+                string database = builder.AttachDBFilename;
+                string log = builder.AttachDBFilename.Replace(".mdf", ".ldf");
 
+                SqlConnection conn = new SqlConnection(connstring);
+                string[] files = { database, log };
+                var query = "CREATE DATABAse " + dbName +
+                    " ON PRIMARY" +
+                    " (Name = '" + files[0] + "'," +
+                    " SIZE = 3MB," +
+                    " MAXSIZE = 20MB," +
+                    " FILEGROWTH = 10%)" +
+
+                    " LOG ON" +
+                    " (NAME = " + dbName + "_log," +
+                    " FILENAME = '" + files[1] + "'," +
+                    " SIZE = 1MB," +
+                    " MAXSIZE = 5MB," +
+                    " FILEGROWTH = 10%)" + ";";
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.ExecuteNonQuery();
+            }
+           
+
+
+
+
+
+
+
+        }
     }
 }
