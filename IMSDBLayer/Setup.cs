@@ -37,15 +37,19 @@ namespace IMSDBLayer
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder(connstring);
             if (!File.Exists(builder.AttachDBFilename))
             {
-                string dbName = "InterventionManagementSystem";
-                string database = builder.AttachDBFilename;
-                string log = builder.AttachDBFilename.Replace(".mdf", ".ldf");
+                string dbName = builder.InitialCatalog;
+                string database = Path.Combine(AppDomain.CurrentDomain.GetData("DataDirectory").ToString(),dbName+".mdf");
+                string log = Path.Combine(AppDomain.CurrentDomain.GetData("DataDirectory").ToString(), dbName + ".ldf");
+                SqlConnectionStringBuilder newBuilder = new SqlConnectionStringBuilder();
+                newBuilder["Data Source"] = builder.DataSource;
+                newBuilder["Integrated Security"] = builder.IntegratedSecurity;
 
-                SqlConnection conn = new SqlConnection(connstring);
+                SqlConnection conn = new SqlConnection(newBuilder.ConnectionString);
                 string[] files = { database, log };
                 var query = "CREATE DATABAse " + dbName +
                     " ON PRIMARY" +
-                    " (Name = '" + files[0] + "'," +
+                    " (Name = " + dbName + "_data," +
+                    " FILENAME = '" + files[0] + "'," +
                     " SIZE = 3MB," +
                     " MAXSIZE = 20MB," +
                     " FILEGROWTH = 10%)" +
@@ -58,9 +62,15 @@ namespace IMSDBLayer
                     " FILEGROWTH = 10%)" + ";";
 
                 SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.ExecuteNonQuery();
+                using (conn)
+                {
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                }
+
+                //conn.Close();
             }
-           
+
 
 
 
