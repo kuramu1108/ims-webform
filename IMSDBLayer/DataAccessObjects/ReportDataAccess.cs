@@ -22,39 +22,39 @@ namespace IMSDBLayer.DataAccessObjects
 
         public IEnumerable<ReportRow> averageCostByEngineer()
         {
-            SqlCommand command = new SqlCommand("Select User.Name, avg(Intervention.Cost), avg(Intervention.Hour) " +
-                @"From User inner join Intervention On User.Id = Intervention.CreatedBy Where User.type = 'SiteEngineer' AND " +
-                @"Intervention.State = '3' group by User.Name Order By User.Name asc");
+            SqlCommand command = new SqlCommand("Select Users.Name, avg(Interventions.Cost), avg(Interventions.Hour) " +
+                @"From Users inner join Interventions On Users.Id = Interventions.CreatedBy Where Users.type = 'SiteEngineer' AND " +
+                @"Interventions.State = '3' group by Users.Name Order By Users.Name asc");
 
             return sqlExecuter.ExecuteReader(command);
         }
 
         public IEnumerable<ReportRow> costByDistrict()
         {
-            SqlCommand command = new SqlCommand("Select District.Name, sum(Intervention.Cost), sum(Intervention.Hour) " +
-                @"From ((Client inner join District on  Client.DistrictId = District.Id)" +
-                @" Inner join  Intervention On Client.InterventionId = Intervention.Id )" +
-                @"Where Intervention.State= '3' group by District.Name ");
+            SqlCommand command = new SqlCommand("Select Districts.Name, sum(Interventions.Cost), sum(Interventions.Hour) " +
+                @"From ((Clients inner join Districts on  Clients.DistrictId = Districts.Id)" +
+                @" Inner join  Interventions On Clients.InterventionId = Interventions.Id )" +
+                @"Where Interventions.State= '3' group by Districts.Name ");
 
             return sqlExecuter.ExecuteReader(command);
         }
 
         public IEnumerable<ReportRow> monthlyCostForDistrict(Guid districtId)
         {
-            SqlCommand command = new SqlCommand(@"Select Intervention.DateFinish, sum(Intervention.Cost), sum(Intervention.Hour) " +
-                @"From ((Client inner join District on  Client.DistrictId = @districtId) " +
-                @"Inner join  Intervention On Client.InterventionId = Intervention.Id )" +
-                @"Where Intervention.State= '3' group by Intervention.DateFinish ");
+            SqlCommand command = new SqlCommand(@"Select Interventions.DateFinish, sum(Interventions.Cost), sum(Interventions.Hour) " +
+                @"From ((Clients inner join Districts on  Clients.DistrictId = @districtId) " +
+                @"Inner join  Interventions On Clients.InterventionId = Interventions.Id )" +
+                @"Where Interventions.State= '3' group by Interventions.DateFinish ");
             command.Parameters.AddWithValue("@districtId", districtId);
             return sqlExecuter.ExecuteReader(command);
         }
 
         public IEnumerable<ReportRow> totalCostByEngineer()
         {
-            SqlCommand command = new SqlCommand("Select User.Name, sum(Intervention.Cost), sum(Intervention.Hour)" +
-                @" From User inner join Intervention on User.Id = Intervention.CreatedBy " +
-                @"Where User.type = 'SiteEngineer' AND Intervention.State = '3' " +
-                @"group by User.Name Order By User.Name asc");
+            SqlCommand command = new SqlCommand("Select Users.Name, sum(Interventions.Cost), sum(Interventions.Hour)" +
+                @" From Users inner join Interventions on Users.Id = Interventions.CreatedBy " +
+                @"Where Users.type = 'SiteEngineer' AND Interventions.State = '3' " +
+                @"group by Users.Name Order By Users.Name asc");
 
             return sqlExecuter.ExecuteReader(command);
         }
