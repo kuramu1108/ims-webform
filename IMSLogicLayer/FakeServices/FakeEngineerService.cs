@@ -9,9 +9,11 @@ using IMSLogicLayer.ServiceInterfaces;
 
 namespace IMSLogicLayer.FakeServices
 {
-    public class FakeEngineerService : FakeBaseService, IEngineerService
+    public class EngineerService : FakeBaseService, IEngineerService
     {
-        public FakeEngineerService(string connstring) : base(connstring)
+        public Guid EngineerId { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+        public EngineerService(string connstring) : base(connstring)
         {
         }
 

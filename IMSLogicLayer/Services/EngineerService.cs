@@ -13,6 +13,9 @@ namespace IMSLogicLayer.Services
     {
         private Guid engineerId;
         private IInterventionService interventionService;
+
+        public Guid EngineerId { get => engineerId; set => engineerId = value; }
+
         public EngineerService(string connstring) : base(connstring)
         {
             interventionService = new InterventionService(connstring);
@@ -26,6 +29,7 @@ namespace IMSLogicLayer.Services
         
         public User getDetail()
         {
+
             return (User)Users.fetchUserByIdentityId(engineerId);
         }
 
