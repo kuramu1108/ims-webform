@@ -88,5 +88,9 @@
     <EmbeddedResource Include="Scripts\Script015-InsertInterventionType.sql" />
     <EmbeddedResource Include="Scripts\Script016-InsertUser.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\Script017-InsertRoles.sql" />
+    <Content Include="Scripts\Script018-InsertUserRoles.sql" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
