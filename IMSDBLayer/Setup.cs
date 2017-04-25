@@ -35,10 +35,12 @@ namespace IMSDBLayer
         private void SetupDatabase(string connstring)
         {
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder(connstring);
-            if (!File.Exists(builder.AttachDBFilename))
+
+            string database = Path.Combine(AppDomain.CurrentDomain.GetData("DataDirectory").ToString(), builder.InitialCatalog + ".mdf");
+
+            if (!File.Exists(database))
             {
                 string dbName = builder.InitialCatalog;
-                string database = Path.Combine(AppDomain.CurrentDomain.GetData("DataDirectory").ToString(),dbName+".mdf");
                 string log = Path.Combine(AppDomain.CurrentDomain.GetData("DataDirectory").ToString(), dbName + ".ldf");
                 SqlConnectionStringBuilder newBuilder = new SqlConnectionStringBuilder();
                 newBuilder["Data Source"] = builder.DataSource;
