@@ -30,60 +30,53 @@ namespace IMSLogicLayer.Services
         public User getDetail()
         {
 
-            return (User)Users.fetchUserByIdentityId(engineerId);
+            return new User(Users.fetchUserByIdentityId(engineerId));
         }
 
         public IEnumerable<Client> getClients()
         {
             var clients = new List<Client>();
             //list of clients on the current district
-            clients.AddRange(Clients.fetchClientsByDistrictId(getDetail().DistrictId).Cast<Client>());
+            clients.AddRange(Clients.fetchClientsByDistrictId(getDetail().DistrictId).Select(c => new Client(c)).ToList());
 
             var interventions = getInterventionListByUserId(getDetail().Id);
             foreach (var intervention in interventions)
             {
-                clients.Add((Client)Clients.fetchClientById(intervention.ClientId));
+                clients.Add(new Client(Clients.fetchClientById(intervention.ClientId)));
             }
             interventions = interventionService.getInterventionByApprovedUser(getDetail().Id);
             foreach (var intervention in interventions)
             {
-                clients.Add((Client)Clients.fetchClientById(intervention.ClientId));
+                clients.Add(new Client(Clients.fetchClientById(intervention.ClientId)));
             }
            
-
             return clients;
         }
-
         
         public IEnumerable<Intervention> getInterventionsByClient(Guid clientId)
         {
           
-            return Interventions.fetchInterventionsByClientId(clientId).Cast<Intervention>();
+            return Interventions.fetchInterventionsByClientId(clientId).Select(c => new Intervention(c)).ToList();
         }
-
-     
+        
         public Client getClientById(Guid clientId)
         {
-            return (Client)Clients.fetchClientById(clientId);
+            return new Client(Clients.fetchClientById(clientId));
         }
-
-
+        
         public Intervention getInterventionById(Guid interventionId) {
 
-            return (Intervention)Interventions.fetchInterventionsById(interventionId);
+            return new Intervention(Interventions.fetchInterventionsById(interventionId));
         }
-
-
-
+        
         public Intervention createIntervention(Intervention intervention) {
-            return (Intervention)Interventions.create(intervention);
+            return new Intervention(Interventions.create(intervention));
         }
-
-
+        
         public IEnumerable<Intervention> getInterventionListByUserId(Guid userId) {
             var interventionList = new List<Intervention>();
-            interventionList.AddRange(Interventions.fetchInterventionsByCreator(userId).Cast<Intervention>());
-            interventionList.AddRange(interventionService.getInterventionByApprovedUser(userId).Cast<Intervention>());
+            interventionList.AddRange(Interventions.fetchInterventionsByCreator(userId).Select(c => new Intervention(c)).ToList());
+            interventionList.AddRange(interventionService.getInterventionByApprovedUser(userId).Select(c => new Intervention(c)).ToList());
             return interventionList;
         }
 
@@ -104,7 +97,7 @@ namespace IMSLogicLayer.Services
             Intervention intervention = getInterventionById(interventionId);
             if (intervention.CreatedBy == getDetail().Id)
             {
-                User user = (User)Users.fetchUserById(userId);
+                User user = new User(Users.fetchUserById(userId));
                 return interventionService.updateIntervetionApprovedBy(interventionId, user);
             }else
             {
@@ -153,13 +146,11 @@ namespace IMSLogicLayer.Services
             {
                 return false;
             }
-
-         
         }
 
         public IEnumerable<Intervention> getInterventionListByCreator(Guid userId)
         {
-            return Interventions.fetchInterventionsByCreator(userId).Cast<Intervention>();
+            return Interventions.fetchInterventionsByCreator(userId).Select(c => new Intervention(c)).ToList();
         }
     }
 }

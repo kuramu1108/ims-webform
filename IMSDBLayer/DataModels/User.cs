@@ -16,7 +16,7 @@ namespace IMSDBLayer.DataModels
         private decimal authorisedHours;
         private decimal authorisedCosts;
 
-        private Guid identityId;
+        private string identityId;
         private Guid districtId;
 
         public Guid Id
@@ -49,7 +49,7 @@ namespace IMSDBLayer.DataModels
             set { this.authorisedCosts = value; }
         }
 
-        public Guid IdentityId
+        public string IdentityId
         {
             get { return this.identityId; }
             set { this.identityId = value; }

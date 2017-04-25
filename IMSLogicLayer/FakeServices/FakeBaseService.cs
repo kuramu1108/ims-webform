@@ -62,13 +62,13 @@ namespace IMSLogicLayer.FakeServices
             interventionTypes.Add(interType3);
             
             users = new List<User>();
-            User engineer1 = new User("Dan Dienal", 1, 10, 200, Guid.NewGuid(), district1.Id);
+            User engineer1 = new User("Dan Dienal", 1, 10, 200, Guid.NewGuid().ToString(), district1.Id);
             engineer1.Id = Guid.NewGuid();
 
-            User engineer2 = new User("Van Dienal", 1, 10, 200, Guid.NewGuid(), district1.Id);
+            User engineer2 = new User("Van Dienal", 1, 10, 200, Guid.NewGuid().ToString(), district1.Id);
             engineer2.Id = Guid.NewGuid();
 
-            User manager1 = new User("Lan Dienal", 2, 10, 200, Guid.NewGuid(), district2.Id);
+            User manager1 = new User("Lan Dienal", 2, 10, 200, Guid.NewGuid().ToString(), district2.Id);
             manager1.Id = Guid.NewGuid();
 
             users.Add(engineer1);

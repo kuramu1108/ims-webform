@@ -14,5 +14,13 @@ namespace IMSLogicLayer.Models
             Location = location;
             DistrictId = districtId;
         }
+
+        public Client(IMSDBLayer.DataModels.Client client)
+        {
+            base.Id = client.Id;
+            base.Name = client.Name;
+            base.Location = client.Location;
+            base.DistrictId = client.DistrictId;
+        }
     }
 }

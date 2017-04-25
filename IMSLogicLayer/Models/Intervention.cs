@@ -30,6 +30,25 @@ namespace IMSLogicLayer.Models
             ApprovedBy = approvedBy;
         }
 
+        public Intervention(IMSDBLayer.DataModels.Intervention intervention)
+        {
+            base.Id = intervention.Id;
+            base.Hours = intervention.Hours;
+            base.Costs = intervention.Costs;
+            base.LifeRemaining = intervention.LifeRemaining;
+            base.Comments = intervention.Comments;
+            base.State = intervention.State;
+
+            base.DateCreate = intervention.DateCreate;
+            base.DateFinish = intervention.DateFinish;
+
+            base.DateRecentVisit = intervention.DateRecentVisit;
+            base.InterventionTypeId = intervention.InterventionTypeId;
+            base.ClientId = intervention.ClientId;
+            base.CreatedBy = intervention.CreatedBy;
+            base.ApprovedBy = intervention.ApprovedBy;
+        }
+
         public string ClientName
         {
             get { return clientName; }
