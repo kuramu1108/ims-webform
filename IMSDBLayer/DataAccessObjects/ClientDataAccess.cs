@@ -22,7 +22,10 @@ namespace IMSDBLayer.DataAccessObjects
         public Client createClient(Client client)
         {
             SqlCommand command = new SqlCommand(@"INSERT INTO Clients (Name, Location, DistrictId) " 
+                + "OUTPUT INSERTED.Id "
                 + "VALUES(@Name, @Location, @DistrictId)");
+         
+
             client.Id = (Guid) sqlExecuter.ExecuteScalar(command, client);
 
             if (client.Id != Guid.Empty)

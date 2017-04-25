@@ -16,8 +16,8 @@
                 <ItemTemplate>
                     <tr runat="server">
                         <td><asp:Label ID="lblName" runat="server" Text='<%#Eval("Name") %>'/></td>
-                       <%-- <td><asp:HyperLink ID="linkView" runat="server" Text="View" NavigateUrl='<%#"ClientDetails.aspx?id=" + Eval("Id") %>' /></td>--%>
-                        <td><asp:HyperLink ID="HyperLink1" runat="server" Text="View" NavigateUrl='<%#"ClientDetails.aspx?Name=" + Eval("Name") %>' /></td>
+                        <td><asp:HyperLink ID="linkView" runat="server" Text="View" NavigateUrl='<%#"ClientDetails.aspx?id=" + Eval("Id") %>' /></td>
+                       <%-- <td><asp:HyperLink ID="HyperLink1" runat="server" Text="View" NavigateUrl='<%#"ClientDetails.aspx?Name=" + Eval("Name") %>' /></td>--%>
                     </tr>
                 </ItemTemplate>
             </asp:ListView>

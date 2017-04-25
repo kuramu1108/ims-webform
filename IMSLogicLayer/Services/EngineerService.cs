@@ -23,7 +23,8 @@ namespace IMSLogicLayer.Services
 
         public Client createClient(string clientName, string clientLocation)
         {
-            Client client = new Client(clientName, clientLocation, getDetail().DistrictId);
+            Client client = new Client(Clients.createClient(new Client(clientName, clientLocation, getDetail().DistrictId)));
+          
             return client;
         }
         

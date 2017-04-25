@@ -37,7 +37,7 @@ namespace IMSDBLayer.DataAccessObjects.Helpers
 
         public int ExecuteNonQuery(SqlCommand command, T value)
         {
-            using (SqlConnection connection = new SqlConnection())
+            using (SqlConnection connection = new SqlConnection(connstring))
             {
                 command.Connection = connection;
                 command = setSqlCommandParameters(command, value);
@@ -48,7 +48,7 @@ namespace IMSDBLayer.DataAccessObjects.Helpers
 
         public object ExecuteScalar(SqlCommand command, T value)
         {
-            using (SqlConnection connection = new SqlConnection())
+            using (SqlConnection connection = new SqlConnection(connstring))
             {
                 command.Connection = connection;
                 command = setSqlCommandParameters(command, value);

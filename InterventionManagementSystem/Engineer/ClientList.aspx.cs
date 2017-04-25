@@ -6,9 +6,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using IMSLogicLayer.Models;
 using IMSLogicLayer.Services;
-using IMSLogicLayer.FakeServices;
 using IMSLogicLayer.ServiceInterfaces;
-
+using Microsoft.AspNet.Identity;
 
 namespace InterventionManagementSystem.Engineer
 {
@@ -16,8 +15,10 @@ namespace InterventionManagementSystem.Engineer
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            IEngineerService engineerService = new IMSLogicLayer.FakeServices.EngineerService("");
-            //IEngineerService engineerService = new EngineerService();
+            IEngineerService engineerService = new EngineerService(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+            string userId = User.Identity.GetUserId<string>();
+            engineerService.EngineerId = new Guid(userId);
+
             ClientListView.DataSource = engineerService.getClients();
             ClientListView.DataBind();
         }

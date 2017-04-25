@@ -38,7 +38,8 @@ namespace InterventionManagementSystem
             {
 
 
-                Response.Redirect("ClientDetails.aspx?ClientId=" + client.Id);
+                //Response.Redirect("ClientDetails.aspx?ClientId=" + client.Id);
+                Response.Redirect("ClientList.aspx");
             }
             else
             {
