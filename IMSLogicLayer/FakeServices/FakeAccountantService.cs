@@ -49,13 +49,13 @@ namespace IMSLogicLayer.FakeServices
             User accountant = new User();
             accountant.Name = "Angelica Smith";
             accountant.Type = 3;
-            accountant.IdentityId = new Guid("88888888-8888-8888-8888-888888888888");
+            accountant.IdentityId = "88888888-8888-8888-8888-888888888888";
             return accountant;
         }
 
         public User getUserById(Guid userId)
         {
-            return new User("John Miller", 1, 6m, 1000.00m, new Guid("99999999-9999-9999-9999-999999999999"), new Guid("00000000-1111-1111-1111-111111111111"));
+            return new User("John Miller", 1, 6m, 1000.00m, "99999999-9999-9999-9999-999999999999", new Guid("00000000-1111-1111-1111-111111111111"));
             
         }
 
