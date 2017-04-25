@@ -13,5 +13,25 @@ namespace InterventionManagementSystem.Accountant
         {
 
         }
+
+        protected void ViewReport_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void ViewSiteEngineerManager_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void ViewProfile_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Logout_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

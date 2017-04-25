@@ -38,7 +38,10 @@ namespace InterventionManagementSystem.Account
                 switch (result)
                 {
                     case SignInStatus.Success:
-                        IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
+                         Response.Redirect("/Engineer/Welcome.aspx");
+                     
+                       // IdentityHelper.RedirectToReturnUrl(Request.QueryString["/Engineer/Welcome.aspx"], Response);
+                        // IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
                         break;
                     case SignInStatus.LockedOut:
                         Response.Redirect("/Account/Lockout");

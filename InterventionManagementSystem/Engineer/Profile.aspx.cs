@@ -16,8 +16,13 @@ namespace InterventionManagementSystem
             //ButtonChangePassword.Click += ButtonChangePassword_Click;
             //user = new Manager(1, "Po", "kuramu1108", Support.convertToSS("12345"), Common.UserType.Manager, Common.Districts.RuralIndonesia, 10, 10000);
             //TextDistrict.Text = Common.Districts.RuralIndonesia.ToString();
-            TextMAH.Text = managerService.getDetail().AuthorisedHours.ToString();
-            TextMAC.Text = managerService.getDetail().AuthorisedCosts.ToString();
+            //TextMAH.Text = managerService.getDetail().AuthorisedHours.ToString();
+            //TextMAC.Text = managerService.getDetail().AuthorisedCosts.ToString();
+
+        }
+
+        protected void ButtonChangePassword_Click(object sender, EventArgs e)
+        {
 
         }
 
@@ -53,7 +58,7 @@ namespace InterventionManagementSystem
         //            TextBoxNewPassword.Text = "";
         //            ButtonChangePassword.Text = BT_TRYAGAIN;
         //        }
-                
+
         //    }
         //}
 
