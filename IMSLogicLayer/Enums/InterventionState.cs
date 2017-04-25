@@ -8,7 +8,6 @@ namespace IMSLogicLayer.Enums
 {
     public enum InterventionState
     {
-        All,
         Proposed,
         Approved,
         Completed,

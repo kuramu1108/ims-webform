@@ -60,13 +60,36 @@ namespace InterventionManagementSystem.Tests
         [TestMethod]
         public void IMSLogicSiteEngineer_GetListofClientsinDistrict()
         {
+            Guid districtID = new Guid();
+            Mock<IClientDataAccess> clients = new Mock<IClientDataAccess>();
+            List<Client> clientList = new List<Client>();
+            clientList.Add(new Client("Richard", "Sydney", districtID));
+            clientList.Add(new Client("Po", "Sydney", districtID));
+            clientList.Add(new Client("Welly", "Sydney", districtID));
+            clients.Setup(c => c.fetchClientsByDistrictId(It.IsAny<Guid>())).Returns(clientList);
+
+            Mock<IUserDataAccess> users = new Mock<IUserDataAccess>();
+            User engineerDetail = new User("Ben", 3, 7, 200, Guid.NewGuid(), districtID);
+            users.Setup(u => u.fetchUserByIdentityId(It.IsAny<Guid>())).Returns(engineerDetail);
+            engineerService.Users = users.Object;
+
 
         }
 
         [TestMethod]
         public void IMSLogicSiteEngineer_GetClientDetail()
         {
+            Guid guid = new Guid();
+            Mock<IClientDataAccess> clients = new Mock<IClientDataAccess>();
+            Client clientDetail = new Client("PO", "Hornsby", new Guid());
+            clientDetail.Id = guid;
+            clients.Setup(c => c.fetchClientById(It.IsAny<Guid>())).Returns(clientDetail);
+            engineerService.Clients = clients.Object;
 
+            IMSDBLayer.DataModels.Client client = engineerService.getClientById(guid);
+
+            Assert.IsNotNull(client);
+            Assert.AreEqual(guid, client.Id);
         }
 
         [TestMethod]
