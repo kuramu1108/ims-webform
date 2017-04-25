@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[District] (
+﻿CREATE TABLE [dbo].[Districts] (
     [Id]   UNIQUEIDENTIFIER DEFAULT (newid()) NOT NULL,
     [Name] NVARCHAR (MAX)   NOT NULL,
     PRIMARY KEY CLUSTERED ([Id] ASC)

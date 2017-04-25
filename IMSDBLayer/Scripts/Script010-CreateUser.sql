@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[User] (
+﻿CREATE TABLE [dbo].[Users] (
     [Id]              UNIQUEIDENTIFIER DEFAULT (newid()) NOT NULL,
     [Name]            NVARCHAR (50)    NOT NULL,
     [Type]            INT              NULL,
@@ -8,6 +8,6 @@
     [DistrictId]      UNIQUEIDENTIFIER NULL,
     PRIMARY KEY CLUSTERED ([Id] ASC),
     CONSTRAINT [FK_User_ToAspNetUsers] FOREIGN KEY ([IdentityId]) REFERENCES [dbo].[AspNetUsers] ([Id]),
-    CONSTRAINT [FK_User_ToDistrict] FOREIGN KEY ([DistrictId]) REFERENCES [dbo].[District] ([Id])
+    CONSTRAINT [FK_User_ToDistrict] FOREIGN KEY ([DistrictId]) REFERENCES [dbo].[Districts] ([Id])
 );
 

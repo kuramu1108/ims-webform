@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[InterventionType] (
+﻿CREATE TABLE [dbo].[InterventionTypes] (
     [Id]    UNIQUEIDENTIFIER DEFAULT (newid()) NOT NULL,
     [Name]  NVARCHAR (MAX)   NOT NULL,
     [Hours] INT              NULL,
