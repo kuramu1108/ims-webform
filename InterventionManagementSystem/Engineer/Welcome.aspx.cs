@@ -32,7 +32,22 @@ namespace InterventionManagementSystem
 
         protected void ViewClient_Click(object sender, EventArgs e)
         {
+            Response.Redirect("/Engineer/ClientDetails.aspx");
+        }
 
+        protected void ViewIntervention_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("/Engineer/InterventionList.aspx");
+        }
+
+        protected void CreateIntervention_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("/Engineer/NewIntervention.aspx");
+        }
+
+        protected void ViewProfile_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("/Account/Manage.aspx");
         }
     }
 }

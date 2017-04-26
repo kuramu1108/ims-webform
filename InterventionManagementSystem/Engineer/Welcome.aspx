@@ -54,8 +54,8 @@
                     <div class="row">
                         <div class="col-md-2">
 
-                            <asp:Button ID="ViewIntervention" runat="server" Text="View" />
-                            <asp:Button ID="CreateIntervention" runat="server" Text="Create" />
+                            <asp:Button ID="ViewIntervention" runat="server" Text="View" OnClick="ViewIntervention_Click" />
+                            <asp:Button ID="CreateIntervention" runat="server" Text="Create" OnClick="CreateIntervention_Click" />
 
                         </div>
                     </div>
@@ -73,8 +73,8 @@
 
                         <div class="col-md-2">
 
-                            <asp:Button ID="ViewProfile" runat="server" Text="View" />
-                            <asp:Button ID="CreateProfile" runat="server" Text="Create" />
+                            <asp:Button ID="ViewProfile" runat="server" Text="View" OnClick="ViewProfile_Click" />
+                            
 
                         </div>
                     </div>
