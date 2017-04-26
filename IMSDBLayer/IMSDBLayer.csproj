@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DbUp, Version=3.3.5.0, Culture=neutral, PublicKeyToken=4b419c53bdfd4cbf, processorArchitecture=MSIL">
+      <HintPath>..\packages\dbup.3.3.5\lib\net35\DbUp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -62,7 +65,32 @@
     <Compile Include="DataModels\ReportRow.cs" />
     <Compile Include="DataModels\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Setup.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\Script001-CreateMigrationHistory.sql" />
+    <EmbeddedResource Include="Scripts\Script002-CreateAspNetRoles.sql" />
+    <EmbeddedResource Include="Scripts\Script006-CreateAspNetUserClaims.sql" />
+    <EmbeddedResource Include="Scripts\Script004-CreateAspNetUserLogins.sql" />
+    <EmbeddedResource Include="Scripts\Script005-CreateAspNetUserRoles.sql" />
+    <EmbeddedResource Include="Scripts\Script003-CreateAspNetUsers.sql" />
+    <EmbeddedResource Include="Scripts\Script008-CreateClient.sql" />
+    <EmbeddedResource Include="Scripts\Script007-CreateDistrict.sql" />
+    <EmbeddedResource Include="Scripts\Script009-CreateInterventionType.sql" />
+    <EmbeddedResource Include="Scripts\Script010-CreateUser.sql" />
+    <EmbeddedResource Include="Scripts\Script011-CreateIntervention.sql" />
+    <EmbeddedResource Include="Scripts\Script012-InsertAspnetUser.sql" />
+    <EmbeddedResource Include="Scripts\Script014-InsertClient.sql" />
+    <EmbeddedResource Include="Scripts\Script013-InsertDistrict.sql" />
+    <EmbeddedResource Include="Scripts\Script015-InsertInterventionType.sql" />
+    <EmbeddedResource Include="Scripts\Script016-InsertUser.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\Script017-InsertRoles.sql" />
+    <Content Include="Scripts\Script018-InsertUserRoles.sql" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

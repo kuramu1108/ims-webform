@@ -13,5 +13,10 @@ namespace IMSLogicLayer.Models
             Name = name;
         }
 
+        public District(IMSDBLayer.DataModels.District district)
+        {
+            base.Id = district.Id;
+            base.Name = district.Name;
+        }
     }
 }

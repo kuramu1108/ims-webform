@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -16,8 +18,21 @@ namespace InterventionManagementSystem
 
         protected void CreateClientButton_Click(Object sender, EventArgs e)
         {
-            Response.Redirect("~/SiteEngineer/NewClient");
+            //  Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
+         //   String Loginuser=Context.User.Identity.GetUserId();
+      
+            Response.Redirect("~/Engineer/NewClient");
         }
 
+        protected void Logout_Click(object sender, EventArgs e)
+        {
+            Context.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            Response.Redirect("~/Account/Login.aspx");
+        }
+
+        protected void ViewClient_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

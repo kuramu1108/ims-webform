@@ -44,7 +44,7 @@ namespace InterventionManagementSystem.Tests
 
             //Mock Create Enegineer Detail DataAccess fetchUserByIdentityId will return that user
             Mock<IUserDataAccess> users = new Mock<IUserDataAccess>();
-            User engineerDetail = new User("Ben", 3, 7, 200, Guid.NewGuid(), Guid.NewGuid());
+            User engineerDetail = new User("Ben", 3, 7, 200, Guid.NewGuid().ToString(), Guid.NewGuid());
             users.Setup(u => u.fetchUserByIdentityId(It.IsAny<Guid>())).Returns(engineerDetail);
             engineerService.Users = users.Object;
 
@@ -69,7 +69,7 @@ namespace InterventionManagementSystem.Tests
             clients.Setup(c => c.fetchClientsByDistrictId(It.IsAny<Guid>())).Returns(clientList);
 
             Mock<IUserDataAccess> users = new Mock<IUserDataAccess>();
-            User engineerDetail = new User("Ben", 3, 7, 200, Guid.NewGuid(), districtID);
+            User engineerDetail = new User("Ben", 3, 7, 200, Guid.NewGuid().ToString(), districtID);
             users.Setup(u => u.fetchUserByIdentityId(It.IsAny<Guid>())).Returns(engineerDetail);
             engineerService.Users = users.Object;
 

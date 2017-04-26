@@ -10,10 +10,18 @@ namespace IMSLogicLayer.Models
     {
         public InterventionType(string name, decimal hours, decimal costs)
         {
-            
-            Name = name;
-            Hours = hours;
-            Costs = costs;
+
+            base.Name = name;
+            base.Hours = hours;
+            base.Costs = costs;
+        }
+
+        public InterventionType(IMSDBLayer.DataModels.InterventionType interventionType)
+        {
+            base.Id = interventionType.Id;
+            base.Name = interventionType.Name;
+            base.Hours = interventionType.Hours;
+            base.Costs = interventionType.Costs;
         }
     }
 }

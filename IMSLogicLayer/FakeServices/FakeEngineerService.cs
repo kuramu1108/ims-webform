@@ -9,9 +9,11 @@ using IMSLogicLayer.ServiceInterfaces;
 
 namespace IMSLogicLayer.FakeServices
 {
-    public class FakeEngineerService : FakeBaseService, IEngineerService
+    public class EngineerService : FakeBaseService, IEngineerService
     {
-        public FakeEngineerService(string connstring) : base(connstring)
+        public Guid EngineerId { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+        public EngineerService(string connstring) : base(connstring)
         {
         }
 
@@ -45,7 +47,7 @@ namespace IMSLogicLayer.FakeServices
 
         public User getDetail()
         {
-            return new User("John Miller", 1, 6m, 1000.00m, new Guid("44444444-4444-4444-4444-444444444444"), new Guid("66666666-6666-6666-6666-6666-666666666666"));
+            return new User("John Miller", 1, 6m, 1000.00m, "44444444-4444-4444-4444-444444444444", new Guid("66666666-6666-6666-6666-6666-666666666666"));
         }
 
         public IEnumerable<Intervention> getInterventionsByClient(Guid clientId)

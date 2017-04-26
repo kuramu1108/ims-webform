@@ -177,6 +177,8 @@
     <Content Include="About.aspx" />
     <Content Include="Accountant\AccountList.aspx" />
     <Content Include="Accountant\EditDistrict.aspx" />
+    <Content Include="Accountant\Report.aspx" />
+    <Content Include="Accountant\Welcome.aspx" />
     <Content Include="Account\AddPhoneNumber.aspx" />
     <Content Include="Account\Confirm.aspx" />
     <Content Include="Account\Forgot.aspx" />
@@ -214,6 +216,7 @@
     <Content Include="Engineer\Profile.aspx" />
     <Content Include="Engineer\Welcome.aspx" />
     <Content Include="Manager\InterventionList.aspx" />
+    <Content Include="Manager\Welcome.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -224,6 +227,9 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Engineer\Web.config" />
+    <Content Include="Accountant\Web.config" />
+    <Content Include="Manager\Web.config" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
@@ -278,6 +284,20 @@
     </Compile>
     <Compile Include="Accountant\EditDistrict.aspx.designer.cs">
       <DependentUpon>EditDistrict.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accountant\Report.aspx.cs">
+      <DependentUpon>Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountant\Report.aspx.designer.cs">
+      <DependentUpon>Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accountant\Welcome.aspx.cs">
+      <DependentUpon>Welcome.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountant\Welcome.aspx.designer.cs">
+      <DependentUpon>Welcome.aspx</DependentUpon>
     </Compile>
     <Compile Include="Account\AddPhoneNumber.aspx.cs">
       <DependentUpon>AddPhoneNumber.aspx</DependentUpon>
@@ -439,6 +459,13 @@
     </Compile>
     <Compile Include="Manager\InterventionList.aspx.designer.cs">
       <DependentUpon>InterventionList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Manager\Welcome.aspx.cs">
+      <DependentUpon>Welcome.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Manager\Welcome.aspx.designer.cs">
+      <DependentUpon>Welcome.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Engineer\NewClient.aspx.cs">

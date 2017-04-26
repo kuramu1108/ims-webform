@@ -25,13 +25,13 @@ namespace IMSLogicLayer.Services
 
         public IEnumerable<Intervention> getListOfProposedIntervention()
         {
-            return Interventions.fetchInterventionsByState((int)InterventionState.Proposed).Cast<Intervention>();
+            return Interventions.fetchInterventionsByState((int)InterventionState.Proposed).Select(c => new Intervention(c)).ToList();
         }
 
 
         public Intervention getInterventionById(Guid interventionId)
         {
-            return (Intervention)Interventions.fetchInterventionsById(interventionId);
+            return new Intervention(Interventions.fetchInterventionsById(interventionId));
         }
 
 
@@ -43,7 +43,9 @@ namespace IMSLogicLayer.Services
             var client = Clients.fetchClientById(intervention.ClientId);
             var user = getDetail();
 
-            if (client.DistrictId == user.DistrictId && user.AuthorisedHours >= intervention.Hours && user.AuthorisedCosts >= intervention.Costs && user.AuthorisedCosts >= interventionType.Costs && user.AuthorisedHours >= interventionType.Hours)
+            if (client.DistrictId == user.DistrictId && user.AuthorisedHours >= intervention.Hours 
+                && user.AuthorisedCosts >= intervention.Costs && user.AuthorisedCosts >= interventionType.Costs 
+                && user.AuthorisedHours >= interventionType.Hours)
             {
                 return interventionService.updateInterventionState(interventionId, InterventionState.Approved, user.Id);
             }
@@ -75,7 +77,7 @@ namespace IMSLogicLayer.Services
             var district = Districts.fetchDistrictById(getDetail().DistrictId);
             if (intervention.DistrictName == district.Name)
             {
-                User user = (User)Users.fetchUserById(userId);
+                User user = new User(Users.fetchUserById(userId));
                 return interventionService.updateIntervetionApprovedBy(interventionId, user);
             }
             else

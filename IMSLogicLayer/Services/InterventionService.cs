@@ -17,22 +17,22 @@ namespace IMSLogicLayer.Services
 
         public IEnumerable<Intervention> getInterventionsByCreatorId(Guid creatorId)
         {
-            return Interventions.fetchInterventionsByCreator(creatorId).Cast<Intervention>();
+            return Interventions.fetchInterventionsByCreator(creatorId).Select(c => new Intervention(c)).ToList();
         }
 
         public Intervention getInterventionsById(Guid interventionId)
         {
-            return (Intervention)Interventions.fetchInterventionsById(interventionId);
+            return new Intervention(Interventions.fetchInterventionsById(interventionId));
         }
 
         public IEnumerable<Intervention> getListofProposedInterventions()
         {
-            return Interventions.fetchInterventionsByState((int)InterventionState.Proposed).Cast<Intervention>();
+            return Interventions.fetchInterventionsByState((int)InterventionState.Proposed).Select(c => new Intervention(c)).ToList();
         }
 
         public IEnumerable<Intervention> getInterventionsByClientId(Guid clientId)
         {
-            return Interventions.fetchInterventionsByClientId(clientId).Cast<Intervention>();
+            return Interventions.fetchInterventionsByClientId(clientId).Select(c => new Intervention(c)).ToList();
         }
 
         public bool updateInterventionDetail(Guid interventionId, string comments, int remainLife)
@@ -108,7 +108,7 @@ namespace IMSLogicLayer.Services
 
         public IEnumerable<Intervention> getInterventionByApprovedUser(Guid userId)
         {
-            return Interventions.fetchInterventionsByApprovedUser(userId).Cast<Intervention>();
+            return Interventions.fetchInterventionsByApprovedUser(userId).Select(c => new Intervention(c)).ToList();
         }
     }
 }

@@ -8,15 +8,18 @@ namespace IMSLogicLayer.Models
 {
     public class ReportRow: IMSDBLayer.DataModels.ReportRow
     {
-
-        public ReportRow(string firstprop, decimal cost, decimal hour)
+        public ReportRow(string firstProperty, decimal costs, decimal hours)
         {
-            this.FirstProperty = firstprop;
-            this.Costs = cost;
-            this.Hours = hour;
+            base.FirstProperty = firstProperty;
+            base.Costs = costs;
+            base.Hours = hours;
         }
 
-
-
+        public ReportRow(IMSDBLayer.DataModels.ReportRow reportRow)
+        {
+            base.FirstProperty = reportRow.FirstProperty;
+            base.Costs = reportRow.Costs;
+            base.Hours = reportRow.Hours;
+        }
     }
 }

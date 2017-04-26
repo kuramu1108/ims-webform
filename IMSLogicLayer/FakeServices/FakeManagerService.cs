@@ -21,7 +21,7 @@ namespace IMSLogicLayer.FakeServices
 
         public User getDetail()
         {
-            return new User("John Smith", 2, 12m, 2000.00m, new Guid("22222222-2222-2222-2222-222222222222"), new Guid("33333333-3333-3333-3333-3333-333333333333"));
+            return new User("John Smith", 2, 12m, 2000.00m, "22222222-2222-2222-2222-222222222222", new Guid("33333333-3333-3333-3333-3333-333333333333"));
         }
 
         public Intervention getInterventionById(Guid interventionId)

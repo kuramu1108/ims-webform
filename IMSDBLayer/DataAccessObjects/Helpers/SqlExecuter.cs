@@ -37,7 +37,7 @@ namespace IMSDBLayer.DataAccessObjects.Helpers
 
         public int ExecuteNonQuery(SqlCommand command, T value)
         {
-            using (SqlConnection connection = new SqlConnection())
+            using (SqlConnection connection = new SqlConnection(connstring))
             {
                 command.Connection = connection;
                 command = setSqlCommandParameters(command, value);
@@ -48,7 +48,7 @@ namespace IMSDBLayer.DataAccessObjects.Helpers
 
         public object ExecuteScalar(SqlCommand command, T value)
         {
-            using (SqlConnection connection = new SqlConnection())
+            using (SqlConnection connection = new SqlConnection(connstring))
             {
                 command.Connection = connection;
                 command = setSqlCommandParameters(command, value);
@@ -83,11 +83,11 @@ namespace IMSDBLayer.DataAccessObjects.Helpers
                 var property = properties[i];
                 switch (property.PropertyType.Name)
                 {
-                    case "Guid": property.SetValue(typeof(Guid), reader.GetGuid(i)); break;
-                    case "String": property.SetValue(typeof(String), reader.GetString(i)); break;
-                    case "Int32": property.SetValue(typeof(Int32), reader.GetInt32(i)); break;
-                    case "DateTime": property.SetValue(typeof(DateTime), reader.GetDateTime(i)); break;
-                    case "Decimal": property.SetValue(typeof(Decimal), reader.GetDecimal(i)); break;
+                    case "Guid": property.SetValue(result, reader.GetGuid(i)); break;
+                    case "String": property.SetValue(result, reader.GetString(i), null); break;
+                    case "Int32": property.SetValue(result, reader.GetInt32(i), null); break;
+                    case "DateTime": property.SetValue(result, reader.GetDateTime(i), null); break;
+                    case "Decimal": property.SetValue(result, reader.GetDecimal(i), null); break;
                     default: throw new Exception("Unknow Type: " + property.PropertyType.Name);
                 }
             }

@@ -5,58 +5,45 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using IMSLogicLayer;
-using IMSLogicLayer.FakeServices;
+using IMSLogicLayer.Services;
 using IMSLogicLayer.Models;
+using IMSLogicLayer.ServiceInterfaces;
+using Microsoft.AspNet.Identity;
 
 namespace InterventionManagementSystem
 {
     public partial class ClientDetails : System.Web.UI.Page
     {
-        FakeBaseService service = new FakeBaseService("");
+       
 
         protected void Page_Load(object sender, EventArgs e)
         {
 
             if (!IsPostBack)
             {
-                //real code
-                //if (!string.IsNullOrEmpty(Request.QueryString["Id"]))
-                //{
-                //    Guid clientId = new Guid(Request.QueryString["Id"]);
-                //    Client client = service.Clients.Find(c => c.Id == clientId);
-                //    lblName.Text = client.Name;
-                //    lblDistrict.Text = service.Districts.First(d => d.Id == client.DistrictId).Name;
-                //    lblLocation.Text = client.Location;
-                //    List<Intervention> clientIntervention = service.Interventions.FindAll(i => i.ClientId == client.Id);
-
-
-                //    InterventionList.DataSource = clientIntervention;
-                //    InterventionList.DataBind();
-
-                //}
-
-                //just use for test
-                if (!string.IsNullOrEmpty(Request.QueryString["Name"]))
+                
+                if (!string.IsNullOrEmpty(Request.QueryString["Id"]))
                 {
-                    string clientName =  Request.QueryString["Name"];
-                    Client client = service.Clients.Find(c => c.Name == clientName);
+                    IEngineerService engineerService = new EngineerService(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+                    string userId = User.Identity.GetUserId<string>();
+                    engineerService.EngineerId = new Guid(userId);
+
+                    Guid clientId = new Guid(Request.QueryString["Id"]);
+                    Client client = engineerService.getClientById(clientId);
                     lblName.Text = client.Name;
-                    lblDistrict.Text = service.Districts.First(d => d.Id == client.DistrictId).Name;
+
+                    lblDistrict.Text = client.DistrictId.ToString();
                     lblLocation.Text = client.Location;
+                    List<Intervention> clientIntervention = engineerService.getInterventionsByClient(clientId).ToList();
 
-                    IEnumerable<Intervention> clientIntervention = service.Interventions.Where(i => i.ClientId == client.Id);
 
-                    List<InterventionType> interventions = new List<InterventionType>();
-                    foreach (var intervention in clientIntervention)
-                    {
-                        var interventionType = service.InterventionTypes.First(i => i.Id == intervention.InterventionTypeId);
-                        interventions.Add(interventionType);
-                    }
-                    
-                    InterventionList.DataSource = interventions;
+                    InterventionList.DataSource = clientIntervention;
                     InterventionList.DataBind();
 
                 }
+
+
+
             }
           
 
