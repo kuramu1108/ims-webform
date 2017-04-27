@@ -28,7 +28,18 @@ namespace IMSLogicLayer.Services
 
         public IEnumerable<Intervention> getListOfProposedIntervention()
         {
-            return Interventions.fetchInterventionsByState((int)InterventionState.Proposed).Select(c => new Intervention(c)).ToList();
+            var interventions = Interventions.fetchInterventionsByState((int)InterventionState.Proposed).Select(c => new Intervention(c)).ToList();
+
+            foreach (var intervention in interventions)
+            {
+                Client client = new Client( Clients.fetchClientById(intervention.ClientId));
+                intervention.ClientName = client.Name;
+                District district = new District(Districts.fetchDistrictById(client.DistrictId));
+                intervention.DistrictName = district.Name;
+                intervention.State = InterventionState.Proposed;
+
+            }
+            return interventions;
         }
 
 
