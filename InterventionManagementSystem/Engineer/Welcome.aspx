@@ -1,24 +1,7 @@
 ﻿<%@ Page Title="WelcomePage" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Welcome.aspx.cs" Inherits="InterventionManagementSystem.Welcome" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="container-fluid">
-
         <div class="row">
-            <div class="row">
-                <div class="col-md-2">
-                    <h2>
-                        <asp:Label ID="lblWelcome" runat="server" Text="Welcome: "></asp:Label>
-                        <%: Context.User.Identity.GetUserName()%>
-                       </h2>
-                </div>
-
-                <div class="col-md-2">
-                    <h3>
-                    <asp:Button ID="Logout" runat="server" Text="Logout" OnClick="Logout_Click" />
-                </h3>
-                </div>
-                <div class="col-md-6"></div>
-            </div>
             <div class="row">
 
                 <div class="col-md-12">
@@ -81,7 +64,4 @@
                 </div>
             </div>
         </div>
-
-    </div>
-
 </asp:Content>

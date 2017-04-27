@@ -10,9 +10,7 @@ namespace IMSDBLayer.DataModels
     {
         private Guid id;
         private string name;
-
-       
-
+        
         public Guid Id
         {
             get { return this.id; }

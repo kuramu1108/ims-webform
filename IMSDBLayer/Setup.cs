@@ -72,14 +72,6 @@ namespace IMSDBLayer
 
                 //conn.Close();
             }
-
-
-
-
-
-
-
-
         }
     }
 }
