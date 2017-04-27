@@ -10,6 +10,7 @@ namespace IMSLogicLayer.ServiceInterfaces
 {
     public interface IManagerService
     {
+        Guid ManagerId { get; set; }
         //use to get the details of this user
         User getDetail();
 

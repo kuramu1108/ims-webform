@@ -13,6 +13,8 @@ namespace IMSLogicLayer.FakeServices
     {
         public FakeManagerService(string connstring) : base(connstring) { }
 
+        public Guid ManagerId { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
         public bool approveAnIntervention(Guid interventionId)
         {
             FakeInterventionService IS = new FakeInterventionService("");

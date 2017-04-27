@@ -13,6 +13,9 @@ namespace IMSLogicLayer.Services
     {
         private Guid managerId;
         private IInterventionService interventionService;
+
+        public Guid ManagerId { get => managerId; set => managerId = value; }
+
         public ManagerService(string connstring) : base(connstring)
         {
             interventionService = new InterventionService(connstring);

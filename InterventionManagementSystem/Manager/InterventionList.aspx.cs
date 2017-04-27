@@ -5,24 +5,31 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using IMSLogicLayer.ServiceInterfaces;
-using IMSLogicLayer.FakeServices;
+using IMSLogicLayer.Services;
 using IMSLogicLayer.Models;
+using Microsoft.AspNet.Identity;
 
 namespace InterventionManagementSystem.Manager
 {
     public partial class InterventionList : System.Web.UI.Page
     {
         
-        FakeBaseService service = new FakeBaseService("");        
+      
         protected void Page_Load(object sender, EventArgs e)
         {
-            foreach (var intervention in service.Interventions)
+            IManagerService managerService = new ManagerService(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+            string userId = User.Identity.GetUserId<string>();
+            managerService.ManagerId = new Guid(userId);
+
+
+            List<Intervention> interventions = managerService.getListOfProposedIntervention().ToList();
+
+
+            foreach (var intervention in interventions)
             {
-                Client client = service.Clients.FirstOrDefault(c => c.Id == intervention.ClientId);
-                intervention.ClientName = client.Name;
-                intervention.DistrictName = service.Districts.FirstOrDefault(d => d.Id == client.DistrictId).Name;
+               
             }
-            ListIntervention.DataSource = service.Interventions;
+            ListIntervention.DataSource = interventions;
             ListIntervention.DataBind();
         }
     }
