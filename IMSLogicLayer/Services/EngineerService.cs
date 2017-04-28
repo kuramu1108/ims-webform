@@ -33,7 +33,12 @@ namespace IMSLogicLayer.Services
           
             return client;
         }
-        
+
+        public new List<InterventionType> getInterventionTypes()
+        {
+            return base.getInterventionTypes();
+        }
+
         public User getDetail()
         {
             return getDetail(engineerIdentityId);

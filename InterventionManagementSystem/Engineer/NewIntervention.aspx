@@ -9,7 +9,9 @@
                     <label>Intervention Type: </label>
                 </div>
                 <div class="col-md-6">
-                    <asp:TextBox class="form-control" ID="InterventionType" runat="server"></asp:TextBox>
+                    <asp:DropDownList ID="SeletedInterventionType" runat="server" CssClass="form-control" style="width:280px"
+                        ItemType="IMSLogicLayer.Models.InterventionType" SelectMethod="getInterventionTypes" DataTextField="Name" DataValueField="Id">
+                    </asp:DropDownList>
                 </div>
             </div>
 

@@ -42,11 +42,6 @@
   <ItemGroup>
     <Compile Include="Enums\InterventionState.cs" />
     <Compile Include="Enums\UserType.cs" />
-    <Compile Include="FakeServices\FakeAccountantService.cs" />
-    <Compile Include="FakeServices\FakeBaseService.cs" />
-    <Compile Include="FakeServices\FakeEngineerService.cs" />
-    <Compile Include="FakeServices\FakeInterventionService.cs" />
-    <Compile Include="FakeServices\FakeManagerService.cs" />
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\District.cs" />
     <Compile Include="Models\Intervention.cs" />

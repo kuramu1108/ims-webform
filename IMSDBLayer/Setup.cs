@@ -48,7 +48,7 @@ namespace IMSDBLayer
 
                 SqlConnection conn = new SqlConnection(newBuilder.ConnectionString);
                 string[] files = { database, log };
-                var query = "CREATE DATABAse " + dbName +
+                var query = "CREATE DATABASE " + dbName +
                     " ON PRIMARY" +
                     " (Name = " + dbName + "_data," +
                     " FILENAME = '" + files[0] + "'," +

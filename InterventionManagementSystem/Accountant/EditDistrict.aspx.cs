@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using IMSLogicLayer.Models;
-using IMSLogicLayer.FakeServices;
 using IMSLogicLayer.ServiceInterfaces;
 using IMSLogicLayer.Services;
 
@@ -20,7 +19,7 @@ namespace InterventionManagementSystem.Accountant
         {
             if (!IsPostBack)
             {
-                accountService = new FakeAccountantService("");
+                accountService = new AccountantService("");
 
 
                 //accountService = new AccountantService();

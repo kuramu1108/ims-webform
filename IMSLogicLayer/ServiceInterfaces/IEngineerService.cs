@@ -13,6 +13,8 @@ namespace IMSLogicLayer.ServiceInterfaces
         
         Guid EngineerIdentityId { get; set; }
 
+        List<InterventionType> getInterventionTypes();
+
         //use to create client
         Client createClient(string clientName, string clientLocation);
 

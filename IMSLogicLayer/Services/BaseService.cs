@@ -67,6 +67,11 @@ namespace IMSLogicLayer.Services
             return null;
         }
 
+        internal List<InterventionType> getInterventionTypes()
+        {
+            return InterventionTypes.getAll().Select(i => new InterventionType(i)).ToList();
+        }
+
         internal User getDetail(Guid identityId)
         {
             User user = new User(Users.fetchUserByIdentityId(identityId));
