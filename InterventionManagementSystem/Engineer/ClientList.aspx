@@ -1,13 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ClientList.aspx.cs" Inherits="InterventionManagementSystem.Engineer.ClientList" %>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <div class= "row">
-        <div class="col-md-8 push-md-4">
-            <h2>Getting started</h2>
-           
-        </div>
-    </div>
-
-    <h2>Client List</h2>
+    <h3>Client List</h3>
+    <hr />
     <asp:ListView ID="ClientListView" runat="server">
         <LayoutTemplate>
             <table runat="server" class ="table table-striped table-bordered table-hover table-responsive" style ="background-color:white">
