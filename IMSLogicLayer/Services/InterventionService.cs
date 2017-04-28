@@ -51,6 +51,13 @@ namespace IMSLogicLayer.Services
             return Interventions.update(intervention);
 
         }
+        public bool interventionApproved(Guid interventionid) {
+            return (Interventions.fetchInterventionsById(interventionid).State == (int)InterventionState.Approved);        
+         
+        
+        }
+
+
 
         public bool updateInterventionState(Guid interventionId, InterventionState state)
         {

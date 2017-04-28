@@ -7,7 +7,6 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using IMSLogicLayer;
-using IMSLogicLayer.BusinessHandler;
 using IMSLogicLayer.ServiceInterfaces;
 using IMSLogicLayer.Services;
 using Microsoft.AspNet.Identity;
@@ -44,8 +43,14 @@ namespace InterventionManagementSystem
 
         protected void Submit_Click(object sender, EventArgs e)
         {
-            decimal hours = Convert.ToDecimal(Hours.Text);
-            decimal costs = Convert.ToDecimal(Cost.Text);
+            decimal hours = 1;
+            decimal costs = 2 ;
+            //decimal hours;
+            //decimal costs;
+            //decimal.TryParse(Hours.Text, out hours);
+            //decimal.TryParse(Cost.Text, out costs);
+
+
             int life_remaining = Int32.Parse(LifeRemaining.Text);
             string comments = Comments.Text;
             InterventionState state = Approval_check.Checked ? InterventionState.Approved : InterventionState.Proposed;
@@ -53,7 +58,7 @@ namespace InterventionManagementSystem
             DateTime date_finish = DateTime.Now;
             DateTime dateRecentVisit = DateTime.Now;
             String intervention_type = interventionTypes.SelectedValue;
-            //Fear 
+ 
             Guid interventionTypeId = interventionTypeService.getInterventionTypeId(interventionTypes.SelectedValue);
            // Guid clientId = new Guid();
               Guid clientId = new Guid(Clients.SelectedValue);
