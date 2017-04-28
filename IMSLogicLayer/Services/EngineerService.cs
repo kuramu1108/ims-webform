@@ -30,8 +30,7 @@ namespace IMSLogicLayer.Services
         
         public User getDetail()
         {
-
-            return new User(Users.fetchUserByIdentityId(engineerId));
+            return getDetail(engineerId);
         }
 
         public IEnumerable<Client> getClients()

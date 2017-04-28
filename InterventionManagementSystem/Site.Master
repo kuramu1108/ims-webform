@@ -40,14 +40,17 @@
 
         <div id="navbar-top" class="navbar navbar navbar-default navbar-fixed-top">
             <div class="navbar-header">
-                <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse">
-                    <i class="icon-reorder"></i>
+                <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#navbar-top-collapse">
+                        <span class="nav-icon glyphicon glyphicon-user"></span>
+                </button>
+                <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#sidebar">
+                        <span class="nav-icon glyphicon glyphicon-th-large"></span>
                 </button>
                 <a class="navbar-brand" href="#">
                     Intervention Management System
                 </a>
             </div>
-            <div class="navbar-collapse collapse">
+            <div id="navbar-top-collapse" class="navbar-collapse collapse">
                 <asp:LoginView runat="server" ViewStateMode="Disabled">
                     <AnonymousTemplate>
                         <ul class="nav navbar-nav pull-right">
@@ -70,7 +73,7 @@
 
         <div id="wrapper">
             <div id="sidebar-wrapper">
-                <div id="sidebar">
+                <div id="sidebar" class="navbar-collapse collapse">
                     <ul class="nav list-group">
                         <li>
                             <a runat="server" class="list-group-item" href="~/Default.aspx"><i class="icon-home icon-1x"></i>Home</a>
@@ -107,8 +110,9 @@
                 </div>
             </div>
             <div id="main-wrapper" >
-                <br />
-                <asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
+                <div id="main-container">
+                    <asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
+                </div>
                 <hr />
                 <footer>
                     <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application</p>

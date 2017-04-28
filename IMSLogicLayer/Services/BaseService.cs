@@ -66,5 +66,12 @@ namespace IMSLogicLayer.Services
         {
             return null;
         }
+
+        internal User getDetail(Guid userId)
+        {
+            User user = new User(Users.fetchUserByIdentityId(userId));
+            user.District = new District(Districts.fetchDistrictById(user.DistrictId));
+            return user;
+        }
     }
 }

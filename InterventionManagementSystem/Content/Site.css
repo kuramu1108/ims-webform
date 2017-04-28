@@ -26,6 +26,9 @@ h3 {
         color: white;
     }
 
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: white;
+}
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
 .body-content {
@@ -85,6 +88,10 @@ input[type="select"] {
     color: white;
 }
 
+#main-container {
+    padding-top: 30px;
+}
+
 #main {
     position: relative;
     height: 100%;
@@ -98,6 +105,7 @@ input[type="select"] {
     position: fixed;
     border-right: 1px solid #efefef;
     min-width: 300px;
+    background-color: white;
 }
 
 #sidebar {
@@ -105,7 +113,7 @@ input[type="select"] {
     height: 100%;
     overflow: hidden;
     min-width: 300px;
-    background-color: white;
+    padding-top: 10px;
 }
 
     #sidebar .list-group-item {
@@ -138,6 +146,15 @@ input[type="select"] {
 @media (max-width: 992px) {
     #main-wrapper {
         padding-top: 0px;
+        width: 100%;
+    }
+
+    #main-container {
+        padding-top: 10px;
+    }
+
+    #sidebar-wrapper {
+        height: auto;
     }
 }
 
@@ -155,5 +172,12 @@ input[type="select"] {
     bottom: 0;
     position: fixed;
     padding: 10px;
+}
+
+.nav-icon {
+    background-color: #009688;
+    color: white;
+    height: 18px;
+    width: 22px;
 }
 
