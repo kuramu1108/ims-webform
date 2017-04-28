@@ -55,12 +55,12 @@ namespace InterventionManagementSystem
             String intervention_type = interventionTypes.SelectedValue;
             //Fear 
             Guid interventionTypeId = interventionTypeService.getInterventionTypeId(interventionTypes.SelectedValue);
-            Guid clientId = new Guid();
-            //  Guid clientId = new Guid(Clients.SelectedValue);
-            Guid createdBy = new Guid();
-           //   Guid createdBy = new Guid(User.Identity.GetUserName());
-            Guid approvedBy = new Guid();
-           //  Guid approvedBy = new Guid(Approval_check.Checked ? InterventionState.Approved.ToString() : InterventionState.Proposed.ToString());
+           // Guid clientId = new Guid();
+              Guid clientId = new Guid(Clients.SelectedValue);
+           //  Guid createdBy = new Guid();
+              Guid createdBy = new Guid(User.Identity.GetUserName());
+           // Guid approvedBy = new Guid();
+             Guid approvedBy = new Guid(Approval_check.Checked ? InterventionState.Approved.ToString() : InterventionState.Proposed.ToString());
 
             Intervention new_intervention = new Intervention(hours,costs,life_remaining,comments,state, date_created, date_finish, dateRecentVisit, 
                 interventionTypeId,clientId,createdBy,approvedBy);
