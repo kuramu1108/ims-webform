@@ -16,5 +16,7 @@ namespace IMSDBLayer.DataAccessInterfaces
         IEnumerable<InterventionType> getAll();
 
         InterventionType fetchInterventionTypesById(Guid interventionTypeId);
+
+        Guid getInterventionTypeId(String interventionTypeName);
     }
 }

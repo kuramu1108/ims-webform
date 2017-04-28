@@ -19,6 +19,10 @@ namespace IMSDBLayer.DataAccessObjects
             this.sqlExecuter = sqlExecuter;
         }
 
+        public InterventionDataAccess()
+        {
+        }
+
         public Intervention create(Intervention intervention)
         {
             SqlCommand command = new SqlCommand(@"INSERT INTO Interventions (Hours, Costs, LifeRemaining, Comments, 

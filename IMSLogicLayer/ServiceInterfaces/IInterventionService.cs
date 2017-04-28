@@ -10,6 +10,7 @@ namespace IMSLogicLayer.ServiceInterfaces
 {
     public interface IInterventionService
     {
+        //  InterventionType getInterventionType();
         Intervention getInterventionsById(Guid interventionId);
 
         IEnumerable<Intervention> getListofProposedInterventions();

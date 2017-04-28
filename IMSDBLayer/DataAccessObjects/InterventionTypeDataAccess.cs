@@ -29,12 +29,11 @@ namespace IMSDBLayer.DataAccessObjects
         {
             SqlCommand command = new SqlCommand(@"INSERT INTO InterventionTypes (Name, Hours, Costs) VALUES(@Name, @Hours, @Costs)");
 
-            interventionType.Id = (Guid) sqlExecuter.ExecuteScalar(command, interventionType);
-                if (interventionType.Id != Guid.Empty)
-                    return interventionType;
-                return null;
+            interventionType.Id = (Guid)sqlExecuter.ExecuteScalar(command, interventionType);
+            if (interventionType.Id != Guid.Empty)
+                return interventionType;
+            return null;
         }
-
         public bool update(InterventionType interventionType)
         {
             SqlCommand command = new SqlCommand(@"UPDATE InterventionTypes Set Name = @Name, Hours = @Hours, Costs = @Costs  WHERE Id = @Id");
@@ -48,6 +47,11 @@ namespace IMSDBLayer.DataAccessObjects
             return sqlExecuter.ExecuteReader(command).FirstOrDefault();
         }
 
-        
+        public Guid getInterventionTypeId(String interventionTypeName)
+        {
+            SqlCommand command = new SqlCommand(@"Select * From InterventionTypes Where Name = @name");
+            command.Parameters.AddWithValue("@name", interventionTypeName);
+            return (sqlExecuter.ExecuteReader(command).FirstOrDefault().Id);
+        }
     }
 }
