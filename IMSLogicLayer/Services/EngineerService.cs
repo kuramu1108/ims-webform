@@ -11,10 +11,16 @@ namespace IMSLogicLayer.Services
 {
     public class EngineerService : BaseService, IEngineerService
     {
-        private Guid engineerId;
+        private Guid engineerIdentityId;
         private IInterventionService interventionService;
 
-        public Guid EngineerId { get => engineerId; set => engineerId = value; }
+        public Guid EngineerIdentityId { get => engineerIdentityId; set => engineerIdentityId = value; }
+
+        public EngineerService(string connstring, string identityId) : base(connstring)
+        {
+            EngineerIdentityId = new Guid(identityId);
+            interventionService = new InterventionService(connstring);
+        }
 
         public EngineerService(string connstring) : base(connstring)
         {
@@ -30,7 +36,7 @@ namespace IMSLogicLayer.Services
         
         public User getDetail()
         {
-            return getDetail(engineerId);
+            return getDetail(engineerIdentityId);
         }
 
         public IEnumerable<Client> getClients()

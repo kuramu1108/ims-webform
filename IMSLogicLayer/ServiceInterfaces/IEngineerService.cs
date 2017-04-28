@@ -11,7 +11,7 @@ namespace IMSLogicLayer.ServiceInterfaces
     public interface IEngineerService
     {
         
-        Guid EngineerId { get; set; }
+        Guid EngineerIdentityId { get; set; }
 
         //use to create client
         Client createClient(string clientName, string clientLocation);

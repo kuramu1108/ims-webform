@@ -9,12 +9,10 @@ using IMSLogicLayer.Services;
 using IMSLogicLayer.Models;
 using Microsoft.AspNet.Identity;
 
-namespace InterventionManagementSystem.Manager
+namespace InterventionManagementSystem.Engineer
 {
     public partial class InterventionList : System.Web.UI.Page
     {
-        
-      
         protected void Page_Load(object sender, EventArgs e)
         {
             IManagerService managerService = new ManagerService(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
@@ -25,12 +23,12 @@ namespace InterventionManagementSystem.Manager
             List<Intervention> interventions = managerService.getListOfProposedIntervention().ToList();
 
 
-            foreach (var intervention in interventions)
-            {
+            //foreach (var intervention in interventions)
+            //{
                
-            }
-            ListIntervention.DataSource = interventions;
-            ListIntervention.DataBind();
+            //}
+            //ListIntervention.DataSource = interventions;
+            //ListIntervention.DataBind();
         }
     }
 }

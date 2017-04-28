@@ -75,18 +75,21 @@
             <div id="sidebar-wrapper">
                 <div id="sidebar" class="navbar-collapse collapse">
                     <ul class="nav list-group">
-                        <li>
-                            <a runat="server" class="list-group-item" href="~/Default.aspx"><i class="icon-home icon-1x"></i>Home</a>
-                        </li>
-
+                        
                         <asp:LoginView runat="server" ViewStateMode="Disabled">
+                            <AnonymousTemplate>
+                                <li>
+                                    <a runat="server" class="list-group-item" href="~/Default.aspx"><i class="icon-home icon-1x"></i>Home</a>
+                                </li>
+                            </AnonymousTemplate>
+
                             <RoleGroups>
                                 <asp:RoleGroup Roles="SiteEngineer">
                                     <ContentTemplate>
-                                        <li><a runat="server" class="list-group-item" href="~/Engineer/Welcome.aspx"><i class="icon-home icon-1x"></i>Welcome</a></li>
+                                        <li><a runat="server" class="list-group-item" href="~/Engineer/Welcome.aspx"><i class="icon-home icon-1x"></i>Home</a></li>
                                         <li><a runat="server" class="list-group-item" href="~/Engineer/NewClient.aspx"><i class="icon-home icon-1x"></i>New Client</a></li>
                                         <li><a runat="server" class="list-group-item" href="~/Engineer/NewIntervention.aspx"><i class="icon-home icon-1x"></i>New Intervention</a></li>
-                                        <li><a runat="server" class="list-group-item" href="~/Engineer/ClientList.aspx"><i class="icon-home icon-1x"></i>ClientList</a></li>
+                                        <li><a runat="server" class="list-group-item" href="~/Engineer/ClientList.aspx"><i class="icon-home icon-1x"></i>Clients List</a></li>
                                     </ContentTemplate>
                                 </asp:RoleGroup>
 

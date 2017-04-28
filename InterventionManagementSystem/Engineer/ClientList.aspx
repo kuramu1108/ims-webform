@@ -2,23 +2,29 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <h3>Client List - <%=getDetail().District.Name%></h3>
     <hr />
-    <asp:ListView ID="ClientListView" runat="server">
-        <LayoutTemplate>
-            <table runat="server" class ="table table-striped table-bordered table-hover table-responsive" style ="background-color:white">
-                <tr runat="server">
-                    <th runat="server" style="width: 50px" ></th>
-                    <th runat="server" style="width: 40%" >Name</th>
-                    <th runat="server" style="width: calc(60% -50px)" >Action</th>
+    <div class="main-body-content">
+        <asp:ListView ID="ClientListView" runat="server">
+            <LayoutTemplate>
+                <table id="table-clients" class ="table table-striped table-bordered table-hover table-responsive" style ="background-color:white">
+                    <thead>
+                        <tr>
+                            <th style="width: 50px" ></th>
+                            <th style="width: 40%" >Name</th>
+                            <th style="width: calc(60% -50px)" >Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr runat="server" id="itemPlaceholder"></tr>
+                    </tbody>
+                </table>
+            </LayoutTemplate>
+            <ItemTemplate>
+                <tr>
+                    <td></td>
+                    <td><asp:Label ID="lblName" runat="server" Text='<%#Eval("Name") %>'/></td>
+                    <td><asp:HyperLink ID="linkView" runat="server" Text="View" NavigateUrl='<%#"ClientDetails.aspx?id=" + Eval("Id") %>' /></td>
                 </tr>
-                <tr runat="server" id="itemPlaceholder"></tr>
-            </table>
-        </LayoutTemplate>
-        <ItemTemplate>
-            <tr runat="server">
-                <td></td>
-                <td><asp:Label ID="lblName" runat="server" Text='<%#Eval("Name") %>'/></td>
-                <td><asp:HyperLink ID="linkView" runat="server" Text="View" NavigateUrl='<%#"ClientDetails.aspx?id=" + Eval("Id") %>' /></td>
-            </tr>
-        </ItemTemplate>
-    </asp:ListView>
+            </ItemTemplate>
+        </asp:ListView>
+    </div>
 </asp:Content>

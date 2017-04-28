@@ -12,10 +12,10 @@ namespace InterventionManagementSystem
 
     public partial class NewClient : Page
     {
-        string connstring = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-
+        private IEngineerService engineerService;
         protected void Page_Load(object sender, EventArgs e)
         {
+            engineerService = new EngineerService(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString, User.Identity.GetUserId());
             if (!IsPostBack)
             {
 
@@ -28,11 +28,11 @@ namespace InterventionManagementSystem
 
         protected void Submit_btn_Click(object sender, EventArgs e)
         {
-            IEngineerService engineerService = new EngineerService(connstring);
+            
 
 
             string userId = User.Identity.GetUserId<string>();
-            engineerService.EngineerId = new Guid(userId);
+            engineerService.EngineerIdentityId = new Guid(userId);
             Client client = engineerService.createClient(ClientName.Text, Clientlocation.Text);
             if (client != null)
             {
@@ -51,6 +51,11 @@ namespace InterventionManagementSystem
         protected void Cancel_btn_Click(object sender, EventArgs e)
         {
             Response.Redirect("Welcome.aspx");
+        }
+
+        protected User getDetail()
+        {
+            return engineerService.getDetail();
         }
     }
 

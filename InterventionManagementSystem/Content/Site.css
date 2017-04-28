@@ -36,6 +36,9 @@ h3 {
     padding-right: 15px;
 }
 
+.main-body-content {
+    height: 100%;
+}
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
@@ -90,6 +93,7 @@ input[type="select"] {
 
 #main-container {
     padding-top: 30px;
+    height: calc(100% - 74px);
 }
 
 #main {
@@ -130,20 +134,20 @@ input[type="select"] {
         min-height: 40px;
     }
 
-@media (max-width: 992px) {
+@media (max-width: 768px) {
     body {
         padding-top: 0px;
     }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 768px) {
     #main-wrapper {
         float: left;
-        margin-left:300px;
+        margin-left: 300px;
     }
 }
 
-@media (max-width: 992px) {
+@media (max-width: 768px) {
     #main-wrapper {
         padding-top: 0px;
         width: 100%;
@@ -151,6 +155,7 @@ input[type="select"] {
 
     #main-container {
         padding-top: 10px;
+        height: auto;
     }
 
     #sidebar-wrapper {
@@ -158,7 +163,7 @@ input[type="select"] {
     }
 }
 
-@media (max-width: 992px) {
+@media (max-width: 768px) {
     #sidebar-wrapper {
         position: static;
         height: auto;

@@ -26,7 +26,7 @@ namespace InterventionManagementSystem
                 {
                     IEngineerService engineerService = new EngineerService(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
                     string userId = User.Identity.GetUserId<string>();
-                    engineerService.EngineerId = new Guid(userId);
+                    engineerService.EngineerIdentityId = new Guid(userId);
 
                     Guid clientId = new Guid(Request.QueryString["Id"]);
                     Client client = engineerService.getClientById(clientId);

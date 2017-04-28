@@ -11,7 +11,7 @@ namespace IMSLogicLayer.FakeServices
 {
     public class EngineerService : FakeBaseService, IEngineerService
     {
-        public Guid EngineerId { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public Guid EngineerIdentityId { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public EngineerService(string connstring) : base(connstring)
         {

@@ -13,13 +13,11 @@ namespace InterventionManagementSystem.Engineer
 {
     public partial class ClientList : System.Web.UI.Page
     {
-        private IEngineerService engineerService = new EngineerService(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+        private IEngineerService engineerService;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            string userId = User.Identity.GetUserId<string>();
-            engineerService.EngineerId = new Guid(userId);
-
+            engineerService = new EngineerService(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString, User.Identity.GetUserId());
             ClientListView.DataSource = engineerService.getClients();
             ClientListView.DataBind();
         }
