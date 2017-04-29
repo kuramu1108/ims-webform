@@ -28,16 +28,9 @@ namespace InterventionManagementSystem
 
         protected void Submit_btn_Click(object sender, EventArgs e)
         {
-            
-
-
-            string userId = User.Identity.GetUserId<string>();
-            engineerService.EngineerIdentityId = new Guid(userId);
             Client client = engineerService.createClient(ClientName.Text, Clientlocation.Text);
             if (client != null)
             {
-
-
                 //Response.Redirect("ClientDetails.aspx?ClientId=" + client.Id);
                 Response.Redirect("ClientList.aspx");
             }

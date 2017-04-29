@@ -1,6 +1,6 @@
-﻿using Microsoft.Owin;
+﻿using IMSLogicLayer;
+using Microsoft.Owin;
 using Owin;
-using IMSDBLayer;
 
 [assembly: OwinStartupAttribute(typeof(InterventionManagementSystem.Startup))]
 namespace InterventionManagementSystem

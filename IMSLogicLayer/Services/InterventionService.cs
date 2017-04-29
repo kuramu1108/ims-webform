@@ -9,7 +9,7 @@ using IMSLogicLayer.Models;
 
 namespace IMSLogicLayer.Services
 {
-    public class InterventionService : BaseService, IInterventionService
+    internal class InterventionService : BaseService, IInterventionService
     {
         public InterventionService(string connstring) : base(connstring)
         {
@@ -106,7 +106,7 @@ namespace IMSLogicLayer.Services
             }
         }
 
-        public IEnumerable<Intervention> getInterventionByApprovedUser(Guid userId)
+        public IEnumerable<Intervention> getInterventionsByApprovedUser(Guid userId)
         {
             return Interventions.fetchInterventionsByApprovedUser(userId).Select(c => new Intervention(c)).ToList();
         }

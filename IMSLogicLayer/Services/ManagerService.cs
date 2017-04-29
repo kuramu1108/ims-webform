@@ -11,19 +11,25 @@ namespace IMSLogicLayer.Services
 {
     public class ManagerService : BaseService, IManagerService
     {
-        private Guid managerId;
+        private Guid managerIdentityId;
         private IInterventionService interventionService;
 
-        public Guid ManagerId { get => managerId; set => managerId = value; }
+        public Guid ManagerId { get => managerIdentityId; set => managerIdentityId = value; }
 
         public ManagerService(string connstring) : base(connstring)
         {
             interventionService = new InterventionService(connstring);
         }
 
+        public ManagerService(string connstring, string identityId) : base(connstring)
+        {
+            managerIdentityId = new Guid(identityId);
+            interventionService = new InterventionService(connstring);
+        }
+
         public User getDetail()
         {
-            return (User)Users.fetchUserByIdentityId(managerId);
+            return (User)Users.fetchUserByIdentityId(managerIdentityId);
         }
 
         public IEnumerable<Intervention> getListOfProposedIntervention()
@@ -32,10 +38,8 @@ namespace IMSLogicLayer.Services
 
             foreach (var intervention in interventions)
             {
-                Client client = new Client( Clients.fetchClientById(intervention.ClientId));
-                intervention.ClientName = client.Name;
-                District district = new District(Districts.fetchDistrictById(client.DistrictId));
-                intervention.DistrictName = district.Name;
+                intervention.Client = new Client(Clients.fetchClientById(intervention.ClientId));
+                intervention.District = new District(Districts.fetchDistrictById(intervention.Client.DistrictId));
                 intervention.State = InterventionState.Proposed;
 
             }
@@ -75,7 +79,7 @@ namespace IMSLogicLayer.Services
         {
             Intervention intervention = getInterventionById(interventionId);
             var districtName = Districts.fetchDistrictById(getDetail().DistrictId);
-            if (intervention.DistrictName == districtName.Name)
+            if (intervention.District.Name == districtName.Name)
             {
                 return interventionService.updateInterventionState(interventionId, state);
             }
@@ -89,7 +93,7 @@ namespace IMSLogicLayer.Services
         {
             Intervention intervention = getInterventionById(interventionId);
             var district = Districts.fetchDistrictById(getDetail().DistrictId);
-            if (intervention.DistrictName == district.Name)
+            if (intervention.District.Name == district.Name)
             {
                 User user = new User(Users.fetchUserById(userId));
                 return interventionService.updateIntervetionApprovedBy(interventionId, user);

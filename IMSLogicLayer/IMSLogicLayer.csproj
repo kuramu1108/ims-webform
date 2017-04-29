@@ -60,6 +60,7 @@
     <Compile Include="Services\EngineerService.cs" />
     <Compile Include="Services\InterventionService.cs" />
     <Compile Include="Services\ManagerService.cs" />
+    <Compile Include="Setup.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\IMSDBLayer\IMSDBLayer.csproj">
