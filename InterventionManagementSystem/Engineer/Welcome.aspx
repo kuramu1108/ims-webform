@@ -1,7 +1,10 @@
 ﻿<%@ Page Title="WelcomePage" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Welcome.aspx.cs" Inherits="InterventionManagementSystem.Welcome" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-        <div class="row">
+        <div class="row form-group">
+            <h3><%:Context.User.Identity.GetUserName()%></h3>
+            <hr />
+
             <div class="row">
 
                 <div class="col-md-12">
@@ -16,10 +19,11 @@
 
 
                     </div>
+                  
                     <div class="row">
                         <div class="col-md-2">
-                            <asp:Button ID="ViewClient" runat="server" Text="View" style="height: 26px" OnClick="ViewClient_Click" />
-                            <asp:Button ID="CreateClient" runat="server" Text="Create" OnClick="CreateClientButton_Click"/>
+                            <asp:Button ID="ViewClient" runat="server" CssClass="btn" Text="View"  OnClick="ViewClient_Click" />
+                            <asp:Button ID="CreateClient" runat="server" CssClass="btn" Text="Create" OnClick="CreateClientButton_Click"/>
 
                         </div>
                     </div>
@@ -37,30 +41,14 @@
                     <div class="row">
                         <div class="col-md-2">
 
-                            <asp:Button ID="ViewIntervention" runat="server" Text="View" />
-                            <asp:Button ID="CreateIntervention" runat="server" Text="Create" />
+                            <asp:Button ID="ViewIntervention" runat="server"  CssClass="btn" Text="View" OnClick="ViewIntervention_Click" />
+                            <asp:Button ID="CreateIntervention" runat="server"  CssClass="btn" Text="Create" OnClick="CreateIntervention_Click" />
 
                         </div>
                     </div>
 
 
-                    <div class="row">
-
-                        <div class="col-md-2">
-                            <h3>
-                                <asp:Label ID="ProfileLabel" runat="server" Text="Profile"></asp:Label>
-                            </h3>
-                        </div>
-                    </div>
-                    <div class="row">
-
-                        <div class="col-md-2">
-
-                            <asp:Button ID="ViewProfile" runat="server" Text="View" />
-                            <asp:Button ID="CreateProfile" runat="server" Text="Create" />
-
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
         </div>

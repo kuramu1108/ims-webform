@@ -20,16 +20,23 @@ namespace InterventionManagementSystem.Engineer
         private Intervention intervention;
         protected void Page_Load(object sender, EventArgs e)
         {
-            engineerService = new EngineerService(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString, User.Identity.GetUserId());
-            intervention = engineerService.getInterventionById(new Guid(Request.QueryString["Id"]));
+            if (!String.IsNullOrEmpty(Request.QueryString["Id"]))
+            {
+                engineerService = new EngineerService(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString, User.Identity.GetUserId());
+                intervention = engineerService.getInterventionById(new Guid(Request.QueryString["Id"]));
 
-            type.Text = engineerService.getInterventionTypes().Find(i => i.Id == intervention.InterventionTypeId).Name;
-            client.Text = engineerService.getClientById(intervention.ClientId).Name;
-            creator.Text = engineerService.getUserById(intervention.CreatedBy).Name;
+                type.Text = engineerService.getInterventionTypes().Find(i => i.Id == intervention.InterventionTypeId).Name;
+                client.Text = engineerService.getClientById(intervention.ClientId).Name;
+                creator.Text = engineerService.getUserById(intervention.CreatedBy).Name;
 
-           
-            State.DataSource = getInterventionState();
-            State.DataBind();
+                State.SelectedIndex = (int)intervention.InterventionState;
+                State.DataSource = getInterventionState();
+                State.DataBind();
+            }else
+            {
+                Response.Redirect("~/Engineer/Welcome.aspx");
+            }
+          
             
         }
 
@@ -56,6 +63,9 @@ namespace InterventionManagementSystem.Engineer
                     Response.Redirect("~/Engineer/Welcome.aspx");
                 }else
                 {
+                    errorMessage.Text = "Update Failed, this can be one of the following reasons"+" <br />" +
+                        " You are not authorized to change this intervention state or" + " <br />"+
+                        " The state selected is invalid" + " <br />";
                     //Response.Redirect("~/InternalError.aspx");
                 }
 
@@ -71,7 +81,7 @@ namespace InterventionManagementSystem.Engineer
 
         protected void Cancel_btn_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("~/Engineer/Welcome.aspx");
         }
     }
 }

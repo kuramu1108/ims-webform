@@ -18,10 +18,7 @@ namespace InterventionManagementSystem
 
         protected void CreateClientButton_Click(Object sender, EventArgs e)
         {
-            //  Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-         //   String Loginuser=Context.User.Identity.GetUserId();
-      
-            Response.Redirect("~/Engineer/NewClient");
+            Response.Redirect("~/Engineer/NewClient.aspx");
         }
 
         protected void Logout_Click(object sender, EventArgs e)
@@ -32,7 +29,17 @@ namespace InterventionManagementSystem
 
         protected void ViewClient_Click(object sender, EventArgs e)
         {
+            Response.Redirect("~/Engineer/ClientList.aspx");
+        }
 
+        protected void ViewIntervention_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Engineer/NewIntervention.aspx");
+        }
+
+        protected void CreateIntervention_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Engineer/NewIntervention.aspx");
         }
     }
 }

@@ -3,6 +3,9 @@
 <asp:Content ID="ClientDetailPage" ContentPlaceHolderID="MainContent" runat="server">
 
     <div class="container">
+        <h3>Client Details</h3>
+
+        <hr />
         <div class="col-md-12">
             <div class="row">
                 <div class="col-md-2">
