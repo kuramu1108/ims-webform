@@ -115,10 +115,11 @@ namespace IMSLogicLayer.Services
             var intervention = getInterventionById(interventionId);
             var interventionDistrict = Districts.fetchDistrictById(Clients.fetchClientById(intervention.ClientId).DistrictId);
             var district = Districts.fetchDistrictById(getDetail().DistrictId);
-            if (interventionDistrict.Name==district.Name)
+            if (interventionDistrict.Name == district.Name)
             {
                 return interventionService.updateInterventionDetail(interventionId, comments, remainLife);
-            }else
+            }
+            else
             {
                 return false;
             }

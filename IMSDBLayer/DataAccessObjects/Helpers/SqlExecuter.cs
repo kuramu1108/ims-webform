@@ -64,11 +64,18 @@ namespace IMSDBLayer.DataAccessObjects.Helpers
             {
                 var property = properties[i];
                 var propertyParameter = "@" + property.Name;
-                var propertyRegex = @"[^\w]" + propertyParameter + @"[^\w]";
+                var propertyRegex = @"[^\w]" + propertyParameter + @"([^\w]|$)";
                 
                 if (Regex.Matches(command.CommandText, propertyRegex).Count > 0)
                 {
-                    command.Parameters.AddWithValue(propertyParameter, property.GetValue(value));
+                    if (property.GetValue(value) == null)
+                    {
+                        command.Parameters.AddWithValue(propertyParameter, DBNull.Value);
+                    }
+                    else
+                    {
+                        command.Parameters.AddWithValue(propertyParameter, property.GetValue(value));
+                    }
                 }   
             }
             return command;
