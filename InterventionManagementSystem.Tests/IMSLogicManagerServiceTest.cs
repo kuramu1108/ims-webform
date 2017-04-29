@@ -93,7 +93,15 @@ namespace InterventionManagementSystem.Tests
         [TestMethod]
         public void IMSLogicManager_ApproveIntervention_Failed()
         {
-            
+            Guid districtID = new Guid();
+            Mock<IInterventionDataAccess> interventions = new Mock<IInterventionDataAccess>();
+
+            Intervention new_intervention = new Intervention(20, 2, 70, "", InterventionState.Proposed, new DateTime(), new DateTime(), new DateTime(), new Guid(), new Guid(), new Guid(), new Guid());
+            Mock<IUserDataAccess> users = new Mock<IUserDataAccess>();
+            User manager = new User("Huey", 2, 15, 800, Guid.NewGuid().ToString(), districtID);
+            users.Setup(u => u.fetchUserByIdentityId(It.IsAny<Guid>())).Returns(manager);
+            managerService.Users = users.Object;
+            Assert.IsFalse(managerService.approveAnIntervention(new_intervention.Id));
         }
     }
 }
