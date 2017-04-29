@@ -66,7 +66,7 @@ namespace IMSDBLayer.DataAccessObjects
 
         public IEnumerable<Intervention> fetchInterventionsByState(int state)
         {
-            SqlCommand command = new SqlCommand(@"Select * where State = @State");
+            SqlCommand command = new SqlCommand(@"Select * From Interventions where State = @State");
 
             command.Parameters.AddWithValue("@State", state);
             return sqlExecuter.ExecuteReader(command);

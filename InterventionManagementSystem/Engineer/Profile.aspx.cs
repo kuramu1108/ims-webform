@@ -18,7 +18,6 @@ namespace InterventionManagementSystem
             //TextDistrict.Text = Common.Districts.RuralIndonesia.ToString();
             //TextMAH.Text = managerService.getDetail().AuthorisedHours.ToString();
             //TextMAC.Text = managerService.getDetail().AuthorisedCosts.ToString();
-
         }
 
         protected void ButtonChangePassword_Click(object sender, EventArgs e)

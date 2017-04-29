@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using IMSLogicLayer.ServiceInterfaces;
+using IMSLogicLayer.Services;
 
 namespace InterventionManagementSystem.Tests
 {
@@ -12,25 +13,14 @@ namespace InterventionManagementSystem.Tests
         [TestInitialize]
         public void setUp()
         {
+            managerService = new ManagerService("");
             //manager = new Manager(2, "Luke", "luke1234", Support.convertToSS("12345678"), Common.UserType.Manager, Common.Districts.Sydney, 10, 500);
-        }
-
-        [TestMethod]
-        public void IMSLogicManager_ChangePassword_Success()
-        {
-
-        }
-
-        [TestMethod]
-        public void IMSLogicManager_ChangePassword_SamePassword_Failed()
-        {
-
         }
 
         [TestMethod]
         public void IMSLogicManager_ViewListofInterventionCanApprove()
         {
-
+            
         }
 
         [TestMethod]

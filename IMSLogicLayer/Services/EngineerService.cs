@@ -30,7 +30,6 @@ namespace IMSLogicLayer.Services
         public Client createClient(string clientName, string clientLocation)
         {
             Client client = new Client(Clients.createClient(new Client(clientName, clientLocation, getDetail().DistrictId)));
-          
             return client;
         }
 
@@ -55,7 +54,7 @@ namespace IMSLogicLayer.Services
             {
                 clients.Add(new Client(Clients.fetchClientById(intervention.ClientId)));
             }
-            interventions = interventionService.getInterventionByApprovedUser(getDetail().Id);
+            interventions = interventionService.getInterventionsByApprovedUser(getDetail().Id);
             foreach (var intervention in interventions)
             {
                 clients.Add(new Client(Clients.fetchClientById(intervention.ClientId)));
@@ -87,7 +86,7 @@ namespace IMSLogicLayer.Services
         public IEnumerable<Intervention> getInterventionListByUserId(Guid userId) {
             var interventionList = new List<Intervention>();
             interventionList.AddRange(Interventions.fetchInterventionsByCreator(userId).Select(c => new Intervention(c)).ToList());
-            interventionList.AddRange(interventionService.getInterventionByApprovedUser(userId).Select(c => new Intervention(c)).ToList());
+            interventionList.AddRange(interventionService.getInterventionsByApprovedUser(userId).Select(c => new Intervention(c)).ToList());
             return interventionList;
         }
 
@@ -120,7 +119,7 @@ namespace IMSLogicLayer.Services
         {
             var intervention = getInterventionById(interventionId);
             var district = Districts.fetchDistrictById(getDetail().DistrictId);
-            if (intervention.DistrictName==district.Name)
+            if (intervention.District.Name==district.Name)
             {
                 return interventionService.updateInterventionDetail(interventionId, comments, remainLife);
             }else
@@ -133,7 +132,7 @@ namespace IMSLogicLayer.Services
         {
             var intervention = getInterventionById(interventionId);
             var district = Districts.fetchDistrictById(getDetail().DistrictId);
-            if (intervention.DistrictName == district.Name)
+            if (intervention.District.Name == district.Name)
             {
                 return interventionService.updateInterventionLastVisitDate(interventionId, lastVisitDate);
             }
