@@ -15,7 +15,7 @@ namespace IMSLogicLayer.ServiceInterfaces
         User getDetail();
 
         //use to get a list of intervention where state is proposed
-        IEnumerable<Intervention> getListOfProposedIntervention();
+        IEnumerable<Intervention> getInterventionsByState(InterventionState state);
 
         //use to get an intervention so the user can approve
         Intervention getInterventionById(Guid interventionId);

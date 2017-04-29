@@ -95,19 +95,56 @@ namespace InterventionManagementSystem.Tests
         [TestMethod]
         public void IMSLogicSiteEngineer_CreateInterventionforClient()
         {
+            //Mock ClientDataAccess create client return the same client
+            Guid guid = new Guid();
+            Client client = new Client("Jimmy", "Bondi", new Guid());
+            client.Id = guid;
+            Mock<IClientDataAccess> clients = new Mock<IClientDataAccess>();
+            clients.Setup(c => c.fetchClientById(It.IsAny<Guid>())).Returns(client);
+            engineerService.Clients = clients.Object;
+            Intervention intervention = new Intervention(5, 2, 70, "", IMSLogicLayer.Enums.InterventionState.Proposed, new DateTime(), new DateTime(), new DateTime(), new Guid(), guid, new Guid(), new Guid());
+            engineerService.createIntervention(intervention);
+            Assert.AreEqual(intervention, engineerService.getInterventionsByClient(guid));
 
         }
 
         [TestMethod]
         public void IMSLogicSiteEngineer_GetListofInterventionCreated()
         {
+            Guid districtID = new Guid();
+            Guid identityID = new Guid();
+            Mock<IInterventionDataAccess> interventions = new Mock<IInterventionDataAccess>();
+            List<Intervention> interventionList = new List<Intervention>();
+            interventionList.Add(new Intervention(5, 2, 70, "", IMSLogicLayer.Enums.InterventionState.Proposed, new DateTime(), new DateTime(), new DateTime(), new Guid(), new Guid(), new Guid(), new Guid()));
+            interventionList.Add(new Intervention(3, 5, 50, "", IMSLogicLayer.Enums.InterventionState.Approved, new DateTime(), new DateTime(), new DateTime(), new Guid(), new Guid(), new Guid(), new Guid()));
+            interventionList.Add(new Intervention(6, 9, 80, "", IMSLogicLayer.Enums.InterventionState.Proposed, new DateTime(), new DateTime(), new DateTime(), new Guid(), new Guid(), new Guid(), new Guid()));
+
+            Mock<IUserDataAccess> users = new Mock<IUserDataAccess>();
+            User engineerDetail = new User("Roy", 3, 10,1000, identityID.ToString(), districtID);
+            users.Setup(u => u.fetchUserByIdentityId(It.IsAny<Guid>())).Returns(engineerDetail);
+            engineerService.Users = users.Object;
+
+
+
+            interventions.Setup(c => c.fetchInterventionsByCreator(It.IsAny<Guid>())).Returns(interventionList);
+            foreach (var intervention in interventionList) {
+                engineerService.createIntervention(intervention);
+            }
+
+            Assert.AreEqual(engineerService.getInterventionListByCreator(identityID), interventionList);       
 
         }
 
         [TestMethod]
         public void IMSLogicSiteEngineer_ChangeStateofInterventionCreated()
         {
-
+         
+            Mock<IInterventionDataAccess> interventions = new Mock<IInterventionDataAccess>();
+            Intervention intervention=new Intervention(5, 2, 70, "", IMSLogicLayer.Enums.InterventionState.Proposed, new DateTime(), new DateTime(), new DateTime(), new Guid(), new Guid(), new Guid(), new Guid());
+           
+            interventions.Setup(c => c.fetchInterventionsById(It.IsAny<Guid>())).Returns(intervention);          
+            engineerService.Interventions = interventions.Object;
+            Assert.IsFalse(engineerService.updateInterventionState(intervention.Id, IMSLogicLayer.Enums.InterventionState.Completed));
         }
     }
 

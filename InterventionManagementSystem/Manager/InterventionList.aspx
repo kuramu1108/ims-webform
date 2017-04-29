@@ -9,10 +9,14 @@
                 <tr>
                     <th class ="col-md-3 col-lg-4">Type</th>
                     <th class ="col-md-2 col-lg-2">Client</th>
-                    <th class ="col-md-3 col-lg-2">Perform Date</th>
-                    <th class ="col-md-1 col-lg-2">Status</th>
-                    <th class ="col-md-3 col-lg-2">Action</th>
-                </tr>
+                    <th class ="col-md-1 col-lg-1">Date</th>
+                    <th class ="col-md-2 col-lg-2">
+                        <asp:DropDownList ID="SeletedInterventionState" AutoPostBack="true" runat="server" style="width:100%" 
+                            OnSelectedIndexChanged="SeletedInterventionState_SelectedIndexChanged" >
+                        </asp:DropDownList>
+                    </th>
+                    <th class ="col-md-4 col-lg-3">Action</th>
+                </tr> 
             </thead>
             <asp:ListView ID="InterventionListView" runat="server">
                 <LayoutTemplate>
@@ -22,17 +26,20 @@
                     </tbody>
                 </LayoutTemplate>
                 <ItemTemplate>
-                    <tr>
+                    <tr style="vertical-align: middle;">
                         <td>
                             <asp:Label ID="lblName" runat="server" Text='<%#Eval("InterventionType.Name") %>' /></td>
                         <td>
                             <asp:Label ID="lblClientName" runat="server" Text='<%#Eval("Client.Name") %>' /></td>
                         <td>
-                            <asp:Label ID="lblDistrictName" runat="server" Text='<%#Eval("DateFinish") %>' /></td>
+                            <asp:Label ID="lblDistrictName" runat="server" Text='<%# string.Format("{0:dd/MM/yyyy}", Eval("DateFinish")) %>' /></td>
                         <td>
-                            <asp:Label ID="State" runat="server" Text='<%#Eval("State") %>' /></td>
+                            <asp:Label ID="State" runat="server" Text='<%#Eval("InterventionState") %>' /></td>
                         <td>
-                            <asp:HyperLink ID="linkView" runat="server" Text="View" NavigateUrl='<%#"ClientDetails.aspx?id=" + Eval("Id") %>' /></td>
+                            <asp:Button ID="btnView" Text="View" OnClick="ButtonView_Click" runat="server" CommandArgument='<%#Eval("Id")%>' CssClass="btn btn-default" style="width:68px; height:28px; text-align:center; font-size:11px;" />
+                            <asp:HyperLink CssClass="btn btn-success" style="width:68px; height:28px; text-align:left; font-size:11px;" ID="linkApprove" runat="server" Text="Approve" NavigateUrl='<%#"ClientDetails.aspx?id=" + Eval("Id") %>' />
+                            <asp:HyperLink CssClass="btn btn-danger" style="width:68px; height:28px; text-align:center; font-size:11px;" ID="linkCancel" runat="server" Text="Cancel" NavigateUrl='<%#"ClientDetails.aspx?id=" + Eval("Id") %>' />
+                        </td>
                     </tr>
                 </ItemTemplate>
             </asp:ListView>
