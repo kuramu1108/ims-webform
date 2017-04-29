@@ -1,4 +1,5 @@
-﻿using IMSLogicLayer.Models;
+﻿using IMSLogicLayer.Enums;
+using IMSLogicLayer.Models;
 using IMSLogicLayer.ServiceInterfaces;
 using IMSLogicLayer.Services;
 using Microsoft.AspNet.Identity;
@@ -15,23 +16,50 @@ namespace InterventionManagementSystem.Manager
     {
         private IManagerService managerService;
         private IEnumerable<Intervention> interventionsList;
+        private User managerDetail;
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            managerService = new ManagerService(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString, User.Identity.GetUserId());
+            managerDetail = managerService.getDetail();
+
             if (!IsPostBack)
             {
-                managerService = new ManagerService(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString, User.Identity.GetUserId());
-                interventionsList = new List<Intervention>();
+                Array states = Enum.GetValues(typeof(InterventionState));
+                foreach (var state in states)
+                {
+                    SeletedInterventionState.Items.Add(new ListItem(state.ToString(), ((int)state).ToString()));
+                }
+                SeletedInterventionState.SelectedIndex = (int)InterventionState.Proposed;
+                
+                interventionsList = managerService.getInterventionsByState(InterventionState.Proposed);
                 InterventionListView.DataSource = interventionsList;
                 InterventionListView.DataBind();
             }
-
-            interventionsList = managerService.getListOfProposedIntervention();
         }
 
         public List<Intervention> getInterventionList()
         {
             return null;
+        }
+
+        public User getManagerDetail()
+        {
+            return managerDetail;
+        }
+
+        protected void SeletedInterventionState_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var state = (InterventionState)SeletedInterventionState.SelectedIndex;
+            interventionsList = managerService.getInterventionsByState(state);
+            InterventionListView.DataSource = interventionsList;
+            InterventionListView.DataBind();
+        }
+
+        protected void ButtonView_Click(object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+            button.CommandArgument = "";
         }
     }
 }

@@ -29,15 +29,16 @@ namespace IMSLogicLayer.Services
 
         public User getDetail()
         {
-            return (User)Users.fetchUserByIdentityId(managerIdentityId);
+            return new User(Users.fetchUserByIdentityId(managerIdentityId));
         }
 
-        public IEnumerable<Intervention> getListOfProposedIntervention()
+        public IEnumerable<Intervention> getInterventionsByState(InterventionState state)
         {
-            var interventions = Interventions.fetchInterventionsByState((int)InterventionState.Proposed).Select(c => new Intervention(c)).ToList();
+            var interventions = Interventions.fetchInterventionsByState((int)state).Select(c => new Intervention(c)).ToList();
 
             foreach (var intervention in interventions)
             {
+                intervention.InterventionType = new InterventionType(InterventionTypes.fetchInterventionTypesById(intervention.InterventionTypeId));
                 intervention.Client = new Client(Clients.fetchClientById(intervention.ClientId));
                 intervention.District = new District(Districts.fetchDistrictById(intervention.Client.DistrictId));
                 intervention.InterventionState = InterventionState.Proposed;
