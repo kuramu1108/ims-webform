@@ -117,14 +117,14 @@ namespace IMSLogicLayer.Services
             }
         }
 
-        public bool updateInterventionDetail(Guid interventionId, string comments, int remainLife)
+        public bool updateInterventionDetail(Guid interventionId, string comments, int remainLife, DateTime lastVisitDate)
         {
             var intervention = getInterventionById(interventionId);
             var interventionDistrict = Districts.fetchDistrictById(Clients.fetchClientById(intervention.ClientId).DistrictId);
             var district = Districts.fetchDistrictById(getDetail().DistrictId);
             if (interventionDistrict.Name == district.Name)
             {
-                return interventionService.updateInterventionDetail(interventionId, comments, remainLife);
+                return interventionService.updateInterventionDetail(interventionId, comments, remainLife, lastVisitDate);
             }
             else
             {
@@ -135,8 +135,9 @@ namespace IMSLogicLayer.Services
         public bool updateInterventionLastVisitDate(Guid interventionId, DateTime lastVisitDate)
         {
             var intervention = getInterventionById(interventionId);
+            var interventionDistrict = Districts.fetchDistrictById(Clients.fetchClientById(intervention.ClientId).DistrictId);
             var district = Districts.fetchDistrictById(getDetail().DistrictId);
-            if (intervention.District.Name == district.Name)
+            if (interventionDistrict.Name == district.Name)
             {
                 return interventionService.updateInterventionLastVisitDate(interventionId, lastVisitDate);
             }

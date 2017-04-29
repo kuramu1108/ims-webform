@@ -206,6 +206,7 @@
     <Content Include="Engineer\ClientList.aspx" />
     <Content Include="Engineer\EditIntervention.aspx" />
     <Content Include="Engineer\InterventionDetail.aspx" />
+    <Content Include="Engineer\InterventionList.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -215,7 +216,6 @@
     </Content>
     <Content Include="Engineer\NewClient.aspx" />
     <Content Include="Engineer\NewIntervention.aspx" />
-    <Content Include="Engineer\Profile.aspx" />
     <Content Include="Engineer\Welcome.aspx" />
     <Content Include="Manager\InterventionList.aspx" />
     <Content Include="Manager\Welcome.aspx" />
@@ -466,6 +466,13 @@
     <Compile Include="Engineer\InterventionDetail.aspx.designer.cs">
       <DependentUpon>InterventionDetail.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Engineer\InterventionList.aspx.cs">
+      <DependentUpon>InterventionList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Engineer\InterventionList.aspx.designer.cs">
+      <DependentUpon>InterventionList.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -497,13 +504,6 @@
     </Compile>
     <Compile Include="Engineer\NewIntervention.aspx.designer.cs">
       <DependentUpon>NewIntervention.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Engineer\Profile.aspx.cs">
-      <DependentUpon>Profile.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Engineer\Profile.aspx.designer.cs">
-      <DependentUpon>Profile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
