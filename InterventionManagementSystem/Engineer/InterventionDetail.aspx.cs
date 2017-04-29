@@ -29,7 +29,14 @@ namespace InterventionManagementSystem.Engineer
                 type.Text = engineerService.getInterventionTypes().Find(i => i.Id == intervention.InterventionTypeId).Name;
                 client.Text = engineerService.getClientById(intervention.ClientId).Name;
                 creator.Text = engineerService.getUserById(intervention.CreatedBy).Name;
-                //approver.Text = engineerService.getUserById(intervention.ApprovedBy).Name;
+                if (intervention.ApprovedBy==null)
+                {
+                    approver.Text = "";
+                }else
+                {
+                    approver.Text = engineerService.getUserById(intervention.ApprovedBy.Value).Name;
+                }
+                
                 state.Text = intervention.InterventionState.ToString();
 
            
@@ -62,7 +69,7 @@ namespace InterventionManagementSystem.Engineer
 
         protected void changeState_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Engineer/ChangeState.aspx");
+            Response.Redirect("~/Engineer/ChangeState.aspx?id="+ intervention.Id);
 
         }
     }

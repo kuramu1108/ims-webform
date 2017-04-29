@@ -90,7 +90,14 @@ namespace IMSLogicLayer.Services
             Intervention intervention = getInterventionById(interventionId);
             if(intervention.CreatedBy == getDetail().Id)
             {
-                return interventionService.updateInterventionState(interventionId, state);
+                if (state== InterventionState.Approved)
+                {
+                    return approveAnIntervention(interventionId);
+                }else
+                {
+
+                    return interventionService.updateInterventionState(interventionId, state);
+                }
             }else
             {
                 return false;
