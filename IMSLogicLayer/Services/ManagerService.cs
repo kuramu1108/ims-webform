@@ -40,7 +40,7 @@ namespace IMSLogicLayer.Services
             {
                 intervention.Client = new Client(Clients.fetchClientById(intervention.ClientId));
                 intervention.District = new District(Districts.fetchDistrictById(intervention.Client.DistrictId));
-                intervention.State = InterventionState.Proposed;
+                intervention.InterventionState = InterventionState.Proposed;
 
             }
             return interventions;

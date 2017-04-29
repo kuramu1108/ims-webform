@@ -22,10 +22,10 @@ namespace IMSDBLayer.DataAccessObjects
         public Intervention create(Intervention intervention)
         {
             SqlCommand command = new SqlCommand(@"INSERT INTO Interventions (Hours, Costs, LifeRemaining, Comments, 
-                State, DateCreate, DateFinish, DateRecentVisit, InterventionTypeId, ClientId, CreatedBy, ApprovedBy) "
+                State, DateCreate, DateFinish, DateRecentVisit, InterventionTypeId, ClientId, CreatedBy) "
                 + "OUTPUT INSERTED.Id "
                 + "VALUES(@Hours, @Costs, @LifeRemaining, @Comments, @State, @DateCreate, @DateFinish, @DateRecentVisit," +
-                " @InterventionTypeId, @ClientId, @CreatedBy, @ApprovedBy)");
+                " @InterventionTypeId, @ClientId, @CreatedBy)");
 
             intervention.Id = (Guid)sqlExecuter.ExecuteScalar(command, intervention);
             if (intervention.Id != Guid.Empty)

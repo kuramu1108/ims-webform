@@ -62,13 +62,13 @@ namespace IMSLogicLayer.Models
             set { this.district = value; }
         }
 
-        public new InterventionType InterventionType
+        public InterventionType InterventionType
         {
             get { return interventionType; }
             set { this.interventionType = value; }
         }
 
-        public new InterventionState State
+        public InterventionState InterventionState
         {
             get { return (InterventionState)base.State; }
             set { base.State = (int)value; }
