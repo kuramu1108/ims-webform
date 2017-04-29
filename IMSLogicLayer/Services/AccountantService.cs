@@ -25,7 +25,7 @@ namespace IMSLogicLayer.Services
         {
             var user = getUserById(userId);
             user.DistrictId = districtId;
-            return true;
+            return Users.updateUser(user);
         }
 
         public IEnumerable<User> getAllManger()

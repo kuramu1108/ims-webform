@@ -6,20 +6,23 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using IMSLogicLayer.ServiceInterfaces;
 using IMSLogicLayer.Services;
+using Microsoft.AspNet.Identity;
 
 namespace InterventionManagementSystem.Accountant
 {
     public partial class AccountList : System.Web.UI.Page
     {
+        private IAccountantService accountantService;
         protected void Page_Load(object sender, EventArgs e)
         {
-            IAccountantService accountantService = new AccountantService("");
-            //IAccountantService accountantServuce = new AccountantService();
-            ListViewEngineer.DataSource = accountantService.getAllSiteEngineer();
-            ListViewEngineer.DataBind();
+            accountantService = new AccountantService(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString, User.Identity.GetUserId());
+           
+            
+            EngineerListView.DataSource = accountantService.getAllSiteEngineer();
+            EngineerListView.DataBind();
 
-            ListViewManager.DataSource = accountantService.getAllManger();
-            ListViewManager.DataBind();
+            ManagerListView.DataSource = accountantService.getAllManger();
+            ManagerListView.DataBind();
         }
     }
 }

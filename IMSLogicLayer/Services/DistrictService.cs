@@ -16,6 +16,11 @@ namespace IMSLogicLayer.Services
 
         }
 
+        public IEnumerable<District> GetAllDistrict()
+        {
+            return Districts.getAll().Select(d => new District(d)).ToList();
+        }
+
         public District GetDistrictById(Guid Id)
         {
             return new District(Districts.fetchDistrictById(Id));

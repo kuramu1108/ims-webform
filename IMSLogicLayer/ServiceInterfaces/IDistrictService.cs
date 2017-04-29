@@ -9,6 +9,7 @@ namespace IMSLogicLayer.ServiceInterfaces
 {
     public interface IDistrictService
     {
+        IEnumerable<District> GetAllDistrict();
         District GetDistrictById(Guid Id);
 
         District GetDistrictByName(string name);
