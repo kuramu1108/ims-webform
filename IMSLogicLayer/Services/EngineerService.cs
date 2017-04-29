@@ -49,17 +49,12 @@ namespace IMSLogicLayer.Services
             //list of clients on the current district
             clients.AddRange(Clients.fetchClientsByDistrictId(getDetail().DistrictId).Select(c => new Client(c)).ToList());
 
-            var interventions = getInterventionListByUserId(getDetail().Id);
-            foreach (var intervention in interventions)
-            {
-                clients.Add(new Client(Clients.fetchClientById(intervention.ClientId)));
-            }
-            interventions = interventionService.getInterventionsByApprovedUser(getDetail().Id);
-            foreach (var intervention in interventions)
-            {
-                clients.Add(new Client(Clients.fetchClientById(intervention.ClientId)));
-            }
-           
+            //var interventions = getInterventionListByUserId(getDetail().Id);
+            //foreach (var intervention in interventions)
+            //{
+            //    clients.Add(new Client(Clients.fetchClientById(intervention.ClientId)));
+            //}
+         
             return clients;
         }
         
@@ -118,8 +113,9 @@ namespace IMSLogicLayer.Services
         public bool updateInterventionDetail(Guid interventionId, string comments, int remainLife)
         {
             var intervention = getInterventionById(interventionId);
+            var interventionDistrict = Districts.fetchDistrictById(Clients.fetchClientById(intervention.ClientId).DistrictId);
             var district = Districts.fetchDistrictById(getDetail().DistrictId);
-            if (intervention.District.Name==district.Name)
+            if (interventionDistrict.Name==district.Name)
             {
                 return interventionService.updateInterventionDetail(interventionId, comments, remainLife);
             }else

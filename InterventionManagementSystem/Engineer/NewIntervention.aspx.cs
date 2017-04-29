@@ -49,7 +49,7 @@ namespace InterventionManagementSystem
 
 
 
-                Intervention intervention = new Intervention(hour,cost,100,comments,state,createDate,finishDate,recentVisit,new Guid(typeID),new Guid(clientID), engineerService.getDetail().Id,Guid.Empty);
+                Intervention intervention = new Intervention(hour,cost,100,comments,state,createDate,finishDate,recentVisit,new Guid(typeID),new Guid(clientID), engineerService.getDetail().Id,null);
                 engineerService.createIntervention(intervention);
             }
         }

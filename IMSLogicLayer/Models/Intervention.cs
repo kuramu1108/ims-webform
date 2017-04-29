@@ -13,7 +13,7 @@ namespace IMSLogicLayer.Models
         private District district;
         private InterventionType interventionType;
 
-        public Intervention(decimal hours, decimal costs, int lifeRemaining, string comments, InterventionState state, DateTime dateCreate, DateTime dateFinish, DateTime dateRecentVisit, Guid interventionTypeId, Guid clientId, Guid createdBy, Guid approvedBy)
+        public Intervention(decimal hours, decimal costs, int lifeRemaining, string comments, InterventionState state, DateTime dateCreate, DateTime dateFinish, DateTime dateRecentVisit, Guid interventionTypeId, Guid clientId, Guid createdBy, Guid? approvedBy)
         {
             Hours = hours;
             Costs = costs;

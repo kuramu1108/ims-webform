@@ -57,7 +57,7 @@
              <ItemTemplate>
                 <tr>
                     <td></td>
-                    <td><asp:Label ID="lblName" runat="server" Text='<%#Eval("Name") %>'/></td>
+                    <%--<td><asp:Label ID="lblName" runat="server" Text='<%#Eval("Name") %>'/></td>--%>
                     <td><asp:Label ID="lblState" runat ="server" Text ='<%#Eval("State") %>' /></td>
                     <td><asp:HyperLink ID="linkView" runat="server" Text="Edit" NavigateUrl='<%#"EditIntervention.aspx?id=" + Eval("Id") %>' /></td>
                      <td><asp:HyperLink ID="HyperLink1" runat="server" Text="View" NavigateUrl='<%#"InterventionDetail.aspx?id=" + Eval("Id") %>' /></td>
