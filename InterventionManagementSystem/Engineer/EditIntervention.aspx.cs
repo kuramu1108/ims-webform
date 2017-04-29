@@ -4,7 +4,9 @@ using IMSLogicLayer.Services;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -29,8 +31,10 @@ namespace InterventionManagementSystem
                 txtInterventionType.Text = engineerService.getInterventionTypes().Find(i => i.Id == intervention.InterventionTypeId).Name;
                 ClientName.Text = engineerService.getClients().First(c => c.Id == intervention.ClientId).Name;
                 InterventionComments.Text = intervention.Comments;
-                LifeRemaining.Text = intervention.LifeRemaining.ToString();
-                InterventionVisitDate.Text = intervention.DateRecentVisit.ToString();
+               
+                LifeRemaining.Text =intervention.LifeRemaining.ToString();
+                Thread.CurrentThread.CurrentCulture = new CultureInfo("de-DE");
+                InterventionVisitDate.Text = intervention.DateRecentVisit.ToShortDateString();
 
 
 

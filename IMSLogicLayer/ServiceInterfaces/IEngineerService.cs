@@ -21,6 +21,8 @@ namespace IMSLogicLayer.ServiceInterfaces
         //use to get details of this user
         User getDetail();
 
+        User getUserById(Guid userId);
+        
         //use to get list of client
         IEnumerable<Client> getClients();
 

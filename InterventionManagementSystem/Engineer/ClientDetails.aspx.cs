@@ -34,7 +34,10 @@ namespace InterventionManagementSystem
                 lblDistrict.Text = districtService.GetDistrictById(client.DistrictId).Name;
                 lblLocation.Text = client.Location;
                 List<Intervention> clientIntervention = engineerService.getInterventionsByClient(clientId).ToList();
-
+                foreach (var intervention in clientIntervention)
+                {
+                    intervention.InterventionType = engineerService.getInterventionTypes().Find(it => it.Id == intervention.InterventionTypeId);
+                }
 
                 InterventionList.DataSource = clientIntervention;
                 InterventionList.DataBind();

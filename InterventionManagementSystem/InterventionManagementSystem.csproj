@@ -197,6 +197,7 @@
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Engineer\ChangeState.aspx" />
     <Content Include="Engineer\ClientDetails.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap.css" />
@@ -416,6 +417,13 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Engineer\ChangeState.aspx.cs">
+      <DependentUpon>ChangeState.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Engineer\ChangeState.aspx.designer.cs">
+      <DependentUpon>ChangeState.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Engineer\ClientDetails.aspx.cs">
       <DependentUpon>ClientDetails.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

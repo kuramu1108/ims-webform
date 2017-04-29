@@ -158,5 +158,11 @@ namespace IMSLogicLayer.Services
         {
             return Interventions.fetchInterventionsByCreator(userId).Select(c => new Intervention(c)).ToList();
         }
+
+        public User getUserById(Guid userId)
+        {
+
+            return new User(Users.fetchUserById(userId));
+        }
     }
 }
