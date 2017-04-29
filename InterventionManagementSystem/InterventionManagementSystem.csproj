@@ -204,6 +204,7 @@
     <Content Include="Default.aspx" />
     <Content Include="Engineer\ClientList.aspx" />
     <Content Include="Engineer\EditIntervention.aspx" />
+    <Content Include="Engineer\InterventionDetail.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -449,6 +450,13 @@
     </Compile>
     <Compile Include="Engineer\EditIntervention.aspx.designer.cs">
       <DependentUpon>EditIntervention.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Engineer\InterventionDetail.aspx.cs">
+      <DependentUpon>InterventionDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Engineer\InterventionDetail.aspx.designer.cs">
+      <DependentUpon>InterventionDetail.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
