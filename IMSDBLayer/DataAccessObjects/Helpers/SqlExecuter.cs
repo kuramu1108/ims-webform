@@ -81,14 +81,45 @@ namespace IMSDBLayer.DataAccessObjects.Helpers
             for (int i = 0; i < properties.Length; i++)
             {
                 var property = properties[i];
-                switch (property.PropertyType.Name)
+
+                if (property.PropertyType.IsGenericType && property.PropertyType.GetGenericTypeDefinition() == typeof(Nullable<>))
                 {
-                    case "Guid": property.SetValue(result, reader.GetGuid(i)); break;
-                    case "String": property.SetValue(result, reader.GetString(i), null); break;
-                    case "Int32": property.SetValue(result, reader.GetInt32(i), null); break;
-                    case "DateTime": property.SetValue(result, reader.GetDateTime(i), null); break;
-                    case "Decimal": property.SetValue(result, reader.GetDecimal(i), null); break;
-                    default: throw new Exception("Unknow Type: " + property.PropertyType.Name);
+                    //for nullable types
+                    if (reader.IsDBNull(i))
+                    {
+                        //here we know that column contains null so just set value to null
+                        property.SetValue(result, null);
+                    }
+                    else
+                    {
+                        var underlyingType = property.PropertyType.GetGenericArguments()[0].UnderlyingSystemType.Name;
+                        switch (underlyingType)
+                        {
+                            case "Guid": property.SetValue(result, reader.GetGuid(i)); break;
+                            case "DateTime": property.SetValue(result, reader.GetDateTime(i)); break;
+                            default: throw new Exception("Unknow Type: " + "Nullable[" + underlyingType + "]");
+                        }
+                    }
+                }
+                else
+                {
+                    if (reader.IsDBNull(i))
+                    {
+                        //here we know that column contains null so just set value to null
+                        property.SetValue(result, null);
+                    }
+                    else
+                    {
+                        switch (property.PropertyType.Name)
+                        {
+                            case "Guid": property.SetValue(result, reader.GetGuid(i)); break;
+                            case "String": property.SetValue(result, reader.GetString(i), null); break;
+                            case "Int32": property.SetValue(result, reader.GetInt32(i), null); break;
+                            case "DateTime": property.SetValue(result, reader.GetDateTime(i)); break;
+                            case "Decimal": property.SetValue(result, reader.GetDecimal(i), null); break;
+                            default: throw new Exception("Unknow Type: " + property.PropertyType.Name);
+                        }
+                    }
                 }
             }
             return result;
