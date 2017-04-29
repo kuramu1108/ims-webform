@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\InterventionState.cs" />
+    <Compile Include="Enums\UserType.cs" />
     <Compile Include="FakeServices\FakeAccountantService.cs" />
     <Compile Include="FakeServices\FakeBaseService.cs" />
     <Compile Include="FakeServices\FakeEngineerService.cs" />
