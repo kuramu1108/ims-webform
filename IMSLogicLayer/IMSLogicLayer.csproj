@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums\InterventionState.cs" />
+    <Compile Include="Enums\ReportType.cs" />
     <Compile Include="Enums\UserType.cs" />
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\District.cs" />

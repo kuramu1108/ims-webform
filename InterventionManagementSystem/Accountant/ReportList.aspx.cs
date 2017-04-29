@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IMSLogicLayer.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +12,15 @@ namespace InterventionManagementSystem.Accountant
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            var reportType = getReportType();
+            ReportListView.DataSource = reportType;
+            ReportListView.DataBind();
         }
+
+        public List<string> getReportType()
+        {
+            return Enum.GetNames(typeof(ReportType)).ToList();
+        }
+        
     }
 }

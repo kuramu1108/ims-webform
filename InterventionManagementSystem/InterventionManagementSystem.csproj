@@ -177,6 +177,7 @@
     <Content Include="About.aspx" />
     <Content Include="Accountant\AccountList.aspx" />
     <Content Include="Accountant\EditDistrict.aspx" />
+    <Content Include="Accountant\MonthlyReport.aspx" />
     <Content Include="Accountant\Report.aspx" />
     <Content Include="Accountant\ReportList.aspx" />
     <Content Include="Accountant\Welcome.aspx" />
@@ -287,6 +288,13 @@
     </Compile>
     <Compile Include="Accountant\EditDistrict.aspx.designer.cs">
       <DependentUpon>EditDistrict.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accountant\MonthlyReport.aspx.cs">
+      <DependentUpon>MonthlyReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountant\MonthlyReport.aspx.designer.cs">
+      <DependentUpon>MonthlyReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="Accountant\Report.aspx.cs">
       <DependentUpon>Report.aspx</DependentUpon>

@@ -58,14 +58,14 @@ namespace IMSLogicLayer.Services
             return ReportDataAccess.averageCostByEngineer().Select(c => new ReportRow(c)).ToList();
         }
 
-        public IEnumerable<ReportRow> printMonthlyCostByEngineer(Guid districtId)
+        public IEnumerable<ReportRow> printMonthlyCostByDistrict(Guid districtId)
         {
             return ReportDataAccess.monthlyCostForDistrict(districtId).Select(c => new ReportRow(c)).ToList();
         }
 
         public IEnumerable<ReportRow> printTotalCostByDistrict()
         {
-            return ReportDataAccess.totalCostByEngineer().Select(c => new ReportRow(c)).ToList();
+            return ReportDataAccess.costByDistrict().Select(c => new ReportRow(c)).ToList();
         }
 
         public IEnumerable<ReportRow> printTotalCostByEngineer()
