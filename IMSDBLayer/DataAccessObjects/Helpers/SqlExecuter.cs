@@ -82,43 +82,37 @@ namespace IMSDBLayer.DataAccessObjects.Helpers
             {
                 var property = properties[i];
 
-                if (property.PropertyType.IsGenericType && property.PropertyType.GetGenericTypeDefinition() == typeof(Nullable<>))
+                //check if property is nullable type
+                bool isNullableType = property.PropertyType.IsGenericType && property.PropertyType.GetGenericTypeDefinition() == typeof(Nullable<>);
+                //check if property can contain null value
+                bool isNullable = isNullableType || property.PropertyType.IsValueType == false;
+                //get property underlying type
+                string propertyTypeName = isNullableType ? property.PropertyType.GetGenericArguments()[0].UnderlyingSystemType.Name : property.PropertyType.Name;
+                //check if data column return null
+                bool isDataNull = reader.IsDBNull(i);
+
+                if (isDataNull)
                 {
-                    //for nullable types
-                    if (reader.IsDBNull(i))
+                    if (isNullable)
                     {
-                        //here we know that column contains null so just set value to null
                         property.SetValue(result, null);
                     }
                     else
                     {
-                        var underlyingType = property.PropertyType.GetGenericArguments()[0].UnderlyingSystemType.Name;
-                        switch (underlyingType)
-                        {
-                            case "Guid": property.SetValue(result, reader.GetGuid(i)); break;
-                            case "DateTime": property.SetValue(result, reader.GetDateTime(i)); break;
-                            default: throw new Exception("Unknow Type: " + "Nullable[" + underlyingType + "]");
-                        }
+                        var defaultValue = Activator.CreateInstance(property.PropertyType);
+                        property.SetValue(result, defaultValue);
                     }
                 }
                 else
                 {
-                    if (reader.IsDBNull(i))
+                    switch (property.PropertyType.Name)
                     {
-                        //here we know that column contains null so just set value to null
-                        property.SetValue(result, null);
-                    }
-                    else
-                    {
-                        switch (property.PropertyType.Name)
-                        {
-                            case "Guid": property.SetValue(result, reader.GetGuid(i)); break;
-                            case "String": property.SetValue(result, reader.GetString(i), null); break;
-                            case "Int32": property.SetValue(result, reader.GetInt32(i), null); break;
-                            case "DateTime": property.SetValue(result, reader.GetDateTime(i)); break;
-                            case "Decimal": property.SetValue(result, reader.GetDecimal(i), null); break;
-                            default: throw new Exception("Unknow Type: " + property.PropertyType.Name);
-                        }
+                        case "Guid": property.SetValue(result, reader.GetGuid(i)); break;
+                        case "String": property.SetValue(result, reader.GetString(i), null); break;
+                        case "Int32": property.SetValue(result, reader.GetInt32(i), null); break;
+                        case "DateTime": property.SetValue(result, reader.GetDateTime(i)); break;
+                        case "Decimal": property.SetValue(result, reader.GetDecimal(i), null); break;
+                        default: throw new Exception("Unknow Type: " + property.PropertyType.Name);
                     }
                 }
             }
