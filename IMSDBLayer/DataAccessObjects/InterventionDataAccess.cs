@@ -22,7 +22,8 @@ namespace IMSDBLayer.DataAccessObjects
         public Intervention create(Intervention intervention)
         {
             SqlCommand command = new SqlCommand(@"INSERT INTO Interventions (Hours, Costs, LifeRemaining, Comments, 
-                State, DateCreate, DateFinish, DateRecentVisit, InterventionTypeId, ClientId, CreatedBy, ApprovedBy) " 
+                State, DateCreate, DateFinish, DateRecentVisit, InterventionTypeId, ClientId, CreatedBy, ApprovedBy) "
+                + "OUTPUT INSERTED.Id "
                 + "VALUES(@Hours, @Costs, @LifeRemaining, @Comments, @State, @DateCreate, @DateFinish, @DateRecentVisit," +
                 " @InterventionTypeId, @ClientId, @CreatedBy, @ApprovedBy)");
 

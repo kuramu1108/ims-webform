@@ -14,47 +14,50 @@ namespace InterventionManagementSystem
 {
     public partial class ClientDetails : System.Web.UI.Page
     {
-       
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            if (!IsPostBack)
+
+            if (!string.IsNullOrEmpty(Request.QueryString["Id"]))
             {
-                
-                if (!string.IsNullOrEmpty(Request.QueryString["Id"]))
-                {
-                    IEngineerService engineerService = new EngineerService(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
-                    string userId = User.Identity.GetUserId<string>();
-                    engineerService.EngineerIdentityId = new Guid(userId);
+                IEngineerService engineerService = new EngineerService(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+                string userId = User.Identity.GetUserId<string>();
+                engineerService.EngineerIdentityId = new Guid(userId);
+                IDistrictService districtService = new DistrictService(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
 
-                    Guid clientId = new Guid(Request.QueryString["Id"]);
-                    Client client = engineerService.getClientById(clientId);
-                    lblName.Text = client.Name;
+                Guid clientId = new Guid(Request.QueryString["Id"]);
+                Client client = engineerService.getClientById(clientId);
+                lblName.Text = client.Name;
 
-                    lblDistrict.Text = client.DistrictId.ToString();
-                    lblLocation.Text = client.Location;
-                    List<Intervention> clientIntervention = engineerService.getInterventionsByClient(clientId).ToList();
+                lblDistrict.Text = districtService.GetDistrictById(client.DistrictId).Name;
+                lblLocation.Text = client.Location;
+                List<Intervention> clientIntervention = engineerService.getInterventionsByClient(clientId).ToList();
 
 
-                    InterventionList.DataSource = clientIntervention;
-                    InterventionList.DataBind();
-
-                }
-
-
+                InterventionList.DataSource = clientIntervention;
+                InterventionList.DataBind();
 
             }
-          
+            else
+            {
+                Response.Redirect("~/Engineer/Welcome.aspx");
+            }
 
 
 
 
-            
+
+
+
+
+
+
 
 
         }
 
-       
+
     }
 }

@@ -22,6 +22,15 @@ namespace InterventionManagementSystem {
         protected global::System.Web.UI.WebControls.TextBox ClientName;
         
         /// <summary>
+        /// ClientNameValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator ClientNameValidator;
+        
+        /// <summary>
         /// Clientlocation control.
         /// </summary>
         /// <remarks>
@@ -29,6 +38,15 @@ namespace InterventionManagementSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox Clientlocation;
+        
+        /// <summary>
+        /// ClientLocationValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator ClientLocationValidator;
         
         /// <summary>
         /// Cancel_btn control.
@@ -47,5 +65,14 @@ namespace InterventionManagementSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Submit_btn;
+        
+        /// <summary>
+        /// ValidationSummary1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary1;
     }
 }
