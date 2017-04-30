@@ -101,5 +101,8 @@
   <ItemGroup>
     <EmbeddedResource Include="Scripts\Script021-UpdateUserTypeData.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\Script022-UpdateUsers.sql" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

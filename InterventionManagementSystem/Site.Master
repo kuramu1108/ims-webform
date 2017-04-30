@@ -113,15 +113,15 @@
                     </ul>
                 </div>
             </div>
-            <%--<div id="main-wrapper" >
+            <div id="main-wrapper" >
                 <div id="main-container">
                     <asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
                 </div>
                 <hr />
-                <footer>
+             <%--   <footer>
                     <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application</p>
-                </footer>
-            </div>--%>
+                </footer>--%>
+            </div>
         </div>
     </form>
 </body>

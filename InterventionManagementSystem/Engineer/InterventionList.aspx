@@ -10,7 +10,7 @@
                     <thead>
                         <tr>
                             <th style="width: 50px" ></th>
-                            <th style="width: 40%" >Name</th>
+                            <th style="width: 40%" >Intervention Name</th>
                             <th style="width: calc(60% -50px)" >Action</th>
                         </tr>
                     </thead>
