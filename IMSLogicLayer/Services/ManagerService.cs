@@ -82,9 +82,10 @@ namespace IMSLogicLayer.Services
 
         public bool updateInterventionState(Guid interventionId, InterventionState state)
         {
-            Intervention intervention = getInterventionById(interventionId);
-            var districtName = Districts.fetchDistrictById(getDetail().DistrictId);
-            if (intervention.District.Name == districtName.Name)
+            var intervention = getInterventionById(interventionId);
+            var interventionDistrict = Districts.fetchDistrictById(Clients.fetchClientById(intervention.ClientId).DistrictId);
+            var district = Districts.fetchDistrictById(getDetail().DistrictId);
+            if (interventionDistrict.Name == district.Name)
             {
                 return interventionService.updateInterventionState(interventionId, state);
             }

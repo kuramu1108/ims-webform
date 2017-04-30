@@ -14,18 +14,12 @@ namespace InterventionManagementSystem.Tests
     public class IMSLogicManagerServiceTest
     {
         private ManagerService managerService;
+        private Guid District_SydId = new Guid("9D2B0228-4D0D-4C23-8B49-01A698857709");
+        private Guid District_NswId = new Guid("ABCD0228-4D0D-4C23-8B49-01A698857709");
 
         [TestInitialize]
         public void SetUp()
         {
-            Mock<IInterventionTypeDataAccess> interventionTypes = new Mock<IInterventionTypeDataAccess>();
-            interventionTypes.Setup(it => it.fetchInterventionTypesById(It.IsAny<Guid>())).Returns(new InterventionType("", 1, 2));
-
-            Mock<IClientDataAccess> clients = new Mock<IClientDataAccess>();
-            clients.Setup(c => c.fetchClientById(It.IsAny<Guid>())).Returns(new Client("", "", new Guid()));
-
-            Mock<IDistrictDataAccess> districts = new Mock<IDistrictDataAccess>();
-            districts.Setup(d => d.fetchDistrictById(It.IsAny<Guid>())).Returns(new District(""));
             managerService = new ManagerService("");
         }
 
@@ -102,12 +96,12 @@ namespace InterventionManagementSystem.Tests
             Guid interventionId = IMSLogicManager_ApproveInterventionTests_Setup();
 
             Mock<IClientDataAccess> clients = new Mock<IClientDataAccess>();
-            Guid clientDistrict = new Guid("9D2B0228-4D0D-4C23-8B49-01A698857709");
+            Guid clientDistrict = District_SydId;
             Client client = new Client("Po", "Asquith", clientDistrict);
             clients.Setup(c => c.fetchClientById(It.IsAny<Guid>())).Returns(client);
 
             Mock<IUserDataAccess> users = new Mock<IUserDataAccess>();
-            Guid userDistrict = new Guid("AD2B0228-4D0D-4C23-8B49-01A698857709");
+            Guid userDistrict = District_NswId;
             User user = new User("AccountantX", 1, 20, 200, "", userDistrict);
             users.Setup(u => u.fetchUserByIdentityId(It.IsAny<Guid>())).Returns(user);
 
@@ -163,6 +157,45 @@ namespace InterventionManagementSystem.Tests
             Assert.IsFalse(result);
         }
 
+        [TestMethod]
+        public void IMSLogicManager_UpdateInterventionState_Success()
+        {
+            Guid clientDistrictId = District_SydId;
+            Guid userDistrictId = clientDistrictId;
+
+            Guid interventionId = IMSLogicManager_UpdateInterventionTests_Setup(clientDistrictId, userDistrictId);
+
+            Mock<IInterventionService> interventionService = new Mock<IInterventionService>();
+            interventionService.Setup(x => x.updateInterventionState(It.IsAny<Guid>(), IMSLogicLayer.Enums.InterventionState.Approved)).Returns(true);
+
+            managerService.InterventionService = interventionService.Object;
+
+            Assert.IsTrue(managerService.updateInterventionState(interventionId, IMSLogicLayer.Enums.InterventionState.Approved));
+        }
+
+        [TestMethod]
+        public void IMSLogicManager_UpdateInterventionState_Failed_DifferentDistricts()
+        {
+            Guid clientDistrictId = District_SydId;
+            Guid userDistrictId = District_NswId;
+
+            Guid interventionId = IMSLogicManager_UpdateInterventionTests_Setup(clientDistrictId, userDistrictId);
+
+            Assert.IsFalse(managerService.updateInterventionState(interventionId, IMSLogicLayer.Enums.InterventionState.Approved));
+        }
+
+        [TestMethod]
+        public void IMSLogicManager_UpdateInterventionApprovedBy_Success()
+        {
+
+        }
+
+        [TestMethod]
+        public void IMSLogicManager_UpdateInterventionApprovedBy_Failed_DifferentDistricts()
+        {
+
+        }
+
         private Guid IMSLogicManager_ApproveInterventionTests_Setup()
         {
             Mock<IInterventionDataAccess> interventions = new Mock<IInterventionDataAccess>();
@@ -175,6 +208,47 @@ namespace InterventionManagementSystem.Tests
 
             managerService.Interventions = interventions.Object;
             managerService.InterventionTypes = interventionTypes.Object;
+
+            return intervention.Id;
+        }
+
+        private Guid IMSLogicManager_UpdateInterventionTests_Setup(Guid clientDistrictId, Guid userDistrictId)
+        {
+            Guid clientId = new Guid();
+
+            Mock<IInterventionDataAccess> interventions = new Mock<IInterventionDataAccess>();
+            IMSDBLayer.DataModels.Intervention intervention = new IMSDBLayer.DataModels.Intervention()
+            {
+                ClientId = clientId,
+            };
+            interventions.Setup(i => i.fetchInterventionsById(It.IsAny<Guid>())).Returns(intervention);
+
+            Mock<IDistrictDataAccess> districts = new Mock<IDistrictDataAccess>();
+            District District_Syd = new District("Sydney")
+            {
+                Id = District_SydId,
+            };
+            District District_Nsw = new District("NSW")
+            {
+                Id = District_NswId,
+            };
+            districts.Setup(d => d.fetchDistrictById(It.Is<Guid>(id => id == District_SydId))).Returns(District_Syd);
+            districts.Setup(d => d.fetchDistrictById(It.Is<Guid>(id => id == District_NswId))).Returns(District_Nsw);
+            Mock<IClientDataAccess> clients = new Mock<IClientDataAccess>();
+            Client client = new Client("", "", clientDistrictId)
+            {
+                Id = clientId
+            };
+            clients.Setup(c => c.fetchClientById(It.IsAny<Guid>())).Returns(client);
+
+            Mock<IUserDataAccess> users = new Mock<IUserDataAccess>();
+            User user = new User("AccountantX", 1, 0, 200, "", userDistrictId);
+            users.Setup(u => u.fetchUserByIdentityId(It.IsAny<Guid>())).Returns(user);
+
+            managerService.Interventions = interventions.Object;
+            managerService.Clients = clients.Object;
+            managerService.Users = users.Object;
+            managerService.Districts = districts.Object;
 
             return intervention.Id;
         }
