@@ -15,14 +15,23 @@ namespace InterventionManagementSystem.Accountant
         private IAccountantService accountantService;
         protected void Page_Load(object sender, EventArgs e)
         {
-            accountantService = new AccountantService(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString, User.Identity.GetUserId());
-           
-            
-            EngineerListView.DataSource = accountantService.getAllSiteEngineer();
-            EngineerListView.DataBind();
+            try
+            {
+                accountantService = new AccountantService(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString, User.Identity.GetUserId());
 
-            ManagerListView.DataSource = accountantService.getAllManger();
-            ManagerListView.DataBind();
+
+                EngineerListView.DataSource = accountantService.getAllSiteEngineer();
+                EngineerListView.DataBind();
+
+                ManagerListView.DataSource = accountantService.getAllManger();
+                ManagerListView.DataBind();
+            }
+            catch (Exception)
+            {
+
+                Response.Redirect("~/Errors/InternalErrors.aspx");
+            }
+           
         }
     }
 }

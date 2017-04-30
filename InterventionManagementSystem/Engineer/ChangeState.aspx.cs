@@ -20,26 +20,35 @@ namespace InterventionManagementSystem.Engineer
         private Intervention intervention;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            try
             {
-                if (!String.IsNullOrEmpty(Request.QueryString["Id"]))
+                if (!IsPostBack)
                 {
-                    engineerService = new EngineerService(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString, User.Identity.GetUserId());
-                    intervention = engineerService.getInterventionById(new Guid(Request.QueryString["Id"]));
+                    if (!String.IsNullOrEmpty(Request.QueryString["Id"]))
+                    {
+                        engineerService = new EngineerService(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString, User.Identity.GetUserId());
+                        intervention = engineerService.getInterventionById(new Guid(Request.QueryString["Id"]));
 
-                    type.Text = engineerService.getInterventionTypes().Find(i => i.Id == intervention.InterventionTypeId).Name;
-                    client.Text = engineerService.getClientById(intervention.ClientId).Name;
-                    creator.Text = engineerService.getUserById(intervention.CreatedBy).Name;
+                        type.Text = engineerService.getInterventionTypes().Find(i => i.Id == intervention.InterventionTypeId).Name;
+                        client.Text = engineerService.getClientById(intervention.ClientId).Name;
+                        creator.Text = engineerService.getUserById(intervention.CreatedBy).Name;
 
-                    State.SelectedIndex = (int)intervention.InterventionState;
-                    State.DataSource = getInterventionState();
-                    State.DataBind();
-                }
-                else
-                {
-                    Response.Redirect("~/Engineer/Welcome.aspx");
+                        State.SelectedIndex = (int)intervention.InterventionState;
+                        State.DataSource = getInterventionState();
+                        State.DataBind();
+                    }
+                    else
+                    {
+                        Response.Redirect("~/Engineer/Welcome.aspx");
+                    }
                 }
             }
+            catch (Exception)
+            {
+
+                Response.Redirect("~/Errors/InternalErrors.aspx");
+            }
+           
            
           
             
@@ -78,8 +87,8 @@ namespace InterventionManagementSystem.Engineer
             catch (Exception)
             {
 
-                //Response.Redirect("~/InternalError.aspx");
-                throw;
+                Response.Redirect("~/Errors/InternalErrors.aspx");
+        
             }
           
         }

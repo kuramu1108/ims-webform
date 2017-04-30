@@ -16,19 +16,28 @@ namespace InterventionManagementSystem.Engineer
         private IEngineerService engineerService;
         protected void Page_Load(object sender, EventArgs e)
         {
-            engineerService = new EngineerService(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString, User.Identity.GetUserId());
-            if (!IsPostBack)
+            try
             {
-                List<Intervention> interventions = engineerService.getInterventionListByCreator(getDetail().Id).ToList();
-                foreach (var intervention in interventions)
+                engineerService = new EngineerService(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString, User.Identity.GetUserId());
+                if (!IsPostBack)
                 {
-                    intervention.InterventionType = engineerService.getInterventionTypes().Find(it => it.Id == intervention.InterventionTypeId);
+                    List<Intervention> interventions = engineerService.getInterventionListByCreator(getDetail().Id).ToList();
+                    foreach (var intervention in interventions)
+                    {
+                        intervention.InterventionType = engineerService.getInterventionTypes().Find(it => it.Id == intervention.InterventionTypeId);
+                    }
+
+                    ListofIntervention.DataSource = interventions;
+                    ListofIntervention.DataBind();
+
                 }
-
-                ListofIntervention.DataSource = interventions;
-                ListofIntervention.DataBind();
-
             }
+            catch (Exception)
+            {
+
+                Response.Redirect("~/Errors/InternalErrors.aspx");
+            }
+            
         }
 
         protected User getDetail()

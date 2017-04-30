@@ -31,27 +31,36 @@ namespace InterventionManagementSystem
 
         protected void Submit_Click(object sender, EventArgs e)
         {
-            if (Page.IsValid)
+            try
             {
-                decimal hour = decimal.Parse(InterventionHour.Text);
-                decimal cost = decimal.Parse(InterventionCost.Text);
-                string comments = InterventionComments.Text;
-                Thread.CurrentThread.CurrentCulture = new CultureInfo("de-DE");
-                DateTime createDate = DateTime.Parse(DateTime.Now.ToShortDateString());
+                if (Page.IsValid)
+                {
+                    decimal hour = decimal.Parse(InterventionHour.Text);
+                    decimal cost = decimal.Parse(InterventionCost.Text);
+                    string comments = InterventionComments.Text;
+                    Thread.CurrentThread.CurrentCulture = new CultureInfo("de-DE");
+                    DateTime createDate = DateTime.Parse(DateTime.Now.ToShortDateString());
 
-                DateTime finishDate = DateTime.Parse(InterventionPerformDate.Text);
-                DateTime recentVisit = DateTime.Parse(DateTime.Now.ToShortDateString());
-                var typeID = SeletedInterventionType.SelectedValue;
-                var clientID = SelectClient.SelectedValue;
-                InterventionState state = InterventionState.Proposed;
-                
+                    DateTime finishDate = DateTime.Parse(InterventionPerformDate.Text);
+                    DateTime recentVisit = DateTime.Parse(DateTime.Now.ToShortDateString());
+                    var typeID = SeletedInterventionType.SelectedValue;
+                    var clientID = SelectClient.SelectedValue;
+                    InterventionState state = InterventionState.Proposed;
 
 
 
 
-                Intervention intervention = new Intervention(hour,cost,100,comments,state,createDate,finishDate,recentVisit,new Guid(typeID),new Guid(clientID), engineerService.getDetail().Id,null);
-                engineerService.createIntervention(intervention);
+
+                    Intervention intervention = new Intervention(hour, cost, 100, comments, state, createDate, finishDate, recentVisit, new Guid(typeID), new Guid(clientID), engineerService.getDetail().Id, null);
+                    engineerService.createIntervention(intervention);
+                }
             }
+            catch (Exception)
+            {
+
+                Response.Redirect("~/Errors/InternalErrors.aspx");
+            }
+          
         }
 
         public List<InterventionType> getInterventionTypes()

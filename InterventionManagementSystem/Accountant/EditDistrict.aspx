@@ -25,7 +25,7 @@
             <div class="row form-group">
                 <div class="col-md-4 col-lg-3 col-xl-2">
 
-                    <label>District:</label>
+                    <label>Current District:</label>
                 </div>
                 <div class="col-md-6">
 
@@ -40,7 +40,7 @@
             <div class="row form-group">
                 <div class="col-md-4 col-lg-3 col-xl-2">
 
-                    <label>District :</label>
+                    <label>Change to District :</label>
                 </div>
                 <div class="col-md-6">
 
