@@ -91,7 +91,7 @@ namespace IMSLogicLayer.Services
         public IEnumerable<Intervention> getInterventionListByUserId(Guid userId) {
             var interventionList = new List<Intervention>();
             interventionList.AddRange(Interventions.fetchInterventionsByCreator(userId).Select(c => new Intervention(c)).ToList());
-            interventionList.RemoveAll(i => i.InterventionState == InterventionState.Cancelled);
+           
             var approved=Interventions.fetchInterventionsByApprovedUser(userId).Select(c => new Intervention(c)).ToList();
             //remove duplicated records
             foreach (var intervention in approved)
@@ -100,6 +100,8 @@ namespace IMSLogicLayer.Services
 
             }
             interventionList.AddRange(approved);
+
+            interventionList.RemoveAll(i => i.InterventionState == InterventionState.Cancelled);
             return interventionList;
         }
 
