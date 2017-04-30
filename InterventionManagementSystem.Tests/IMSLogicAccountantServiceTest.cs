@@ -16,9 +16,9 @@ namespace InterventionManagementSystem.Tests
         private AccountantService accountantService;
 
         [TestInitialize]
-        public void setUp()
+        public void SetUp()
         {
-            
+            accountantService = new AccountantService("");
         }
 
         [TestMethod]
