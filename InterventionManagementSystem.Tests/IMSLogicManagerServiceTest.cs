@@ -81,9 +81,14 @@ namespace InterventionManagementSystem.Tests
             Mock<IInterventionService> interventionService = new Mock<IInterventionService>();
             interventionService.Setup(x => x.updateInterventionState(It.IsAny<Guid>(), IMSLogicLayer.Enums.InterventionState.Approved, user.Id)).Returns(true);
 
+            Mock<IDistrictDataAccess> districts = new Mock<IDistrictDataAccess>();
+            District district = new District("Sydney");
+            districts.Setup(d => d.fetchDistrictById(It.IsAny<Guid>())).Returns(district);
+
             managerService.Clients = clients.Object;
             managerService.Users = users.Object;
             managerService.InterventionService = interventionService.Object;
+            managerService.Districts = districts.Object;
 
             bool result = managerService.approveAnIntervention(interventionId);
 
@@ -105,8 +110,13 @@ namespace InterventionManagementSystem.Tests
             User user = new User("AccountantX", 1, 20, 200, "", userDistrict);
             users.Setup(u => u.fetchUserByIdentityId(It.IsAny<Guid>())).Returns(user);
 
+            Mock<IDistrictDataAccess> districts = new Mock<IDistrictDataAccess>();
+            District district = new District("NSW");
+            districts.Setup(d => d.fetchDistrictById(It.IsAny<Guid>())).Returns(district);
+
             managerService.Clients = clients.Object;
             managerService.Users = users.Object;
+            managerService.Districts = districts.Object;
 
             bool result = managerService.approveAnIntervention(interventionId);
 
@@ -127,8 +137,13 @@ namespace InterventionManagementSystem.Tests
             User user = new User("AccountantX", 1, 20, 0, "", clientDistrict);
             users.Setup(u => u.fetchUserByIdentityId(It.IsAny<Guid>())).Returns(user);
 
+            Mock<IDistrictDataAccess> districts = new Mock<IDistrictDataAccess>();
+            District district = new District("NSW");
+            districts.Setup(d => d.fetchDistrictById(It.IsAny<Guid>())).Returns(district);
+
             managerService.Clients = clients.Object;
             managerService.Users = users.Object;
+            managerService.Districts = districts.Object;
 
             bool result = managerService.approveAnIntervention(interventionId);
 
@@ -149,8 +164,13 @@ namespace InterventionManagementSystem.Tests
             User user = new User("AccountantX", 1, 0, 200, "", clientDistrict);
             users.Setup(u => u.fetchUserByIdentityId(It.IsAny<Guid>())).Returns(user);
 
+            Mock<IDistrictDataAccess> districts = new Mock<IDistrictDataAccess>();
+            District district = new District("NSW");
+            districts.Setup(d => d.fetchDistrictById(It.IsAny<Guid>())).Returns(district);
+
             managerService.Clients = clients.Object;
             managerService.Users = users.Object;
+            managerService.Districts = districts.Object;
 
             bool result = managerService.approveAnIntervention(interventionId);
 
