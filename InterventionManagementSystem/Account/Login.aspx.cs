@@ -38,25 +38,26 @@ namespace InterventionManagementSystem.Account
                 switch (result)
                 {
                     case SignInStatus.Success:
-                        //if (signinManager.UserManager.IsInRole(User.Identity.GetUserId(), "SiteEngineer") )
-                        //{
-                        //    Response.Redirect("/Engineer/Welcome.aspx");
-                        //}
-                        //else if (signinManager.UserManager.IsInRole(User.Identity.GetUserId(), "Manager"))
-                        //{
-                        //    Response.Redirect("/Manager/Welcome.aspx");
-                        //}
-                        //else if (signinManager.UserManager.IsInRole(User.Identity.GetUserId(), "Accountant"))
-                        //{
-                        //    Response.Redirect("/Accountant/Welcome.aspx");
-                        //}
-                        //else 
-                        //{
-                        //    Response.Redirect("Login.aspx");
-                        //}
+                        if(signinManager.UserManager.IsInRole(signinManager.AuthenticationManager.AuthenticationResponseGrant.Identity.GetUserId(), "SiteEngineer"))
+                        {
+                            Response.Redirect("/Engineer/Welcome.aspx");
+                        }
+                       
+                        else if (signinManager.UserManager.IsInRole(signinManager.AuthenticationManager.AuthenticationResponseGrant.Identity.GetUserId(), "Manager"))
+                        {
+                            Response.Redirect("/Manager/Welcome.aspx");
+                        }
+                        else if (signinManager.UserManager.IsInRole(signinManager.AuthenticationManager.AuthenticationResponseGrant.Identity.GetUserId(), "Accountant"))
+                        {
+                            Response.Redirect("/Accountant/Welcome.aspx");
+                        }
+                        else 
+                        {
+                            Response.Redirect("Login.aspx");
+                        }
                         
                      
-                       IdentityHelper.RedirectToReturnUrl(Request.QueryString["/Engineer/Welcome.aspx"], Response);
+                       // IdentityHelper.RedirectToReturnUrl(Request.QueryString["/Engineer/Welcome.aspx"], Response);
                         // IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
                         break;
                     case SignInStatus.LockedOut:
