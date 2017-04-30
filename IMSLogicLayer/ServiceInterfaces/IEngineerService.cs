@@ -12,6 +12,7 @@ namespace IMSLogicLayer.ServiceInterfaces
     {
         
         Guid EngineerIdentityId { get; set; }
+        IInterventionService InterventionService { get; set; }
 
         List<InterventionType> getInterventionTypes();
 
