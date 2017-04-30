@@ -7,153 +7,135 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace InterventionManagementSystem {
+namespace InterventionManagementSystem.Engineer {
     
     
-    public partial class NewIntervention {
+    public partial class InterventionDetail {
         
         /// <summary>
-        /// SeletedInterventionType control.
+        /// type control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList SeletedInterventionType;
+        protected global::System.Web.UI.WebControls.Label type;
         
         /// <summary>
-        /// InterventionTypeValidator control.
+        /// client control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator InterventionTypeValidator;
+        protected global::System.Web.UI.WebControls.Label client;
         
         /// <summary>
-        /// SelectClient control.
+        /// creator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList SelectClient;
+        protected global::System.Web.UI.WebControls.Label creator;
         
         /// <summary>
-        /// SelectClientValidator control.
+        /// approver control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator SelectClientValidator;
+        protected global::System.Web.UI.WebControls.Label approver;
         
         /// <summary>
-        /// InterventionHour control.
+        /// state control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox InterventionHour;
+        protected global::System.Web.UI.WebControls.Label state;
         
         /// <summary>
-        /// InterventionHourValidator control.
+        /// hour control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator InterventionHourValidator;
+        protected global::System.Web.UI.WebControls.Label hour;
         
         /// <summary>
-        /// HourValidator control.
+        /// cost control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator HourValidator;
+        protected global::System.Web.UI.WebControls.Label cost;
         
         /// <summary>
-        /// InterventionCost control.
+        /// proposedDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox InterventionCost;
+        protected global::System.Web.UI.WebControls.Label proposedDate;
         
         /// <summary>
-        /// InterventionCostValidator control.
+        /// completedDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator InterventionCostValidator;
+        protected global::System.Web.UI.WebControls.Label completedDate;
         
         /// <summary>
-        /// CostValidator control.
+        /// recentVisitDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator CostValidator;
+        protected global::System.Web.UI.WebControls.Label recentVisitDate;
         
         /// <summary>
-        /// InterventionPerformDate control.
+        /// lifeRemaining control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox InterventionPerformDate;
+        protected global::System.Web.UI.WebControls.Label lifeRemaining;
         
         /// <summary>
-        /// DateValidator control.
+        /// Comments control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator DateValidator;
+        protected global::System.Web.UI.WebControls.Label Comments;
         
         /// <summary>
-        /// InterventionComments control.
+        /// Edit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox InterventionComments;
+        protected global::System.Web.UI.WebControls.Button Edit;
         
         /// <summary>
-        /// Cancel_btn control.
+        /// changeState control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Cancel_btn;
-        
-        /// <summary>
-        /// Submit_btn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Submit_btn;
-        
-        /// <summary>
-        /// InterventionValidationSummary control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ValidationSummary InterventionValidationSummary;
+        protected global::System.Web.UI.WebControls.Button changeState;
     }
 }

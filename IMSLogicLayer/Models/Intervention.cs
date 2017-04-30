@@ -9,10 +9,11 @@ namespace IMSLogicLayer.Models
 {
     public class Intervention : IMSDBLayer.DataModels.Intervention
     {
-        private string clientName;
-        private string districtName;
-        
-        public Intervention(decimal hours, decimal costs, int lifeRemaining, string comments, InterventionState state, DateTime dateCreate, DateTime dateFinish, DateTime dateRecentVisit, Guid interventionTypeId, Guid clientId, Guid createdBy, Guid approvedBy)
+        private Client client;
+        private District district;
+        private InterventionType interventionType;
+
+        public Intervention(decimal hours, decimal costs, int lifeRemaining, string comments, InterventionState state, DateTime dateCreate, DateTime dateFinish, DateTime dateRecentVisit, Guid interventionTypeId, Guid clientId, Guid createdBy, Guid? approvedBy)
         {
             Hours = hours;
             Costs = costs;
@@ -49,19 +50,25 @@ namespace IMSLogicLayer.Models
             base.ApprovedBy = intervention.ApprovedBy;
         }
 
-        public string ClientName
+        public Client Client
         {
-            get { return clientName; }
-            set { this.clientName = value; }
+            get { return client; }
+            set { this.client = value; }
         }
 
-        public string DistrictName
+        public District District
         {
-            get { return districtName; }
-            set { this.districtName = value; }
+            get { return district; }
+            set { this.district = value; }
         }
 
-        public new InterventionState State
+        public InterventionType InterventionType
+        {
+            get { return interventionType; }
+            set { this.interventionType = value; }
+        }
+
+        public InterventionState InterventionState
         {
             get { return (InterventionState)base.State; }
             set { base.State = (int)value; }

@@ -11,10 +11,16 @@ namespace IMSLogicLayer.Services
 {
     public class EngineerService : BaseService, IEngineerService
     {
-        private Guid engineerId;
+        private Guid engineerIdentityId;
         private IInterventionService interventionService;
 
-        public Guid EngineerId { get => engineerId; set => engineerId = value; }
+        public Guid EngineerIdentityId { get => engineerIdentityId; set => engineerIdentityId = value; }
+
+        public EngineerService(string connstring, string identityId) : base(connstring)
+        {
+            EngineerIdentityId = new Guid(identityId);
+            interventionService = new InterventionService(connstring);
+        }
 
         public EngineerService(string connstring) : base(connstring)
         {
@@ -24,14 +30,17 @@ namespace IMSLogicLayer.Services
         public Client createClient(string clientName, string clientLocation)
         {
             Client client = new Client(Clients.createClient(new Client(clientName, clientLocation, getDetail().DistrictId)));
-          
             return client;
         }
-        
+
+        public new List<InterventionType> getInterventionTypes()
+        {
+            return base.getInterventionTypes();
+        }
+
         public User getDetail()
         {
-
-            return new User(Users.fetchUserByIdentityId(engineerId));
+            return getDetail(engineerIdentityId);
         }
 
         public IEnumerable<Client> getClients()
@@ -40,17 +49,12 @@ namespace IMSLogicLayer.Services
             //list of clients on the current district
             clients.AddRange(Clients.fetchClientsByDistrictId(getDetail().DistrictId).Select(c => new Client(c)).ToList());
 
-            var interventions = getInterventionListByUserId(getDetail().Id);
-            foreach (var intervention in interventions)
-            {
-                clients.Add(new Client(Clients.fetchClientById(intervention.ClientId)));
-            }
-            interventions = interventionService.getInterventionByApprovedUser(getDetail().Id);
-            foreach (var intervention in interventions)
-            {
-                clients.Add(new Client(Clients.fetchClientById(intervention.ClientId)));
-            }
-           
+            //var interventions = getInterventionListByUserId(getDetail().Id);
+            //foreach (var intervention in interventions)
+            //{
+            //    clients.Add(new Client(Clients.fetchClientById(intervention.ClientId)));
+            //}
+         
             return clients;
         }
         
@@ -77,7 +81,7 @@ namespace IMSLogicLayer.Services
         public IEnumerable<Intervention> getInterventionListByUserId(Guid userId) {
             var interventionList = new List<Intervention>();
             interventionList.AddRange(Interventions.fetchInterventionsByCreator(userId).Select(c => new Intervention(c)).ToList());
-            interventionList.AddRange(interventionService.getInterventionByApprovedUser(userId).Select(c => new Intervention(c)).ToList());
+            interventionList.AddRange(interventionService.getInterventionsByApprovedUser(userId).Select(c => new Intervention(c)).ToList());
             return interventionList;
         }
 
@@ -86,7 +90,14 @@ namespace IMSLogicLayer.Services
             Intervention intervention = getInterventionById(interventionId);
             if(intervention.CreatedBy == getDetail().Id)
             {
-                return interventionService.updateInterventionState(interventionId, state);
+                if (state== InterventionState.Approved)
+                {
+                    return approveAnIntervention(interventionId);
+                }else
+                {
+
+                    return interventionService.updateInterventionState(interventionId, state);
+                }
             }else
             {
                 return false;
@@ -109,11 +120,13 @@ namespace IMSLogicLayer.Services
         public bool updateInterventionDetail(Guid interventionId, string comments, int remainLife)
         {
             var intervention = getInterventionById(interventionId);
+            var interventionDistrict = Districts.fetchDistrictById(Clients.fetchClientById(intervention.ClientId).DistrictId);
             var district = Districts.fetchDistrictById(getDetail().DistrictId);
-            if (intervention.DistrictName==district.Name)
+            if (interventionDistrict.Name == district.Name)
             {
                 return interventionService.updateInterventionDetail(interventionId, comments, remainLife);
-            }else
+            }
+            else
             {
                 return false;
             }
@@ -123,7 +136,7 @@ namespace IMSLogicLayer.Services
         {
             var intervention = getInterventionById(interventionId);
             var district = Districts.fetchDistrictById(getDetail().DistrictId);
-            if (intervention.DistrictName == district.Name)
+            if (intervention.District.Name == district.Name)
             {
                 return interventionService.updateInterventionLastVisitDate(interventionId, lastVisitDate);
             }
@@ -152,6 +165,12 @@ namespace IMSLogicLayer.Services
         public IEnumerable<Intervention> getInterventionListByCreator(Guid userId)
         {
             return Interventions.fetchInterventionsByCreator(userId).Select(c => new Intervention(c)).ToList();
+        }
+
+        public User getUserById(Guid userId)
+        {
+
+            return new User(Users.fetchUserById(userId));
         }
     }
 }

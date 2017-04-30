@@ -37,11 +37,33 @@
 
     </div>
     <asp:ListView ID="InterventionList" runat="server">
-        <ItemTemplate>
-            <div>
+         <LayoutTemplate>
+                <table id="table-clients" class ="table table-striped table-bordered table-hover table-responsive" style ="background-color:white">
+                    <thead>
+                        <tr>
+                            <th style="width: 50px" ></th>
+                            <th style="width: 40%" >Name</th>
+                            <th style="width: calc(60% -50px)" >Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr runat="server" id="itemPlaceholder"></tr>
+                    </tbody>
+                </table>
+            </LayoutTemplate>
 
-                <asp:Label Text='<%# Eval("Name") %>' runat="server" />
-            </div>
-        </ItemTemplate>
+      
+
+             <ItemTemplate>
+                <tr>
+                    <td></td>
+                    <td><asp:Label ID="lblIntervention" runat="server" Text='<%#Eval("InterventionType.Name") %>'/></td>
+                    <td><asp:Label ID="lblState" runat ="server" Text ='<%#Eval("State") %>' /></td>
+                    <td><asp:HyperLink ID="linkView" runat="server" Text="Edit" NavigateUrl='<%#"EditIntervention.aspx?id=" + Eval("Id") %>' /></td>
+                     <td><asp:HyperLink ID="HyperLink1" runat="server" Text="View" NavigateUrl='<%#"InterventionDetail.aspx?id=" + Eval("Id") %>' /></td>
+                </tr>
+            </ItemTemplate>
+
+          
     </asp:ListView>
 </asp:Content>

@@ -23,7 +23,7 @@ namespace IMSDBLayer.DataModels
         private Guid interventionTypeId;
         private Guid clientId;
         private Guid createdBy;
-        private Guid approvedBy;
+        private Guid? approvedBy;
 
         
 
@@ -99,7 +99,7 @@ namespace IMSDBLayer.DataModels
             set { this.createdBy = value; }
         }
 
-        public Guid ApprovedBy
+        public Guid? ApprovedBy
         {
             get { return this.approvedBy; }
             set { this.approvedBy = value; }

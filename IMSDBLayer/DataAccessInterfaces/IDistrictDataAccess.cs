@@ -16,6 +16,8 @@ namespace IMSDBLayer.DataAccessInterfaces
         IEnumerable<District> getAll();
 
         District fetchDistrictById(Guid districtId);
+
+        District fetchDistrictByName(string name);
         
 
     }

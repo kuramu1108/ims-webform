@@ -90,7 +90,13 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Scripts\Script017-InsertRoles.sql" />
+    <EmbeddedResource Include="Scripts\Script019-AlterInterventionType.sql" />
+  </ItemGroup>
+  <ItemGroup>
     <EmbeddedResource Include="Scripts\Script018-InsertUserRoles.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\Script020-AlterInterventionDefaultId.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

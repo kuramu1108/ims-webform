@@ -16,6 +16,11 @@ namespace IMSLogicLayer.Services
         {
         }
 
+        public AccountantService(string connstring, string identityId) : base(connstring)
+        {
+            this.accoutantId = new Guid(identityId);
+        }
+
         public bool changeDistrict(Guid userId, Guid districtId)
         {
             var user = getUserById(userId);

@@ -7,46 +7,46 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace InterventionManagementSystem {
+namespace InterventionManagementSystem.Engineer {
     
     
-    public partial class NewClient {
+    public partial class ChangeState {
         
         /// <summary>
-        /// ClientName control.
+        /// type control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ClientName;
+        protected global::System.Web.UI.WebControls.Label type;
         
         /// <summary>
-        /// ClientNameValidator control.
+        /// client control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator ClientNameValidator;
+        protected global::System.Web.UI.WebControls.Label client;
         
         /// <summary>
-        /// Clientlocation control.
+        /// creator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Clientlocation;
+        protected global::System.Web.UI.WebControls.Label creator;
         
         /// <summary>
-        /// ClientLocationValidator control.
+        /// State control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator ClientLocationValidator;
+        protected global::System.Web.UI.WebControls.DropDownList State;
         
         /// <summary>
         /// Cancel_btn control.
@@ -65,14 +65,5 @@ namespace InterventionManagementSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Submit_btn;
-        
-        /// <summary>
-        /// ValidationSummary1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary1;
     }
 }

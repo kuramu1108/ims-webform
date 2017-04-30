@@ -197,6 +197,7 @@
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Engineer\ChangeState.aspx" />
     <Content Include="Engineer\ClientDetails.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap.css" />
@@ -204,7 +205,7 @@
     <Content Include="Default.aspx" />
     <Content Include="Engineer\ClientList.aspx" />
     <Content Include="Engineer\EditIntervention.aspx" />
-    <Content Include="Engineer\InterventionList.aspx" />
+    <Content Include="Engineer\InterventionDetail.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -416,6 +417,13 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Engineer\ChangeState.aspx.cs">
+      <DependentUpon>ChangeState.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Engineer\ChangeState.aspx.designer.cs">
+      <DependentUpon>ChangeState.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Engineer\ClientDetails.aspx.cs">
       <DependentUpon>ClientDetails.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -451,12 +459,12 @@
     <Compile Include="Engineer\EditIntervention.aspx.designer.cs">
       <DependentUpon>EditIntervention.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Engineer\InterventionList.aspx.cs">
-      <DependentUpon>InterventionList.aspx</DependentUpon>
+    <Compile Include="Engineer\InterventionDetail.aspx.cs">
+      <DependentUpon>InterventionDetail.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Engineer\InterventionList.aspx.designer.cs">
-      <DependentUpon>InterventionList.aspx</DependentUpon>
+    <Compile Include="Engineer\InterventionDetail.aspx.designer.cs">
+      <DependentUpon>InterventionDetail.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -513,13 +521,6 @@
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
-    <Compile Include="ViewSwitcher.ascx.cs">
-      <DependentUpon>ViewSwitcher.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ViewSwitcher.ascx.designer.cs">
-      <DependentUpon>ViewSwitcher.ascx</DependentUpon>
-    </Compile>
     <Compile Include="Engineer\Welcome.aspx.cs">
       <DependentUpon>Welcome.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

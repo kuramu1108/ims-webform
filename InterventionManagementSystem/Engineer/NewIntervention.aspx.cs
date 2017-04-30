@@ -1,39 +1,27 @@
-﻿//using IMSDBLayer.DataModels;
+﻿using IMSLogicLayer.Enums;
 using IMSLogicLayer.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using IMSLogicLayer;
 using IMSLogicLayer.ServiceInterfaces;
 using IMSLogicLayer.Services;
 using Microsoft.AspNet.Identity;
-using IMSLogicLayer.Enums;
+using System;
+using System.Collections.Generic;
+using System.Configuration;
 using System.Globalization;
+using System.Linq;
+using System.Threading;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace InterventionManagementSystem
 {
     public partial class NewIntervention : System.Web.UI.Page
     {
+        private IEngineerService engineerService;
 
-        IEngineerService engineerService=null;
-        InterventionTypeService interventionTypeService = null;
         protected void Page_Load(object sender, EventArgs e)
         {
-
-          //  if (!IsPostBack) {
-            engineerService  = new EngineerService(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
-            interventionTypeService= new InterventionTypeService(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
-
-            //    }
-            Creator.Text = User.Identity.GetUserName();
-            DateTime localDate = DateTime.Now;
-            Date.Text = localDate.ToString();
-            Date_reccent_visit.Text= localDate.ToString();
-
-  
+            engineerService = new EngineerService(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString, User.Identity.GetUserId());
         }
 
         protected void Cancel_Click(object sender, EventArgs e)
@@ -43,39 +31,48 @@ namespace InterventionManagementSystem
 
         protected void Submit_Click(object sender, EventArgs e)
         {
-            decimal hours = 1;
-            decimal costs = 2 ;
-            //decimal hours;
-            //decimal costs;
-            //decimal.TryParse(Hours.Text, out hours);
-            //decimal.TryParse(Cost.Text, out costs);
+            if (Page.IsValid)
+            {
+                decimal hour = decimal.Parse(InterventionHour.Text);
+                decimal cost = decimal.Parse(InterventionCost.Text);
+                string comments = InterventionComments.Text;
+                Thread.CurrentThread.CurrentCulture = new CultureInfo("de-DE");
+                DateTime createDate = DateTime.Parse(DateTime.Now.ToShortDateString());
+
+                DateTime finishDate = DateTime.Parse(InterventionPerformDate.Text);
+                DateTime recentVisit = DateTime.Parse(DateTime.Now.ToShortDateString());
+                var typeID = SeletedInterventionType.SelectedValue;
+                var clientID = SelectClient.SelectedValue;
+                InterventionState state = InterventionState.Proposed;
+                
 
 
-            int life_remaining = Int32.Parse(LifeRemaining.Text);
-            string comments = Comments.Text;
-            InterventionState state = Approval_check.Checked ? InterventionState.Approved : InterventionState.Proposed;
-            DateTime date_created = DateTime.Parse(Date.Text);
-            DateTime date_finish = DateTime.Now;
-            DateTime dateRecentVisit = DateTime.Now;
-            String intervention_type = interventionTypes.SelectedValue;
- 
-            Guid interventionTypeId = interventionTypeService.getInterventionTypeId(interventionTypes.SelectedValue);
-           // Guid clientId = new Guid();
-              Guid clientId = new Guid(Clients.SelectedValue);
-           //  Guid createdBy = new Guid();
-              Guid createdBy = new Guid(User.Identity.GetUserName());
-           // Guid approvedBy = new Guid();
-             Guid approvedBy = new Guid(Approval_check.Checked ? InterventionState.Approved.ToString() : InterventionState.Proposed.ToString());
-
-            Intervention new_intervention = new Intervention(hours,costs,life_remaining,comments,state, date_created, date_finish, dateRecentVisit, 
-                interventionTypeId,clientId,createdBy,approvedBy);
-            engineerService.createIntervention(new_intervention);
 
 
+                Intervention intervention = new Intervention(hour,cost,100,comments,state,createDate,finishDate,recentVisit,new Guid(typeID),new Guid(clientID), engineerService.getDetail().Id,null);
+                engineerService.createIntervention(intervention);
+            }
+        }
+
+        public List<InterventionType> getInterventionTypes()
+        {
+            return engineerService.getInterventionTypes();
+        }
+
+        public List<Client> getClients()
+        {
+            return engineerService.getClients().ToList();
+        }
+
+        protected void SeletedInterventionType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var interventionTypes = engineerService.getInterventionTypes();
+
+            var interventionType = interventionTypes.Find(i => i.Id == new Guid(SeletedInterventionType.SelectedValue));
+
+            InterventionHour.Text = interventionType.Hours.ToString();
+            InterventionCost.Text = interventionType.Costs.ToString();
 
         }
-   
-
-
     }
 }

@@ -1,29 +1,37 @@
-﻿using System;
+﻿using IMSLogicLayer.Models;
+using IMSLogicLayer.ServiceInterfaces;
+using IMSLogicLayer.Services;
+using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using IMSLogicLayer.ServiceInterfaces;
-using IMSLogicLayer.FakeServices;
-using IMSLogicLayer.Models;
 
 namespace InterventionManagementSystem.Manager
 {
     public partial class InterventionList : System.Web.UI.Page
     {
-        
-        FakeBaseService service = new FakeBaseService("");        
+        private IManagerService managerService;
+        private IEnumerable<Intervention> interventionsList;
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            foreach (var intervention in service.Interventions)
+            if (!IsPostBack)
             {
-                Client client = service.Clients.FirstOrDefault(c => c.Id == intervention.ClientId);
-                intervention.ClientName = client.Name;
-                intervention.DistrictName = service.Districts.FirstOrDefault(d => d.Id == client.DistrictId).Name;
+                managerService = new ManagerService(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString, User.Identity.GetUserId());
+                interventionsList = new List<Intervention>();
+                InterventionListView.DataSource = interventionsList;
+                InterventionListView.DataBind();
             }
-            ListIntervention.DataSource = service.Interventions;
-            ListIntervention.DataBind();
+
+            interventionsList = managerService.getListOfProposedIntervention();
+        }
+
+        public List<Intervention> getInterventionList()
+        {
+            return null;
         }
     }
 }

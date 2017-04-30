@@ -38,11 +38,11 @@ namespace InterventionManagementSystem.Account
                 switch (result)
                 {
                     case SignInStatus.Success:
-                        if (signinManager.UserManager.IsInRole(signinManager.AuthenticationManager.AuthenticationResponseGrant.Identity.GetUserId(), "SiteEngineer"))
+                        if(signinManager.UserManager.IsInRole(signinManager.AuthenticationManager.AuthenticationResponseGrant.Identity.GetUserId(), "SiteEngineer"))
                         {
                             Response.Redirect("/Engineer/Welcome.aspx");
                         }
-
+                       
                         else if (signinManager.UserManager.IsInRole(signinManager.AuthenticationManager.AuthenticationResponseGrant.Identity.GetUserId(), "Manager"))
                         {
                             Response.Redirect("/Manager/Welcome.aspx");
@@ -51,15 +51,13 @@ namespace InterventionManagementSystem.Account
                         {
                             Response.Redirect("/Accountant/Welcome.aspx");
                         }
-                        else
+                        else 
                         {
                             Response.Redirect("Login.aspx");
                         }
-
-
-
-                        //   Response.Redirect("/Engineer/Welcome");
-                        //   IdentityHelper.RedirectToReturnUrl(Request.QueryString["/Engineer/Welcome.aspx"], Response);
+                        
+                     
+                       // IdentityHelper.RedirectToReturnUrl(Request.QueryString["/Engineer/Welcome.aspx"], Response);
                         // IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
                         break;
                     case SignInStatus.LockedOut:
