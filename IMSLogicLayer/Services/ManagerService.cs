@@ -35,7 +35,9 @@ namespace IMSLogicLayer.Services
 
         public User getDetail()
         {
-            return new User(Users.fetchUserByIdentityId(managerIdentityId));
+            var user = new User(Users.fetchUserByIdentityId(managerIdentityId));
+            user.District = new District(Districts.fetchDistrictById(user.DistrictId));
+            return user;
         }
 
         public IEnumerable<Intervention> getInterventionsByState(InterventionState state)
@@ -47,7 +49,6 @@ namespace IMSLogicLayer.Services
                 intervention.InterventionType = new InterventionType(InterventionTypes.fetchInterventionTypesById(intervention.InterventionTypeId));
                 intervention.Client = new Client(Clients.fetchClientById(intervention.ClientId));
                 intervention.District = new District(Districts.fetchDistrictById(intervention.Client.DistrictId));
-                intervention.InterventionState = InterventionState.Proposed;
 
             }
             return interventions;
@@ -121,7 +122,6 @@ namespace IMSLogicLayer.Services
                 intervention.InterventionType = new InterventionType(InterventionTypes.fetchInterventionTypesById(intervention.InterventionTypeId));
                 intervention.Client = new Client(Clients.fetchClientById(intervention.ClientId));
                 intervention.District = new District(Districts.fetchDistrictById(intervention.Client.DistrictId));
-                intervention.InterventionState = InterventionState.Proposed;
 
             }
             return interventions;

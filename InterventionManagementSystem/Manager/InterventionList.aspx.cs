@@ -57,16 +57,11 @@ namespace InterventionManagementSystem.Manager
             InterventionListView.DataBind();
         }
 
-        protected void btnView_Click(object sender, EventArgs e)
-        {
-            Button button = (Button)sender;
-            button.CommandArgument = "";
-        }
-
         protected void btnApprove_Click(object sender, EventArgs e)
         {
             Button button = (Button)sender;
             managerService.approveAnIntervention(new Guid(button.CommandArgument));
+            SeletedInterventionState_SelectedIndexChanged(sender, e);
         }
 
         public bool canApprove(object interventionId)
@@ -75,6 +70,11 @@ namespace InterventionManagementSystem.Manager
             return intervention.InterventionState == InterventionState.Proposed &&
                 intervention.Costs <= managerDetail.AuthorisedCosts &&
                 intervention.Hours <= managerDetail.AuthorisedHours;
+        }
+
+        public User getDetail()
+        {
+            return managerDetail;
         }
     }
 }
