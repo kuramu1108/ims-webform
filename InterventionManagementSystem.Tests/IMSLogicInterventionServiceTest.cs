@@ -19,19 +19,7 @@ namespace InterventionManagementSystem.Tests
         [TestInitialize]
         public void SetUp()
         {
-            Mock<IClientDataAccess> clients = new Mock<IClientDataAccess>();
-            Mock<IUserDataAccess> users = new Mock<IUserDataAccess>();
-            Mock<IDistrictDataAccess> districts = new Mock<IDistrictDataAccess>();
-            Mock<IInterventionDataAccess> interventions = new Mock<IInterventionDataAccess>();
-            Mock<IInterventionTypeDataAccess> interventionTypes = new Mock<IInterventionTypeDataAccess>();
-
             interventionService = new InterventionService("");
-
-            interventionService.Clients = clients.Object;
-            interventionService.Users = users.Object;
-            interventionService.Districts = districts.Object;
-            interventionService.Interventions = interventions.Object;
-            interventionService.InterventionTypes = interventionTypes.Object;
         }
 
         [TestMethod]

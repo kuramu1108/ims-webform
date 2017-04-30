@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace IMSLogicLayer.ServiceInterfaces
 {
-    internal interface IInterventionService
+    public interface IInterventionService
     {
         Intervention getInterventionsById(Guid interventionId);
 
