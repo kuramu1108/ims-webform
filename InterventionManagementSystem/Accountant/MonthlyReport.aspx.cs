@@ -20,18 +20,39 @@ namespace InterventionManagementSystem.Accountant
 
         public List<District> getDistricts()
         {
-            IDistrictService districtService = new DistrictService(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
-            var districts = districtService.GetAllDistrict().ToList();
+            try
+            {
+                IDistrictService districtService = new DistrictService(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+                var districts = districtService.GetAllDistrict().ToList();
 
-            return districts;
+                return districts;
+            }
+            catch (Exception)
+            {
+
+                //Response.Redirect("~/Errors/InternalErrors.aspx");
+                return null;
+
+            }
+            
         }
 
         protected void DropDownDistrict_SelectedIndexChanged(object sender, EventArgs e)
         {
-            IAccountantService accountantService = new AccountantService(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString, User.Identity.GetUserId());
-            var report = accountantService.printMonthlyCostByDistrict(new Guid(DropDownDistrict.SelectedValue)).ToList();
-            ReportListView.DataSource = report;
-            ReportListView.DataBind();
+            try
+            {
+                IAccountantService accountantService = new AccountantService(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString, User.Identity.GetUserId());
+                var report = accountantService.printMonthlyCostByDistrict(new Guid(DropDownDistrict.SelectedValue)).ToList();
+                ReportListView.DataSource = report;
+                ReportListView.DataBind();
+            }
+            catch (Exception)
+            {
+
+               // Response.Redirect("~/Errors/InternalErrors.aspx");
+            }
+
+            
 
             
 

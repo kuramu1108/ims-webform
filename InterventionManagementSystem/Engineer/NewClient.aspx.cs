@@ -28,22 +28,31 @@ namespace InterventionManagementSystem
 
         protected void Submit_btn_Click(object sender, EventArgs e)
         {
-            Client client = engineerService.createClient(ClientName.Text, Clientlocation.Text);
-            if (client != null)
+            try
             {
-                //Response.Redirect("ClientDetails.aspx?ClientId=" + client.Id);
-                Response.Redirect("ClientList.aspx");
+                Client client = engineerService.createClient(ClientName.Text, Clientlocation.Text);
+                if (client != null)
+                {
+                    //Response.Redirect("ClientDetails.aspx?ClientId=" + client.Id);
+                    Response.Redirect("ClientList.aspx");
+                }
+                else
+                {
+                    // give creation failed feedback to user
+                    ClientScript.RegisterStartupScript(GetType(), "N", "alert('Creation failed!');", true);
+                }
             }
-            else
+            catch (Exception)
             {
-                // give creation failed feedback to user
-                ClientScript.RegisterStartupScript(GetType(), "N", "alert('Creation failed!');", true);
+
+                Response.Redirect("~/Errors/InternalErrors.aspx");
             }
+         
         }
 
         protected void Cancel_btn_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Welcome.aspx");
+            Response.Redirect("~/Engineer/Welcome.aspx");
         }
 
         protected User getDetail()

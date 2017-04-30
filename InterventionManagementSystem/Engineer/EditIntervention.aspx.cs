@@ -28,19 +28,26 @@ namespace InterventionManagementSystem
                 {
 
                     interventionId = new Guid(Request.QueryString["Id"]);
+                    try
+                    {
+                        Intervention intervention = engineerService.getInterventionById(interventionId);
+                        txtInterventionType.Text = engineerService.getInterventionTypes().Find(i => i.Id == intervention.InterventionTypeId).Name;
+                        ClientName.Text = engineerService.getClients().First(c => c.Id == intervention.ClientId).Name;
+                        InterventionComments.Text = intervention.Comments;
 
-                    Intervention intervention = engineerService.getInterventionById(interventionId);
+                        LifeRemaining.Text = intervention.LifeRemaining.ToString();
+                        Thread.CurrentThread.CurrentCulture = new CultureInfo("de-DE");
+                        InterventionVisitDate.Text = intervention.DateRecentVisit.ToShortDateString();
+                    }
+                    catch (Exception)
+                    {
 
-                    txtInterventionType.Text = engineerService.getInterventionTypes().Find(i => i.Id == intervention.InterventionTypeId).Name;
-                    ClientName.Text = engineerService.getClients().First(c => c.Id == intervention.ClientId).Name;
-                    InterventionComments.Text = intervention.Comments;
+                        Response.Redirect("~/Errors/InternalErrors.aspx");
+                    }
 
-                    LifeRemaining.Text = intervention.LifeRemaining.ToString();
-                    Thread.CurrentThread.CurrentCulture = new CultureInfo("de-DE");
-                    InterventionVisitDate.Text = intervention.DateRecentVisit.ToShortDateString();
-
-
-
+                }else
+                {
+                    Response.Redirect("~/Engineer/Welcome.aspx");
                 }
             }
           
@@ -67,7 +74,7 @@ namespace InterventionManagementSystem
             catch (Exception)
             {
 
-                throw;
+                Response.Redirect("~/Errors/InternalErrors.aspx");
             }
             
             

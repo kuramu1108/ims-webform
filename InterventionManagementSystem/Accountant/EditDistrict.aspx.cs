@@ -17,34 +17,48 @@ namespace InterventionManagementSystem.Accountant
         private IDistrictService districtService;
         protected void Page_Load(object sender, EventArgs e)
         {
-            accountService = new AccountantService(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString, User.Identity.GetUserId());
-            districtService = new DistrictService(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
-
-            if (!IsPostBack)
+            try
             {
-                if (!string.IsNullOrEmpty(Request.QueryString["Id"]))
+                accountService = new AccountantService(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString, User.Identity.GetUserId());
+                districtService = new DistrictService(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+
+                if (!IsPostBack)
                 {
-                    var user = accountService.getUserById(new Guid(Request.QueryString["Id"]));
-                    txtUser.Text = user.Name;
-                    txtDistrict.Text = districtService.GetDistrictById(user.DistrictId).Name;
-                   
+                    if (!string.IsNullOrEmpty(Request.QueryString["Id"]))
+                    {
+                        var user = accountService.getUserById(new Guid(Request.QueryString["Id"]));
+                        txtUser.Text = user.Name;
+                        txtDistrict.Text = districtService.GetDistrictById(user.DistrictId).Name;
+
+                    }
+
                 }
-               
-
-
-            
-
-               
             }
+            catch (Exception)
+            {
+
+                Response.Redirect("~/Errors/InternalErrors.aspx");
+            }
+           
                
         }
 
         public List<District> getDistricts()
         {
-            IDistrictService districtService = new DistrictService(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
-            var districts = districtService.GetAllDistrict().ToList();
+            try
+            {
+                IDistrictService districtService = new DistrictService(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+                var districts = districtService.GetAllDistrict().ToList();
 
-            return districts;
+                return districts;
+            }
+            catch (Exception)
+            {
+
+                Response.Redirect("~/Errors/InternalErrors.aspx");
+                return null;
+            }
+            
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
@@ -67,7 +81,7 @@ namespace InterventionManagementSystem.Accountant
             catch (Exception)
             {
 
-                throw;
+                Response.Redirect("~/Errors/InternalErrors.aspx");
             }
         }
 

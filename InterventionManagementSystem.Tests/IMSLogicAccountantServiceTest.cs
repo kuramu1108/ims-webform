@@ -1,20 +1,24 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using IMSDBLayer.DataAccessInterfaces;
+using IMSLogicLayer.Models;
+using IMSLogicLayer.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using IMSLogicLayer.ServiceInterfaces;
+using Moq;
 
 namespace InterventionManagementSystem.Tests
 {
     [TestClass]
     public class IMSLogicAccountantServiceTest
     {
-        private IAccountantService accountantService;
-        private const string OLDPWD = "12345678";
-        private const string NEWPWD = "87654321";
+        private AccountantService accountantService;
 
         [TestInitialize]
         public void setUp()
         {
-            //accountant = new Accountant(1, "po-hao chen", "pohao1108", Support.convertToSS(OLDPWD), Common.UserType.Accountant);
+            
         }
 
         [TestMethod]

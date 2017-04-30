@@ -12,9 +12,18 @@ namespace InterventionManagementSystem.Accountant
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            var reportType = getReportType();
-            ReportListView.DataSource = reportType;
-            ReportListView.DataBind();
+            try
+            {
+                var reportType = getReportType();
+                ReportListView.DataSource = reportType;
+                ReportListView.DataBind();
+            }
+            catch (Exception)
+            {
+
+                Response.Redirect("~/Errors/InternalErrors.aspx");
+            }
+           
         }
 
         public List<string> getReportType()

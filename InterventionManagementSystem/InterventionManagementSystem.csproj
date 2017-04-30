@@ -209,6 +209,8 @@
     <Content Include="Engineer\EditIntervention.aspx" />
     <Content Include="Engineer\InterventionDetail.aspx" />
     <Content Include="Engineer\InterventionList.aspx" />
+    <Content Include="Errors\InternalErrors.aspx" />
+    <Content Include="Errors\NotFound.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -488,6 +490,20 @@
     </Compile>
     <Compile Include="Engineer\InterventionList.aspx.designer.cs">
       <DependentUpon>InterventionList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Errors\InternalErrors.aspx.cs">
+      <DependentUpon>InternalErrors.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Errors\InternalErrors.aspx.designer.cs">
+      <DependentUpon>InternalErrors.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Errors\NotFound.aspx.cs">
+      <DependentUpon>NotFound.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Errors\NotFound.aspx.designer.cs">
+      <DependentUpon>NotFound.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
