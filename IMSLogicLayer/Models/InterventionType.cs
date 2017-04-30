@@ -10,7 +10,6 @@ namespace IMSLogicLayer.Models
     {
         public InterventionType(string name, decimal hours, decimal costs)
         {
-
             base.Name = name;
             base.Hours = hours;
             base.Costs = costs;

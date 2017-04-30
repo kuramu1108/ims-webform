@@ -30,5 +30,7 @@ namespace IMSLogicLayer.Models
             base.IdentityId = user.IdentityId;
             base.DistrictId = user.DistrictId;
         }
+
+        public District District { get; set; }
     }
 }

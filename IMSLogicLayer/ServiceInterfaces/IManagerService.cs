@@ -10,11 +10,12 @@ namespace IMSLogicLayer.ServiceInterfaces
 {
     public interface IManagerService
     {
+        Guid ManagerId { get; set; }
         //use to get the details of this user
         User getDetail();
 
         //use to get a list of intervention where state is proposed
-        IEnumerable<Intervention> getListOfProposedIntervention();
+        IEnumerable<Intervention> getInterventionsByState(InterventionState state);
 
         //use to get an intervention so the user can approve
         Intervention getInterventionById(Guid interventionId);

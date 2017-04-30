@@ -11,7 +11,9 @@ namespace IMSLogicLayer.ServiceInterfaces
     public interface IEngineerService
     {
         
-        Guid EngineerId { get; set; }
+        Guid EngineerIdentityId { get; set; }
+
+        List<InterventionType> getInterventionTypes();
 
         //use to create client
         Client createClient(string clientName, string clientLocation);
@@ -19,6 +21,8 @@ namespace IMSLogicLayer.ServiceInterfaces
         //use to get details of this user
         User getDetail();
 
+        User getUserById(Guid userId);
+        
         //use to get list of client
         IEnumerable<Client> getClients();
 
@@ -42,7 +46,7 @@ namespace IMSLogicLayer.ServiceInterfaces
         //use to change Administrative information approveby
         bool updateInterventionApproveBy(Guid interventionId, Guid userId);
 
-        bool updateInterventionDetail(Guid interventionId, string comments, int remainLife);
+        bool updateInterventionDetail(Guid interventionId, string comments, int remainLife, DateTime lastVisitDate);
 
         bool updateInterventionLastVisitDate(Guid interventionId, DateTime lastVisitDate);
 

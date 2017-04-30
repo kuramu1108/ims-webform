@@ -13,24 +13,6 @@ namespace InterventionManagementSystem {
     public partial class NewClient {
         
         /// <summary>
-        /// lblWelcome control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblWelcome;
-        
-        /// <summary>
-        /// ClientLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ClientLabel;
-        
-        /// <summary>
         /// ClientName control.
         /// </summary>
         /// <remarks>
@@ -40,13 +22,13 @@ namespace InterventionManagementSystem {
         protected global::System.Web.UI.WebControls.TextBox ClientName;
         
         /// <summary>
-        /// Label1 control.
+        /// ClientNameValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator ClientNameValidator;
         
         /// <summary>
         /// Clientlocation control.
@@ -58,22 +40,13 @@ namespace InterventionManagementSystem {
         protected global::System.Web.UI.WebControls.TextBox Clientlocation;
         
         /// <summary>
-        /// Label2 control.
+        /// ClientLocationValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
-        
-        /// <summary>
-        /// ClientDistrict control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ClientDistrict;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator ClientLocationValidator;
         
         /// <summary>
         /// Cancel_btn control.
@@ -92,5 +65,14 @@ namespace InterventionManagementSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Submit_btn;
+        
+        /// <summary>
+        /// ValidationSummary1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary1;
     }
 }

@@ -5,62 +5,75 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using IMSLogicLayer.Models;
-using IMSLogicLayer.FakeServices;
 using IMSLogicLayer.ServiceInterfaces;
 using IMSLogicLayer.Services;
+using Microsoft.AspNet.Identity;
 
 namespace InterventionManagementSystem.Accountant
 {
     public partial class EditDistrict : System.Web.UI.Page
     {
-        IAccountantService accountService;
-        User user;
-
+        private IAccountantService accountService;
+        private IDistrictService districtService;
         protected void Page_Load(object sender, EventArgs e)
         {
+            accountService = new AccountantService(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString, User.Identity.GetUserId());
+            districtService = new DistrictService(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+
             if (!IsPostBack)
             {
-                accountService = new FakeAccountantService("");
-
-
-                //accountService = new AccountantService();
-                //real
-                //if (!string.IsNullOrEmpty(Request.QueryString["Name"]))
-                //{
-                //    Guid userId = new Guid(Request.QueryString["id"]);
-                //    user = accountService.getUserById(userId);
-                //    if (user != null)
-                //    {
-                //        lblUser.Text = user.Name;
-                //        lblCurrentDistrict.Text = user.DistrictId.ToString();
-                //    }
-                //}
-                //btnSubmit.Click += BtnSubmit_Click;
-
-
-                //demo code
-                if (!string.IsNullOrEmpty(Request.QueryString["Name"]))
+                if (!string.IsNullOrEmpty(Request.QueryString["Id"]))
                 {
-                    string name = Request.QueryString["Name"];
-                    List<User> users = accountService.getAllUser().ToList();
-                    User user = users.Find(u => u.Name == name);
-                    if (user != null)
-                    {
-                        lblUser.Text = user.Name;
-                        lblCurrentDistrict.Text = user.DistrictId.ToString();
-                    }
-
+                    var user = accountService.getUserById(new Guid(Request.QueryString["Id"]));
+                    txtUser.Text = user.Name;
+                    txtDistrict.Text = districtService.GetDistrictById(user.DistrictId).Name;
+                   
                 }
-                btnSubmit.Click += BtnSubmit_Click;
+               
+
+
+            
+
+               
             }
                
         }
 
-        private void BtnSubmit_Click(object sender, EventArgs e)
+        public List<District> getDistricts()
         {
-            string selectedValue = DropDownDistrict.SelectedValue;
-            Guid selectedDistrictId = new Guid(selectedValue);
-            accountService.changeDistrict(user.Id, selectedDistrictId);
+            IDistrictService districtService = new DistrictService(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+            var districts = districtService.GetAllDistrict().ToList();
+
+            return districts;
+        }
+
+        protected void btnSave_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Guid userId = new Guid(Request.QueryString["Id"]);
+                Guid districtId = new Guid(DropDownDistrict.SelectedItem.Value);
+
+                bool success = accountService.changeDistrict(userId, districtId);
+                if (success)
+                {
+                    Response.Redirect("~/Accountant/AccountList.aspx");
+                }else
+
+                {
+
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Accountant/AccountList.aspx");
         }
     }
 }

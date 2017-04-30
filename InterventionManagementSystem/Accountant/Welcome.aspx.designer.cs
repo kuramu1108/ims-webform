@@ -10,34 +10,25 @@
 namespace InterventionManagementSystem.Accountant {
     
     
-    public partial class WelcomeAccountant {
+    public partial class Welcome {
         
         /// <summary>
-        /// lblWelcome control.
+        /// AccountLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblWelcome;
+        protected global::System.Web.UI.WebControls.Label AccountLabel;
         
         /// <summary>
-        /// lbLoginUser control.
+        /// ViewAccountList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbLoginUser;
-        
-        /// <summary>
-        /// Logout control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Logout;
+        protected global::System.Web.UI.WebControls.Button ViewAccountList;
         
         /// <summary>
         /// ReportLabel control.
@@ -49,48 +40,12 @@ namespace InterventionManagementSystem.Accountant {
         protected global::System.Web.UI.WebControls.Label ReportLabel;
         
         /// <summary>
-        /// ViewReport control.
+        /// ViewReportList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ViewReport;
-        
-        /// <summary>
-        /// InterventionLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label InterventionLabel;
-        
-        /// <summary>
-        /// ViewSiteEngineerManager control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ViewSiteEngineerManager;
-        
-        /// <summary>
-        /// ProfileLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ProfileLabel;
-        
-        /// <summary>
-        /// ViewProfile control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ViewProfile;
+        protected global::System.Web.UI.WebControls.Button ViewReportList;
     }
 }

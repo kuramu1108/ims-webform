@@ -7,126 +7,135 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace InterventionManagementSystem {
+namespace InterventionManagementSystem.Engineer {
     
     
-    public partial class Profile {
+    public partial class InterventionDetail {
         
         /// <summary>
-        /// LabelPage control.
+        /// type control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelPage;
+        protected global::System.Web.UI.WebControls.Label type;
         
         /// <summary>
-        /// LabelDistrict control.
+        /// client control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelDistrict;
+        protected global::System.Web.UI.WebControls.Label client;
         
         /// <summary>
-        /// TextDistrict control.
+        /// creator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label TextDistrict;
+        protected global::System.Web.UI.WebControls.Label creator;
         
         /// <summary>
-        /// LabelMAH control.
+        /// approver control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelMAH;
+        protected global::System.Web.UI.WebControls.Label approver;
         
         /// <summary>
-        /// TextMAH control.
+        /// state control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label TextMAH;
+        protected global::System.Web.UI.WebControls.Label state;
         
         /// <summary>
-        /// LabelMAC control.
+        /// hour control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelMAC;
+        protected global::System.Web.UI.WebControls.Label hour;
         
         /// <summary>
-        /// TextMAC control.
+        /// cost control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label TextMAC;
+        protected global::System.Web.UI.WebControls.Label cost;
         
         /// <summary>
-        /// LabelPassword control.
+        /// proposedDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelPassword;
+        protected global::System.Web.UI.WebControls.Label proposedDate;
         
         /// <summary>
-        /// LabelOldPassword control.
+        /// completedDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelOldPassword;
+        protected global::System.Web.UI.WebControls.Label completedDate;
         
         /// <summary>
-        /// TextBoxOldPassword control.
+        /// recentVisitDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBoxOldPassword;
+        protected global::System.Web.UI.WebControls.Label recentVisitDate;
         
         /// <summary>
-        /// LabelNewPassword control.
+        /// lifeRemaining control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelNewPassword;
+        protected global::System.Web.UI.WebControls.Label lifeRemaining;
         
         /// <summary>
-        /// TextBoxNewPassword control.
+        /// Comments control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBoxNewPassword;
+        protected global::System.Web.UI.WebControls.Label Comments;
         
         /// <summary>
-        /// ButtonChangePassword control.
+        /// Edit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonChangePassword;
+        protected global::System.Web.UI.WebControls.Button Edit;
+        
+        /// <summary>
+        /// changeState control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button changeState;
     }
 }

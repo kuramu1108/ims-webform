@@ -47,5 +47,12 @@ namespace IMSDBLayer.DataAccessObjects
             command.Parameters.AddWithValue("@Id", districtId);
             return sqlExecuter.ExecuteReader(command).FirstOrDefault();
         }
+
+        public District fetchDistrictByName(string name)
+        {
+            SqlCommand command = new SqlCommand(@"Select * From Districts Where Name =@Name");
+            command.Parameters.AddWithValue("@Name", name);
+            return sqlExecuter.ExecuteReader(command).FirstOrDefault();
+        }
     }
 }

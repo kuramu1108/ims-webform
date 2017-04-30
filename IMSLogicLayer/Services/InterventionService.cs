@@ -9,7 +9,7 @@ using IMSLogicLayer.Models;
 
 namespace IMSLogicLayer.Services
 {
-    public class InterventionService : BaseService, IInterventionService
+    internal class InterventionService : BaseService, IInterventionService
     {
         public InterventionService(string connstring) : base(connstring)
         {
@@ -35,11 +35,12 @@ namespace IMSLogicLayer.Services
             return Interventions.fetchInterventionsByClientId(clientId).Select(c => new Intervention(c)).ToList();
         }
 
-        public bool updateInterventionDetail(Guid interventionId, string comments, int remainLife)
+        public bool updateInterventionDetail(Guid interventionId, string comments, int remainLife, DateTime lastVisitDate)
         {
             Intervention intervention = getInterventionsById(interventionId);
             intervention.Comments = comments;
             intervention.LifeRemaining = remainLife;
+            intervention.DateRecentVisit = lastVisitDate;
 
             return Interventions.update(intervention);
         }
@@ -55,9 +56,9 @@ namespace IMSLogicLayer.Services
         public bool updateInterventionState(Guid interventionId, InterventionState state)
         {
             Intervention intervention = getInterventionsById(interventionId);
-            if (intervention.State !=InterventionState.Completed && intervention.State!=InterventionState.Cancelled)
+            if (intervention.InterventionState !=InterventionState.Completed && intervention.InterventionState!=InterventionState.Cancelled)
             {
-                if (intervention.State ==InterventionState.Proposed)
+                if (intervention.InterventionState ==InterventionState.Proposed)
                 {
                     if (state==InterventionState.Completed)
                     {
@@ -65,13 +66,13 @@ namespace IMSLogicLayer.Services
                     }
                     else
                     {
-                        intervention.State = state;
+                        intervention.InterventionState = state;
                     }
                 }else //original = Approved
                 {
                     if(state != InterventionState.Proposed && state!=InterventionState.Approved)
                     {
-                        intervention.State = state;
+                        intervention.InterventionState = state;
                     }else
                     {
                         return false;
@@ -106,7 +107,7 @@ namespace IMSLogicLayer.Services
             }
         }
 
-        public IEnumerable<Intervention> getInterventionByApprovedUser(Guid userId)
+        public IEnumerable<Intervention> getInterventionsByApprovedUser(Guid userId)
         {
             return Interventions.fetchInterventionsByApprovedUser(userId).Select(c => new Intervention(c)).ToList();
         }

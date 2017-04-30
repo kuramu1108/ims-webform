@@ -64,11 +64,18 @@ namespace IMSDBLayer.DataAccessObjects.Helpers
             {
                 var property = properties[i];
                 var propertyParameter = "@" + property.Name;
-                var propertyRegex = @"[^\w]" + propertyParameter + @"[^\w]";
+                var propertyRegex = @"[^\w]" + propertyParameter + @"([^\w]|$)";
                 
                 if (Regex.Matches(command.CommandText, propertyRegex).Count > 0)
                 {
-                    command.Parameters.AddWithValue(propertyParameter, property.GetValue(value));
+                    if (property.GetValue(value) == null)
+                    {
+                        command.Parameters.AddWithValue(propertyParameter, DBNull.Value);
+                    }
+                    else
+                    {
+                        command.Parameters.AddWithValue(propertyParameter, property.GetValue(value));
+                    }
                 }   
             }
             return command;
@@ -81,14 +88,39 @@ namespace IMSDBLayer.DataAccessObjects.Helpers
             for (int i = 0; i < properties.Length; i++)
             {
                 var property = properties[i];
-                switch (property.PropertyType.Name)
+
+                //check if property is nullable type
+                bool isNullableType = property.PropertyType.IsGenericType && property.PropertyType.GetGenericTypeDefinition() == typeof(Nullable<>);
+                //check if property can contain null value
+                bool isNullable = isNullableType || property.PropertyType.IsValueType == false;
+                //get property underlying type
+                string propertyTypeName = isNullableType ? property.PropertyType.GetGenericArguments()[0].UnderlyingSystemType.Name : property.PropertyType.Name;
+                //check if data column return null
+                bool isDataNull = reader.IsDBNull(i);
+
+                if (isDataNull)
                 {
-                    case "Guid": property.SetValue(result, reader.GetGuid(i)); break;
-                    case "String": property.SetValue(result, reader.GetString(i), null); break;
-                    case "Int32": property.SetValue(result, reader.GetInt32(i), null); break;
-                    case "DateTime": property.SetValue(result, reader.GetDateTime(i), null); break;
-                    case "Decimal": property.SetValue(result, reader.GetDecimal(i), null); break;
-                    default: throw new Exception("Unknow Type: " + property.PropertyType.Name);
+                    if (isNullable)
+                    {
+                        property.SetValue(result, null);
+                    }
+                    else
+                    {
+                        var defaultValue = Activator.CreateInstance(property.PropertyType);
+                        property.SetValue(result, defaultValue);
+                    }
+                }
+                else
+                {
+                    switch (property.PropertyType.Name)
+                    {
+                        case "Guid": property.SetValue(result, reader.GetGuid(i)); break;
+                        case "String": property.SetValue(result, reader.GetString(i), null); break;
+                        case "Int32": property.SetValue(result, reader.GetInt32(i), null); break;
+                        case "DateTime": property.SetValue(result, reader.GetDateTime(i)); break;
+                        case "Decimal": property.SetValue(result, reader.GetDecimal(i), null); break;
+                        default: throw new Exception("Unknow Type: " + property.PropertyType.Name);
+                    }
                 }
             }
             return result;

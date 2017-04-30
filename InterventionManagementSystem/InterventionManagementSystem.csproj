@@ -177,7 +177,9 @@
     <Content Include="About.aspx" />
     <Content Include="Accountant\AccountList.aspx" />
     <Content Include="Accountant\EditDistrict.aspx" />
+    <Content Include="Accountant\MonthlyReport.aspx" />
     <Content Include="Accountant\Report.aspx" />
+    <Content Include="Accountant\ReportList.aspx" />
     <Content Include="Accountant\Welcome.aspx" />
     <Content Include="Account\AddPhoneNumber.aspx" />
     <Content Include="Account\Confirm.aspx" />
@@ -197,6 +199,7 @@
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Engineer\ChangeState.aspx" />
     <Content Include="Engineer\ClientDetails.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap.css" />
@@ -204,6 +207,8 @@
     <Content Include="Default.aspx" />
     <Content Include="Engineer\ClientList.aspx" />
     <Content Include="Engineer\EditIntervention.aspx" />
+    <Content Include="Engineer\InterventionDetail.aspx" />
+    <Content Include="Engineer\InterventionList.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -213,7 +218,6 @@
     </Content>
     <Content Include="Engineer\NewClient.aspx" />
     <Content Include="Engineer\NewIntervention.aspx" />
-    <Content Include="Engineer\Profile.aspx" />
     <Content Include="Engineer\Welcome.aspx" />
     <Content Include="Manager\InterventionList.aspx" />
     <Content Include="Manager\Welcome.aspx" />
@@ -285,12 +289,26 @@
     <Compile Include="Accountant\EditDistrict.aspx.designer.cs">
       <DependentUpon>EditDistrict.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Accountant\MonthlyReport.aspx.cs">
+      <DependentUpon>MonthlyReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountant\MonthlyReport.aspx.designer.cs">
+      <DependentUpon>MonthlyReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Accountant\Report.aspx.cs">
       <DependentUpon>Report.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Accountant\Report.aspx.designer.cs">
       <DependentUpon>Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accountant\ReportList.aspx.cs">
+      <DependentUpon>ReportList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountant\ReportList.aspx.designer.cs">
+      <DependentUpon>ReportList.aspx</DependentUpon>
     </Compile>
     <Compile Include="Accountant\Welcome.aspx.cs">
       <DependentUpon>Welcome.aspx</DependentUpon>
@@ -415,6 +433,13 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Engineer\ChangeState.aspx.cs">
+      <DependentUpon>ChangeState.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Engineer\ChangeState.aspx.designer.cs">
+      <DependentUpon>ChangeState.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Engineer\ClientDetails.aspx.cs">
       <DependentUpon>ClientDetails.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -450,6 +475,20 @@
     <Compile Include="Engineer\EditIntervention.aspx.designer.cs">
       <DependentUpon>EditIntervention.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Engineer\InterventionDetail.aspx.cs">
+      <DependentUpon>InterventionDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Engineer\InterventionDetail.aspx.designer.cs">
+      <DependentUpon>InterventionDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Engineer\InterventionList.aspx.cs">
+      <DependentUpon>InterventionList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Engineer\InterventionList.aspx.designer.cs">
+      <DependentUpon>InterventionList.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -482,13 +521,6 @@
     <Compile Include="Engineer\NewIntervention.aspx.designer.cs">
       <DependentUpon>NewIntervention.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Engineer\Profile.aspx.cs">
-      <DependentUpon>Profile.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Engineer\Profile.aspx.designer.cs">
-      <DependentUpon>Profile.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
@@ -505,13 +537,6 @@
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
-    <Compile Include="ViewSwitcher.ascx.cs">
-      <DependentUpon>ViewSwitcher.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ViewSwitcher.ascx.designer.cs">
-      <DependentUpon>ViewSwitcher.ascx</DependentUpon>
-    </Compile>
     <Compile Include="Engineer\Welcome.aspx.cs">
       <DependentUpon>Welcome.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

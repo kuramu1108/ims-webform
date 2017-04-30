@@ -16,11 +16,16 @@ namespace IMSLogicLayer.Services
         {
         }
 
+        public AccountantService(string connstring, string identityId) : base(connstring)
+        {
+            this.accoutantId = new Guid(identityId);
+        }
+
         public bool changeDistrict(Guid userId, Guid districtId)
         {
             var user = getUserById(userId);
             user.DistrictId = districtId;
-            return true;
+            return Users.updateUser(user);
         }
 
         public IEnumerable<User> getAllManger()
@@ -53,14 +58,14 @@ namespace IMSLogicLayer.Services
             return ReportDataAccess.averageCostByEngineer().Select(c => new ReportRow(c)).ToList();
         }
 
-        public IEnumerable<ReportRow> printMonthlyCostByEngineer(Guid districtId)
+        public IEnumerable<ReportRow> printMonthlyCostByDistrict(Guid districtId)
         {
             return ReportDataAccess.monthlyCostForDistrict(districtId).Select(c => new ReportRow(c)).ToList();
         }
 
         public IEnumerable<ReportRow> printTotalCostByDistrict()
         {
-            return ReportDataAccess.totalCostByEngineer().Select(c => new ReportRow(c)).ToList();
+            return ReportDataAccess.costByDistrict().Select(c => new ReportRow(c)).ToList();
         }
 
         public IEnumerable<ReportRow> printTotalCostByEngineer()

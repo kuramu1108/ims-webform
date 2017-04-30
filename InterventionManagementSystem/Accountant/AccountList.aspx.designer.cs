@@ -13,21 +13,21 @@ namespace InterventionManagementSystem.Accountant {
     public partial class AccountList {
         
         /// <summary>
-        /// ListViewEngineer control.
+        /// EngineerListView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView ListViewEngineer;
+        protected global::System.Web.UI.WebControls.ListView EngineerListView;
         
         /// <summary>
-        /// ListViewManager control.
+        /// ManagerListView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView ListViewManager;
+        protected global::System.Web.UI.WebControls.ListView ManagerListView;
     }
 }

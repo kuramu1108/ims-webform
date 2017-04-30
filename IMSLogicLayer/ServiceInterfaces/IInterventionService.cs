@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace IMSLogicLayer.ServiceInterfaces
 {
-    public interface IInterventionService
+    internal interface IInterventionService
     {
         Intervention getInterventionsById(Guid interventionId);
 
@@ -18,11 +18,11 @@ namespace IMSLogicLayer.ServiceInterfaces
 
         IEnumerable<Intervention> getInterventionsByClientId(Guid clientId);
 
-        IEnumerable<Intervention> getInterventionByApprovedUser(Guid userId);
+        IEnumerable<Intervention> getInterventionsByApprovedUser(Guid userId);
 
         bool updateInterventionState(Guid interventionId, InterventionState state);
 
-        bool updateInterventionDetail(Guid interventionId, string comments, int remainLife);
+        bool updateInterventionDetail(Guid interventionId, string comments, int remainLife, DateTime lastVisitDate);
 
         bool updateInterventionLastVisitDate(Guid interventionId, DateTime lastVisitDate);
         bool updateIntervetionApprovedBy(Guid interventionId, User user);

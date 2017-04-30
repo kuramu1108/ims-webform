@@ -1,94 +1,48 @@
 ﻿<%@ Page Title="New Client" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="NewClient.aspx.cs" Inherits="InterventionManagementSystem.NewClient" %>
 
-<%--<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-   
-   
-    
-    <h1>New Client</h1>
-   
-         <table>
-        <tr><td>Client name: </td><td><input id="ClientName" name="client_name" type="Text" /></td></tr>
-        <tr><td>Client location: </td><td><input id="ClientLocation" name="client_location" type="Text" /></td></tr>
-       <tr><td>District: </td><td><input id="ClientDistrict" name="client_district" type="Text" /></td></tr>
-           <tr><td><asp:Button ID="Cancel_btn" runat="server" Text="Cancel" OnClick="Cancel_btn_Click" />  </td><td>  <asp:Button ID="Submit_btn" runat="server" Text="Submit" OnClick="Submit_btn_Click" /></td></tr>
-             </table>
-   
-
-</asp:Content>--%>
-
-<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="container-fluid">
-
-        <div class="row">
-            <div class="row">
-                <div class="col-md-2">
-                    <h2>
-                        <asp:Label ID="lblWelcome" runat="server" Text="New Client"></asp:Label>
-                    </h2>
+<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+    <h3>New Client - <%=getDetail().District.Name%></h3>
+    <hr />
+    <div class="main-body-content">
+            <div class="row form-group">
+                <div class="col-md-4 col-lg-3 col-xl-2">
+                    <label>Client Name:</label>
                 </div>
-
-                <div class="col-md-6"></div>
-            </div>
-            <div class="row">
-
-                <div class="col-md-12">
-
-                    <div class="row">
-                        <div class="col-md-2">
-
-                            <h3>
-                               <asp:Label ID="ClientLabel" runat="server" Text="Client name: 　"></asp:Label>
-                                <asp:TextBox ID="ClientName" runat="server"></asp:TextBox>
-                            </h3>
-                        </div>
-
-
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                           <h3> <asp:Label ID="Label1" runat="server" Text="Client location:　"></asp:Label>
-                                <asp:TextBox ID="Clientlocation" runat="server"></asp:TextBox></h3>
-                        </div>
-                    </div>
-                      <div class="row">
-                        <div class="col-md-4">
-                           <h3> <asp:Label ID="Label2" runat="server" Text="Client District:　"></asp:Label>
-                                <asp:TextBox ID="ClientDistrict" runat="server"></asp:TextBox></h3>
-                        </div>
-                    </div>
-
-                          <div class="row">
-
-                        <div class="col-md-4">
-                                   
-                            <asp:Button ID="Cancel_btn" runat="server" Text="Cancel" OnClick="Cancel_btn_Click" />
-                           
-                            <asp:Button ID="Submit_btn" runat="server" Text="Submit" OnClick="Submit_btn_Click" />
-                        </div>
-                    </div>
-                        </div>
-                  
-         
-                 
-              
+                <div class="col-md-6">
+                    <asp:TextBox class="form-control" ID="ClientName" runat="server" ValidationGroup="ClientValidator"></asp:TextBox>
+                
+                <asp:RequiredFieldValidator ID="ClientNameValidator" runat="server" ErrorMessage="Client Name Is Required" ControlToValidate="ClientName" ValidationGroup="ClientValidator">*</asp:RequiredFieldValidator>
                 </div>
             </div>
-        </div>
-
+            <div class="row form-group">
+                <div class="col-md-4 col-lg-3 col-xl-2">
+                    <label>Client Location:</label>
+                </div>
+                <div class="col-md-6">
+                    <asp:TextBox class="form-control" ID="Clientlocation" runat="server" ValidationGroup="ClientValidator"></asp:TextBox>
+                 <asp:RequiredFieldValidator ID="ClientLocationValidator" runat="server" ErrorMessage="Client Location Is Required" ControlToValidate="ClientLocation" ValidationGroup="ClientValidator">*</asp:RequiredFieldValidator>
+               
+                
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-4 col-lg-3 col-xl-2">
+                    <label>Client District:</label>
+                </div>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" disabled value="<%=getDetail().District.Name%>" />
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-4 col-lg-3 col-xl-2">
+                </div>
+                <div class="col-md-6">
+                    <asp:Button ID="Cancel_btn" runat="server" CssClass="btn btn-danger" Text="Cancel" OnClick="Cancel_btn_Click" />
+                    <asp:Button ID="Submit_btn" runat="server" CssClass="btn btn-success" Text="Submit" OnClick="Submit_btn_Click"  ValidationGroup="ClientValidator" />
+                
+                <asp:ValidationSummary ID="ValidationSummary1" runat="server" ValidationGroup="ClientValidator" DisplayMode="List" ForeColor="#FF6666" />
+                </div>
+            </div>
     </div>
-
-
-
-   
-
-
-
-
-
-
-
-
-
-
 </asp:Content>
 

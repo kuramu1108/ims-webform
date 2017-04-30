@@ -4,51 +4,59 @@
     <div class="container">
         <h4>Site Engineer</h4>
         <div>
-            <asp:ListView ID="ListViewEngineer" runat="server">
-                <LayoutTemplate>
-                    <table runat="server">
-                        <tr runat="server">
-                            <th runat="server">Name</th>
-                            <th runat="server">District</th>
-                            <th runat="server">Action</th>
+           <asp:ListView ID="EngineerListView" runat="server">
+            <LayoutTemplate>
+                <table id="table-clients" class ="table table-striped table-bordered table-hover table-responsive" style ="background-color:white">
+                    <thead>
+                        <tr>
+                            <th style="width: 50px" ></th>
+                            <th style="width: 40%" >Name</th>
+                            <th style="width: calc(60% -50px)" >Action</th>
                         </tr>
+                    </thead>
+                    <tbody>
                         <tr runat="server" id="itemPlaceholder"></tr>
-                    </table>
-                </LayoutTemplate>
-                <ItemTemplate>
-                    <tr runat="server">
-                        <td><asp:Label ID="lblName" runat="server" Text='<%#Eval("Name") %>'/></td>
-                        <td><asp:Label ID="lblDistrict" runat="server" Text='<%#Eval("DistrictId") %>'/></td>
-                        <%--<td><asp:HyperLink ID="linkEdit" runat="server" Text="Edit District" NavigateUrl='<%#"EditDistrict.aspx?id=" + Eval("Id") %>' /></td>--%>
-                        <td><asp:HyperLink ID="linkEdit" runat="server" Text="Edit District" NavigateUrl='<%#"EditDistrict.aspx?Name=" + Eval("Name") %>' /></td>
-                    </tr>
-                </ItemTemplate>
-            </asp:ListView>
+                    </tbody>
+                </table>
+            </LayoutTemplate>
+            <ItemTemplate>
+                <tr>
+                    <td></td>
+                    <td><asp:Label ID="lblName" runat="server" Text='<%#Eval("Name") %>'/></td>
+                    <td><asp:HyperLink ID="linkView" runat="server" Text="Edit" NavigateUrl='<%#"EditDistrict.aspx?id=" + Eval("Id") %>' /></td>
+
+                              
+                </tr>
+            </ItemTemplate>
+        </asp:ListView>
         </div>
     </div>
     <div class="container">
         <h4>Manager</h4>
         <div>
-            <asp:ListView ID="ListViewManager" runat="server">
-                <LayoutTemplate>
-                    <table runat="server">
-                        <tr runat="server">
-                            <th runat="server">Name</th>
-                            <th runat="server">District</th>
-                            <th runat="server">Action</th>
+            <asp:ListView ID="ManagerListView" runat="server">
+            <LayoutTemplate>
+                <table id="table-clients" class ="table table-striped table-bordered table-hover table-responsive" style ="background-color:white">
+                    <thead>
+                        <tr>
+                            <th style="width: 50px" ></th>
+                            <th style="width: 40%" >Name</th>
+                            <th style="width: calc(60% -50px)" >Action</th>
                         </tr>
+                    </thead>
+                    <tbody>
                         <tr runat="server" id="itemPlaceholder"></tr>
-                    </table>
-                </LayoutTemplate>
-                <ItemTemplate>
-                    <tr runat="server">
-                        <td><asp:Label ID="lblName" runat="server" Text='<%#Eval("Name") %>'/></td>
-                        <td><asp:Label ID="lblDistrict" runat="server" Text='<%#Eval("DistrictId") %>'/></td>
-   <%--                     <td><asp:HyperLink ID="linkEdit" runat="server" Text="Edit District" NavigateUrl='<%#"EditDistrict.aspx?id=" + Eval("Id") %>' /></td>--%>
-                         <td><asp:HyperLink ID="HyperLink1" runat="server" Text="Edit District" NavigateUrl='<%#"EditDistrict.aspx?Name=" + Eval("Name") %>' /></td>
-                    </tr>
-                </ItemTemplate>
-            </asp:ListView>
+                    </tbody>
+                </table>
+            </LayoutTemplate>
+            <ItemTemplate>
+                <tr>
+                    <td></td>
+                    <td><asp:Label ID="lblName" runat="server" Text='<%#Eval("Name") %>'/></td>
+                    <td><asp:HyperLink ID="linkView" runat="server" Text="Edit" NavigateUrl='<%#"EditDistrict.aspx?id=" + Eval("Id") %>' /></td>
+                </tr>
+            </ItemTemplate>
+        </asp:ListView>
         </div>
     </div>
 </asp:Content>
