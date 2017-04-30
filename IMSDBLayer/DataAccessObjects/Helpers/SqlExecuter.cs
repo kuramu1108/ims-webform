@@ -112,7 +112,7 @@ namespace IMSDBLayer.DataAccessObjects.Helpers
                 }
                 else
                 {
-                    switch (property.PropertyType.Name)
+                    switch (propertyTypeName)
                     {
                         case "Guid": property.SetValue(result, reader.GetGuid(i)); break;
                         case "String": property.SetValue(result, reader.GetString(i), null); break;

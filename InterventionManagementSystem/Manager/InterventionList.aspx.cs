@@ -25,11 +25,8 @@ namespace InterventionManagementSystem.Manager
 
             if (!IsPostBack)
             {
-                Array states = Enum.GetValues(typeof(InterventionState));
-                foreach (var state in states)
-                {
-                    SeletedInterventionState.Items.Add(new ListItem(state.ToString(), ((int)state).ToString()));
-                }
+                SeletedInterventionState.Items.Add(new ListItem(InterventionState.Proposed.ToString(), ((int)InterventionState.Proposed).ToString()));
+                SeletedInterventionState.Items.Add(new ListItem(InterventionState.Approved.ToString(), ((int)InterventionState.Approved).ToString()));
                 SeletedInterventionState.SelectedIndex = (int)InterventionState.Proposed;
                 
                 interventionsList = managerService.getInterventionsByState(InterventionState.Proposed);
@@ -51,15 +48,33 @@ namespace InterventionManagementSystem.Manager
         protected void SeletedInterventionState_SelectedIndexChanged(object sender, EventArgs e)
         {
             var state = (InterventionState)SeletedInterventionState.SelectedIndex;
-            interventionsList = managerService.getInterventionsByState(state);
+            if(state == InterventionState.Proposed)
+                interventionsList = managerService.getInterventionsByState(state);
+            if (state == InterventionState.Approved)
+                interventionsList = managerService.getApprovedInterventions();
+
             InterventionListView.DataSource = interventionsList;
             InterventionListView.DataBind();
         }
 
-        protected void ButtonView_Click(object sender, EventArgs e)
+        protected void btnApprove_Click(object sender, EventArgs e)
         {
             Button button = (Button)sender;
-            button.CommandArgument = "";
+            managerService.approveAnIntervention(new Guid(button.CommandArgument));
+            SeletedInterventionState_SelectedIndexChanged(sender, e);
+        }
+
+        public bool canApprove(object interventionId)
+        {
+            var intervention = managerService.getInterventionById((Guid)interventionId);
+            return intervention.InterventionState == InterventionState.Proposed &&
+                intervention.Costs <= managerDetail.AuthorisedCosts &&
+                intervention.Hours <= managerDetail.AuthorisedHours;
+        }
+
+        public User getDetail()
+        {
+            return managerDetail;
         }
     }
 }

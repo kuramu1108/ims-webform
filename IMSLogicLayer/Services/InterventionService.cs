@@ -9,7 +9,7 @@ using IMSLogicLayer.Models;
 
 namespace IMSLogicLayer.Services
 {
-    internal class InterventionService : BaseService, IInterventionService
+    public class InterventionService : BaseService, IInterventionService
     {
         public InterventionService(string connstring) : base(connstring)
         {
