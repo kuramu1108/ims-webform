@@ -60,8 +60,9 @@ namespace IMSLogicLayer.Services
         
         public IEnumerable<Intervention> getInterventionsByClient(Guid clientId)
         {
-          
-            return Interventions.fetchInterventionsByClientId(clientId).Select(c => new Intervention(c)).ToList();
+            var interventions = Interventions.fetchInterventionsByClientId(clientId).Select(c => new Intervention(c)).ToList();
+            interventions.RemoveAll(i => i.InterventionState == InterventionState.Cancelled);
+            return interventions;
         }
         
         public Client getClientById(Guid clientId)
@@ -90,7 +91,7 @@ namespace IMSLogicLayer.Services
         public IEnumerable<Intervention> getInterventionListByUserId(Guid userId) {
             var interventionList = new List<Intervention>();
             interventionList.AddRange(Interventions.fetchInterventionsByCreator(userId).Select(c => new Intervention(c)).ToList());
-            interventionList.AddRange(interventionService.getInterventionsByApprovedUser(userId).Select(c => new Intervention(c)).ToList());
+            interventionList.RemoveAll(i => i.InterventionState == InterventionState.Cancelled);
             return interventionList;
         }
 
@@ -174,7 +175,10 @@ namespace IMSLogicLayer.Services
 
         public IEnumerable<Intervention> getInterventionListByCreator(Guid userId)
         {
-            return Interventions.fetchInterventionsByCreator(userId).Select(c => new Intervention(c)).ToList();
+            var interventions = Interventions.fetchInterventionsByCreator(userId).Select(c => new Intervention(c)).ToList();
+
+            interventions.RemoveAll(i => i.InterventionState == InterventionState.Cancelled);
+            return interventions;
         }
 
         public User getUserById(Guid userId)

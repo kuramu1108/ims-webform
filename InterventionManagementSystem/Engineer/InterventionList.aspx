@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="InterventionList.aspx.cs" Inherits="InterventionManagementSystem.Engineer.InterventionList" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <h3>Intervention List</h3>
+    <h3>Intervention List -<%=getDetail().District.Name %></h3>
 
     <div class="main-body-content">
 

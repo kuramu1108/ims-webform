@@ -41,6 +41,8 @@ namespace InterventionManagementSystem
                     //get a list of interventions for the client
                     List<Intervention> clientIntervention = engineerService.getInterventionsByClient(clientId).ToList();
 
+                  
+
                     //Data bind UI with intervention details
                     foreach (var intervention in clientIntervention)
                     {
