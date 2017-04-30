@@ -22,26 +22,6 @@ namespace InterventionManagementSystem.Tests
         }
 
         [TestMethod]
-        public void IMSLogicAccountant_ChangePassword_Success()
-        {
-            //Assert.IsTrue(accountant.changePassword(accountant.Password, Support.convertToSS(NEWPWD)));
-        }
-
-        [TestMethod]
-        public void IMSLogicAccountant_ChangePassword_SamePassword_Fail()
-        {
-            //Assert.IsFalse(accountant.changePassword(Support.convertToSS(OLDPWD + "1"), Support.convertToSS(NEWPWD)));
-
-        }
-
-        [TestMethod]
-        public void IMSLogicAccountant_ChangePassword_PasswordChanged()
-        {
-            //accountant.changePassword(Support.convertToSS(OLDPWD), Support.convertToSS(NEWPWD));
-            //Assert.AreEqual(accountant.Password, Support.convertToSS(NEWPWD));
-        }
-
-        [TestMethod]
         public void IMSLogicAccountant_GenerateReport_Success()
         {
 
