@@ -75,7 +75,16 @@ namespace IMSLogicLayer.Services
         }
         
         public Intervention createIntervention(Intervention intervention) {
-            return new Intervention(Interventions.create(intervention));
+            var newIntervention = new Intervention(Interventions.create(intervention));
+            if (approveAnIntervention(newIntervention.Id))
+            {
+                return newIntervention;
+            }else
+            {
+                return intervention;
+            }
+            
+            
         }
         
         public IEnumerable<Intervention> getInterventionListByUserId(Guid userId) {

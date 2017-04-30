@@ -15,7 +15,11 @@ namespace InterventionManagementSystem
         {
 
         }
-
+        /// <summary>
+        /// Redirect to specific page
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void CreateClientButton_Click(Object sender, EventArgs e)
         {
             Response.Redirect("~/Engineer/NewClient.aspx");

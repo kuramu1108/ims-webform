@@ -21,9 +21,9 @@ namespace IMSDBLayer.DataAccessObjects
 
         public User createUser(User user)
         {
-            SqlCommand command = new SqlCommand(@"INSERT INTO Users (Name, Type, MaxHoursCanApprove, 
-                MaxCostsCanApprove, IdentityId, DistrictId) " + "VALUES(@name, @type, " +
-                "@maxHoursCanApprove, @maxCostsCanApprove, @identityId, @districtId)");
+            SqlCommand command = new SqlCommand(@"INSERT INTO Users (Name, Type, AuthorisedHours, 
+                AuthorisedCosts, IdentityId, DistrictId) " + "VALUES(@name, @type, " +
+                "@AuthorisedHours, @AuthorisedCosts, @identityId, @districtId)");
             
             user.Id = (Guid)sqlExecuter.ExecuteScalar(command, user);
             if (user.Id != Guid.Empty)
@@ -34,7 +34,7 @@ namespace IMSDBLayer.DataAccessObjects
         public bool updateUser(User user)
         {
             SqlCommand command = new SqlCommand(@"UPDATE Users Set Name = @Name, Type = @Type,
-                MaxHoursCanApprove = @MaxHoursCanApprove, MaxCostsCanApprove = @MaxCostsCanApprove,
+                AuthorisedHours = @AuthorisedHours, AuthorisedCosts = @AuthorisedCosts,
                 IdentityId = @IdentityId, DistrictId = @DistrictId WHERE Id = @Id");
 
             return sqlExecuter.ExecuteNonQuery(command, user) > 0;

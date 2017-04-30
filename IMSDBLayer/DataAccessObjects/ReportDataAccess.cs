@@ -41,10 +41,11 @@ namespace IMSDBLayer.DataAccessObjects
 
         public IEnumerable<ReportRow> monthlyCostForDistrict(Guid districtId)
         {
-            SqlCommand command = new SqlCommand(@"Select Interventions.DateFinish, sum(Interventions.Costs), sum(Interventions.Hours) " +
-                @"From ((Clients inner join Districts on  Clients.DistrictId = @districtId) " +
+            SqlCommand command = new SqlCommand(@"Select  Distinct convert(varchar(7), Interventions.DateFinish, 120), sum(Interventions.Costs), sum(Interventions.Hours) " +
+                @"From (Clients "+
+               
                 @"Inner join  Interventions On Interventions.ClientId = Clients.Id )" +
-                @"Where Interventions.State= '2' group by Interventions.DateFinish ");
+                @"Where Interventions.State= '2' And  Clients.DistrictId = @districtId group by Interventions.DateFinish ");
             command.Parameters.AddWithValue("@districtId", districtId);
             return sqlExecuter.ExecuteReader(command);
         }

@@ -22,13 +22,20 @@ namespace InterventionManagementSystem.Engineer
         {
             try
             {
+                engineerService = new EngineerService(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString, User.Identity.GetUserId());
+
                 if (!IsPostBack)
                 {
+                    //if the query string is not null process, else go to the homepage
                     if (!String.IsNullOrEmpty(Request.QueryString["Id"]))
                     {
-                        engineerService = new EngineerService(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString, User.Identity.GetUserId());
+                        //instantiate a new instance of engineer service
+                      
+                        //instantiate a new instance of engineer service
                         intervention = engineerService.getInterventionById(new Guid(Request.QueryString["Id"]));
 
+
+                        //Data bind UI with intervention details
                         type.Text = engineerService.getInterventionTypes().Find(i => i.Id == intervention.InterventionTypeId).Name;
                         client.Text = engineerService.getClientById(intervention.ClientId).Name;
                         creator.Text = engineerService.getUserById(intervention.CreatedBy).Name;
@@ -53,7 +60,10 @@ namespace InterventionManagementSystem.Engineer
           
             
         }
-
+        /// <summary>
+        /// get a list of intervention state made from enum
+        /// </summary>
+        /// <returns>a list of intervention state</returns>
         public List<InterventionState> getInterventionState()
         {
             List<InterventionState> state = new List<InterventionState>()
@@ -64,17 +74,23 @@ namespace InterventionManagementSystem.Engineer
             };
             return state;
         }
-
+        /// <summary>
+        /// update the state of the intervention using engineer service
+        /// if success redirect to homepage
+        /// else display error message
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Submit_btn_Click(object sender, EventArgs e)
         {
             
             try
             {
-               bool success=  engineerService.updateInterventionState(intervention.Id,(InterventionState)State.SelectedIndex);
+               bool success=  engineerService.updateInterventionState(new Guid(Request.QueryString["Id"]), (InterventionState)State.SelectedIndex);
 
                 if (success)
                 {
-                    Response.Redirect("~/Engineer/Welcome.aspx");
+                    Response.Redirect("~/Engineer/Welcome.aspx",false);
                 }else
                 {
                     errorMessage.Text = "Update Failed, this can be one of the following reasons"+" <br />" +
@@ -84,7 +100,7 @@ namespace InterventionManagementSystem.Engineer
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
                 Response.Redirect("~/Errors/InternalErrors.aspx");
@@ -92,7 +108,11 @@ namespace InterventionManagementSystem.Engineer
             }
           
         }
-
+        /// <summary>
+        /// redirect to home page
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Cancel_btn_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Engineer/Welcome.aspx");

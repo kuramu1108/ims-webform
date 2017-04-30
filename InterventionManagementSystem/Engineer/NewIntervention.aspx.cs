@@ -21,14 +21,21 @@ namespace InterventionManagementSystem
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            //instantiate an engineer service instance
             engineerService = new EngineerService(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString, User.Identity.GetUserId());
+          
+
         }
 
         protected void Cancel_Click(object sender, EventArgs e)
         {
 
         }
-
+        /// <summary>
+        /// If the fields are valid call engineer service to create a new Intervention in the database
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Submit_Click(object sender, EventArgs e)
         {
             try
@@ -47,12 +54,10 @@ namespace InterventionManagementSystem
                     var clientID = SelectClient.SelectedValue;
                     InterventionState state = InterventionState.Proposed;
 
-
-
-
-
                     Intervention intervention = new Intervention(hour, cost, 100, comments, state, createDate, finishDate, recentVisit, new Guid(typeID), new Guid(clientID), engineerService.getDetail().Id, null);
                     engineerService.createIntervention(intervention);
+
+                    Response.Redirect("~/Engineer/InterventionList.aspx",false);
                 }
             }
             catch (Exception)
@@ -62,17 +67,28 @@ namespace InterventionManagementSystem
             }
           
         }
-
+        /// <summary>
+        /// Call engineer service to return all the intervention types
+        /// </summary>
+        /// <returns>A list of Intervention Type</returns>
         public List<InterventionType> getInterventionTypes()
         {
             return engineerService.getInterventionTypes();
         }
-
+        /// <summary>
+        /// Call engineer service to return all clients belong to the same district
+        /// </summary>
+        /// <returns>A list of clients</returns>
         public List<Client> getClients()
         {
             return engineerService.getClients().ToList();
         }
-
+        /// <summary>
+        /// When the intervention type dropdown is selected with different value, 
+        /// the hour and cost is set to default value of that type
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void SeletedInterventionType_SelectedIndexChanged(object sender, EventArgs e)
         {
             var interventionTypes = engineerService.getInterventionTypes();

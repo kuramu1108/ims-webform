@@ -13,29 +13,49 @@ namespace IMSLogicLayer.Services
     {
         private Guid managerIdentityId;
         private IInterventionService interventionService;
-
+        /// <summary>
+        /// get and set property manager identity id
+        /// </summary>
         public Guid ManagerId { get => managerIdentityId; set => managerIdentityId = value; }
 
         public ManagerService(string connstring) : base(connstring)
         {
             interventionService = new InterventionService(connstring);
         }
-
+        /// <summary>
+        /// Manager constructor
+        /// </summary>
+        /// <param name="connstring">connection string for data base</param>
+        /// <param name="identityId">identityId of the manager</param>
         public ManagerService(string connstring, string identityId) : base(connstring)
         {
             managerIdentityId = new Guid(identityId);
+            //instantiate a new instance of intervention service
             interventionService = new InterventionService(connstring);
         }
-
+        /// <summary>
+        /// return the current manager using  the base service user data access
+        /// return the object in logic layer model
+        /// </summary>
+        /// <returns>the current manager instance</returns>
         public User getDetail()
         {
             return new User(Users.fetchUserByIdentityId(managerIdentityId));
         }
-
+        /// <summary>
+        /// get a list of intervention from database which their state is the same as the parameter
+        /// using the base service intervention data access
+        /// return the object in logic lay model
+        /// </summary>
+        /// <param name="state">the state of the intervention</param>
+        /// <returns>A list of intervention of specific state</returns>
         public IEnumerable<Intervention> getInterventionsByState(InterventionState state)
         {
+            //get a list of interventions from database using base service intervention data access
             var interventions = Interventions.fetchInterventionsByState((int)state).Select(c => new Intervention(c)).ToList();
 
+
+            //prepare details for the UI layer to display
             foreach (var intervention in interventions)
             {
                 intervention.InterventionType = new InterventionType(InterventionTypes.fetchInterventionTypesById(intervention.InterventionTypeId));

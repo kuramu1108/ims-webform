@@ -14,6 +14,7 @@ namespace InterventionManagementSystem.Accountant
         {
             try
             {
+                //get a list report type and databind to UI
                 var reportType = getReportType();
                 ReportListView.DataSource = reportType;
                 ReportListView.DataBind();
@@ -25,7 +26,10 @@ namespace InterventionManagementSystem.Accountant
             }
            
         }
-
+        /// <summary>
+        /// get a list of report type make from enum
+        /// </summary>
+        /// <returns>list of report type in string</returns>
         public List<string> getReportType()
         {
             return Enum.GetNames(typeof(ReportType)).ToList();

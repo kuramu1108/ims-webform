@@ -17,12 +17,16 @@ namespace InterventionManagementSystem.Accountant
         {
             try
             {
+                //instantiate a new instance of accountant service
                 accountantService = new AccountantService(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString, User.Identity.GetUserId());
 
-
+                //get a list of engineers using accountant service
+                //data bind the engineers details with ui
                 EngineerListView.DataSource = accountantService.getAllSiteEngineer();
                 EngineerListView.DataBind();
 
+                //get a list of manager using accountant service
+                //data bind the manager details with ui
                 ManagerListView.DataSource = accountantService.getAllManger();
                 ManagerListView.DataBind();
             }
