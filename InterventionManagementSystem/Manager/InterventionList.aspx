@@ -36,9 +36,8 @@
                         <td>
                             <asp:Label ID="State" runat="server" Text='<%#Eval("InterventionState") %>' /></td>
                         <td>
-                            <asp:Button ID="btnView" Text="View" OnClick="btnView_Click" CommandArgument='<%#Eval("Id")%>' CssClass="btn btn-default btn-listview"  runat="server"/>
+                            <asp:Button ID="btnView" Text="View" OnClick="btnView_Click" CommandArgument='<%#Eval("Id")%>' Visible='<%#canApprove(Eval("Id"))%>' CssClass="btn btn-default btn-listview"  runat="server"/>
                             <asp:Button ID="btnApprove" Text="Approve" OnClick="btnApprove_Click" CommandArgument='<%#Eval("Id")%>' CssClass="btn btn-success btn-listview" runat="server"/>
-                            <asp:Button ID="btnCancel" Text="Cancel" OnClick="btnCancel_Click" CommandArgument='<%#Eval("Id")%>' CssClass="btn btn-danger btn-listview" runat="server"/>
                         </td>
                     </tr>
                 </ItemTemplate>
