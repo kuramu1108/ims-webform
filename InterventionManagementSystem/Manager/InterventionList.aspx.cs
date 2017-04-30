@@ -56,10 +56,15 @@ namespace InterventionManagementSystem.Manager
             InterventionListView.DataBind();
         }
 
-        protected void ButtonView_Click(object sender, EventArgs e)
+        protected void btnView_Click(object sender, EventArgs e)
         {
             Button button = (Button)sender;
             button.CommandArgument = "";
+        }
+
+        protected void btnApprove_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

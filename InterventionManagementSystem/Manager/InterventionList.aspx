@@ -36,9 +36,9 @@
                         <td>
                             <asp:Label ID="State" runat="server" Text='<%#Eval("InterventionState") %>' /></td>
                         <td>
-                            <asp:Button ID="btnView" Text="View" OnClick="ButtonView_Click" runat="server" CommandArgument='<%#Eval("Id")%>' CssClass="btn btn-default" style="width:68px; height:28px; text-align:center; font-size:11px;" />
-                            <asp:HyperLink CssClass="btn btn-success" style="width:68px; height:28px; text-align:left; font-size:11px;" ID="linkApprove" runat="server" Text="Approve" NavigateUrl='<%#"ClientDetails.aspx?id=" + Eval("Id") %>' />
-                            <asp:HyperLink CssClass="btn btn-danger" style="width:68px; height:28px; text-align:center; font-size:11px;" ID="linkCancel" runat="server" Text="Cancel" NavigateUrl='<%#"ClientDetails.aspx?id=" + Eval("Id") %>' />
+                            <asp:Button ID="btnView" Text="View" OnClick="btnView_Click" CommandArgument='<%#Eval("Id")%>' CssClass="btn btn-default btn-listview"  runat="server"/>
+                            <asp:Button ID="btnApprove" Text="Approve" OnClick="btnApprove_Click" CommandArgument='<%#Eval("Id")%>' CssClass="btn btn-success btn-listview" runat="server"/>
+                            <asp:Button ID="btnCancel" Text="Cancel" OnClick="btnCancel_Click" CommandArgument='<%#Eval("Id")%>' CssClass="btn btn-danger btn-listview" runat="server"/>
                         </td>
                     </tr>
                 </ItemTemplate>
