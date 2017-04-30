@@ -20,20 +20,28 @@ namespace InterventionManagementSystem
         {
             try
             {
+                //if the query string is not null process, else go to the homepage
                 if (!string.IsNullOrEmpty(Request.QueryString["Id"]))
                 {
-                    IEngineerService engineerService = new EngineerService(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
-                    string userId = User.Identity.GetUserId<string>();
-                    engineerService.EngineerIdentityId = new Guid(userId);
+                    //Instantiate a new instance of engineer service
+                    IEngineerService engineerService = new EngineerService(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString, User.Identity.GetUserId());
+                    //Instantiate a new instance of district service
                     IDistrictService districtService = new DistrictService(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
 
                     Guid clientId = new Guid(Request.QueryString["Id"]);
+                    //get client form engineer service
                     Client client = engineerService.getClientById(clientId);
+
+                    //Data bind UI with client details
                     lblName.Text = client.Name;
 
                     lblDistrict.Text = districtService.GetDistrictById(client.DistrictId).Name;
                     lblLocation.Text = client.Location;
+
+                    //get a list of interventions for the client
                     List<Intervention> clientIntervention = engineerService.getInterventionsByClient(clientId).ToList();
+
+                    //Data bind UI with intervention details
                     foreach (var intervention in clientIntervention)
                     {
                         intervention.InterventionType = engineerService.getInterventionTypes().Find(it => it.Id == intervention.InterventionTypeId);

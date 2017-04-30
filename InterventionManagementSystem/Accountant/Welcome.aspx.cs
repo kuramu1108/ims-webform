@@ -13,12 +13,20 @@ namespace InterventionManagementSystem.Accountant
         {
 
         }
-
+        /// <summary>
+        /// redirect to account list page
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void ViewAccountList_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Accountant/AccountList.aspx");
         }
-
+        /// <summary>
+        /// redirect to report list page
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void ViewReportList_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Accountant/ReportList.aspx");

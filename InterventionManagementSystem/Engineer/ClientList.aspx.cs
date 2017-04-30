@@ -19,6 +19,8 @@ namespace InterventionManagementSystem.Engineer
         {
             try
             {
+                //instantiate a new instance of engineer service
+                //get all clients from engineer service and data bind them to UI
                 engineerService = new EngineerService(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString, User.Identity.GetUserId());
                 if (!IsPostBack)
                 {
@@ -35,7 +37,10 @@ namespace InterventionManagementSystem.Engineer
            
             
         }
-
+        /// <summary>
+        /// get the current user
+        /// </summary>
+        /// <returns>The current engineer</returns>
         protected User getDetail()
         {
             return engineerService.getDetail();

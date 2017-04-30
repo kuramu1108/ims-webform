@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="InterventionList.aspx.cs" Inherits="InterventionManagementSystem.Manager.InterventionList" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <h3>Interventions List</h3>
+    <h3>Interventions List - <%=getDetail().District.Name%></h3>
     <hr />
     <div class="main-body-content">
         <table id="table-clients" class="table table-striped table-bordered table-hover table-responsive" style="background-color: white">
@@ -36,14 +36,52 @@
                         <td>
                             <asp:Label ID="State" runat="server" Text='<%#Eval("InterventionState") %>' /></td>
                         <td>
-                            <asp:Button ID="btnView" Text="View" OnClick="ButtonView_Click" runat="server" CommandArgument='<%#Eval("Id")%>' CssClass="btn btn-default" style="width:68px; height:28px; text-align:center; font-size:11px;" />
-                            <asp:HyperLink CssClass="btn btn-success" style="width:68px; height:28px; text-align:left; font-size:11px;" ID="linkApprove" runat="server" Text="Approve" NavigateUrl='<%#"ClientDetails.aspx?id=" + Eval("Id") %>' />
-                            <asp:HyperLink CssClass="btn btn-danger" style="width:68px; height:28px; text-align:center; font-size:11px;" ID="linkCancel" runat="server" Text="Cancel" NavigateUrl='<%#"ClientDetails.aspx?id=" + Eval("Id") %>' />
+                            <div class="modal fade" id="view-<%#Eval("Id")%>" role="dialog"><div class="modal-dialog"><div class="modal-content">
+                                    <div class="modal-header">
+                                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                      <h4 class="modal-title"><%#Eval("InterventionType.Name") %></h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class ="row">
+                                            <div class="col-md-4">Client: </div>
+                                            <div class="col-md-8"><%#Eval("Client.Name") %></div>
+                                        </div>
+                                        <div class ="row">
+                                            <div class="col-md-4">District</div>
+                                            <div class="col-md-8"><%#Eval("District.Name") %></div>
+                                        </div>
+                                        <hr />
+                                        <div class ="row">
+                                            <div class="col-md-4">Costs</div>
+                                            <div class="col-md-8"><%#Eval("Costs") %></div>
+                                        </div>
+                                        <div class ="row">
+                                            <div class="col-md-4">Hours</div>
+                                            <div class="col-md-8"><%#Eval("Hours") %></div>
+                                        </div>
+                                        <div class ="row">
+                                            <div class="col-md-4">Perform Date</div>
+                                            <div class="col-md-8"><%#Eval("DateFinish") %></div>
+                                        </div>
+                                        <hr />
+                                        <div class ="row">
+                                            <div class="col-md-4">State: </div>
+                                            <div class="col-md-8"><%#Eval("InterventionState") %></div>
+                                        </div>
+                                        <div class ="row">
+                                            <div class="col-md-4">Comments: </div>
+                                            <div class="col-md-8"><%#Eval("Comments") %></div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    </div>
+                            </div></div></div>
+                            <a class="btn btn-default btn-listview" data-toggle="modal" data-target="#view-<%#Eval("Id")%>">View</a>
+                            <asp:Button ID="btnApprove" Text="Approve" OnClick="btnApprove_Click" CommandArgument='<%#Eval("Id")%>' Visible='<%#canApprove(Eval("Id"))%>'  CssClass="btn btn-success btn-listview" runat="server"/>
                         </td>
                     </tr>
                 </ItemTemplate>
             </asp:ListView>
-
         </table>
-    </div>
 </asp:Content>

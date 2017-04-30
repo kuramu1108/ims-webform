@@ -15,6 +15,7 @@ namespace InterventionManagementSystem
         private IEngineerService engineerService;
         protected void Page_Load(object sender, EventArgs e)
         {
+            //instantiate a new engineer service instance
             engineerService = new EngineerService(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString, User.Identity.GetUserId());
             if (!IsPostBack)
             {
@@ -25,7 +26,13 @@ namespace InterventionManagementSystem
 
             }
         }
-
+        /// <summary>
+        /// if all fields are correct call engineer service to create a new client in the database
+        /// if the return client is null means the operation failed
+        /// return is not null client is created, redirect to clientlist page
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Submit_btn_Click(object sender, EventArgs e)
         {
             try
@@ -49,12 +56,19 @@ namespace InterventionManagementSystem
             }
          
         }
-
+        /// <summary>
+        /// redirect to engineer homepage
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Cancel_btn_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Engineer/Welcome.aspx");
         }
-
+        /// <summary>
+        /// function to get the current engineer 
+        /// </summary>
+        /// <returns>The current engineer</returns>
         protected User getDetail()
         {
             return engineerService.getDetail();

@@ -48,6 +48,8 @@
                    
                         
                     </asp:DropDownList>
+
+                      <asp:Label ID="errorMessage" runat="server" CssClass="label" ForeColor="Red"></asp:Label>
                 </div>
 
 

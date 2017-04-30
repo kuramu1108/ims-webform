@@ -18,14 +18,17 @@ namespace IMSLogicLayer.ServiceInterfaces
         //use to get a list of intervention where state is proposed
         IEnumerable<Intervention> getInterventionsByState(InterventionState state);
 
+        IEnumerable<Intervention> getApprovedInterventions();
+        
+
         //use to get an intervention so the user can approve
         Intervention getInterventionById(Guid interventionId);
-
+        
         //approve an intervention
-        Boolean approveAnIntervention(Guid interventionId);
-
-
+        bool approveAnIntervention(Guid interventionId);
+        
         bool updateInterventionState(Guid interventionId, InterventionState state);
+
         bool updateInterventionApproveBy(Guid interventionId, Guid userId);
 
     }

@@ -19,18 +19,23 @@ namespace InterventionManagementSystem
         private Guid interventionId;
         protected void Page_Load(object sender, EventArgs e)
         {
+            //Instantiate a new instance of engineer service
             engineerService = new EngineerService(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString, User.Identity.GetUserId());
 
 
             if (!IsPostBack)
             {
-                 if (!string.IsNullOrEmpty(Request.QueryString["Id"]))
+                //if the query string is not null process, else go to the homepage
+                if (!string.IsNullOrEmpty(Request.QueryString["Id"]))
                 {
-
+                    
                     interventionId = new Guid(Request.QueryString["Id"]);
                     try
                     {
+                        //get intervention from engineer service by using the query string
                         Intervention intervention = engineerService.getInterventionById(interventionId);
+
+                        //Data bind the UI with intervention quality information
                         txtInterventionType.Text = engineerService.getInterventionTypes().Find(i => i.Id == intervention.InterventionTypeId).Name;
                         ClientName.Text = engineerService.getClients().First(c => c.Id == intervention.ClientId).Name;
                         InterventionComments.Text = intervention.Comments;
@@ -53,19 +58,25 @@ namespace InterventionManagementSystem
           
 
         }
-
+        /// <summary>
+        /// update the quality information of an intervention by using engieer service
+        /// if update success redirect to intervention detail page
+        /// else redirect to error page
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnSave_Click(object sender, EventArgs e)
         {
 
             try
             {
+                //parse date format to dd/mm/yyyy
                 DateTime date = DateTime.Parse(InterventionVisitDate.Text, new CultureInfo("de-DE"));
                 Guid interventionId = new Guid(Request.QueryString["Id"]);
               
                 bool updateDetails = engineerService.updateInterventionDetail(interventionId, InterventionComments.Text, Int32.Parse(LifeRemaining.Text), date);
 
-               // bool updateLastVisit = engineerService.updateInterventionLastVisitDate(interventionId, DateTime.Parse(InterventionVisitDate.Text));
-
+                //if update success redirect to intervention detail page
                 if (updateDetails==true)
                 {
                     Response.Redirect("~/Engineer/InterventionDetail.aspx");
@@ -79,7 +90,11 @@ namespace InterventionManagementSystem
             
             
         }
-
+        /// <summary>
+        /// Redirect back to the intervention detail page
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnCancel_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Engineer/InterventionDetail.aspx");

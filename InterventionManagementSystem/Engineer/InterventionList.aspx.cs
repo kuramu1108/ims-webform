@@ -18,9 +18,11 @@ namespace InterventionManagementSystem.Engineer
         {
             try
             {
+                //instantiate a new instance of engineer service
                 engineerService = new EngineerService(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString, User.Identity.GetUserId());
                 if (!IsPostBack)
                 {
+                    //call engineer service to get a list of interventions created by this engineer and then bind them to UIs
                     List<Intervention> interventions = engineerService.getInterventionListByCreator(getDetail().Id).ToList();
                     foreach (var intervention in interventions)
                     {
@@ -39,7 +41,10 @@ namespace InterventionManagementSystem.Engineer
             }
             
         }
-
+        /// <summary>
+        /// Function to get the detail of the current user
+        /// </summary>
+        /// <returns>The current engineer</returns>
         protected User getDetail()
         {
             return engineerService.getDetail();
