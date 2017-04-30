@@ -163,6 +163,45 @@ namespace InterventionManagementSystem.Tests
             Assert.IsFalse(result);
         }
 
+        [TestMethod]
+        public void IMSLogicManager_UpdateInterventionState_Success()
+        {
+            Mock<IInterventionDataAccess> interventions = new Mock<IInterventionDataAccess>();
+            IMSDBLayer.DataModels.Intervention intervention = new IMSDBLayer.DataModels.Intervention();
+
+            interventions.Setup(i => i.fetchInterventionsById(It.IsAny<Guid>())).Returns(intervention);
+
+            Guid clientDistrict = new Guid();
+            Mock<IDistrictDataAccess> districts = new Mock<IDistrictDataAccess>();
+            District district = new District("Sydney")
+            {
+                Id = clientDistrict
+            };
+            districts.Setup(d => d.fetchDistrictById(It.IsAny<Guid>())).Returns(district);
+
+            Mock<IUserDataAccess> users = new Mock<IUserDataAccess>();
+            User user = new User("AccountantX", 1, 0, 200, "", clientDistrict);
+            users.Setup(u => u.fetchUserByIdentityId(It.IsAny<Guid>())).Returns(user);
+        }
+
+        [TestMethod]
+        public void IMSLogicManager_UpdateInterventionState_Failed_DifferentDistricts()
+        {
+
+        }
+
+        [TestMethod]
+        public void IMSLogicManager_UpdateInterventionApprovedBy_Success()
+        {
+
+        }
+
+        [TestMethod]
+        public void IMSLogicManager_UpdateInterventionApprovedBy_Failed_DifferentDistricts()
+        {
+
+        }
+
         private Guid IMSLogicManager_ApproveInterventionTests_Setup()
         {
             Mock<IInterventionDataAccess> interventions = new Mock<IInterventionDataAccess>();

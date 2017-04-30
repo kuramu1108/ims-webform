@@ -117,7 +117,7 @@ namespace InterventionManagementSystem.Tests
 
             //bool result = interventionService.updateInterventionDetail(intervention.Id, comment, lifeRemaining);
 
-            //Assert.IsTrue(result);
+            Assert.IsTrue(false);
         }
 
         [TestMethod]
