@@ -115,7 +115,7 @@ namespace InterventionManagementSystem.Tests
             interventions.Setup(i => i.update(It.IsAny<Intervention>())).Returns(true);
             interventionService.Interventions = interventions.Object;
 
-            //bool result = interventionService.updateInterventionDetail(intervention.Id, comment, lifeRemaining);
+            bool result = interventionService.updateInterventionDetail(intervention.Id, comment, lifeRemaining, new DateTime());
 
             Assert.IsTrue(false);
         }
