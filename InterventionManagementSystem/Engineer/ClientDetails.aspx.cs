@@ -18,47 +18,44 @@ namespace InterventionManagementSystem
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
-
-            if (!string.IsNullOrEmpty(Request.QueryString["Id"]))
+            try
             {
-                IEngineerService engineerService = new EngineerService(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
-                string userId = User.Identity.GetUserId<string>();
-                engineerService.EngineerIdentityId = new Guid(userId);
-                IDistrictService districtService = new DistrictService(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
-
-                Guid clientId = new Guid(Request.QueryString["Id"]);
-                Client client = engineerService.getClientById(clientId);
-                lblName.Text = client.Name;
-
-                lblDistrict.Text = districtService.GetDistrictById(client.DistrictId).Name;
-                lblLocation.Text = client.Location;
-                List<Intervention> clientIntervention = engineerService.getInterventionsByClient(clientId).ToList();
-                foreach (var intervention in clientIntervention)
+                if (!string.IsNullOrEmpty(Request.QueryString["Id"]))
                 {
-                    intervention.InterventionType = engineerService.getInterventionTypes().Find(it => it.Id == intervention.InterventionTypeId);
+                    IEngineerService engineerService = new EngineerService(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+                    string userId = User.Identity.GetUserId<string>();
+                    engineerService.EngineerIdentityId = new Guid(userId);
+                    IDistrictService districtService = new DistrictService(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+
+                    Guid clientId = new Guid(Request.QueryString["Id"]);
+                    Client client = engineerService.getClientById(clientId);
+                    lblName.Text = client.Name;
+
+                    lblDistrict.Text = districtService.GetDistrictById(client.DistrictId).Name;
+                    lblLocation.Text = client.Location;
+                    List<Intervention> clientIntervention = engineerService.getInterventionsByClient(clientId).ToList();
+                    foreach (var intervention in clientIntervention)
+                    {
+                        intervention.InterventionType = engineerService.getInterventionTypes().Find(it => it.Id == intervention.InterventionTypeId);
+                    }
+
+                    InterventionList.DataSource = clientIntervention;
+                    InterventionList.DataBind();
+
                 }
-
-                InterventionList.DataSource = clientIntervention;
-                InterventionList.DataBind();
-
+                else
+                {
+                    Response.Redirect("~/Engineer/Welcome.aspx");
+                }
             }
-            else
+            catch (Exception)
             {
-                Response.Redirect("~/Engineer/Welcome.aspx");
+
+                Response.Redirect("~/Errors/InternalErrors.aspx");
             }
 
-
-
-
-
-
-
-
-
-
-
-
+          
+            
         }
 
 

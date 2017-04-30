@@ -12,9 +12,13 @@ namespace IMSLogicLayer.Services
     public class ManagerService : BaseService, IManagerService
     {
         private Guid managerIdentityId;
+        private Guid managerId;
+
         private IInterventionService interventionService;
 
-        public Guid ManagerId { get => managerIdentityId; set => managerIdentityId = value; }
+        public Guid ManagerId { get => managerId; set => managerId = value; }
+
+        public IInterventionService InterventionService { get => interventionService; set => interventionService = value; }
 
         public ManagerService(string connstring) : base(connstring)
         {
@@ -24,20 +28,23 @@ namespace IMSLogicLayer.Services
         public ManagerService(string connstring, string identityId) : base(connstring)
         {
             managerIdentityId = new Guid(identityId);
+            managerId = Users.fetchUserByIdentityId(managerIdentityId).Id;
+
             interventionService = new InterventionService(connstring);
         }
 
         public User getDetail()
         {
-            return (User)Users.fetchUserByIdentityId(managerIdentityId);
+            return new User(Users.fetchUserByIdentityId(managerIdentityId));
         }
 
-        public IEnumerable<Intervention> getListOfProposedIntervention()
+        public IEnumerable<Intervention> getInterventionsByState(InterventionState state)
         {
-            var interventions = Interventions.fetchInterventionsByState((int)InterventionState.Proposed).Select(c => new Intervention(c)).ToList();
-
+            var interventions = Interventions.fetchInterventionsByState((int)state).Select(c => new Intervention(c)).ToList();
+                
             foreach (var intervention in interventions)
             {
+                intervention.InterventionType = new InterventionType(InterventionTypes.fetchInterventionTypesById(intervention.InterventionTypeId));
                 intervention.Client = new Client(Clients.fetchClientById(intervention.ClientId));
                 intervention.District = new District(Districts.fetchDistrictById(intervention.Client.DistrictId));
                 intervention.InterventionState = InterventionState.Proposed;
@@ -55,7 +62,6 @@ namespace IMSLogicLayer.Services
 
         public Boolean approveAnIntervention(Guid interventionId)
         {
-
             var intervention = getInterventionById(interventionId);
             var interventionType = InterventionTypes.fetchInterventionTypesById(intervention.InterventionTypeId);
             var client = Clients.fetchClientById(intervention.ClientId);
@@ -71,15 +77,15 @@ namespace IMSLogicLayer.Services
             {
                 return false;
             }
-
         }
 
 
         public bool updateInterventionState(Guid interventionId, InterventionState state)
         {
-            Intervention intervention = getInterventionById(interventionId);
-            var districtName = Districts.fetchDistrictById(getDetail().DistrictId);
-            if (intervention.District.Name == districtName.Name)
+            var intervention = getInterventionById(interventionId);
+            var interventionDistrict = Districts.fetchDistrictById(Clients.fetchClientById(intervention.ClientId).DistrictId);
+            var district = Districts.fetchDistrictById(getDetail().DistrictId);
+            if (interventionDistrict.Name == district.Name)
             {
                 return interventionService.updateInterventionState(interventionId, state);
             }
@@ -104,5 +110,21 @@ namespace IMSLogicLayer.Services
             }
         }
 
+        public IEnumerable<Intervention> getApprovedInterventions()
+        {
+            var interventions = Interventions.fetchInterventionsByState((int)InterventionState.Approved).Select(c => new Intervention(c)).ToList();
+            interventions.AddRange(Interventions.fetchInterventionsByState((int)InterventionState.Completed).Select(c => new Intervention(c)).ToList());
+            interventions = interventions.Where(x => x.ApprovedBy == managerId).ToList();
+
+            foreach (var intervention in interventions)
+            {
+                intervention.InterventionType = new InterventionType(InterventionTypes.fetchInterventionTypesById(intervention.InterventionTypeId));
+                intervention.Client = new Client(Clients.fetchClientById(intervention.ClientId));
+                intervention.District = new District(Districts.fetchDistrictById(intervention.Client.DistrictId));
+                intervention.InterventionState = InterventionState.Proposed;
+
+            }
+            return interventions;
+        }
     }
 }

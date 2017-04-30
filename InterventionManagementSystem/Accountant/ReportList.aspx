@@ -1,6 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Report.aspx.cs" Inherits="InterventionManagementSystem.Accountant.Report" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ReportList.aspx.cs" Inherits="InterventionManagementSystem.Accountant.ReportList" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <asp:ListView ID="ReportListView" runat="server">
+    <h3>Report List</h3>
+      <asp:ListView ID="ReportListView" runat="server">
             <LayoutTemplate>
                 <table id="table-clients" class ="table table-striped table-bordered table-hover table-responsive" style ="background-color:white">
                     <thead>
@@ -18,9 +19,8 @@
             <ItemTemplate>
                 <tr>
                     <td></td>
-                    <td><asp:Label ID="lblName" runat="server" Text='<%# Eval("FirstProperty") %>'/></td>
-                    <td><asp:Label ID="lblCost" runat="server" Text='<%# Eval("Costs") %>' /></td>
-                    <td><asp:Label ID="Label1" runat="server" Text='<%# Eval("Hours") %>' /></td>
+                    <td><asp:Label ID="lblName" runat="server" Text='<%# Container.DataItem %>'/></td>
+                    <td><asp:HyperLink ID="linkView" runat="server" Text="Print" NavigateUrl='<%#"Report.aspx?Name=" + Container.DataItem%>' /></td>
 
                               
                 </tr>

@@ -1,4 +1,5 @@
-﻿using IMSLogicLayer.Models;
+﻿using IMSLogicLayer.Enums;
+using IMSLogicLayer.Models;
 using IMSLogicLayer.ServiceInterfaces;
 using IMSLogicLayer.Services;
 using Microsoft.AspNet.Identity;
@@ -15,23 +16,65 @@ namespace InterventionManagementSystem.Manager
     {
         private IManagerService managerService;
         private IEnumerable<Intervention> interventionsList;
+        private User managerDetail;
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            managerService = new ManagerService(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString, User.Identity.GetUserId());
+            managerDetail = managerService.getDetail();
+
             if (!IsPostBack)
             {
-                managerService = new ManagerService(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString, User.Identity.GetUserId());
-                interventionsList = new List<Intervention>();
+                SeletedInterventionState.Items.Add(new ListItem(InterventionState.Proposed.ToString(), ((int)InterventionState.Proposed).ToString()));
+                SeletedInterventionState.Items.Add(new ListItem(InterventionState.Approved.ToString(), ((int)InterventionState.Approved).ToString()));
+                SeletedInterventionState.SelectedIndex = (int)InterventionState.Proposed;
+                
+                interventionsList = managerService.getInterventionsByState(InterventionState.Proposed);
                 InterventionListView.DataSource = interventionsList;
                 InterventionListView.DataBind();
             }
-
-            interventionsList = managerService.getListOfProposedIntervention();
         }
 
         public List<Intervention> getInterventionList()
         {
             return null;
+        }
+
+        public User getManagerDetail()
+        {
+            return managerDetail;
+        }
+
+        protected void SeletedInterventionState_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var state = (InterventionState)SeletedInterventionState.SelectedIndex;
+            if(state == InterventionState.Proposed)
+                interventionsList = managerService.getInterventionsByState(state);
+            if (state == InterventionState.Approved)
+                interventionsList = managerService.getApprovedInterventions();
+
+            InterventionListView.DataSource = interventionsList;
+            InterventionListView.DataBind();
+        }
+
+        protected void btnView_Click(object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+            button.CommandArgument = "";
+        }
+
+        protected void btnApprove_Click(object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+            managerService.approveAnIntervention(new Guid(button.CommandArgument));
+        }
+
+        public bool canApprove(object interventionId)
+        {
+            var intervention = managerService.getInterventionById((Guid)interventionId);
+            return intervention.InterventionState == InterventionState.Proposed &&
+                intervention.Costs <= managerDetail.AuthorisedCosts &&
+                intervention.Hours <= managerDetail.AuthorisedHours;
         }
     }
 }

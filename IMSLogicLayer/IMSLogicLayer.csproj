@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums\InterventionState.cs" />
+    <Compile Include="Enums\ReportType.cs" />
     <Compile Include="Enums\UserType.cs" />
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\District.cs" />
@@ -53,14 +54,12 @@
     <Compile Include="ServiceInterfaces\IDistrictService.cs" />
     <Compile Include="ServiceInterfaces\IEngineerService.cs" />
     <Compile Include="ServiceInterfaces\IInterventionService.cs" />
-    <Compile Include="ServiceInterfaces\IInterventionTypeService.cs" />
     <Compile Include="ServiceInterfaces\IManagerService.cs" />
     <Compile Include="Services\AccountantService.cs" />
     <Compile Include="Services\BaseService.cs" />
     <Compile Include="Services\DistrictService.cs" />
     <Compile Include="Services\EngineerService.cs" />
     <Compile Include="Services\InterventionService.cs" />
-    <Compile Include="Services\InterventionTypeService.cs" />
     <Compile Include="Services\ManagerService.cs" />
     <Compile Include="Setup.cs" />
   </ItemGroup>

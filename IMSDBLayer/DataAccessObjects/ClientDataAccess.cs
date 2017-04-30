@@ -18,11 +18,7 @@ namespace IMSDBLayer.DataAccessObjects
         {
             this.sqlExecuter = sqlExecuter;
         }
-
-        public ClientDataAccess()
-        {
-        }
-
+        
         public Client createClient(Client client)
         {
             SqlCommand command = new SqlCommand(@"INSERT INTO Clients (Name, Location, DistrictId) " 

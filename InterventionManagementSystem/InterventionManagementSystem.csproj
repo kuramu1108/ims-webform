@@ -177,7 +177,9 @@
     <Content Include="About.aspx" />
     <Content Include="Accountant\AccountList.aspx" />
     <Content Include="Accountant\EditDistrict.aspx" />
+    <Content Include="Accountant\MonthlyReport.aspx" />
     <Content Include="Accountant\Report.aspx" />
+    <Content Include="Accountant\ReportList.aspx" />
     <Content Include="Accountant\Welcome.aspx" />
     <Content Include="Account\AddPhoneNumber.aspx" />
     <Content Include="Account\Confirm.aspx" />
@@ -206,6 +208,9 @@
     <Content Include="Engineer\ClientList.aspx" />
     <Content Include="Engineer\EditIntervention.aspx" />
     <Content Include="Engineer\InterventionDetail.aspx" />
+    <Content Include="Engineer\InterventionList.aspx" />
+    <Content Include="Errors\InternalErrors.aspx" />
+    <Content Include="Errors\NotFound.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -215,7 +220,6 @@
     </Content>
     <Content Include="Engineer\NewClient.aspx" />
     <Content Include="Engineer\NewIntervention.aspx" />
-    <Content Include="Engineer\Profile.aspx" />
     <Content Include="Engineer\Welcome.aspx" />
     <Content Include="Manager\InterventionList.aspx" />
     <Content Include="Manager\Welcome.aspx" />
@@ -287,12 +291,26 @@
     <Compile Include="Accountant\EditDistrict.aspx.designer.cs">
       <DependentUpon>EditDistrict.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Accountant\MonthlyReport.aspx.cs">
+      <DependentUpon>MonthlyReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountant\MonthlyReport.aspx.designer.cs">
+      <DependentUpon>MonthlyReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Accountant\Report.aspx.cs">
       <DependentUpon>Report.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Accountant\Report.aspx.designer.cs">
       <DependentUpon>Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accountant\ReportList.aspx.cs">
+      <DependentUpon>ReportList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountant\ReportList.aspx.designer.cs">
+      <DependentUpon>ReportList.aspx</DependentUpon>
     </Compile>
     <Compile Include="Accountant\Welcome.aspx.cs">
       <DependentUpon>Welcome.aspx</DependentUpon>
@@ -466,6 +484,27 @@
     <Compile Include="Engineer\InterventionDetail.aspx.designer.cs">
       <DependentUpon>InterventionDetail.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Engineer\InterventionList.aspx.cs">
+      <DependentUpon>InterventionList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Engineer\InterventionList.aspx.designer.cs">
+      <DependentUpon>InterventionList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Errors\InternalErrors.aspx.cs">
+      <DependentUpon>InternalErrors.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Errors\InternalErrors.aspx.designer.cs">
+      <DependentUpon>InternalErrors.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Errors\NotFound.aspx.cs">
+      <DependentUpon>NotFound.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Errors\NotFound.aspx.designer.cs">
+      <DependentUpon>NotFound.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -497,13 +536,6 @@
     </Compile>
     <Compile Include="Engineer\NewIntervention.aspx.designer.cs">
       <DependentUpon>NewIntervention.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Engineer\Profile.aspx.cs">
-      <DependentUpon>Profile.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Engineer\Profile.aspx.designer.cs">
-      <DependentUpon>Profile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">

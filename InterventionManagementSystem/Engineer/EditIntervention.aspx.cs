@@ -21,24 +21,36 @@ namespace InterventionManagementSystem
         {
             engineerService = new EngineerService(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString, User.Identity.GetUserId());
 
-            if (!string.IsNullOrEmpty(Request.QueryString["Id"]))
+
+            if (!IsPostBack)
             {
-              
-                interventionId =new Guid(Request.QueryString["Id"]);
+                 if (!string.IsNullOrEmpty(Request.QueryString["Id"]))
+                {
 
-                Intervention intervention = engineerService.getInterventionById(interventionId);
+                    interventionId = new Guid(Request.QueryString["Id"]);
+                    try
+                    {
+                        Intervention intervention = engineerService.getInterventionById(interventionId);
+                        txtInterventionType.Text = engineerService.getInterventionTypes().Find(i => i.Id == intervention.InterventionTypeId).Name;
+                        ClientName.Text = engineerService.getClients().First(c => c.Id == intervention.ClientId).Name;
+                        InterventionComments.Text = intervention.Comments;
 
-                txtInterventionType.Text = engineerService.getInterventionTypes().Find(i => i.Id == intervention.InterventionTypeId).Name;
-                ClientName.Text = engineerService.getClients().First(c => c.Id == intervention.ClientId).Name;
-                InterventionComments.Text = intervention.Comments;
-               
-                LifeRemaining.Text =intervention.LifeRemaining.ToString();
-                Thread.CurrentThread.CurrentCulture = new CultureInfo("de-DE");
-                InterventionVisitDate.Text = intervention.DateRecentVisit.ToShortDateString();
+                        LifeRemaining.Text = intervention.LifeRemaining.ToString();
+                        Thread.CurrentThread.CurrentCulture = new CultureInfo("de-DE");
+                        InterventionVisitDate.Text = intervention.DateRecentVisit.ToShortDateString();
+                    }
+                    catch (Exception)
+                    {
 
+                        Response.Redirect("~/Errors/InternalErrors.aspx");
+                    }
 
-
+                }else
+                {
+                    Response.Redirect("~/Engineer/Welcome.aspx");
+                }
             }
+          
 
         }
 
@@ -47,11 +59,14 @@ namespace InterventionManagementSystem
 
             try
             {
-                bool updateDetails = engineerService.updateInterventionDetail(interventionId, InterventionComments.Text, Int32.Parse(LifeRemaining.Text));
+                DateTime date = DateTime.Parse(InterventionVisitDate.Text, new CultureInfo("de-DE"));
+                Guid interventionId = new Guid(Request.QueryString["Id"]);
+              
+                bool updateDetails = engineerService.updateInterventionDetail(interventionId, InterventionComments.Text, Int32.Parse(LifeRemaining.Text), date);
 
-                bool updateLastVisit = engineerService.updateInterventionLastVisitDate(interventionId, DateTime.Parse(InterventionVisitDate.Text));
+               // bool updateLastVisit = engineerService.updateInterventionLastVisitDate(interventionId, DateTime.Parse(InterventionVisitDate.Text));
 
-                if (updateDetails==true && updateLastVisit==true)
+                if (updateDetails==true)
                 {
                     Response.Redirect("~/Engineer/InterventionDetail.aspx");
                 }
@@ -59,7 +74,7 @@ namespace InterventionManagementSystem
             catch (Exception)
             {
 
-                throw;
+                Response.Redirect("~/Errors/InternalErrors.aspx");
             }
             
             

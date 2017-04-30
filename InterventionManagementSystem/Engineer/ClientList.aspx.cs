@@ -17,9 +17,23 @@ namespace InterventionManagementSystem.Engineer
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            engineerService = new EngineerService(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString, User.Identity.GetUserId());
-            ClientListView.DataSource = engineerService.getClients();
-            ClientListView.DataBind();
+            try
+            {
+                engineerService = new EngineerService(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString, User.Identity.GetUserId());
+                if (!IsPostBack)
+                {
+                    ClientListView.DataSource = engineerService.getClients();
+                    ClientListView.DataBind();
+                }
+            }
+            catch (Exception)
+            {
+
+                Response.Redirect("~/Errors/InternalErrors.aspx");
+            }
+
+           
+            
         }
 
         protected User getDetail()

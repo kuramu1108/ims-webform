@@ -27,7 +27,7 @@ namespace IMSLogicLayer.ServiceInterfaces
         IEnumerable<ReportRow> printTotalCostByEngineer();
         IEnumerable<ReportRow> printAverageCostByEngineer();
         IEnumerable<ReportRow> printTotalCostByDistrict();
-        IEnumerable<ReportRow> printMonthlyCostByEngineer(Guid districtId);
+        IEnumerable<ReportRow> printMonthlyCostByDistrict(Guid districtId);
 
 
 

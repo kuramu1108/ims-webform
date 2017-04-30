@@ -19,19 +19,7 @@ namespace InterventionManagementSystem.Tests
         [TestInitialize]
         public void SetUp()
         {
-            Mock<IClientDataAccess> clients = new Mock<IClientDataAccess>();
-            Mock<IUserDataAccess> users = new Mock<IUserDataAccess>();
-            Mock<IDistrictDataAccess> districts = new Mock<IDistrictDataAccess>();
-            Mock<IInterventionDataAccess> interventions = new Mock<IInterventionDataAccess>();
-            Mock<IInterventionTypeDataAccess> interventionTypes = new Mock<IInterventionTypeDataAccess>();
-
             interventionService = new InterventionService("");
-
-            interventionService.Clients = clients.Object;
-            interventionService.Users = users.Object;
-            interventionService.Districts = districts.Object;
-            interventionService.Interventions = interventions.Object;
-            interventionService.InterventionTypes = interventionTypes.Object;
         }
 
         [TestMethod]
@@ -127,9 +115,9 @@ namespace InterventionManagementSystem.Tests
             interventions.Setup(i => i.update(It.IsAny<Intervention>())).Returns(true);
             interventionService.Interventions = interventions.Object;
 
-            bool result = interventionService.updateInterventionDetail(intervention.Id, comment, lifeRemaining);
+            //bool result = interventionService.updateInterventionDetail(intervention.Id, comment, lifeRemaining);
 
-            Assert.IsTrue(result);
+            Assert.IsTrue(false);
         }
 
         [TestMethod]

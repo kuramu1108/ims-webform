@@ -24,33 +24,44 @@ namespace InterventionManagementSystem.Engineer
             if (!string.IsNullOrEmpty(Request.QueryString["Id"]))
             {
                 engineerService = new EngineerService(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString, User.Identity.GetUserId());
-                intervention = engineerService.getInterventionById(new Guid(Request.QueryString["Id"]));
+                try
+                {
+                    intervention = engineerService.getInterventionById(new Guid(Request.QueryString["Id"]));
 
-                type.Text = engineerService.getInterventionTypes().Find(i => i.Id == intervention.InterventionTypeId).Name;
-                client.Text = engineerService.getClientById(intervention.ClientId).Name;
-                creator.Text = engineerService.getUserById(intervention.CreatedBy).Name;
-                if (intervention.ApprovedBy==null)
+                    type.Text = engineerService.getInterventionTypes().Find(i => i.Id == intervention.InterventionTypeId).Name;
+                    client.Text = engineerService.getClientById(intervention.ClientId).Name;
+                    creator.Text = engineerService.getUserById(intervention.CreatedBy).Name;
+                    if (intervention.ApprovedBy == null)
+                    {
+                        approver.Text = "";
+                    }
+                    else
+                    {
+                        approver.Text = engineerService.getUserById(intervention.ApprovedBy.Value).Name;
+                    }
+
+                    state.Text = intervention.InterventionState.ToString();
+
+
+
+                    hour.Text = intervention.Hours.ToString();
+                    cost.Text = intervention.Costs.ToString();
+
+                    Thread.CurrentThread.CurrentCulture = new CultureInfo("de-DE");
+
+                    proposedDate.Text = intervention.DateCreate.ToShortDateString();
+                    completedDate.Text = intervention.DateFinish.ToShortDateString();
+                    recentVisitDate.Text = intervention.DateRecentVisit.ToShortDateString();
+                    lifeRemaining.Text = intervention.LifeRemaining.ToString() + "%";
+                    Comments.Text = intervention.Comments;
+                }
+                catch (Exception)
                 {
-                    approver.Text = "";
-                }else
-                {
-                    approver.Text = engineerService.getUserById(intervention.ApprovedBy.Value).Name;
+
+                    Response.Redirect("~/Errors/InternalErrors.aspx");
                 }
                 
-                state.Text = intervention.InterventionState.ToString();
 
-           
-
-                hour.Text = intervention.Hours.ToString();
-                cost.Text = intervention.Costs.ToString();
-
-                Thread.CurrentThread.CurrentCulture = new CultureInfo("de-DE");
-
-                proposedDate.Text = intervention.DateCreate.ToShortDateString();
-                completedDate.Text = intervention.DateFinish.ToShortDateString();
-                recentVisitDate.Text = intervention.DateRecentVisit.ToShortDateString();
-                lifeRemaining.Text = intervention.LifeRemaining.ToString() + "%";
-                Comments.Text = intervention.Comments;
 
             }else
             {

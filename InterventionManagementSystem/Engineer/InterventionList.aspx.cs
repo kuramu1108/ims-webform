@@ -1,30 +1,48 @@
-﻿using IMSLogicLayer.FakeServices;
+﻿using IMSLogicLayer.Models;
+using IMSLogicLayer.ServiceInterfaces;
+using IMSLogicLayer.Services;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using IMSLogicLayer.Models;
-using IMSLogicLayer.ServiceInterfaces;
-using Microsoft.AspNet.Identity;
-using IMSLogicLayer.Services;
 
 namespace InterventionManagementSystem.Engineer
 {
     public partial class InterventionList : System.Web.UI.Page
     {
-        IInterventionService interventionService;
+        private IEngineerService engineerService;
         protected void Page_Load(object sender, EventArgs e)
         {
+            try
+            {
+                engineerService = new EngineerService(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString, User.Identity.GetUserId());
+                if (!IsPostBack)
+                {
+                    List<Intervention> interventions = engineerService.getInterventionListByCreator(getDetail().Id).ToList();
+                    foreach (var intervention in interventions)
+                    {
+                        intervention.InterventionType = engineerService.getInterventionTypes().Find(it => it.Id == intervention.InterventionTypeId);
+                    }
 
-            interventionService = new InterventionService(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
-            string userId = User.Identity.GetUserId<string>();
-            IEnumerable<Intervention> interventions=interventionService.getInterventionsByCreatorId(new Guid(userId));
+                    ListofIntervention.DataSource = interventions;
+                    ListofIntervention.DataBind();
 
+                }
+            }
+            catch (Exception)
+            {
 
-            ListIntervention.DataSource = interventions;
-            ListIntervention.DataBind();
+                Response.Redirect("~/Errors/InternalErrors.aspx");
+            }
+            
+        }
+
+        protected User getDetail()
+        {
+            return engineerService.getDetail();
         }
     }
 }

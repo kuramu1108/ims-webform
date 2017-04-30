@@ -14,6 +14,13 @@ h3 {
     line-height: 15.4px;
 }
 
+.btn-listview {
+    width: 68px;
+    height: 28px;
+    text-align: center;
+    font-size: 11px;
+}
+
 #navbar-top {
     background-color: #009688;
 }

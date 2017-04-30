@@ -90,6 +90,7 @@
                                         <li><a runat="server" class="list-group-item" href="~/Engineer/NewClient.aspx"><i class="icon-home icon-1x"></i>New Client</a></li>
                                         <li><a runat="server" class="list-group-item" href="~/Engineer/NewIntervention.aspx"><i class="icon-home icon-1x"></i>New Intervention</a></li>
                                         <li><a runat="server" class="list-group-item" href="~/Engineer/ClientList.aspx"><i class="icon-home icon-1x"></i>Clients List</a></li>
+                                        <li><a runat="server" class="list-group-item" href="~/Engineer/InterventionList.aspx"><i class="icon-home icon-1x"></i>Intervention List</a></li>
                                     </ContentTemplate>
                                 </asp:RoleGroup>
 
@@ -97,13 +98,13 @@
                                     <ContentTemplate>
                                         <li><a runat="server" class="list-group-item" href="~/Accountant/Welcome.aspx"><i class="icon-home icon-1x"></i>Welcome</a></li>
                                         <li><a runat="server" class="list-group-item" href="~/Accountant/AccountList.aspx"><i class="icon-home icon-1x"></i>Staff List</a></li>
-                                        <li><a runat="server" class="list-group-item" href="~/Accountant/Reports.aspx"><i class="icon-home icon-1x"></i>Reports</a></li>
+                                        <li><a runat="server" class="list-group-item" href="~/Accountant/ReportList.aspx"><i class="icon-home icon-1x"></i>Reports</a></li>
                                     </ContentTemplate>
                                 </asp:RoleGroup>
 
                                 <asp:RoleGroup Roles="Manager">
                                     <ContentTemplate>
-                                        <li><a runat="server" class="list-group-item" href="~/Manager/Welcome.aspx"><i class="icon-home icon-1x"></i>Welcome</a></li>
+                                        <li><a runat="server" class="list-group-item" href="~/Manager/Welcome.aspx"><i class="icon-home icon-1x"></i>Home</a></li>
                                         <li><a runat="server" class="list-group-item" href="~/Manager/InterventionList.aspx"><i class="icon-home icon-1x"></i>Intervention List</a></li>
                                     </ContentTemplate>
                                 </asp:RoleGroup>

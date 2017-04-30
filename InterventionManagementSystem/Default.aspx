@@ -1,41 +1,44 @@
 ﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="InterventionManagementSystem._Default" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="jumbotron">
-        <h1>ASP.NET<asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
-        </h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
-        <p><a href="http://www.asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-    </div>
+   <h3>Intervention Management System</h3>
+    <hr />
+     <div class="main-body-content">
+         <label>
+SCENARIO ENET Care is a charitable organization. The charity aims to improve housing and sanitation for 
+             remote communities and the long-term homeless.  <br />
+<br />
+ENET Care employs staff who visit needy communities and provide evidence-based interventions.
+             The interventions include education, low-cost housing, portable toilets, mosquito nets, tents and firstaid kits. <br />
 
-    <div class="row">
-        <div class="col-md-4">
-            <h2>Getting started</h2>
-            <p>
-                ASP.NET Web Forms lets you build dynamic websites using a familiar drag-and-drop, event-driven model.
-            A design surface and hundreds of controls and components let you rapidly build sophisticated, powerful UI-driven sites with data access.
-            </p>
-            <p>
-                <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301948">Learn more &raquo;</a>
-            </p>
-        </div>
-        <div class="col-md-4">
-            <h2>Get more libraries</h2>
-            <p>
-                NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.
-            </p>
-            <p>
-                <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301949">Learn more &raquo;</a>
-            </p>
-        </div>
-        <div class="col-md-4">
-            <h2>Web Hosting</h2>
-            <p>
-                You can easily find a web hosting company that offers the right mix of features and price for your applications.
-            </p>
-            <p>
-                <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301950">Learn more &raquo;</a>
-            </p>
-        </div>
-    </div>
+<br />
+Funding comes from a range of sources: government contracts, government grants, corporate 
+             sponsorship and public donations. Evidence of progress and success is an important
+             factor in renewing funding. <br />
+
+<br />
+ENET Care is considering building an information system (an ‘Intervention Monitoring System’) 
+             to gather data on the success of their efforts. This data will be used to generate 
+             reports for sponsors. In addition, ENET Care plans to eventually use the data to improve
+             its internal decision-making by analysing the effectiveness of its interventions. <br />
+
+<br />
+
+When it comes to building software systems, ENET Care uses a two-stage process. First, they 
+             implement a proof of concept to test the idea. If the system is a success, then 
+             they approve the implementation of a production-ready system. They have standardized 
+             on the .NET platform: proofof-concepts are to be implemented using ASP.NET WebForms 
+             and ADO.NET; approved systems are then re-implemented for production using ASP.NET MVC
+             and Entity Framework. <br />
+
+<br />
+The charity has a culture of minimizing administrative costs so it is important that the 
+             productionready system be easy to use <br />
+
+         </label>
+
+
+
+     </div>
+
 </asp:Content>

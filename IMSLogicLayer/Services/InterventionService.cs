@@ -9,7 +9,7 @@ using IMSLogicLayer.Models;
 
 namespace IMSLogicLayer.Services
 {
-    internal class InterventionService : BaseService, IInterventionService
+    public class InterventionService : BaseService, IInterventionService
     {
         public InterventionService(string connstring) : base(connstring)
         {
@@ -35,11 +35,12 @@ namespace IMSLogicLayer.Services
             return Interventions.fetchInterventionsByClientId(clientId).Select(c => new Intervention(c)).ToList();
         }
 
-        public bool updateInterventionDetail(Guid interventionId, string comments, int remainLife)
+        public bool updateInterventionDetail(Guid interventionId, string comments, int remainLife, DateTime lastVisitDate)
         {
             Intervention intervention = getInterventionsById(interventionId);
             intervention.Comments = comments;
             intervention.LifeRemaining = remainLife;
+            intervention.DateRecentVisit = lastVisitDate;
 
             return Interventions.update(intervention);
         }
@@ -51,13 +52,6 @@ namespace IMSLogicLayer.Services
             return Interventions.update(intervention);
 
         }
-        public bool interventionApproved(Guid interventionid) {
-            return (Interventions.fetchInterventionsById(interventionid).State == (int)InterventionState.Approved);        
-         
-        
-        }
-
-
 
         public bool updateInterventionState(Guid interventionId, InterventionState state)
         {

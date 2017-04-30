@@ -7,27 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace InterventionManagementSystem.Manager {
+namespace InterventionManagementSystem.Accountant {
     
     
-    public partial class InterventionList {
+    public partial class ReportList {
         
         /// <summary>
-        /// SeletedInterventionState control.
+        /// ReportListView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList SeletedInterventionState;
-        
-        /// <summary>
-        /// InterventionListView control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView InterventionListView;
+        protected global::System.Web.UI.WebControls.ListView ReportListView;
     }
 }

@@ -7,59 +7,87 @@ using System.Web.UI.WebControls;
 using IMSLogicLayer.Models;
 using IMSLogicLayer.ServiceInterfaces;
 using IMSLogicLayer.Services;
+using Microsoft.AspNet.Identity;
 
 namespace InterventionManagementSystem.Accountant
 {
     public partial class EditDistrict : System.Web.UI.Page
     {
-        IAccountantService accountService;
-        User user;
-
+        private IAccountantService accountService;
+        private IDistrictService districtService;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            try
             {
-                accountService = new AccountantService("");
+                accountService = new AccountantService(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString, User.Identity.GetUserId());
+                districtService = new DistrictService(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
 
-
-                //accountService = new AccountantService();
-                //real
-                //if (!string.IsNullOrEmpty(Request.QueryString["Name"]))
-                //{
-                //    Guid userId = new Guid(Request.QueryString["id"]);
-                //    user = accountService.getUserById(userId);
-                //    if (user != null)
-                //    {
-                //        lblUser.Text = user.Name;
-                //        lblCurrentDistrict.Text = user.DistrictId.ToString();
-                //    }
-                //}
-                //btnSubmit.Click += BtnSubmit_Click;
-
-
-                //demo code
-                if (!string.IsNullOrEmpty(Request.QueryString["Name"]))
+                if (!IsPostBack)
                 {
-                    string name = Request.QueryString["Name"];
-                    List<User> users = accountService.getAllUser().ToList();
-                    User user = users.Find(u => u.Name == name);
-                    if (user != null)
+                    if (!string.IsNullOrEmpty(Request.QueryString["Id"]))
                     {
-                        lblUser.Text = user.Name;
-                        lblCurrentDistrict.Text = user.DistrictId.ToString();
+                        var user = accountService.getUserById(new Guid(Request.QueryString["Id"]));
+                        txtUser.Text = user.Name;
+                        txtDistrict.Text = districtService.GetDistrictById(user.DistrictId).Name;
+
                     }
 
                 }
-                btnSubmit.Click += BtnSubmit_Click;
             }
+            catch (Exception)
+            {
+
+                Response.Redirect("~/Errors/InternalErrors.aspx");
+            }
+           
                
         }
 
-        private void BtnSubmit_Click(object sender, EventArgs e)
+        public List<District> getDistricts()
         {
-            string selectedValue = DropDownDistrict.SelectedValue;
-            Guid selectedDistrictId = new Guid(selectedValue);
-            accountService.changeDistrict(user.Id, selectedDistrictId);
+            try
+            {
+                IDistrictService districtService = new DistrictService(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+                var districts = districtService.GetAllDistrict().ToList();
+
+                return districts;
+            }
+            catch (Exception)
+            {
+
+                Response.Redirect("~/Errors/InternalErrors.aspx");
+                return null;
+            }
+            
+        }
+
+        protected void btnSave_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Guid userId = new Guid(Request.QueryString["Id"]);
+                Guid districtId = new Guid(DropDownDistrict.SelectedItem.Value);
+
+                bool success = accountService.changeDistrict(userId, districtId);
+                if (success)
+                {
+                    Response.Redirect("~/Accountant/AccountList.aspx");
+                }else
+
+                {
+
+                }
+            }
+            catch (Exception)
+            {
+
+                Response.Redirect("~/Errors/InternalErrors.aspx");
+            }
+        }
+
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Accountant/AccountList.aspx");
         }
     }
 }
