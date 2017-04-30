@@ -43,15 +43,19 @@ namespace IMSLogicLayer.Services
         public IEnumerable<Intervention> getInterventionsByState(InterventionState state)
         {
             var interventions = Interventions.fetchInterventionsByState((int)state).Select(c => new Intervention(c)).ToList();
-                
+            List<Intervention> managerInterventions = new List<Intervention>();
+            User manager = getDetail();
             foreach (var intervention in interventions)
             {
-                intervention.InterventionType = new InterventionType(InterventionTypes.fetchInterventionTypesById(intervention.InterventionTypeId));
                 intervention.Client = new Client(Clients.fetchClientById(intervention.ClientId));
+                intervention.InterventionType = new InterventionType(InterventionTypes.fetchInterventionTypesById(intervention.InterventionTypeId));
                 intervention.District = new District(Districts.fetchDistrictById(intervention.Client.DistrictId));
-
+                if (manager.DistrictId == intervention.District.Id)
+                {
+                    managerInterventions.Add(intervention);
+                }
             }
-            return interventions;
+            return managerInterventions;
         }
 
 

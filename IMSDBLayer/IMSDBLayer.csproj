@@ -104,5 +104,10 @@
   <ItemGroup>
     <EmbeddedResource Include="Scripts\Script022-UpdateUsers.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\Script023-UpdateClientsData.sql" />
+    <EmbeddedResource Include="Scripts\Script024-UpdateUsersData.sql" />
+    <EmbeddedResource Include="Scripts\Script025-UpdateInterventionData.sql" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
