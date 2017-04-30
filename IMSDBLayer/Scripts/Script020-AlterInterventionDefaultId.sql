@@ -1,1 +1,0 @@
-﻿ALTER TABLE [dbo].[Interventions] ADD DEFAULT newId() FOR [Id];

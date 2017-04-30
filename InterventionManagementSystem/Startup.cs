@@ -16,7 +16,7 @@ namespace InterventionManagementSystem
 
             string connstring = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             Setup DBsetup = new Setup(connstring);
-            createUserAndRoles();
+            //createUserAndRoles();
         }
 
         private void createUserAndRoles()
