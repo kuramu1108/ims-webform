@@ -4,5 +4,5 @@
       <div class="row">
             <asp:HyperLink ID="GoHome" runat="server" Text="Click here to go back to the homepage" NavigateUrl="~/Default.aspx" /></div>
 
-    </div>
+   
 </asp:Content>
