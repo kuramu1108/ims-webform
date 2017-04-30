@@ -19,20 +19,31 @@ namespace InterventionManagementSystem.Accountant
         {
             try
             {
+                //instantiate a new instance of accountant Service
                 accountantService = new AccountantService(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString, User.Identity.GetUserId());
 
                 if (!String.IsNullOrEmpty(Request.QueryString["Name"]))
                 {
+                    //get report type from query string
                     ReportType reportType = (ReportType)Enum.Parse(typeof(ReportType), Request.QueryString["Name"].ToString());
                     var report = new List<ReportRow>();
+
+                    //get report rows from accountant service
+                    //format average to 2 place decimal
                     if (reportType == ReportType.AverageCostByEngineer)
                     {
                         report = accountantService.printAverageCostByEngineer().ToList();
+                        foreach (var reportrow in report)
+                        {
+                            reportrow.Hours= decimal.Round(reportrow.Hours, 2, MidpointRounding.AwayFromZero);
+                            reportrow.Costs = decimal.Round(reportrow.Costs, 2, MidpointRounding.AwayFromZero);
+                        }
                     }
+                    //if report is monthly cost by district redirect to monthly report page
                     else if (reportType == ReportType.MonthlyCostByDistrict)
                     {
-                        //report = accountantService.printMonthlyCostByDistrict().ToList();
-                        Response.Redirect("~/Accountant/MonthlyReport.aspx");
+                        
+                        Response.Redirect("~/Accountant/MonthlyReport.aspx",false);
                     }
                     else if (reportType == ReportType.TotalCostByDistrict)
                     {
@@ -43,6 +54,8 @@ namespace InterventionManagementSystem.Accountant
                         report = accountantService.printTotalCostByEngineer().ToList();
                     }
 
+                    //Data bind report row with UI
+
                     ReportListView.DataSource = report;
                     ReportListView.DataBind();
 
@@ -51,8 +64,8 @@ namespace InterventionManagementSystem.Accountant
             }
             catch (Exception)
             {
-                throw;
-                //Response.Redirect("~/Errors/InternalErrors.aspx");
+                
+                Response.Redirect("~/Errors/InternalErrors.aspx",true);
             }
            
 

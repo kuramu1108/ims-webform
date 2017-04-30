@@ -37,7 +37,7 @@ namespace InterventionManagementSystem.Engineer
             catch (Exception)
             {
 
-                Response.Redirect("~/Errors/InternalErrors.aspx");
+                Response.Redirect("~/Errors/InternalErrors.aspx",true);
             }
             
         }

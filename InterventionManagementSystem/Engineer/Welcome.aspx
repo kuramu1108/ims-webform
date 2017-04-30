@@ -4,6 +4,43 @@
     <div class="row form-group">
         <h3><%:Context.User.Identity.GetUserName()%></h3>
         <hr />
+         <% IMSLogicLayer.Models.User engineer = getDetail(); %>
+        <div class="row form-group">
+            <div class="col-md-4">
+                Site Engineer:
+            </div>
+            <div class="col-md-4">
+                <%=engineer.Name%>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-md-4">
+                District:
+            </div>
+            <div class="col-md-4">
+                <%=engineer.District.Name%>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-md-4">
+                Costs:
+            </div>
+            <div class="col-md-4">
+                <%=engineer.AuthorisedCosts%>
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-md-4">
+                Hours:
+            </div>
+            <div class="col-md-4">
+                <%=engineer.AuthorisedHours%>
+            </div>
+        </div>
+
+
+
         <div class="row">
             <div class="col-md-12">
                 <div class="row">

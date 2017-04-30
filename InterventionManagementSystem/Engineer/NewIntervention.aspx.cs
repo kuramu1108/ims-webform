@@ -63,7 +63,7 @@ namespace InterventionManagementSystem
             catch (Exception)
             {
 
-                Response.Redirect("~/Errors/InternalErrors.aspx");
+                Response.Redirect("~/Errors/InternalErrors.aspx",true);
             }
           
         }
@@ -91,12 +91,21 @@ namespace InterventionManagementSystem
         /// <param name="e"></param>
         protected void SeletedInterventionType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var interventionTypes = engineerService.getInterventionTypes();
+            try
+            {
+                var interventionTypes = engineerService.getInterventionTypes();
 
-            var interventionType = interventionTypes.Find(i => i.Id == new Guid(SeletedInterventionType.SelectedValue));
+                var interventionType = interventionTypes.Find(i => i.Id == new Guid(SeletedInterventionType.SelectedValue));
 
-            InterventionHour.Text = interventionType.Hours.ToString();
-            InterventionCost.Text = interventionType.Costs.ToString();
+                InterventionHour.Text = interventionType.Hours.ToString();
+                InterventionCost.Text = interventionType.Costs.ToString();
+            }
+            catch (Exception)
+            {
+
+                Response.Redirect("~/Errors/InternalErrors.aspx",true);
+            }
+            
 
         }
     }

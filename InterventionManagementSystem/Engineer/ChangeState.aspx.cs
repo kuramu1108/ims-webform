@@ -46,14 +46,14 @@ namespace InterventionManagementSystem.Engineer
                     }
                     else
                     {
-                        Response.Redirect("~/Engineer/Welcome.aspx");
+                        Response.Redirect("~/Engineer/Welcome.aspx",false);
                     }
                 }
             }
             catch (Exception)
             {
 
-                Response.Redirect("~/Errors/InternalErrors.aspx");
+                Response.Redirect("~/Errors/InternalErrors.aspx",false);
             }
            
            
@@ -100,10 +100,10 @@ namespace InterventionManagementSystem.Engineer
                 }
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
-                Response.Redirect("~/Errors/InternalErrors.aspx");
+                Response.Redirect("~/Errors/InternalErrors.aspx",true);
         
             }
           
@@ -115,7 +115,7 @@ namespace InterventionManagementSystem.Engineer
         /// <param name="e"></param>
         protected void Cancel_btn_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Engineer/Welcome.aspx");
+            Response.Redirect("~/Engineer/Welcome.aspx",true);
         }
     }
 }

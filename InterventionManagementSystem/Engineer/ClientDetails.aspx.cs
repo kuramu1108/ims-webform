@@ -53,13 +53,13 @@ namespace InterventionManagementSystem
                 }
                 else
                 {
-                    Response.Redirect("~/Engineer/Welcome.aspx");
+                    Response.Redirect("~/Engineer/Welcome.aspx",false);
                 }
             }
             catch (Exception)
             {
 
-                Response.Redirect("~/Errors/InternalErrors.aspx");
+                Response.Redirect("~/Errors/InternalErrors.aspx",true);
             }
 
           
