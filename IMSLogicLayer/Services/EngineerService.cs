@@ -92,6 +92,14 @@ namespace IMSLogicLayer.Services
             var interventionList = new List<Intervention>();
             interventionList.AddRange(Interventions.fetchInterventionsByCreator(userId).Select(c => new Intervention(c)).ToList());
             interventionList.RemoveAll(i => i.InterventionState == InterventionState.Cancelled);
+            var approved=Interventions.fetchInterventionsByApprovedUser(userId).Select(c => new Intervention(c)).ToList();
+            //remove duplicated records
+            foreach (var intervention in approved)
+            {
+                interventionList.RemoveAll(i=>i.Id == intervention.Id);
+
+            }
+            interventionList.AddRange(approved);
             return interventionList;
         }
 
