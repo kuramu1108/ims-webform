@@ -56,7 +56,6 @@
   <ItemGroup>
     <Compile Include="IMSLogicAccountantServiceTest.cs" />
     <Compile Include="IMSLogicBaseServiceTest.cs" />
-    <Compile Include="IMSLogicDistrictServiceTest.cs" />
     <Compile Include="IMSLogicInterventionServiceTest.cs" />
     <Compile Include="IMSLogicManagerServiceTest.cs" />
     <Compile Include="IMSLogicEngineerServiceTest.cs" />
