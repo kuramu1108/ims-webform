@@ -16,7 +16,7 @@ namespace IMSDBLayer.DataModels
         private int state;
 
         private DateTime dateCreate;
-        private DateTime dateFinish;
+        private DateTime? dateFinish;
 
         private DateTime dateRecentVisit;
 
@@ -69,7 +69,7 @@ namespace IMSDBLayer.DataModels
             set { this.dateCreate = value; }
         }
 
-        public DateTime DateFinish
+        public DateTime? DateFinish
         {
             get { return this.dateFinish; }
             set { this.dateFinish = value; }

@@ -32,7 +32,7 @@
                         <td>
                             <asp:Label ID="lblClientName" runat="server" Text='<%#Eval("Client.Name") %>' /></td>
                         <td>
-                            <asp:Label ID="lblDistrictName" runat="server" Text='<%# string.Format("{0:dd/MM/yyyy}", Eval("DateFinish")) %>' /></td>
+                            <asp:Label ID="lblDistrictName" runat="server" Text='<%# string.Format("{0:dd/MM/yyyy}", Eval("DateCreate")) %>' /></td>
                         <td>
                             <asp:Label ID="State" runat="server" Text='<%#Eval("InterventionState") %>' /></td>
                         <td>
@@ -61,7 +61,7 @@
                                         </div>
                                         <div class ="row">
                                             <div class="col-md-4">Perform Date</div>
-                                            <div class="col-md-8"><%#Eval("DateFinish") %></div>
+                                            <div class="col-md-8"><%#Eval("DateCreate") %></div>
                                         </div>
                                         <hr />
                                         <div class ="row">

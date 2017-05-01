@@ -48,7 +48,8 @@ namespace InterventionManagementSystem
                     Thread.CurrentThread.CurrentCulture = new CultureInfo("de-DE");
                     DateTime createDate = DateTime.Parse(DateTime.Now.ToShortDateString());
 
-                    DateTime finishDate = DateTime.Parse(InterventionPerformDate.Text);
+                    //DateTime finishDate = DateTime.Parse(InterventionPerformDate.Text);
+                    DateTime? finishDate = null;
                     DateTime recentVisit = DateTime.Parse(DateTime.Now.ToShortDateString());
                     var typeID = SeletedInterventionType.SelectedValue;
                     var clientID = SelectClient.SelectedValue;

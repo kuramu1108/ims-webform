@@ -55,7 +55,14 @@ namespace InterventionManagementSystem.Engineer
                     Thread.CurrentThread.CurrentCulture = new CultureInfo("de-DE");
 
                     proposedDate.Text = intervention.DateCreate.ToShortDateString();
-                    completedDate.Text = intervention.DateFinish.ToShortDateString();
+                    if (intervention.DateFinish ==null)
+                    {
+                        completedDate.Text = "";
+                    }else
+                    {
+                        completedDate.Text = intervention.DateFinish.Value.ToShortDateString();
+                    }
+                
                     recentVisitDate.Text = intervention.DateRecentVisit.ToShortDateString();
                     lifeRemaining.Text = intervention.LifeRemaining.ToString() + "%";
                     Comments.Text = intervention.Comments;

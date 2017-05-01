@@ -73,6 +73,7 @@ namespace IMSLogicLayer.Services
                     if(state != InterventionState.Proposed && state!=InterventionState.Approved)
                     {
                         intervention.InterventionState = state;
+                        intervention.DateFinish = DateTime.Now;
                     }else
                     {
                         return false;
