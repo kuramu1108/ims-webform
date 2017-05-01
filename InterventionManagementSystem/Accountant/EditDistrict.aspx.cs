@@ -100,7 +100,7 @@ namespace InterventionManagementSystem.Accountant
                     errorMessage.Text = "Update Failed! The selected District is no valid";
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
                 Response.Redirect("~/Errors/InternalErrors.aspx",false);

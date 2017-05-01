@@ -10,23 +10,59 @@ namespace IMSLogicLayer.ServiceInterfaces
 {
     public interface IAccountantService
     {
-        //use to get all user
+        /// <summary>
+        /// Get all user in the system
+        /// </summary>
+        /// <returns>A list of user</returns>
         IEnumerable<User> getAllUser();
-        //use to get all site engineer
+        /// <summary>
+        /// Get all engineer in the system
+        /// </summary>
+        /// <returns>A list of engineer</returns>
         IEnumerable<User> getAllSiteEngineer();
-        //use to get all manager
+        /// <summary>
+        /// Get all manager in the system
+        /// </summary>
+        /// <returns>A list of manager</returns>
         IEnumerable<User> getAllManger();
-        //use to get a user by id
+        /// <summary>
+        /// Get the user with it's id
+        /// </summary>
+        /// <param name="userId">The guid of an user</param>
+        /// <returns>An user instance</returns>
         User getUserById(Guid userId);
 
-        //use to get details of this user
+        /// <summary>
+        /// Get the current user instance
+        /// </summary>
+        /// <returns>The current user instance</returns>
         User getDetail();
-
+        /// <summary>
+        /// Change district of an user
+        /// </summary>
+        /// <param name="userId">The guid of the user</param>
+        /// <param name="districtId">The guid of the district</param>
+        /// <returns>True if success, false if fail</returns>
         bool changeDistrict(Guid userId, Guid district);
-
+        /// <summary>
+        /// Gets the report data for total cost by engineer report
+        /// </summary>
+        /// <returns>a list of reportrow to construct a report</returns>
         IEnumerable<ReportRow> printTotalCostByEngineer();
+        /// <summary>
+        /// Gets the report data for average cost by engineer report
+        /// </summary>
+        /// <returns>a list of reportrow to construct a report</returns>
         IEnumerable<ReportRow> printAverageCostByEngineer();
+        /// <summary>
+        /// Gets the report data for total cost by district report
+        /// </summary>
+        /// <returns>a list of reportrow to construct a report</returns>
         IEnumerable<ReportRow> printTotalCostByDistrict();
+        /// <summary>
+        /// Gets the report data for monthly cost by district report
+        /// </summary>
+        /// <returns>a list of reportrow to construct a report</returns>
         IEnumerable<ReportRow> printMonthlyCostByDistrict(Guid districtId);
 
 

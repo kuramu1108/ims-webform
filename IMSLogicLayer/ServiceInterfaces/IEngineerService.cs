@@ -12,45 +12,107 @@ namespace IMSLogicLayer.ServiceInterfaces
     {
         
         Guid EngineerIdentityId { get; set; }
-        IInterventionService InterventionService { get; set; }
-
+        /// <summary>
+        /// Get All intervention Types
+        /// </summary>
+        /// <returns>List of intervention type</returns>
         List<InterventionType> getInterventionTypes();
 
-        //use to create client
+        /// <summary>
+        /// Create a client from name and location
+        /// </summary>
+        /// <param name="clientName">Name of a client</param>
+        /// <param name="clientLocation">Location of a client</param>
+        /// <returns>A client instance created</returns>
         Client createClient(string clientName, string clientLocation);
 
-        //use to get details of this user
+        /// <summary>
+        /// Get the instance of current user
+        /// </summary>
+        /// <returns>The current user instance</returns>
         User getDetail();
-
+        /// <summary>
+        /// Get the User instance by its id
+        /// </summary>
+        /// <param name="userId">The guid of an user</param>
+        /// <returns>An user instance</returns>
         User getUserById(Guid userId);
-        
-        //use to get list of client
+
+        /// <summary>
+        /// Get all clients on the same district as the current user
+        /// </summary>
+        /// <returns>A list of client</returns>
         IEnumerable<Client> getClients();
 
-        //use to get a list of intervention from client id 
+        /// <summary>
+        /// Get all the interventions for a client
+        /// </summary>
+        /// <param name="clientId">The guid of a client</param>
+        /// <returns>A list of interventions</returns>
         IEnumerable<Intervention> getInterventionsByClient(Guid clientId);
 
-        //use to get a client
+        /// <summary>
+        /// Get an client instance from its id
+        /// </summary>
+        /// <param name="clientId">The guid of a client</param>
+        /// <returns>An instance of client</returns>
         Client getClientById(Guid clientId);
 
-        //use to get an intervention and also edit
+        /// <summary>
+        /// Get an intervention form it's id
+        /// </summary>
+        /// <param name="interventionId">The guid of an intervention</param>
+        /// <returns>The intervention instance</returns>
         Intervention getInterventionById(Guid interventionId);
 
-        //use to create intervention
+        /// <summary>
+        /// Create an intervention
+        /// </summary>
+        /// <param name="intervention">An intervention instance</param>
+        /// <returns>An instance of Intervention created</returns>
         Intervention createIntervention(Intervention intervention);
 
-        //use to get a list of intervention for a engineer
+        /// <summary>
+        /// Get a list of interventions based on it's creator
+        /// </summary>
+        /// <param name="userId">The guid of an user</param>
+        /// <returns>A list of intervention</returns>
         IEnumerable<Intervention> getInterventionListByCreator(Guid userId);
+        /// <summary>
+        /// Get a list of interventions created and approved by this user
+        /// </summary>
+        /// <param name="userId">The guid of an user</param>
+        /// <returns>A list of interventions</returns>
         IEnumerable<Intervention> getInterventionListByUserId(Guid userId);
-        //use to change Administrative information state, cancel and complete included
+        /// <summary>
+        /// Update the state property of an intervention
+        /// </summary>
+        /// <param name="interventionId">The guid of an intervention</param>
+        /// <param name="state">The state of an intervention</param>
+        /// <returns>True if success, false if fail</returns>
         bool updateInterventionState(Guid interventionId, InterventionState state);
-        //use to change Administrative information approveby
+        /// <summary>
+        /// Update approve by property of an intervention
+        /// </summary>
+        /// <param name="interventionId">The guid of an intervention</param>
+        /// <param name="userId">The guid of an user</param>
+        /// <returns>True if success, false if fail</returns>
         bool updateInterventionApproveBy(Guid interventionId, Guid userId);
-
+        /// <summary>
+        /// Update the quality information of the intervention, comments, remainlife, recentvisit date
+        /// </summary>
+        /// <param name="interventionId">The guid of an intervention</param>
+        /// <param name="comments">The comments of an intervention</param>
+        /// <param name="remainLife">The remaining life of an intervention</param>
+        /// <param name="lastVisitDate">The recent visit date of an intervention</param>
+        /// <returns>True if success, false if fail</returns>
         bool updateInterventionDetail(Guid interventionId, string comments, int remainLife, DateTime lastVisitDate);
 
-        bool updateInterventionLastVisitDate(Guid interventionId, DateTime lastVisitDate);
-
+        /// <summary>
+        /// Approve an intervention
+        /// </summary>
+        /// <param name="interventionId">The guid of an intervention</param>
+        /// <returns>True if success, false if fail</returns>
         bool approveAnIntervention(Guid interventionId);
         
 

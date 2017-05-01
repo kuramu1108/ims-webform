@@ -36,8 +36,9 @@ namespace InterventionManagementSystem
                         Intervention intervention = engineerService.getInterventionById(interventionId);
 
                         //Data bind the UI with intervention quality information
+                        
                         txtInterventionType.Text = engineerService.getInterventionTypes().Find(i => i.Id == intervention.InterventionTypeId).Name;
-                        ClientName.Text = engineerService.getClients().First(c => c.Id == intervention.ClientId).Name;
+                        ClientName.Text = engineerService.getClientById(intervention.ClientId).Name;
                         InterventionComments.Text = intervention.Comments;
 
                         LifeRemaining.Text = intervention.LifeRemaining.ToString();

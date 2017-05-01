@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace IMSLogicLayer.Enums
 {
+    /// <summary>
+    /// The user type 
+    /// </summary>
     public enum UserType
     {
         All,

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace InterventionManagementSystem.Tests
 {
-    class IMSLogicBaseServiceTest
+    public class IMSLogicBaseServiceTest
     {
     }
 }

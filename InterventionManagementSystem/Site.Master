@@ -91,7 +91,7 @@
                                         <li><a runat="server" class="list-group-item" href="~/Engineer/NewIntervention.aspx"><i class="icon-home icon-1x"></i>New Intervention</a></li>
                                         <li><a runat="server" class="list-group-item" href="~/Engineer/ClientList.aspx"><i class="icon-home icon-1x"></i>Clients List</a></li>
                                         <li><a runat="server" class="list-group-item" href="~/Engineer/InterventionList.aspx"><i class="icon-home icon-1x"></i>Intervention List</a></li>
-                                        <li><a runat="server" class="list-group-item" href="~/Engineer/MyIntervention.aspx"><i class="icon-home icon-1x"></i>My Intervention</a></li>
+                                        <li><a runat="server" class="list-group-item" href="~/Engineer/MyInterventions.aspx"><i class="icon-home icon-1x"></i>My Intervention</a></li>
                                     </ContentTemplate>
                                 </asp:RoleGroup>
 

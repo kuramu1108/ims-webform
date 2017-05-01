@@ -11,6 +11,10 @@ namespace IMSDBLayer
 {
     public class Setup
     {
+        /// <summary>
+        /// Setup database using dbup and custom create database method
+        /// </summary>
+        /// <param name="connstring">Connection string to the database</param>
         public Setup(string connstring)
         {
             var connectionString = connstring;
@@ -31,7 +35,10 @@ namespace IMSDBLayer
                 throw new Exception("Database is not updated");
             }
         }
-
+        /// <summary>
+        /// Create the database file if it doesn't exist
+        /// </summary>
+        /// <param name="connstring">Connection string to the database</param>
         private void SetupDatabase(string connstring)
         {
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder(connstring);
