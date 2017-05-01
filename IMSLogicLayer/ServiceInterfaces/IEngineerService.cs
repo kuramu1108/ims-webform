@@ -47,8 +47,7 @@ namespace IMSLogicLayer.ServiceInterfaces
         bool updateInterventionApproveBy(Guid interventionId, Guid userId);
 
         bool updateInterventionDetail(Guid interventionId, string comments, int remainLife, DateTime lastVisitDate);
-
-        bool updateInterventionLastVisitDate(Guid interventionId, DateTime lastVisitDate);
+        
 
         bool approveAnIntervention(Guid interventionId);
         
