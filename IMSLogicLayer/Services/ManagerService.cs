@@ -100,8 +100,8 @@ namespace IMSLogicLayer.Services
             //create instance of the current user
             var user = getDetail();
             //if the criteria of approve an intervention meets then update the state of an intervention
-            if (client.DistrictId == user.DistrictId && user.AuthorisedHours >= intervention.Hours 
-                && user.AuthorisedCosts >= intervention.Costs && user.AuthorisedCosts >= interventionType.Costs 
+            if (client.DistrictId == user.DistrictId && user.AuthorisedHours >= intervention.Hours
+                && user.AuthorisedCosts >= intervention.Costs && user.AuthorisedCosts >= interventionType.Costs
                 && user.AuthorisedHours >= interventionType.Hours)
             {
                 return interventionService.updateInterventionState(interventionId, InterventionState.Approved, user.Id);
