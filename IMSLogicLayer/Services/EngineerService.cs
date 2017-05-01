@@ -15,7 +15,7 @@ namespace IMSLogicLayer.Services
         private IInterventionService interventionService;
 
         public Guid EngineerIdentityId { get => engineerIdentityId; set => engineerIdentityId = value; }
-
+        public IInterventionService InterventionService { get => interventionService; set => interventionService = value; }
         public EngineerService(string connstring, string identityId) : base(connstring)
         {
             EngineerIdentityId = new Guid(identityId);
