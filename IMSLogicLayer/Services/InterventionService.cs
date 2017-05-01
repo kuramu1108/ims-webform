@@ -67,6 +67,7 @@ namespace IMSLogicLayer.Services
                     else
                     {
                         intervention.InterventionState = state;
+                        
                     }
                 }else //original = Approved
                 {

@@ -176,7 +176,16 @@ namespace IMSLogicLayer.Services
 
             if (client.DistrictId == user.DistrictId && user.AuthorisedHours>=intervention.Hours && user.AuthorisedCosts>=intervention.Costs && user.AuthorisedCosts>=interventionType.Costs && user.AuthorisedHours>= interventionType.Hours)
             {
-                return interventionService.updateInterventionState(interventionId, InterventionState.Approved, user.Id);
+
+                if (interventionService.updateInterventionState(interventionId, InterventionState.Approved, user.Id))
+                {
+                    return updateInterventionApproveBy(interventionId, getDetail().Id);
+                }else
+                {
+                    return false;
+                }
+               
+                
             }else
             {
                 return false;

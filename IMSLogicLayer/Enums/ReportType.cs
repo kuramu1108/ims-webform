@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace IMSLogicLayer.Enums
 {
+    /// <summary>
+    /// The report type, AverageCostByEngineer,MonthlyCostByDistrict,TotalCostByDistrict,TotalCostByEngineer
+    /// </summary>
     public enum ReportType
     {
         AverageCostByEngineer,
