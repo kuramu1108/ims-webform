@@ -19,7 +19,10 @@ namespace IMSLogicLayer.Services
         private IInterventionTypeDataAccess interventionTypeDataAccess;
         private IUserDataAccess userDataAccess;
         private IReportDataAccess reportDataAccess;
-
+        /// <summary>
+        /// Initialise data access from connection string
+        /// </summary>
+        /// <param name="connstring">connection string to the database</param>
         public BaseService(string connstring)
         {
             this.clientDataAccess = new ClientDataAccess(new SqlExecuter<IMSDBLayer.DataModels.Client>(connstring));
@@ -55,23 +58,26 @@ namespace IMSLogicLayer.Services
             get { return interventionTypeDataAccess; }
             set { interventionTypeDataAccess = value; }
         }
-
+     
         internal IUserDataAccess Users
         {
             get { return userDataAccess; }
             set { userDataAccess = value; }
         }
-
-        internal Intervention getInterventionDetail()
-        {
-            return null;
-        }
-
+      
+        /// <summary>
+        /// Get All intervention types
+        /// </summary>
+        /// <returns>A list of intervention types</returns>
         internal List<InterventionType> getInterventionTypes()
         {
             return InterventionTypes.getAll().Select(i => new InterventionType(i)).ToList();
         }
-
+        /// <summary>
+        /// Get the current user from the identity id
+        /// </summary>
+        /// <param name="identityId">The identityid of the current logged in user</param>
+        /// <returns>An user instance</returns>
         internal User getDetail(Guid identityId)
         {
             User user = new User(Users.fetchUserByIdentityId(identityId));
