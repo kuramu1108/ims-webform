@@ -61,7 +61,7 @@
                                         </div>
                                         <div class ="row">
                                             <div class="col-md-4">Perform Date</div>
-                                            <div class="col-md-8"><%#Eval("DateCreate") %></div>
+                                            <div class="col-md-8"><%#Eval("DateFinish") %></div>
                                         </div>
                                         <hr />
                                         <div class ="row">

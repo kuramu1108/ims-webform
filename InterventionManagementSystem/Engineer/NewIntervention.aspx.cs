@@ -23,7 +23,7 @@ namespace InterventionManagementSystem
         {
             //instantiate an engineer service instance
             engineerService = new EngineerService(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString, User.Identity.GetUserId());
-          
+
 
         }
 
@@ -47,9 +47,17 @@ namespace InterventionManagementSystem
                     string comments = InterventionComments.Text;
                     Thread.CurrentThread.CurrentCulture = new CultureInfo("de-DE");
                     DateTime createDate = DateTime.Parse(DateTime.Now.ToShortDateString());
+                    DateTime? finishDate;
+                    if (String.IsNullOrEmpty(InterventionPerformDate.Text))
+                    {
+                        finishDate = null;
+                    }
+                    else
+                    {
+                        finishDate = DateTime.Parse(InterventionPerformDate.Text);
+                    }
 
-                    //DateTime finishDate = DateTime.Parse(InterventionPerformDate.Text);
-                    DateTime? finishDate = null;
+
                     DateTime recentVisit = DateTime.Parse(DateTime.Now.ToShortDateString());
                     var typeID = SeletedInterventionType.SelectedValue;
                     var clientID = SelectClient.SelectedValue;
@@ -58,15 +66,15 @@ namespace InterventionManagementSystem
                     Intervention intervention = new Intervention(hour, cost, 100, comments, state, createDate, finishDate, recentVisit, new Guid(typeID), new Guid(clientID), engineerService.getDetail().Id, null);
                     engineerService.createIntervention(intervention);
 
-                    Response.Redirect("~/Engineer/InterventionList.aspx",false);
+                    Response.Redirect("~/Engineer/InterventionList.aspx", false);
                 }
             }
             catch (Exception)
             {
 
-                Response.Redirect("~/Errors/InternalErrors.aspx",true);
+                Response.Redirect("~/Errors/InternalErrors.aspx", true);
             }
-          
+
         }
         /// <summary>
         /// Call engineer service to return all the intervention types
@@ -104,9 +112,9 @@ namespace InterventionManagementSystem
             catch (Exception)
             {
 
-                Response.Redirect("~/Errors/InternalErrors.aspx",true);
+                Response.Redirect("~/Errors/InternalErrors.aspx", true);
             }
-            
+
 
         }
     }
