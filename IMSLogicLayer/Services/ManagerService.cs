@@ -19,12 +19,19 @@ namespace IMSLogicLayer.Services
         public Guid ManagerId { get => managerId; set => managerId = value; }
 
         public IInterventionService InterventionService { get => interventionService; set => interventionService = value; }
-
+        /// <summary>
+        /// Initialise an instance of the manager service from connection string
+        /// </summary>
+        /// <param name="connstring">The connection string to the database</param>
         public ManagerService(string connstring) : base(connstring)
         {
             interventionService = new InterventionService(connstring);
         }
-
+        /// <summary>
+        /// Initialise manager service from connection string and an identity id
+        /// </summary>
+        /// <param name="connstring">The connection string to database</param>
+        /// <param name="identityId">The identity id of the current user</param>
         public ManagerService(string connstring, string identityId) : base(connstring)
         {
             managerIdentityId = new Guid(identityId);
@@ -32,7 +39,10 @@ namespace IMSLogicLayer.Services
 
             interventionService = new InterventionService(connstring);
         }
-
+        /// <summary>
+        /// Get the current User instance
+        /// </summary>
+        /// <returns>The current user</returns>
         public User getDetail()
         {
             var user = new User(Users.fetchUserByIdentityId(managerIdentityId));
@@ -86,8 +96,10 @@ namespace IMSLogicLayer.Services
 
             //create instance of client from intervention's client id
             var client = Clients.fetchClientById(intervention.ClientId);
-            var user = getDetail();
 
+            //create instance of the current user
+            var user = getDetail();
+            //if the criteria of approve an intervention meets then update the state of an intervention
             if (client.DistrictId == user.DistrictId && user.AuthorisedHours >= intervention.Hours 
                 && user.AuthorisedCosts >= intervention.Costs && user.AuthorisedCosts >= interventionType.Costs 
                 && user.AuthorisedHours >= interventionType.Hours)
