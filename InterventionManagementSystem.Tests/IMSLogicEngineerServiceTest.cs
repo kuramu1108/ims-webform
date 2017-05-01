@@ -25,39 +25,6 @@ namespace InterventionManagementSystem.Tests
             
         }
 
-        [TestMethod]
-        public void IMSLogicSiteEngineer_CreateClientin_DifferentDistrict()
-        {
-            //Mock ClientDataAccess create client return the same client
-            District dis = new District("Bankstown");
-            District another_dis = new District("Homebush");
-            Guid distric_id = dis.Id;
-            Guid another_district_id = another_dis.Id;
-            Mock<IClientDataAccess> clients = new Mock<IClientDataAccess>();
-            Client new_client = new Client("Sam", "Hornsby", distric_id);
-            clients.Setup(c => c.createClient(It.IsAny<Client>())).Returns(new_client);
-            engineerService.Clients = clients.Object;
-
-            //Mock Create Enegineer Detail DataAccess fetchUserByIdentityId will return that user
-            Mock<IUserDataAccess> users = new Mock<IUserDataAccess>();
-            User engineerDetail = new User("Ben", 3, 7, 200, Guid.NewGuid().ToString(), another_district_id);
-            users.Setup(u => u.fetchUserByIdentityId(It.IsAny<Guid>())).Returns(engineerDetail);
-            engineerService.Users = users.Object;
-
-            //Mock DistrictDataAccess fetch the same district by any id
-            Mock<IDistrictDataAccess> districts = new Mock<IDistrictDataAccess>();
-            districts.Setup(u => u.fetchDistrictById(It.IsAny<Guid>())).Returns(dis);
-            engineerService.Districts = districts.Object;
-
-
-            //create new client;
-            Client client = engineerService.createClient(new_client.Name, new_client.Location);
-
-            //check client creation success
-            Assert.IsNotNull(client);
-            //check client district is the same as the engineer district
-            Assert.AreNotSame(client.Id, new_client.Id);
-        }
 
 
         [TestMethod]
