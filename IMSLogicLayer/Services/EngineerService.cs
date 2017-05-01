@@ -13,6 +13,7 @@ namespace IMSLogicLayer.Services
     {
         private Guid engineerIdentityId;
         private IInterventionService interventionService;
+        public IInterventionService InterventionService { get => interventionService; set => interventionService = value; }
 
         public Guid EngineerIdentityId { get => engineerIdentityId; set => engineerIdentityId = value; }
 
