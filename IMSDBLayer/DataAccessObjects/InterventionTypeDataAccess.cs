@@ -18,13 +18,20 @@ namespace IMSDBLayer.DataAccessObjects
         {
             this.sqlExecuter = sqlExecuter;
         }
-
+        /// <summary>
+        /// Get all intervention type
+        /// </summary>
+        /// <returns>A list of intervention type</returns>
         public IEnumerable<InterventionType> getAll()
         {
             SqlCommand command = new SqlCommand("Select * From InterventionTypes");
             return sqlExecuter.ExecuteReader(command);
         }
-
+        /// <summary>
+        /// Create an intervention type
+        /// </summary>
+        /// <param name="interventionType">Intervention type object</param>
+        /// <returns>An intervention type object created</returns>
         public InterventionType create(InterventionType interventionType)
         {
             SqlCommand command = new SqlCommand(@"INSERT INTO InterventionTypes (Name, Hours, Costs) VALUES(@Name, @Hours, @Costs)");
@@ -34,13 +41,21 @@ namespace IMSDBLayer.DataAccessObjects
                     return interventionType;
                 return null;
         }
-
+        /// <summary>
+        /// Update an intervention type 
+        /// </summary>
+        /// <param name="interventionType">Intervention type object</param>
+        /// <returns>True if success, false if fail</returns>
         public bool update(InterventionType interventionType)
         {
             SqlCommand command = new SqlCommand(@"UPDATE InterventionTypes Set Name = @Name, Hours = @Hours, Costs = @Costs  WHERE Id = @Id");
             return sqlExecuter.ExecuteNonQuery(command, interventionType) > 0;
         }
-
+        /// <summary>
+        /// Get intervention type by it's id
+        /// </summary>
+        /// <param name="interventionTypeId">The guid of an intervention type</param>
+        /// <returns>An intervention type object</returns>
         public InterventionType fetchInterventionTypesById(Guid interventionTypeId)
         {
             SqlCommand command = new SqlCommand(@"Select * From InterventionTypes Where Id = @Id");
