@@ -13,36 +13,45 @@ using System.Threading.Tasks;
 
 namespace InterventionManagementSystem.Tests
 {
+    /// <summary>
+    /// Unit testing class for EngineerService
+    /// </summary>
     [TestClass]
     public class IMSLogicEngineerServiceTest
     {
         private EngineerService engineerService;
-  
-        [TestInitialize]
-        public void setUp()
-        {
-            
-            engineerService = new EngineerService("");
-          
+        private Guid engineer_a_ID = new Guid("9D2B0228-4444-4C23-8B49-01A698857709");
+        private Guid engineer_b_ID = new Guid("11111111-4D0D-4C23-8B49-01A698857709");
 
+        /// <summary>
+        /// initlizing the required setup for testing
+        /// initlize the engineerService with empty connection string
+        /// </summary>
+        [TestInitialize]
+        public void SetUp()
+        {
+            engineerService = new EngineerService("");
         }
 
-
-
+        /// <summary>
+        /// test target: createClient(clientname, clientlocation)
+        /// create a client in the engineer's district
+        /// the function should return a new created client object which is assigned to the same district as the engineer
+        /// </summary>
         [TestMethod]
         public void IMSLogicSiteEngineer_CreateClientinDistrict()
         {
             //Mock ClientDataAccess create client return the same client
             District dis = new District("Bankstown");
-            Guid distric_id = dis.Id;
+            Guid district_id = dis.Id;
             Mock<IClientDataAccess> clients = new Mock<IClientDataAccess>();
-            Client new_client = new Client("Sam","Hornsby", distric_id);
+            Client new_client = new Client("Sam","Hornsby", district_id);
             clients.Setup(c => c.createClient(It.IsAny<Client>())).Returns(new_client);
             engineerService.Clients = clients.Object;
 
             //Mock Create Enegineer Detail DataAccess fetchUserByIdentityId will return that user
             Mock<IUserDataAccess> users = new Mock<IUserDataAccess>();
-            User engineerDetail = new User("Ben", 3, 7, 200, Guid.NewGuid().ToString(), distric_id);
+            User engineerDetail = new User("Ben", 3, 7, 200, Guid.NewGuid().ToString(), district_id);
             users.Setup(u => u.fetchUserByIdentityId(It.IsAny<Guid>())).Returns(engineerDetail);
             engineerService.Users = users.Object;
 
@@ -58,9 +67,13 @@ namespace InterventionManagementSystem.Tests
             //check client creation success
             Assert.IsNotNull(client);
             //check client district is the same as the engineer district
-            Assert.AreEqual(client.Id,new_client.Id );
+            Assert.AreEqual(client.DistrictId,district_id);
         }
 
+        /// <summary>
+        /// test target: getClients()
+        /// the function should return a list of clients reside in the same district as the engineer
+        /// </summary>
         [TestMethod]
         public void IMSLogicSiteEngineer_GetListofClientsinDistrict()
         {
@@ -77,9 +90,18 @@ namespace InterventionManagementSystem.Tests
             users.Setup(u => u.fetchUserByIdentityId(It.IsAny<Guid>())).Returns(engineerDetail);
             engineerService.Users = users.Object;
 
+            List<Client> resultList = engineerService.getClients().ToList<Client>();
 
+            foreach (Client c in resultList)
+            {
+                Assert.AreEqual(c.DistrictId, districtID);
+            }
         }
 
+        /// <summary>
+        /// test target: getClientById(clientid)
+        /// this function should return a client object fetch from database with the matching guid
+        /// </summary>
         [TestMethod]
         public void IMSLogicSiteEngineer_GetClientDetail()
         {
@@ -96,64 +118,27 @@ namespace InterventionManagementSystem.Tests
             Assert.AreEqual(guid, client.Id);
         }
 
-        [TestMethod]
-        public void IMSLogicSiteEngineer_CreateInterventionforClient()
-        {
+        
 
-            //Mock ClientDataAccess create client return the same client
-            District dis = new District("Bankstown");
-            Guid guid = new Guid();
-            Client client = new Client("Jimmy", "Bondi", new Guid());
-            client.Id = guid;
-            Mock<IClientDataAccess> clients = new Mock<IClientDataAccess>();
-            clients.Setup(c => c.fetchClientById(It.IsAny<Guid>())).Returns(client);
-            engineerService.Clients = clients.Object;
-
-            //Mock InterventionDataAccess fetch the same intervention by any id 
-            Mock<IInterventionDataAccess> interventions = new Mock<IInterventionDataAccess>();
-            Intervention intervention = new Intervention(5, 2, 70, "", IMSLogicLayer.Enums.InterventionState.Proposed,
-            new DateTime(), new DateTime(), new DateTime(), new Guid(), new Guid(), guid, new Guid());
-            interventions.Setup(u => u.fetchInterventionsById(It.IsAny<Guid>())).Returns(intervention);
-            interventions.Setup(c => c.create(It.IsAny<Intervention>())).Returns(intervention);
-            engineerService.Interventions = interventions.Object;
-          
-
-            //Mock UserDataAccess fetch the same engineer by any id 
-            Mock<IUserDataAccess> users = new Mock<IUserDataAccess>();
-            User engineerDetail = new User("Roy", 3, 10, 1000,new Guid().ToString(),new Guid());
-            users.Setup(u => u.fetchUserByIdentityId(It.IsAny<Guid>())).Returns(engineerDetail);
-            engineerService.Users = users.Object;
-
-
-            //Mock DistrictDataAccess fetch the same district by any id
-            Mock<IDistrictDataAccess> districts = new Mock<IDistrictDataAccess>();
-            districts.Setup(u => u.fetchDistrictById(It.IsAny<Guid>())).Returns(dis);
-            engineerService.Districts = districts.Object;
-
-            //Mock InterventionTypeDataAccess fetch the same interventiontype by any id
-            Mock<IInterventionTypeDataAccess> interventiontype = new Mock<IInterventionTypeDataAccess>();
-            InterventionType intervention_type = new InterventionType("“Hepatitis Avoidance Training", 2, 100);
-            interventiontype.Setup(c => c.fetchInterventionTypesById(It.IsAny<Guid>())).Returns(intervention_type);
-            engineerService.InterventionTypes = interventiontype.Object;
-
-            Assert.IsNotNull(engineerService.createIntervention(intervention));
-         
-        }
-
+        /// <summary>
+        /// test target: getInterventionListByCreator(engineerid)
+        /// the function should return a list of interventions with the creator id match with the engineer's id
+        /// </summary>
         [TestMethod]
         public void IMSLogicSiteEngineer_GetListofInterventionCreated()
         {
             //Mock InterventionDataAccess fetch the same interventions list by any creator 
             Guid districtID = new Guid();
-            Guid identityID = new Guid();
+            Guid identityID = engineer_a_ID;
             Mock<IInterventionDataAccess> interventions = new Mock<IInterventionDataAccess>();
-            List<Intervention> interventionList = new List<Intervention>();
-            interventionList.Add(new Intervention(5, 2, 70, "", IMSLogicLayer.Enums.InterventionState.Proposed, new DateTime(), new DateTime(), new DateTime(), new Guid(), new Guid(), identityID, new Guid()));
-            interventionList.Add(new Intervention(3, 5, 50, "", IMSLogicLayer.Enums.InterventionState.Approved, new DateTime(), new DateTime(), new DateTime(), new Guid(), new Guid(), identityID, new Guid()));
-            interventionList.Add(new Intervention(6, 9, 80, "", IMSLogicLayer.Enums.InterventionState.Proposed, new DateTime(), new DateTime(), new DateTime(), new Guid(), new Guid(), identityID, new Guid()));
+            List<Intervention> interventionList = new List<Intervention>
+            {
+                new Intervention(5, 2, 70, "", IMSLogicLayer.Enums.InterventionState.Proposed, new DateTime(), new DateTime(), new DateTime(), new Guid(), new Guid(), identityID, new Guid()),
+                new Intervention(3, 5, 50, "", IMSLogicLayer.Enums.InterventionState.Approved, new DateTime(), new DateTime(), new DateTime(), new Guid(), new Guid(), identityID, new Guid()),
+                new Intervention(6, 9, 80, "", IMSLogicLayer.Enums.InterventionState.Proposed, new DateTime(), new DateTime(), new DateTime(), new Guid(), new Guid(), identityID, new Guid())
+            };
             interventions.Setup(c => c.fetchInterventionsByCreator(It.IsAny<Guid>())).Returns(interventionList);
             engineerService.Interventions = interventions.Object;
-
 
             //Mock UserDataAccess fetch the same engineer by any id 
             Mock<IUserDataAccess> users = new Mock<IUserDataAccess>();
@@ -165,10 +150,18 @@ namespace InterventionManagementSystem.Tests
                 Assert.AreEqual(identityID, intervention.CreatedBy);
             }
         }
+
+        /// <summary>
+        /// test target: updateInterventionState(interventionId, interventionstate)
+        /// this function should update the state of the given intervention and return the result
+        /// the creator of the intervention should be the engineer otherwise the operation would be rejected
+        /// 
+        /// this test case tests the failed scenario where the intervention is not created by the engineer
+        /// </summary>
         [TestMethod]
         public void IMSLogicSiteEngineer_UpdateStateofIntervention_ByDifferentUser()
         {
-            Guid user_id = new Guid();
+            Guid user_id = engineer_a_ID;
             District dis = new District("Bankstown");
             //Mock InterventionDataAccess fetch the same intervention by any id 
             Mock<IInterventionDataAccess> interventions = new Mock<IInterventionDataAccess>();
@@ -177,12 +170,11 @@ namespace InterventionManagementSystem.Tests
             intervention.District = dis;
             interventions.Setup(c => c.fetchInterventionsById(It.IsAny<Guid>())).Returns(intervention);
             engineerService.Interventions = interventions.Object;
-
     
             //Mock UserDataAccess fetch the same engineer by any id
             Mock<IUserDataAccess> users = new Mock<IUserDataAccess>();       
             User engineerDetail = new User("Roy", 3, 10, 1000, new Guid().ToString(), new Guid());
-            engineerDetail.Id = user_id;
+            engineerDetail.Id = engineer_b_ID;
             users.Setup(u => u.fetchUserByIdentityId(It.IsAny<Guid>())).Returns(engineerDetail);
             engineerService.Users = users.Object;
 
@@ -193,12 +185,17 @@ namespace InterventionManagementSystem.Tests
             Mock<IInterventionService> interventionService = new Mock<IInterventionService>();
             interventionService.Setup(i => i.updateInterventionState(It.IsAny<Guid>(), It.IsAny<IMSLogicLayer.Enums.InterventionState>())).Returns(false);
             engineerService.InterventionService = interventionService.Object;
+
             Assert.IsFalse(engineerService.updateInterventionState(intervention.Id, IMSLogicLayer.Enums.InterventionState.Completed));
-           
-
-
         }
 
+        /// <summary>
+        /// test target: updateInterventionState(interventionId, interventionstate)
+        /// this function should update the state of the given intervention and return the result
+        /// the creator of the intervention should be the engineer otherwise the operation would be rejected
+        /// 
+        /// this test case tests the success scenario where the intervention is created by the engineer
+        /// </summary>
         [TestMethod]
         public void IMSLogicSiteEngineer_UpdateStateofIntervention_CreatedByUser()
         {
@@ -211,8 +208,6 @@ namespace InterventionManagementSystem.Tests
             intervention.Id = interventionId;
             interventions.Setup(c => c.fetchInterventionsById(It.IsAny<Guid>())).Returns(intervention);          
             engineerService.Interventions = interventions.Object;
-
-            //engineerService.updateInterventionState(interventionId, IMSLogicLayer.Enums.InterventionState.Completed);
 
             //Mock UserDataAccess fetch the same engineer by any id
             Mock<IUserDataAccess> users = new Mock<IUserDataAccess>();
@@ -228,14 +223,10 @@ namespace InterventionManagementSystem.Tests
             engineerService.Districts = districts.Object;
 
             Mock<IInterventionService> interventionService = new Mock<IInterventionService>();
-            interventionService.Setup(i => i.updateInterventionState(It.IsAny<Guid>(), IMSLogicLayer.Enums.InterventionState.Completed)).Returns(false);
+            interventionService.Setup(i => i.updateInterventionState(It.IsAny<Guid>(), IMSLogicLayer.Enums.InterventionState.Completed)).Returns(true);
             engineerService.InterventionService = interventionService.Object;
 
-
-            Assert.IsFalse(engineerService.updateInterventionState(interventionId, IMSLogicLayer.Enums.InterventionState.Completed));
-          
+            Assert.IsTrue(engineerService.updateInterventionState(interventionId, IMSLogicLayer.Enums.InterventionState.Completed));          
         }
     }
-
-
 }
