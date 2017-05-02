@@ -224,7 +224,7 @@ namespace IMSLogicLayer.Services
 
                 if (interventionService.updateInterventionState(interventionId, InterventionState.Approved, user.Id))
                 {
-                    return updateInterventionApproveBy(interventionId, getDetail().Id);
+                    return updateInterventionApproveBy(interventionId, user.Id);
                 }else
                 {
                     return false;

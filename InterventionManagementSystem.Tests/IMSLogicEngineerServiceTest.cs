@@ -118,7 +118,64 @@ namespace InterventionManagementSystem.Tests
             Assert.AreEqual(guid, client.Id);
         }
 
-        
+        /// <summary>
+        /// test target: approveAnIntervention(interventionID)
+        /// this function should approve an interevention only when the requirements are met
+        ///  - sufficient authorised cost for engineer
+        ///  - sufficient authorised hour for engineer
+        ///  - intervention and enginner are in the same district
+        ///  - intervention is created by the engineer
+        ///  
+        /// this test case test the success scenario and the intervention is approved
+        /// </summary>
+        [TestMethod]
+        public void IMSLogicSiteEngineer_ApproveIntervention_Success()
+        {
+            Intervention intervention = new Intervention(5, 20, 5, "", IMSLogicLayer.Enums.InterventionState.Proposed, new DateTime(), new DateTime(), new DateTime(), new Guid(), new Guid(),createdBy: engineer_a_ID, approvedBy: new Guid());
+            InterventionType interventionType = new InterventionType("toilet", 5, 20);
+            District district = new District("Asquith")
+            {
+                Id = new Guid()
+            };
+            Client client = new Client("", "", new Guid())
+            {
+                DistrictId = district.Id,
+            };
+            User engineer = new User("me", 1, 500,  20000, "", new Guid())
+            {
+                DistrictId = district.Id,
+                Id = engineer_a_ID
+            };
+
+            Mock<IInterventionDataAccess> interventions = new Mock<IInterventionDataAccess>();
+            interventions.Setup(i => i.fetchInterventionsById(It.IsAny<Guid>())).Returns(intervention);
+
+            Mock<IInterventionTypeDataAccess> interventionTypes = new Mock<IInterventionTypeDataAccess>();
+            interventionTypes.Setup(its => its.fetchInterventionTypesById(It.IsAny<Guid>())).Returns(interventionType);
+
+            Mock<IDistrictDataAccess> districts = new Mock<IDistrictDataAccess>();
+            districts.Setup(d => d.fetchDistrictById(It.IsAny<Guid>())).Returns(district);
+
+            Mock<IClientDataAccess> clients = new Mock<IClientDataAccess>();
+            clients.Setup(c => c.fetchClientById(It.IsAny<Guid>())).Returns(client);
+
+            Mock<IUserDataAccess> users = new Mock<IUserDataAccess>();
+            users.Setup(u => u.fetchUserByIdentityId(It.IsAny<Guid>())).Returns(engineer);
+            users.Setup(u => u.fetchUserById(It.IsAny<Guid>())).Returns(engineer);
+
+            Mock<IInterventionService> interventionService = new Mock<IInterventionService>();
+            interventionService.Setup(i => i.updateInterventionState(It.IsAny<Guid>(), IMSLogicLayer.Enums.InterventionState.Approved, engineer.Id)).Returns(true);
+            interventionService.Setup(i => i.updateIntervetionApprovedBy(It.IsAny<Guid>(), It.IsAny<User>())).Returns(true);
+
+            engineerService.Interventions = interventions.Object;
+            engineerService.InterventionTypes = interventionTypes.Object;
+            engineerService.Districts = districts.Object;
+            engineerService.Clients = clients.Object;
+            engineerService.Users = users.Object;
+            engineerService.InterventionService = interventionService.Object;
+
+            Assert.IsTrue(engineerService.approveAnIntervention(intervention.Id));
+        }
 
         /// <summary>
         /// test target: getInterventionListByCreator(engineerid)
