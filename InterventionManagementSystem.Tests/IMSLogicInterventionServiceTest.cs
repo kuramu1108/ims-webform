@@ -11,7 +11,7 @@ using Moq;
 namespace InterventionManagementSystem.Tests
 {
     [TestClass]
-    class IMSLogicInterventionServiceTest
+    public class IMSLogicInterventionServiceTest
     {
         private InterventionService interventionService;
         private Intervention intervention;

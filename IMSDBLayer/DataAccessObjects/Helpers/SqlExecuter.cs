@@ -17,7 +17,11 @@ namespace IMSDBLayer.DataAccessObjects.Helpers
         {
             this.connstring = connstring;
         }
-
+        /// <summary>
+        /// Execute the sql command and return the results
+        /// </summary>
+        /// <param name="command">sql command</param>
+        /// <returns>List of objects</returns>
         public List<T> ExecuteReader(SqlCommand command)
         {
             List<T> results = new List<T>();
@@ -28,36 +32,51 @@ namespace IMSDBLayer.DataAccessObjects.Helpers
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    results.Add(getReaderDataRow(reader));
+                    results.Add(GetReaderDataRow(reader));
                 }
                 connection.Close();
             }
             return results;
         }
-
+        /// <summary>
+        /// Execute the sql command and return the row effected
+        /// </summary>
+        /// <param name="command">sql command</param>
+        /// <param name="value">object</param>
+        /// <returns>rows effected</returns>
         public int ExecuteNonQuery(SqlCommand command, T value)
         {
             using (SqlConnection connection = new SqlConnection(connstring))
             {
                 command.Connection = connection;
-                command = setSqlCommandParameters(command, value);
+                command = SetSqlCommandParameters(command, value);
                 connection.Open();
                 return command.ExecuteNonQuery();
             }
         }
-
+        /// <summary>
+        /// Execute the sql command and return one object
+        /// </summary>
+        /// <param name="command">sql command</param>
+        /// <param name="value">object</param>
+        /// <returns>An obejct</returns>
         public object ExecuteScalar(SqlCommand command, T value)
         {
             using (SqlConnection connection = new SqlConnection(connstring))
             {
                 command.Connection = connection;
-                command = setSqlCommandParameters(command, value);
+                command = SetSqlCommandParameters(command, value);
                 connection.Open();
                 return command.ExecuteScalar();
             }
         }
-
-        private SqlCommand setSqlCommandParameters(SqlCommand command, T value)
+        /// <summary>
+        /// Insert the parameters into sql command based on the object passed in
+        /// </summary>
+        /// <param name="command">sql command</param>
+        /// <param name="value">an object</param>
+        /// <returns>sql command with parameter</returns>
+        private SqlCommand SetSqlCommandParameters(SqlCommand command, T value)
         {
             var properties = value.GetType().GetProperties();
             for (int i = 0; i < properties.Length; i++)
@@ -80,8 +99,12 @@ namespace IMSDBLayer.DataAccessObjects.Helpers
             }
             return command;
         }
-
-        private T getReaderDataRow(SqlDataReader reader)
+        /// <summary>
+        /// Get the reader data and put them into an object
+        /// </summary>
+        /// <param name="reader">sql reader</param>
+        /// <returns>An object with reader data</returns>
+        private T GetReaderDataRow(SqlDataReader reader)
         {
             T result = (T)Activator.CreateInstance(typeof(T));
             var properties = result.GetType().GetProperties();

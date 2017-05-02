@@ -17,14 +17,7 @@ namespace InterventionManagementSystem
         {
             //instantiate a new engineer service instance
             engineerService = new EngineerService(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString, User.Identity.GetUserId());
-            if (!IsPostBack)
-            {
-
-            }
-            else
-            {
-
-            }
+           
         }
         /// <summary>
         /// if all fields are correct call engineer service to create a new client in the database
@@ -40,8 +33,8 @@ namespace InterventionManagementSystem
                 Client client = engineerService.createClient(ClientName.Text, Clientlocation.Text);
                 if (client != null)
                 {
-                    //Response.Redirect("ClientDetails.aspx?ClientId=" + client.Id);
-                    Response.Redirect("ClientList.aspx");
+                  
+                    Response.Redirect("~/Engineer/ClientList.aspx",false);
                 }
                 else
                 {
@@ -52,7 +45,7 @@ namespace InterventionManagementSystem
             catch (Exception)
             {
 
-                Response.Redirect("~/Errors/InternalErrors.aspx");
+                Response.Redirect("~/Errors/InternalErrors.aspx",true);
             }
          
         }
@@ -63,13 +56,13 @@ namespace InterventionManagementSystem
         /// <param name="e"></param>
         protected void Cancel_btn_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Engineer/Welcome.aspx");
+            Response.Redirect("~/Engineer/Welcome.aspx",true);
         }
         /// <summary>
         /// function to get the current engineer 
         /// </summary>
         /// <returns>The current engineer</returns>
-        protected User getDetail()
+        protected User GetDetail()
         {
             return engineerService.getDetail();
         }

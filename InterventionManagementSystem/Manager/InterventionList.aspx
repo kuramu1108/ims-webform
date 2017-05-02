@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="InterventionList.aspx.cs" Inherits="InterventionManagementSystem.Manager.InterventionList" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <h3>Interventions List - <%=getDetail().District.Name%></h3>
+    <h3>Interventions List - <%=GetDetail().District.Name%></h3>
     <hr />
     <div class="main-body-content">
         <table id="table-clients" class="table table-striped table-bordered table-hover table-responsive" style="background-color: white">
@@ -32,7 +32,7 @@
                         <td>
                             <asp:Label ID="lblClientName" runat="server" Text='<%#Eval("Client.Name") %>' /></td>
                         <td>
-                            <asp:Label ID="lblDistrictName" runat="server" Text='<%# string.Format("{0:dd/MM/yyyy}", Eval("DateFinish")) %>' /></td>
+                            <asp:Label ID="lblDistrictName" runat="server" Text='<%# string.Format("{0:dd/MM/yyyy}", Eval("DateCreate")) %>' /></td>
                         <td>
                             <asp:Label ID="State" runat="server" Text='<%#Eval("InterventionState") %>' /></td>
                         <td>
@@ -78,10 +78,12 @@
                                     </div>
                             </div></div></div>
                             <a class="btn btn-default btn-listview" data-toggle="modal" data-target="#view-<%#Eval("Id")%>">View</a>
-                            <asp:Button ID="btnApprove" Text="Approve" OnClick="btnApprove_Click" CommandArgument='<%#Eval("Id")%>' Visible='<%#canApprove(Eval("Id"))%>'  CssClass="btn btn-success btn-listview" runat="server"/>
+                            <asp:Button ID="btnApprove" Text="Approve" OnClick="btnApprove_Click" CommandArgument='<%#Eval("Id")%>' Visible='<%#CanApprove(Eval("Id"))%>'  CssClass="btn btn-success btn-listview" runat="server"/>
                         </td>
                     </tr>
                 </ItemTemplate>
             </asp:ListView>
         </table>
+
+</div>
 </asp:Content>

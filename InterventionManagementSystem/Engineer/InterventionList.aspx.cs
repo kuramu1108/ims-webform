@@ -1,4 +1,5 @@
-﻿using IMSLogicLayer.Models;
+﻿using IMSLogicLayer.Enums;
+using IMSLogicLayer.Models;
 using IMSLogicLayer.ServiceInterfaces;
 using IMSLogicLayer.Services;
 using Microsoft.AspNet.Identity;
@@ -24,6 +25,9 @@ namespace InterventionManagementSystem.Engineer
                 {
                     //call engineer service to get a list of interventions created by this engineer and then bind them to UIs
                     List<Intervention> interventions = engineerService.getInterventionListByCreator(getDetail().Id).ToList();
+
+                 
+                    
                     foreach (var intervention in interventions)
                     {
                         intervention.InterventionType = engineerService.getInterventionTypes().Find(it => it.Id == intervention.InterventionTypeId);
@@ -37,7 +41,7 @@ namespace InterventionManagementSystem.Engineer
             catch (Exception)
             {
 
-                Response.Redirect("~/Errors/InternalErrors.aspx");
+                Response.Redirect("~/Errors/InternalErrors.aspx",true);
             }
             
         }

@@ -13,9 +13,10 @@
             <table id="table-clients" class="table table-striped table-bordered table-hover table-responsive" style="background-color: white">
                 <thead>
                     <tr>
-                        <th style="width: 50px"></th>
-                        <th style="width: 40%">Name</th>
-                        <th style="width: calc(60% -50px)">Action</th>
+                        
+                        <th style="width: 40%">Month</th>
+                        <th style="width: 30%">Costs($)</th>
+                        <th style="width: 30%">Hours(hr)</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -25,7 +26,7 @@
         </LayoutTemplate>
         <ItemTemplate>
             <tr>
-                <td></td>
+                
                 <td>
                     <asp:Label ID="lblName" runat="server" Text='<%# Eval("FirstProperty") %>' /></td>
                 <td>

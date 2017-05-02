@@ -20,7 +20,7 @@ namespace InterventionManagementSystem.Accountant
         /// <param name="e"></param>
         protected void ViewAccountList_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Accountant/AccountList.aspx");
+            Response.Redirect("~/Accountant/AccountList.aspx",true);
         }
         /// <summary>
         /// redirect to report list page
@@ -29,7 +29,7 @@ namespace InterventionManagementSystem.Accountant
         /// <param name="e"></param>
         protected void ViewReportList_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Accountant/ReportList.aspx");
+            Response.Redirect("~/Accountant/ReportList.aspx",true);
         } 
     }
 }

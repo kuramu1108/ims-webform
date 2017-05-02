@@ -73,33 +73,26 @@
   <ItemGroup>
     <EmbeddedResource Include="Scripts\Script001-CreateMigrationHistory.sql" />
     <EmbeddedResource Include="Scripts\Script002-CreateAspNetRoles.sql" />
-    <EmbeddedResource Include="Scripts\Script006-CreateAspNetUserClaims.sql" />
+    <EmbeddedResource Include="Scripts\Script003-CreateAspNetUsers.sql" />
     <EmbeddedResource Include="Scripts\Script004-CreateAspNetUserLogins.sql" />
     <EmbeddedResource Include="Scripts\Script005-CreateAspNetUserRoles.sql" />
-    <EmbeddedResource Include="Scripts\Script003-CreateAspNetUsers.sql" />
-    <EmbeddedResource Include="Scripts\Script008-CreateClient.sql" />
-    <EmbeddedResource Include="Scripts\Script007-CreateDistrict.sql" />
-    <EmbeddedResource Include="Scripts\Script009-CreateInterventionType.sql" />
-    <EmbeddedResource Include="Scripts\Script010-CreateUser.sql" />
-    <EmbeddedResource Include="Scripts\Script011-CreateIntervention.sql" />
-    <EmbeddedResource Include="Scripts\Script012-InsertAspnetUser.sql" />
-    <EmbeddedResource Include="Scripts\Script014-InsertClient.sql" />
-    <EmbeddedResource Include="Scripts\Script013-InsertDistrict.sql" />
-    <EmbeddedResource Include="Scripts\Script015-InsertInterventionType.sql" />
-    <EmbeddedResource Include="Scripts\Script016-InsertUser.sql" />
+    <EmbeddedResource Include="Scripts\Script006-CreateAspNetUserClaims.sql" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Scripts\Script017-InsertRoles.sql" />
-    <EmbeddedResource Include="Scripts\Script019-AlterInterventionType.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Scripts\Script018-InsertUserRoles.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Scripts\Script020-AlterInterventionDefaultId.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Scripts\Script021-UpdateUserTypeData.sql" />
+    <EmbeddedResource Include="Scripts\Script007-CreateDistricts.sql" />
+    <EmbeddedResource Include="Scripts\Script008-CreateClients.sql" />
+    <EmbeddedResource Include="Scripts\Script009-CreateInterventionTypes.sql" />
+    <EmbeddedResource Include="Scripts\Script010-CreateUsers.sql" />
+    <EmbeddedResource Include="Scripts\Script011-CreateInterventions.sql" />
+    <EmbeddedResource Include="Scripts\Script012-AlterTableDefinition.sql" />
+    <EmbeddedResource Include="Scripts\Script013-InsertAspNetUsers.data.sql" />
+    <EmbeddedResource Include="Scripts\Script014-InsertDistricts.data.sql" />
+    <EmbeddedResource Include="Scripts\Script015-InsertClients.data.sql" />
+    <EmbeddedResource Include="Scripts\Script016-InsertInterventionTypes.data.sql" />
+    <EmbeddedResource Include="Scripts\Script017-InsertUsers.data.sql" />
+    <EmbeddedResource Include="Scripts\Script018-InsertAspNetRoles.data.sql" />
+    <EmbeddedResource Include="Scripts\Script019-InsertAspNetUserRoles.data.sql" />
+    <EmbeddedResource Include="Scripts\Script020-InsertInterventions.data.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

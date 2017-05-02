@@ -19,7 +19,10 @@ namespace IMSDBLayer.DataAccessObjects
         {
             this.sqlExecuter = sqlExecuter;
         }
-
+        /// <summary>
+        /// Get report data from database
+        /// </summary>
+        /// <returns>A list of report data</returns>
         public IEnumerable<ReportRow> averageCostByEngineer()
         {
             SqlCommand command = new SqlCommand("Select Users.Name, avg(Interventions.Costs), avg(Interventions.Hours) " +
@@ -28,7 +31,10 @@ namespace IMSDBLayer.DataAccessObjects
 
             return sqlExecuter.ExecuteReader(command);
         }
-
+        /// <summary>
+        /// Get report data from database
+        /// </summary>
+        /// <returns>A list of report data</returns>
         public IEnumerable<ReportRow> costByDistrict()
         {
             SqlCommand command = new SqlCommand("Select Districts.Name, sum(Interventions.Costs), sum(Interventions.Hours) " +
@@ -38,7 +44,10 @@ namespace IMSDBLayer.DataAccessObjects
 
             return sqlExecuter.ExecuteReader(command);
         }
-
+        /// <summary>
+        /// Get report data from database
+        /// </summary>
+        /// <returns>A list of report data</returns>
         public IEnumerable<ReportRow> monthlyCostForDistrict(Guid districtId)
         {
             SqlCommand command = new SqlCommand(@"Select  Distinct convert(varchar(7), Interventions.DateFinish, 120), sum(Interventions.Costs), sum(Interventions.Hours) " +
@@ -49,7 +58,10 @@ namespace IMSDBLayer.DataAccessObjects
             command.Parameters.AddWithValue("@districtId", districtId);
             return sqlExecuter.ExecuteReader(command);
         }
-
+        /// <summary>
+        /// Get report data from database
+        /// </summary>
+        /// <returns>A list of report data</returns>
         public IEnumerable<ReportRow> totalCostByEngineer()
         {
             SqlCommand command = new SqlCommand("Select Users.Name, sum(Interventions.Costs), sum(Interventions.Hours)" +

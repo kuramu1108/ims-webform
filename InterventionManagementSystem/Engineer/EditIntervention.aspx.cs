@@ -36,8 +36,9 @@ namespace InterventionManagementSystem
                         Intervention intervention = engineerService.getInterventionById(interventionId);
 
                         //Data bind the UI with intervention quality information
+                        
                         txtInterventionType.Text = engineerService.getInterventionTypes().Find(i => i.Id == intervention.InterventionTypeId).Name;
-                        ClientName.Text = engineerService.getClients().First(c => c.Id == intervention.ClientId).Name;
+                        ClientName.Text = engineerService.getClientById(intervention.ClientId).Name;
                         InterventionComments.Text = intervention.Comments;
 
                         LifeRemaining.Text = intervention.LifeRemaining.ToString();
@@ -47,12 +48,12 @@ namespace InterventionManagementSystem
                     catch (Exception)
                     {
 
-                        Response.Redirect("~/Errors/InternalErrors.aspx");
+                        Response.Redirect("~/Errors/InternalErrors.aspx",true);
                     }
 
                 }else
                 {
-                    Response.Redirect("~/Engineer/Welcome.aspx");
+                    Response.Redirect("~/Engineer/Welcome.aspx",false);
                 }
             }
           
@@ -79,13 +80,13 @@ namespace InterventionManagementSystem
                 //if update success redirect to intervention detail page
                 if (updateDetails==true)
                 {
-                    Response.Redirect("~/Engineer/InterventionDetail.aspx");
+                    Response.Redirect("~/Engineer/InterventionDetail.aspx",false);
                 }
             }
             catch (Exception)
             {
 
-                Response.Redirect("~/Errors/InternalErrors.aspx");
+                Response.Redirect("~/Errors/InternalErrors.aspx",true);
             }
             
             
@@ -97,7 +98,7 @@ namespace InterventionManagementSystem
         /// <param name="e"></param>
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Engineer/InterventionDetail.aspx");
+            Response.Redirect("~/Engineer/InterventionDetail.aspx",true);
         }
     }
 }

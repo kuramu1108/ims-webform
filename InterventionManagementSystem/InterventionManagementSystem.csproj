@@ -209,6 +209,7 @@
     <Content Include="Engineer\EditIntervention.aspx" />
     <Content Include="Engineer\InterventionDetail.aspx" />
     <Content Include="Engineer\InterventionList.aspx" />
+    <Content Include="Engineer\MyInterventions.aspx" />
     <Content Include="Errors\InternalErrors.aspx" />
     <Content Include="Errors\NotFound.aspx" />
     <Content Include="favicon.ico" />
@@ -490,6 +491,13 @@
     </Compile>
     <Compile Include="Engineer\InterventionList.aspx.designer.cs">
       <DependentUpon>InterventionList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Engineer\MyInterventions.aspx.cs">
+      <DependentUpon>MyInterventions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Engineer\MyInterventions.aspx.designer.cs">
+      <DependentUpon>MyInterventions.aspx</DependentUpon>
     </Compile>
     <Compile Include="Errors\InternalErrors.aspx.cs">
       <DependentUpon>InternalErrors.aspx</DependentUpon>

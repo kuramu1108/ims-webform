@@ -56,7 +56,7 @@ namespace InterventionManagementSystem.Tests
             managerService.Clients = clients.Object;
             managerService.Districts = districts.Object;
 
-            List<Intervention> results = managerService.getInterventionsByState(IMSLogicLayer.Enums.InterventionState.Proposed).ToList();
+            List<Intervention> results = managerService.GetInterventionsByState(IMSLogicLayer.Enums.InterventionState.Proposed).ToList();
 
             foreach (Intervention i in results)
             {
@@ -90,7 +90,7 @@ namespace InterventionManagementSystem.Tests
             managerService.InterventionService = interventionService.Object;
             managerService.Districts = districts.Object;
 
-            bool result = managerService.approveAnIntervention(interventionId);
+            bool result = managerService.ApproveAnIntervention(interventionId);
 
             Assert.IsTrue(result);
         }
@@ -118,7 +118,7 @@ namespace InterventionManagementSystem.Tests
             managerService.Users = users.Object;
             managerService.Districts = districts.Object;
 
-            bool result = managerService.approveAnIntervention(interventionId);
+            bool result = managerService.ApproveAnIntervention(interventionId);
 
             Assert.IsFalse(result);
         }
@@ -145,7 +145,7 @@ namespace InterventionManagementSystem.Tests
             managerService.Users = users.Object;
             managerService.Districts = districts.Object;
 
-            bool result = managerService.approveAnIntervention(interventionId);
+            bool result = managerService.ApproveAnIntervention(interventionId);
 
             Assert.IsFalse(result);
         }
@@ -172,7 +172,7 @@ namespace InterventionManagementSystem.Tests
             managerService.Users = users.Object;
             managerService.Districts = districts.Object;
 
-            bool result = managerService.approveAnIntervention(interventionId);
+            bool result = managerService.ApproveAnIntervention(interventionId);
 
             Assert.IsFalse(result);
         }
@@ -190,7 +190,7 @@ namespace InterventionManagementSystem.Tests
 
             managerService.InterventionService = interventionService.Object;
 
-            Assert.IsTrue(managerService.updateInterventionState(interventionId, IMSLogicLayer.Enums.InterventionState.Approved));
+            Assert.IsTrue(managerService.UpdateInterventionState(interventionId, IMSLogicLayer.Enums.InterventionState.Approved));
         }
 
         [TestMethod]
@@ -201,7 +201,7 @@ namespace InterventionManagementSystem.Tests
 
             Guid interventionId = IMSLogicManager_UpdateInterventionTests_Setup(clientDistrictId, userDistrictId);
 
-            Assert.IsFalse(managerService.updateInterventionState(interventionId, IMSLogicLayer.Enums.InterventionState.Approved));
+            Assert.IsFalse(managerService.UpdateInterventionState(interventionId, IMSLogicLayer.Enums.InterventionState.Approved));
         }
 
         [TestMethod]

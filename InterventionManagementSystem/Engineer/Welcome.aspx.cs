@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using IMSLogicLayer.Models;
+using IMSLogicLayer.ServiceInterfaces;
+using IMSLogicLayer.Services;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,6 +47,28 @@ namespace InterventionManagementSystem
         protected void CreateIntervention_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Engineer/NewIntervention.aspx");
+        }
+
+        /// <summary>
+        /// Get the current engineer details using engineer Service with identity id and connection string
+        /// </summary>
+        /// <returns>the current engineer user object</returns>
+        public User GetDetail()
+        {
+            try
+            {
+                IEngineerService engineerService = new EngineerService(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString, User.Identity.GetUserId());
+
+
+                return engineerService.getDetail();
+            }
+            catch (Exception)
+            {
+                
+                Response.Redirect("~/Errors/InternalErrors.aspx",false);
+                return null;
+            }
+          
         }
     }
 }

@@ -18,7 +18,11 @@ namespace IMSDBLayer.DataAccessObjects
         {
             this.sqlExecuter = sqlExecuter;
         }
-        
+        /// <summary>
+        /// Create a Client
+        /// </summary>
+        /// <param name="client">Client object</param>
+        /// <returns>Client object created</returns>
         public Client createClient(Client client)
         {
             SqlCommand command = new SqlCommand(@"INSERT INTO Clients (Name, Location, DistrictId) " 
@@ -32,26 +36,42 @@ namespace IMSDBLayer.DataAccessObjects
                 return client;
             return null;
         }
-
+        /// <summary>
+        /// Update a Client
+        /// </summary>
+        /// <param name="client">client object</param>
+        /// <returns>true if success, false if fail</returns>
         public bool updateClient(Client client)
         {
             SqlCommand command = new SqlCommand(@"UPDATE Clients Set Name = @Name, Location = @Location, DistrictId = @DistrictId WHERE Id = @Id");
             return sqlExecuter.ExecuteNonQuery(command, client) > 0;
         }
-
+        /// <summary>
+        /// Get all Client
+        /// </summary>
+        /// <returns>A list of Client</returns>
         public IEnumerable<Client> getAll()
         {
             SqlCommand command = new SqlCommand("Select * From Clients");
             return sqlExecuter.ExecuteReader(command);
         }
-        
+
+        /// <summary>
+        /// Get all clients in the district
+        /// </summary>
+        /// <param name="districtId">The guid of a district</param>
+        /// <returns>A list of Client</returns>
         public IEnumerable<Client> fetchClientsByDistrictId(Guid districtId)
         {
             SqlCommand command = new SqlCommand("Select * From Clients Where DistrictId = @DistrictId");
             command.Parameters.AddWithValue("@DistrictId", districtId);
             return sqlExecuter.ExecuteReader(command);
         }
-
+        /// <summary>
+        /// Get a client by it's id
+        /// </summary>
+        /// <param name="clientId">the guid of Client</param>
+        /// <returns>Client object</returns>
         public Client fetchClientById(Guid clientId)
         {
             SqlCommand command = new SqlCommand(@"Select * From Clients WHERE Id = @Id");

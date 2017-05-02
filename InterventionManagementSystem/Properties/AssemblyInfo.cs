@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("InterventionManagementSystem2")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("InterventionManagementSystem")]
+[assembly: AssemblyDescription("Author: Yuan Chai, Alice Guo, Po-Hao Chen, Yijun Gai")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("InterventionManagementSystem2")]
-[assembly: AssemblyCopyright("Copyright ©  2017")]
+[assembly: AssemblyProduct("InterventionManagementSystem")]
+[assembly: AssemblyCopyright("Copyright ©  2017 DK.BurNing Group")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

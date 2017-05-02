@@ -38,7 +38,7 @@ namespace InterventionManagementSystem.Accountant
 
                     }else
                     {
-                        Response.Redirect("~/Accountant/Welcome.aspx");
+                        Response.Redirect("~/Accountant/Welcome.aspx",false);
                     }
 
                 }
@@ -46,7 +46,7 @@ namespace InterventionManagementSystem.Accountant
             catch (Exception)
             {
 
-                Response.Redirect("~/Errors/InternalErrors.aspx");
+                Response.Redirect("~/Errors/InternalErrors.aspx",true);
             }
            
                
@@ -69,7 +69,7 @@ namespace InterventionManagementSystem.Accountant
             catch (Exception)
             {
 
-                Response.Redirect("~/Errors/InternalErrors.aspx");
+                Response.Redirect("~/Errors/InternalErrors.aspx",false);
                 return null;
             }
             
@@ -100,7 +100,7 @@ namespace InterventionManagementSystem.Accountant
                     errorMessage.Text = "Update Failed! The selected District is no valid";
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
                 Response.Redirect("~/Errors/InternalErrors.aspx",false);
@@ -113,7 +113,7 @@ namespace InterventionManagementSystem.Accountant
         /// <param name="e"></param>
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Accountant/AccountList.aspx");
+            Response.Redirect("~/Accountant/AccountList.aspx",true);
         }
     }
 }

@@ -23,7 +23,7 @@ namespace InterventionManagementSystem
         {
             //instantiate an engineer service instance
             engineerService = new EngineerService(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString, User.Identity.GetUserId());
-          
+
 
         }
 
@@ -47,8 +47,17 @@ namespace InterventionManagementSystem
                     string comments = InterventionComments.Text;
                     Thread.CurrentThread.CurrentCulture = new CultureInfo("de-DE");
                     DateTime createDate = DateTime.Parse(DateTime.Now.ToShortDateString());
+                    DateTime? finishDate;
+                    if (String.IsNullOrEmpty(InterventionPerformDate.Text))
+                    {
+                        finishDate = null;
+                    }
+                    else
+                    {
+                        finishDate = DateTime.Parse(InterventionPerformDate.Text);
+                    }
 
-                    DateTime finishDate = DateTime.Parse(InterventionPerformDate.Text);
+
                     DateTime recentVisit = DateTime.Parse(DateTime.Now.ToShortDateString());
                     var typeID = SeletedInterventionType.SelectedValue;
                     var clientID = SelectClient.SelectedValue;
@@ -57,21 +66,21 @@ namespace InterventionManagementSystem
                     Intervention intervention = new Intervention(hour, cost, 100, comments, state, createDate, finishDate, recentVisit, new Guid(typeID), new Guid(clientID), engineerService.getDetail().Id, null);
                     engineerService.createIntervention(intervention);
 
-                    Response.Redirect("~/Engineer/InterventionList.aspx",false);
+                    Response.Redirect("~/Engineer/InterventionList.aspx", false);
                 }
             }
             catch (Exception)
             {
 
-                Response.Redirect("~/Errors/InternalErrors.aspx");
+                Response.Redirect("~/Errors/InternalErrors.aspx", true);
             }
-          
+
         }
         /// <summary>
         /// Call engineer service to return all the intervention types
         /// </summary>
         /// <returns>A list of Intervention Type</returns>
-        public List<InterventionType> getInterventionTypes()
+        public List<InterventionType> GetInterventionTypes()
         {
             return engineerService.getInterventionTypes();
         }
@@ -79,7 +88,7 @@ namespace InterventionManagementSystem
         /// Call engineer service to return all clients belong to the same district
         /// </summary>
         /// <returns>A list of clients</returns>
-        public List<Client> getClients()
+        public List<Client> GetClients()
         {
             return engineerService.getClients().ToList();
         }
@@ -91,12 +100,21 @@ namespace InterventionManagementSystem
         /// <param name="e"></param>
         protected void SeletedInterventionType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var interventionTypes = engineerService.getInterventionTypes();
+            try
+            {
+                var interventionTypes = engineerService.getInterventionTypes();
 
-            var interventionType = interventionTypes.Find(i => i.Id == new Guid(SeletedInterventionType.SelectedValue));
+                var interventionType = interventionTypes.Find(i => i.Id == new Guid(SeletedInterventionType.SelectedValue));
 
-            InterventionHour.Text = interventionType.Hours.ToString();
-            InterventionCost.Text = interventionType.Costs.ToString();
+                InterventionHour.Text = interventionType.Hours.ToString();
+                InterventionCost.Text = interventionType.Costs.ToString();
+            }
+            catch (Exception)
+            {
+
+                Response.Redirect("~/Errors/InternalErrors.aspx", true);
+            }
+
 
         }
     }
