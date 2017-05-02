@@ -149,11 +149,13 @@ namespace IMSLogicLayer.Services
             //create intervention instance with guid
             Intervention intervention = GetInterventionById(interventionId);
 
+            //create an instance of district object with the intervention's client's district id
+            var interventionDistrict = Districts.fetchDistrictById(Clients.fetchClientById(intervention.ClientId).DistrictId);
             //get district from the current user district
             var district = Districts.fetchDistrictById(GetDetail().DistrictId);
             //if the district is the same approve it and update approve by
             //return true is success, else false
-            if (intervention.District.Name == district.Name)
+            if (interventionDistrict.Name == district.Name)
             {
                 User user = new User(Users.fetchUserById(userId));
                 return interventionService.updateIntervetionApprovedBy(interventionId, user);

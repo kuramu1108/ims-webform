@@ -10,6 +10,9 @@ using IMSLogicLayer.ServiceInterfaces;
 
 namespace InterventionManagementSystem.Tests
 {
+    /// <summary>
+    /// Unit testing class for ManagerService
+    /// </summary>
     [TestClass]
     public class IMSLogicManagerServiceTest
     {
@@ -17,12 +20,21 @@ namespace InterventionManagementSystem.Tests
         private Guid District_SydId = new Guid("9D2B0228-4D0D-4C23-8B49-01A698857709");
         private Guid District_NswId = new Guid("ABCD0228-4D0D-4C23-8B49-01A698857709");
 
+        /// <summary>
+        /// initlizing the required setup for testing
+        /// initlize the managerService with empty connection string
+        /// </summary>
         [TestInitialize]
         public void SetUp()
         {
             managerService = new ManagerService("");
         }
 
+        /// <summary>
+        /// test target: GetInterventionsByState(InterventionState.Approved)
+        /// the function should return a list of interventions
+        /// success of the testmethod required all interventions in the return list to have an approved state
+        /// </summary>
         [TestMethod]
         public void IMSLogicManager_ViewListofInterventionCanApprove()
         {
@@ -68,6 +80,15 @@ namespace InterventionManagementSystem.Tests
             }
         }
 
+        /// <summary>
+        /// test target: ApproveAnIntervention(interventionId)
+        /// the function would approve an intervetion with given interventionid
+        /// the district of the manager and the intervention should match in order to process the approval
+        /// the Authorisedcost of the manager should be more than intervention cost in order to process the approval
+        /// the Authorisedhour of the manager should be more than intervention hour in order to process the approval
+        /// 
+        /// the test method test the scenario where all requirements are match thus successfully approved
+        /// </summary>
         [TestMethod]
         public void IMSLogicManager_ApproveIntervention_Success()
         {
@@ -99,6 +120,13 @@ namespace InterventionManagementSystem.Tests
             Assert.IsTrue(result);
         }
 
+        /// <summary>
+        /// test target: ApproveAnIntervention(interventionId)
+        /// the function would approve an intervetion with given interventionid
+        /// the district of the manager and the intervention should match in order to process the approval
+        /// 
+        /// the test method test the scenario where district of the manager and intervention are different thus failed approval
+        /// </summary>
         [TestMethod]
         public void IMSLogicManager_ApproveIntervention_Failed_DifferentDistrict()
         {
@@ -127,6 +155,14 @@ namespace InterventionManagementSystem.Tests
             Assert.IsFalse(result);
         }
 
+        /// <summary>
+        /// test target: ApproveAnIntervention(interventionId)
+        /// the function would approve an intervetion with given interventionid
+        /// the Authorisedcost of the manager should be more than intervention cost in order to process the approval
+        /// 
+        /// the test method test the scenario where the Authorisedcost of the manager should be less than intervention cost
+        /// thus failed approval
+        /// </summary>
         [TestMethod]
         public void IMSLogicManager_ApproveIntervention_Failed_InsufficientAuthorisedCost()
         {
@@ -154,6 +190,14 @@ namespace InterventionManagementSystem.Tests
             Assert.IsFalse(result);
         }
 
+        /// <summary>
+        /// test target: ApproveAnIntervention(interventionId)
+        /// the function would approve an intervetion with given interventionid
+        /// the Authorisedhour of the manager should be more than intervention hour in order to process the approval
+        /// 
+        /// the test method test the scenario where the Authorisedhour of the manager should be less than intervention hour
+        /// thus failed approval
+        /// </summary>
         [TestMethod]
         public void IMSLogicManager_ApproveIntervention_Failed_InsufficientAuthorisedHours()
         {
@@ -181,6 +225,13 @@ namespace InterventionManagementSystem.Tests
             Assert.IsFalse(result);
         }
 
+        /// <summary>
+        /// test target: UpdateInterventionState(interventionId, InterventionState)
+        /// the function would update the state of the given intervention
+        /// the district of the manager should match with the intervention district in order to process the approval
+        /// 
+        /// this test method test the scenario where manager and intervetion are in the same district
+        /// </summary>
         [TestMethod]
         public void IMSLogicManager_UpdateInterventionState_Success()
         {
@@ -197,6 +248,13 @@ namespace InterventionManagementSystem.Tests
             Assert.IsTrue(managerService.UpdateInterventionState(interventionId, IMSLogicLayer.Enums.InterventionState.Approved));
         }
 
+        /// <summary>
+        /// test target: UpdateInterventionState(interventionId, InterventionState)
+        /// the function would update the state of the given intervention
+        /// the district of the manager should match with the intervention district in order to process the approval
+        /// 
+        /// this test method test the scenario where manager and intervetion are in the different districts, thus failed the approval
+        /// </summary>
         [TestMethod]
         public void IMSLogicManager_UpdateInterventionState_Failed_DifferentDistricts()
         {
@@ -208,18 +266,51 @@ namespace InterventionManagementSystem.Tests
             Assert.IsFalse(managerService.UpdateInterventionState(interventionId, IMSLogicLayer.Enums.InterventionState.Approved));
         }
 
+        /// <summary>
+        /// test target: UpdateInterventionApprovedBy(interventionid, userid)
+        /// the function would update the approvedby of the given intervention
+        /// the district of the manager should match with the intervention district in order to process the approval
+        /// 
+        /// this test method test the scenario where manager and intervetion are in the same district
+        /// </summary>
         [TestMethod]
         public void IMSLogicManager_UpdateInterventionApprovedBy_Success()
         {
+            Guid clientDistrictId = District_SydId;
+            Guid userDistrictId = clientDistrictId;
 
+            Guid interventionId = IMSLogicManager_UpdateInterventionTests_Setup(clientDistrictId, userDistrictId);
+
+            Mock<IInterventionService> interventionService = new Mock<IInterventionService>();
+            interventionService.Setup(x => x.updateIntervetionApprovedBy(It.IsAny<Guid>(), It.IsAny<User>())).Returns(true);
+
+            managerService.InterventionService = interventionService.Object;
+
+            Assert.IsTrue(managerService.UpdateInterventionApproveBy(interventionId, new Guid()));
         }
 
+        /// <summary>
+        /// test target: UpdateInterventionApprovedBy(interventionid, userid)
+        /// the function would update the approvedby of the given intervention
+        /// the district of the manager should match with the intervention district in order to process the approval
+        /// 
+        /// this test method test the scenario where manager and intervetion are in the different districts, thus failed the approval
+        /// </summary>
         [TestMethod]
         public void IMSLogicManager_UpdateInterventionApprovedBy_Failed_DifferentDistricts()
         {
+            Guid clientDistrictId = District_SydId;
+            Guid userDistrictId = District_NswId;
 
+            Guid interventionId = IMSLogicManager_UpdateInterventionTests_Setup(clientDistrictId, userDistrictId);
+
+            Assert.IsFalse(managerService.UpdateInterventionApproveBy(interventionId, new Guid()));
         }
 
+        /// <summary>
+        /// the supporting function that setup the requirements for ApproveIntervention related tests
+        /// </summary>
+        /// <returns>the guid of the generated intervention</returns>
         private Guid IMSLogicManager_ApproveInterventionTests_Setup()
         {
             Mock<IInterventionDataAccess> interventions = new Mock<IInterventionDataAccess>();
@@ -236,6 +327,12 @@ namespace InterventionManagementSystem.Tests
             return intervention.Id;
         }
 
+        /// <summary>
+        /// the supporting function that setup the requirements for UPdateIntervention related tests
+        /// </summary>
+        /// <param name="clientDistrictId">the guid of the client's district</param>
+        /// <param name="userDistrictId">the guid of the manager's district</param>
+        /// <returns>the guid of the generated intervention</returns>
         private Guid IMSLogicManager_UpdateInterventionTests_Setup(Guid clientDistrictId, Guid userDistrictId)
         {
             Guid clientId = new Guid();
@@ -243,7 +340,7 @@ namespace InterventionManagementSystem.Tests
             Mock<IInterventionDataAccess> interventions = new Mock<IInterventionDataAccess>();
             IMSDBLayer.DataModels.Intervention intervention = new IMSDBLayer.DataModels.Intervention()
             {
-                ClientId = clientId,
+                ClientId = clientId
             };
             interventions.Setup(i => i.fetchInterventionsById(It.IsAny<Guid>())).Returns(intervention);
 
@@ -268,6 +365,7 @@ namespace InterventionManagementSystem.Tests
             Mock<IUserDataAccess> users = new Mock<IUserDataAccess>();
             User user = new User("AccountantX", 1, 0, 200, "", userDistrictId);
             users.Setup(u => u.fetchUserByIdentityId(It.IsAny<Guid>())).Returns(user);
+            users.Setup(u => u.fetchUserById(It.IsAny<Guid>())).Returns(user);
 
             managerService.Interventions = interventions.Object;
             managerService.Clients = clients.Object;

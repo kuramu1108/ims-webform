@@ -58,7 +58,6 @@
     <Compile Include="IMSLogicManagerServiceTest.cs" />
     <Compile Include="IMSLogicEngineerServiceTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="IMSLogicDistrictServiceTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\IMSDBLayer\IMSDBLayer.csproj">
