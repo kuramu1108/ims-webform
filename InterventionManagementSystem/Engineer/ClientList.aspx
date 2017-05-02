@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ClientList.aspx.cs" Inherits="InterventionManagementSystem.Engineer.ClientList" %>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <h3>Client List - <%=getDetail().District.Name%></h3>
+    <h3>Client List - <%=GetDetail().District.Name%></h3>
     <hr />
     <div class="main-body-content">
         <asp:ListView ID="ClientListView" runat="server">

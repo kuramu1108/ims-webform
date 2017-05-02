@@ -21,7 +21,7 @@ namespace InterventionManagementSystem.Manager
         protected void Page_Load(object sender, EventArgs e)
         {
             managerService = new ManagerService(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString, User.Identity.GetUserId());
-            managerDetail = managerService.getDetail();
+            managerDetail = managerService.GetDetail();
 
             if (!IsPostBack)
             {
@@ -29,7 +29,7 @@ namespace InterventionManagementSystem.Manager
                 SeletedInterventionState.Items.Add(new ListItem(InterventionState.Approved.ToString(), ((int)InterventionState.Approved).ToString()));
                 SeletedInterventionState.SelectedIndex = (int)InterventionState.Proposed;
                 
-                interventionsList = managerService.getInterventionsByState(InterventionState.Proposed);
+                interventionsList = managerService.GetInterventionsByState(InterventionState.Proposed);
                 InterventionListView.DataSource = interventionsList;
                 InterventionListView.DataBind();
             }
@@ -49,9 +49,9 @@ namespace InterventionManagementSystem.Manager
         {
             var state = (InterventionState)SeletedInterventionState.SelectedIndex;
             if(state == InterventionState.Proposed)
-                interventionsList = managerService.getInterventionsByState(state);
+                interventionsList = managerService.GetInterventionsByState(state);
             if (state == InterventionState.Approved)
-                interventionsList = managerService.getApprovedInterventions();
+                interventionsList = managerService.GetApprovedInterventions();
 
             InterventionListView.DataSource = interventionsList;
             InterventionListView.DataBind();
@@ -60,13 +60,13 @@ namespace InterventionManagementSystem.Manager
         protected void btnApprove_Click(object sender, EventArgs e)
         {
             Button button = (Button)sender;
-            managerService.approveAnIntervention(new Guid(button.CommandArgument));
+            managerService.ApproveAnIntervention(new Guid(button.CommandArgument));
             SeletedInterventionState_SelectedIndexChanged(sender, e);
         }
 
         public bool canApprove(object interventionId)
         {
-            var intervention = managerService.getInterventionById((Guid)interventionId);
+            var intervention = managerService.GetInterventionById((Guid)interventionId);
             return intervention.InterventionState == InterventionState.Proposed &&
                 intervention.Costs <= managerDetail.AuthorisedCosts &&
                 intervention.Hours <= managerDetail.AuthorisedHours;

@@ -41,7 +41,7 @@ namespace InterventionManagementSystem.Engineer
         /// get the current user
         /// </summary>
         /// <returns>The current engineer</returns>
-        protected User getDetail()
+        protected User GetDetail()
         {
             return engineerService.getDetail();
         }

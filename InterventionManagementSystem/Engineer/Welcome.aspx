@@ -4,7 +4,7 @@
     <div class="row form-group">
         <h3><%:Context.User.Identity.GetUserName()%></h3>
         <hr />
-         <% IMSLogicLayer.Models.User engineer = getDetail(); %>
+         <% IMSLogicLayer.Models.User engineer = GetDetail(); %>
         <div class="row form-group">
             <div class="col-md-4">
                 Site Engineer:

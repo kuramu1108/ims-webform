@@ -80,7 +80,7 @@ namespace InterventionManagementSystem
         /// Call engineer service to return all the intervention types
         /// </summary>
         /// <returns>A list of Intervention Type</returns>
-        public List<InterventionType> getInterventionTypes()
+        public List<InterventionType> GetInterventionTypes()
         {
             return engineerService.getInterventionTypes();
         }
@@ -88,7 +88,7 @@ namespace InterventionManagementSystem
         /// Call engineer service to return all clients belong to the same district
         /// </summary>
         /// <returns>A list of clients</returns>
-        public List<Client> getClients()
+        public List<Client> GetClients()
         {
             return engineerService.getClients().ToList();
         }

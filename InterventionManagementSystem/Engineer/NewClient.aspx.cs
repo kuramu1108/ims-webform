@@ -62,7 +62,7 @@ namespace InterventionManagementSystem
         /// function to get the current engineer 
         /// </summary>
         /// <returns>The current engineer</returns>
-        protected User getDetail()
+        protected User GetDetail()
         {
             return engineerService.getDetail();
         }

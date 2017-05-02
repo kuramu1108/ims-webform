@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="New Client" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="NewClient.aspx.cs" Inherits="InterventionManagementSystem.NewClient" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <h3>New Client - <%=getDetail().District.Name%></h3>
+    <h3>New Client - <%=GetDetail().District.Name%></h3>
     <hr />
     <div class="main-body-content">
             <div class="row form-group">
@@ -30,7 +30,7 @@
                     <label>Client District:</label>
                 </div>
                 <div class="col-md-6">
-                    <input type="text" class="form-control" disabled value="<%=getDetail().District.Name%>" />
+                    <input type="text" class="form-control" disabled value="<%=GetDetail().District.Name%>" />
                 </div>
             </div>
             <div class="row form-group">

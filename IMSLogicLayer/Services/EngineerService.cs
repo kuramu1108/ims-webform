@@ -52,7 +52,7 @@ namespace IMSLogicLayer.Services
         /// <returns>List of intervention type</returns>
         public new List<InterventionType> getInterventionTypes()
         {
-            return base.getInterventionTypes();
+            return base.GetInterventionTypes();
         }
         /// <summary>
         /// Get the instance of current user
@@ -60,7 +60,7 @@ namespace IMSLogicLayer.Services
         /// <returns>The current user instance</returns>
         public User getDetail()
         {
-            return getDetail(engineerIdentityId);
+            return GetDetail(engineerIdentityId);
         }
         /// <summary>
         /// Get all clients on the same district as the current user

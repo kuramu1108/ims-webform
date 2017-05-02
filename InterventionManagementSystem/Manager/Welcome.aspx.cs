@@ -19,7 +19,7 @@ namespace InterventionManagementSystem.Manager
         protected void Page_Load(object sender, EventArgs e)
         {
             managerService = new ManagerService(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString, User.Identity.GetUserId());
-            managerDetail = managerService.getDetail();
+            managerDetail = managerService.GetDetail();
         }
 
         public User getDetail()

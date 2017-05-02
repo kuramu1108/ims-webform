@@ -43,7 +43,7 @@ namespace IMSLogicLayer.Services
         /// Get the current User instance
         /// </summary>
         /// <returns>The current user</returns>
-        public User getDetail()
+        public User GetDetail()
         {
             var user = new User(Users.fetchUserByIdentityId(managerIdentityId));
             user.District = new District(Districts.fetchDistrictById(user.DistrictId));
@@ -54,11 +54,11 @@ namespace IMSLogicLayer.Services
         /// </summary>
         /// <param name="state">The state of an intervention</param>
         /// <returns>A list of intervention</returns>
-        public IEnumerable<Intervention> getInterventionsByState(InterventionState state)
+        public IEnumerable<Intervention> GetInterventionsByState(InterventionState state)
         {
             var interventions = Interventions.fetchInterventionsByState((int)state).Select(c => new Intervention(c)).ToList();
             List<Intervention> managerInterventions = new List<Intervention>();
-            User manager = getDetail();
+            User manager = GetDetail();
             foreach (var intervention in interventions)
             {
                 intervention.Client = new Client(Clients.fetchClientById(intervention.ClientId));
@@ -77,7 +77,7 @@ namespace IMSLogicLayer.Services
         /// </summary>
         /// <param name="interventionId">The guid of an intervention</param>
         /// <returns>The corresponding intervention</returns>
-        public Intervention getInterventionById(Guid interventionId)
+        public Intervention GetInterventionById(Guid interventionId)
         {
             return new Intervention(Interventions.fetchInterventionsById(interventionId));
         }
@@ -87,10 +87,10 @@ namespace IMSLogicLayer.Services
         /// </summary>
         /// <param name="interventionId">The guid of an intervention</param>
         /// <returns>True if successfully approved an intervention, false if fail</returns>
-        public Boolean approveAnIntervention(Guid interventionId)
+        public Boolean ApproveAnIntervention(Guid interventionId)
         {
             //create instance of intervention from guid
-            var intervention = getInterventionById(interventionId);
+            var intervention = GetInterventionById(interventionId);
             //create instance of intervention type from intervention type id using interventionType
             var interventionType = InterventionTypes.fetchInterventionTypesById(intervention.InterventionTypeId);
 
@@ -98,7 +98,7 @@ namespace IMSLogicLayer.Services
             var client = Clients.fetchClientById(intervention.ClientId);
 
             //create instance of the current user
-            var user = getDetail();
+            var user = GetDetail();
             //if the criteria of approve an intervention meets then update the state of an intervention
             if (client.DistrictId == user.DistrictId && user.AuthorisedHours >= intervention.Hours
                 && user.AuthorisedCosts >= intervention.Costs && user.AuthorisedCosts >= interventionType.Costs
@@ -118,15 +118,15 @@ namespace IMSLogicLayer.Services
         /// <param name="interventionId">The guid of an intervention</param>
         /// <param name="state">The enum intervention state to update to</param>
         /// <returns>True if successfully updated, false if fail</returns>
-        public bool updateInterventionState(Guid interventionId, InterventionState state)
+        public bool UpdateInterventionState(Guid interventionId, InterventionState state)
         {
             //create intervention instance from guid
-            var intervention = getInterventionById(interventionId);
+            var intervention = GetInterventionById(interventionId);
             //create an instance of district object with the intervention's client's district id
             var interventionDistrict = Districts.fetchDistrictById(Clients.fetchClientById(intervention.ClientId).DistrictId);
 
             //create an instance of district from the current user's district id
-            var district = Districts.fetchDistrictById(getDetail().DistrictId);
+            var district = Districts.fetchDistrictById(GetDetail().DistrictId);
 
             //if district is same, then update the state of the intervention
             if (interventionDistrict.Name == district.Name)
@@ -144,13 +144,13 @@ namespace IMSLogicLayer.Services
         /// <param name="interventionId">The guid of an intervention</param>
         /// <param name="userId">The current user id</param>
         /// <returns>True if success, false if fail</returns>
-        public bool updateInterventionApproveBy(Guid interventionId, Guid userId)
+        public bool UpdateInterventionApproveBy(Guid interventionId, Guid userId)
         {
             //create intervention instance with guid
-            Intervention intervention = getInterventionById(interventionId);
+            Intervention intervention = GetInterventionById(interventionId);
 
             //get district from the current user district
-            var district = Districts.fetchDistrictById(getDetail().DistrictId);
+            var district = Districts.fetchDistrictById(GetDetail().DistrictId);
             //if the district is the same approve it and update approve by
             //return true is success, else false
             if (intervention.District.Name == district.Name)
@@ -167,7 +167,7 @@ namespace IMSLogicLayer.Services
         /// Get approved Interventions of the current Manager
         /// </summary>
         /// <returns>A list of Intervention with interventionType, client, district property</returns>
-        public IEnumerable<Intervention> getApprovedInterventions()
+        public IEnumerable<Intervention> GetApprovedInterventions()
         {
             //get intervention by state approved and complete
             var interventions = Interventions.fetchInterventionsByState((int)InterventionState.Approved).Select(c => new Intervention(c)).ToList();

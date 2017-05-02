@@ -53,7 +53,7 @@ namespace InterventionManagementSystem
         /// Get the current engineer details using engineer Service with identity id and connection string
         /// </summary>
         /// <returns>the current engineer user object</returns>
-        public User getDetail()
+        public User GetDetail()
         {
             try
             {

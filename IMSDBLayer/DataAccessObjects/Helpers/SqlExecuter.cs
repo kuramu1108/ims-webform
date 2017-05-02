@@ -32,7 +32,7 @@ namespace IMSDBLayer.DataAccessObjects.Helpers
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    results.Add(getReaderDataRow(reader));
+                    results.Add(GetReaderDataRow(reader));
                 }
                 connection.Close();
             }
@@ -49,7 +49,7 @@ namespace IMSDBLayer.DataAccessObjects.Helpers
             using (SqlConnection connection = new SqlConnection(connstring))
             {
                 command.Connection = connection;
-                command = setSqlCommandParameters(command, value);
+                command = SetSqlCommandParameters(command, value);
                 connection.Open();
                 return command.ExecuteNonQuery();
             }
@@ -65,7 +65,7 @@ namespace IMSDBLayer.DataAccessObjects.Helpers
             using (SqlConnection connection = new SqlConnection(connstring))
             {
                 command.Connection = connection;
-                command = setSqlCommandParameters(command, value);
+                command = SetSqlCommandParameters(command, value);
                 connection.Open();
                 return command.ExecuteScalar();
             }
@@ -76,7 +76,7 @@ namespace IMSDBLayer.DataAccessObjects.Helpers
         /// <param name="command">sql command</param>
         /// <param name="value">an object</param>
         /// <returns>sql command with parameter</returns>
-        private SqlCommand setSqlCommandParameters(SqlCommand command, T value)
+        private SqlCommand SetSqlCommandParameters(SqlCommand command, T value)
         {
             var properties = value.GetType().GetProperties();
             for (int i = 0; i < properties.Length; i++)
@@ -104,7 +104,7 @@ namespace IMSDBLayer.DataAccessObjects.Helpers
         /// </summary>
         /// <param name="reader">sql reader</param>
         /// <returns>An object with reader data</returns>
-        private T getReaderDataRow(SqlDataReader reader)
+        private T GetReaderDataRow(SqlDataReader reader)
         {
             T result = (T)Activator.CreateInstance(typeof(T));
             var properties = result.GetType().GetProperties();

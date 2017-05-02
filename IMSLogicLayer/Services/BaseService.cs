@@ -69,7 +69,7 @@ namespace IMSLogicLayer.Services
         /// Get All intervention types
         /// </summary>
         /// <returns>A list of intervention types</returns>
-        internal List<InterventionType> getInterventionTypes()
+        internal List<InterventionType> GetInterventionTypes()
         {
             return InterventionTypes.getAll().Select(i => new InterventionType(i)).ToList();
         }
@@ -78,7 +78,7 @@ namespace IMSLogicLayer.Services
         /// </summary>
         /// <param name="identityId">The identityid of the current logged in user</param>
         /// <returns>An user instance</returns>
-        internal User getDetail(Guid identityId)
+        internal User GetDetail(Guid identityId)
         {
             User user = new User(Users.fetchUserByIdentityId(identityId));
             user.District = new District(Districts.fetchDistrictById(user.DistrictId));
