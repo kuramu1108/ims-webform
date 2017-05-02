@@ -162,7 +162,7 @@ namespace InterventionManagementSystem.Tests
 
             bool result = interventionService.updateInterventionDetail(intervention.Id, comment, lifeRemaining, new DateTime());
 
-            Assert.IsTrue(true);
+            Assert.IsTrue(result);
         }
 
         /// <summary>
