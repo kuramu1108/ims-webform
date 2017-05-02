@@ -78,7 +78,7 @@
                                     </div>
                             </div></div></div>
                             <a class="btn btn-default btn-listview" data-toggle="modal" data-target="#view-<%#Eval("Id")%>">View</a>
-                            <asp:Button ID="btnApprove" Text="Approve" OnClick="btnApprove_Click" CommandArgument='<%#Eval("Id")%>' Visible='<%#CanApprove(Eval("Id"))%>'  CssClass="btn btn-success btn-listview" runat="server"/>
+                            <asp:Button ID="btnApprove" Text="Approve" OnClick="BtnApprove_Click" CommandArgument='<%#Eval("Id")%>' Visible='<%#CanApprove(Eval("Id"))%>'  CssClass="btn btn-success btn-listview" runat="server"/>
                         </td>
                     </tr>
                 </ItemTemplate>

@@ -79,10 +79,12 @@ namespace InterventionManagementSystem.Tests
         {
             Guid districtID = new Guid();
             Mock<IClientDataAccess> clients = new Mock<IClientDataAccess>();
-            List<Client> clientList = new List<Client>();
-            clientList.Add(new Client("Richard", "Sydney", districtID));
-            clientList.Add(new Client("Po", "Sydney", districtID));
-            clientList.Add(new Client("Welly", "Sydney", districtID));
+            List<Client> clientList = new List<Client>
+            {
+                new Client("Richard", "Sydney", districtID),
+                new Client("Po", "Sydney", districtID),
+                new Client("Welly", "Sydney", districtID)
+            };
             clients.Setup(c => c.fetchClientsByDistrictId(It.IsAny<Guid>())).Returns(clientList);
 
             Mock<IUserDataAccess> users = new Mock<IUserDataAccess>();
