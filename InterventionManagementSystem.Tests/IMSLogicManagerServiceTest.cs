@@ -51,10 +51,14 @@ namespace InterventionManagementSystem.Tests
             Mock<IDistrictDataAccess> districts = new Mock<IDistrictDataAccess>();
             districts.Setup(d => d.fetchDistrictById(It.IsAny<Guid>())).Returns(new District(""));
 
+            Mock<IUserDataAccess> users = new Mock<IUserDataAccess>();
+            users.Setup(u => u.fetchUserByIdentityId(It.IsAny<Guid>())).Returns(new User("", 1, 1, 1, "", new Guid()));
+
             managerService.Interventions = interventions.Object;
             managerService.InterventionTypes = interventionTypes.Object;
             managerService.Clients = clients.Object;
             managerService.Districts = districts.Object;
+            managerService.Users = users.Object;
 
             List<Intervention> results = managerService.GetInterventionsByState(IMSLogicLayer.Enums.InterventionState.Proposed).ToList();
 

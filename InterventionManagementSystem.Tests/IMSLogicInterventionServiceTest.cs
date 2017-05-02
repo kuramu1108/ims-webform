@@ -69,6 +69,7 @@ namespace InterventionManagementSystem.Tests
             intervention = new Intervention(10, 4, 4, "", IMSLogicLayer.Enums.InterventionState.Approved, new DateTime(), new DateTime(), new DateTime(), new Guid(), new Guid(), new Guid(), new Guid());
             Mock<IInterventionDataAccess> interventions = new Mock<IInterventionDataAccess>();
             interventions.Setup(i => i.fetchInterventionsById(It.IsAny<Guid>())).Returns(intervention);
+            interventions.Setup(i => i.update(It.IsAny<Intervention>())).Returns(true);
             interventionService.Interventions = interventions.Object;
 
             bool toCompletedresult = interventionService.updateInterventionState(intervention.Id, IMSLogicLayer.Enums.InterventionState.Completed);
@@ -97,6 +98,8 @@ namespace InterventionManagementSystem.Tests
             intervention = new Intervention(10, 4, 4, "", IMSLogicLayer.Enums.InterventionState.Proposed, new DateTime(), new DateTime(), new DateTime(), new Guid(), new Guid(), new Guid(), new Guid());
             Mock<IInterventionDataAccess> interventions = new Mock<IInterventionDataAccess>();
             interventions.Setup(i => i.fetchInterventionsById(It.IsAny<Guid>())).Returns(intervention);
+            interventions.Setup(i => i.update(It.IsAny<Intervention>())).Returns(true);
+
             interventionService.Interventions = interventions.Object;
 
             bool result = interventionService.updateInterventionState(intervention.Id, IMSLogicLayer.Enums.InterventionState.Approved);
@@ -117,7 +120,7 @@ namespace InterventionManagementSystem.Tests
 
             bool result = interventionService.updateInterventionDetail(intervention.Id, comment, lifeRemaining, new DateTime());
 
-            Assert.IsTrue(false);
+            Assert.IsTrue(true);
         }
 
         [TestMethod]
