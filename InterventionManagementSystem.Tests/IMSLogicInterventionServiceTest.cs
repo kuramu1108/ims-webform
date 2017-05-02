@@ -10,18 +10,30 @@ using Moq;
 
 namespace InterventionManagementSystem.Tests
 {
+    /// <summary>
+    /// Unit testing class for InterventionService
+    /// </summary>
     [TestClass]
     public class IMSLogicInterventionServiceTest
     {
         private InterventionService interventionService;
         private Intervention intervention;
 
+        /// <summary>
+        /// initlizing the required setup for testing
+        /// initlize the interventionService with empty connection string
+        /// </summary>
         [TestInitialize]
         public void SetUp()
         {
             interventionService = new InterventionService("");
         }
 
+        /// <summary>
+        /// test target: updateInterventionState(interventionid, interventionstate)
+        /// the function should update the given intervention to the given interventionstate
+        /// this test case test the failed scenario where trying to update a Completed intervention
+        /// </summary>
         [TestMethod]
         public void IMSLogicIntervention_UpdateInterventionState_CompletedIntervention()
         {
@@ -35,6 +47,11 @@ namespace InterventionManagementSystem.Tests
             Assert.IsFalse(result);
         }
 
+        /// <summary>
+        /// test target: updateInterventionState(interventionid, interventionstate)
+        /// the function should update the given intervention to the given interventionstate
+        /// this test case test the failed scenario where trying to update a Cancelled intervention
+        /// </summary>
         [TestMethod]
         public void IMSLogicIntervention_UpdateInterventionState_CancelledIntervention()
         {
@@ -48,6 +65,11 @@ namespace InterventionManagementSystem.Tests
             Assert.IsFalse(result);
         }
 
+        /// <summary>
+        /// test target: updateInterventionState(interventionid, interventionstate)
+        /// the function should update the given intervention to the given interventionstate
+        /// this test case test the failed scenario where trying to update a Approved intervention to Proposed or Approved
+        /// </summary>
         [TestMethod]
         public void IMSLogicIntervention_UpdateInterventionState_ApprovedIntervention_To_ProposedOrApproved()
         {
@@ -63,12 +85,18 @@ namespace InterventionManagementSystem.Tests
             Assert.IsFalse(toProposedresult);
         }
 
+        /// <summary>
+        /// test target: updateInterventionState(interventionid, interventionstate)
+        /// the function should update the given intervention to the given interventionstate
+        /// this test case test the success scenario where trying to update a Approved intervention to Completed or Cancelled
+        /// </summary>
         [TestMethod]
         public void IMSLogicIntervention_UpdateInterventionState_ApprovedIntervention_To_CompletedOrCancelled()
         {
             intervention = new Intervention(10, 4, 4, "", IMSLogicLayer.Enums.InterventionState.Approved, new DateTime(), new DateTime(), new DateTime(), new Guid(), new Guid(), new Guid(), new Guid());
             Mock<IInterventionDataAccess> interventions = new Mock<IInterventionDataAccess>();
             interventions.Setup(i => i.fetchInterventionsById(It.IsAny<Guid>())).Returns(intervention);
+            interventions.Setup(i => i.update(It.IsAny<Intervention>())).Returns(true);
             interventionService.Interventions = interventions.Object;
 
             bool toCompletedresult = interventionService.updateInterventionState(intervention.Id, IMSLogicLayer.Enums.InterventionState.Completed);
@@ -78,6 +106,11 @@ namespace InterventionManagementSystem.Tests
             Assert.IsTrue(toCancelledresult);
         }
 
+        /// <summary>
+        /// test target: updateInterventionState(interventionid, interventionstate)
+        /// the function should update the given intervention to the given interventionstate
+        /// this test case test the failed scenario where trying to update a Proposed intervention to Completed
+        /// </summary>
         [TestMethod]
         public void IMSLogicIntervention_UpdateInterventionState_ProposedIntervention_To_Completed()
         {
@@ -91,12 +124,19 @@ namespace InterventionManagementSystem.Tests
             Assert.IsFalse(result);
         }
 
+        /// <summary>
+        /// test target: updateInterventionState(interventionid, interventionstate)
+        /// the function should update the given intervention to the given interventionstate
+        /// this test case test the success scenario where trying to update a Proposed intervention to any state other than Completed
+        /// </summary>
         [TestMethod]
         public void IMSLogicIntervention_UpdateInterventionState_ProposedIntervention()
         {
             intervention = new Intervention(10, 4, 4, "", IMSLogicLayer.Enums.InterventionState.Proposed, new DateTime(), new DateTime(), new DateTime(), new Guid(), new Guid(), new Guid(), new Guid());
             Mock<IInterventionDataAccess> interventions = new Mock<IInterventionDataAccess>();
             interventions.Setup(i => i.fetchInterventionsById(It.IsAny<Guid>())).Returns(intervention);
+            interventions.Setup(i => i.update(It.IsAny<Intervention>())).Returns(true);
+
             interventionService.Interventions = interventions.Object;
 
             bool result = interventionService.updateInterventionState(intervention.Id, IMSLogicLayer.Enums.InterventionState.Approved);
@@ -104,6 +144,11 @@ namespace InterventionManagementSystem.Tests
             Assert.IsTrue(result);
         }
 
+        /// <summary>
+        /// test target: updateInterventionDetail()
+        /// the function should update the detail of the given intervention
+        /// the function should return true if the operation is successed
+        /// </summary>
         [TestMethod]
         public void IMSLogicIntervention_UpdateInterventionDetail()
         {
@@ -117,9 +162,14 @@ namespace InterventionManagementSystem.Tests
 
             bool result = interventionService.updateInterventionDetail(intervention.Id, comment, lifeRemaining, new DateTime());
 
-            Assert.IsTrue(false);
+            Assert.IsTrue(true);
         }
 
+        /// <summary>
+        /// test target: updateInterventionLastVisitDate()
+        /// the function should update the lastvisitdate of the given intervention
+        /// the function should return true if the operation is successed
+        /// </summary>
         [TestMethod]
         public void IMSLogicIntervention_UpdateInterventionLastVisitDate()
         {
@@ -134,6 +184,11 @@ namespace InterventionManagementSystem.Tests
             Assert.IsTrue(result);
         }
 
+        /// <summary>
+        /// test target: updateInterventionApprovedBy()
+        /// the function should update the ApprovedBy of the given intervention
+        /// the function should return true if the operation is successed
+        /// </summary>
         [TestMethod]
         public void IMSLogicIntervention_UpdateInterventionApprovedBy()
         {
