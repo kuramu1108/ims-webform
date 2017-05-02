@@ -90,6 +90,17 @@ namespace InterventionManagementSystem.Tests
             users.Setup(u => u.fetchUserByIdentityId(It.IsAny<Guid>())).Returns(engineerDetail);
             engineerService.Users = users.Object;
 
+            Mock<IDistrictDataAccess> districts = new Mock<IDistrictDataAccess>();
+            District district = new District("")
+            {
+                Id = districtID
+            };
+            districts.Setup(d => d.fetchDistrictById(It.IsAny<Guid>())).Returns(district);
+
+            engineerService.Clients = clients.Object;
+            engineerService.Users = users.Object;
+            engineerService.Districts = districts.Object;
+
             List<Client> resultList = engineerService.getClients().ToList<Client>();
 
             foreach (Client c in resultList)
